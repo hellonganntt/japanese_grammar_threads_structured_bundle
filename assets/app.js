@@ -407,6 +407,7 @@ function renderKanjiPanel(){
   const title = document.getElementById("kanjiTitle");
   const meta = document.getElementById("kanjiMeta");
   const content = document.getElementById("kanjiContent");
+  if(!panel || !toggle || !title || !meta || !content) return;
   const kanji = getKanjiForSelectedLesson();
 
   title.textContent = "漢字";
@@ -531,10 +532,13 @@ document.getElementById("vocabToggle").addEventListener("click", () => {
   renderVocabPanel();
 });
 
-document.getElementById("kanjiToggle").addEventListener("click", () => {
-  kanjiPanelOpen = !kanjiPanelOpen;
-  renderKanjiPanel();
-});
+const kanjiToggle = document.getElementById("kanjiToggle");
+if(kanjiToggle){
+  kanjiToggle.addEventListener("click", () => {
+    kanjiPanelOpen = !kanjiPanelOpen;
+    renderKanjiPanel();
+  });
+}
 
 let dark = false;
 document.getElementById("themeBtn").addEventListener("click", () => {
