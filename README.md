@@ -23,7 +23,7 @@ py -m http.server 8000
 Open:
 
 ```text
-http://localhost:8000/japanese_grammar_threads_structured.html
+http://localhost:8000/index.html
 ```
 
 Opening the HTML file directly with `file://` may fail because browsers often block JSON loading from local files.

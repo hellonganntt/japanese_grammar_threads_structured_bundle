@@ -32,6 +32,15 @@ Follow `data/lesson-schema.jsonc` exactly.
 - Keep examples relevant to the target vocabulary, kanji, or grammar point.
 - Prefer clear, practical, everyday Japanese unless the lesson topic calls for something more formal.
 
+## Kanji Examples
+
+When generating kanji entries, include up to 5 relevant example words if possible.
+
+- Prefer examples that match the kanji's JLPT level or the closest practical level for the lesson.
+- Choose words that show common, useful, and realistic usage.
+- If five good examples are not available, include as many accurate examples as possible without forcing unnatural words.
+- Make sure each example word, reading, and meaning are correct and relevant to the kanji.
+
 ## Structure Rules
 
 Include these top-level keys:
@@ -82,4 +91,3 @@ Before completing the task, verify:
 - the file matches the schema
 
 Do not finish until the lesson is accurate, cleanly formatted, and valid JSON.
-

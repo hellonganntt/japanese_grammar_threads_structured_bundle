@@ -2,68 +2,372 @@
   "lesson": 36,
   "vocab": [
     {
-      "jp": "話せる",
-      "reading": "はなせる",
-      "meaning": "can speak",
+      "jp": "届きます",
+      "reading": "とどきます",
+      "meaning": "được gửi tới; đến nơi",
       "pos": "verb",
-      "note": "Potential form of 話す.",
-      "example": "日本語が少し話せるようになりました。"
+      "note": "Dùng khi thư từ, hàng hóa, hoặc thông tin đến được người nhận.",
+      "example": "昨日、荷物が無事に届きました。"
     },
     {
-      "jp": "聞こえる",
-      "reading": "きこえる",
-      "meaning": "can hear; be audible",
+      "jp": "出ます",
+      "reading": "でます",
+      "meaning": "ra; xuất hiện; tham gia",
       "pos": "verb",
-      "note": "Often used for whether sound reaches you naturally.",
-      "example": "先生の話がよく聞こえるように、前の席に座りました。"
+      "note": "Tùy ngữ cảnh có thể là ra ngoài, xuất hiện, hoặc tham dự.",
+      "example": "会議に出ます。"
     },
     {
-      "jp": "忘れる",
-      "reading": "わすれる",
-      "meaning": "to forget",
+      "jp": "打ちます",
+      "reading": "うちます",
+      "meaning": "đánh; gõ; đánh máy",
       "pos": "verb",
-      "note": "Common with 忘れないように for avoiding a result.",
-      "example": "忘れないように、ノートに書きます。"
+      "note": "Dùng cho việc gõ phím, đánh bóng, hoặc đập vào vật gì đó.",
+      "example": "キーボードを打ちます。"
     },
     {
-      "jp": "練習する",
-      "reading": "れんしゅうする",
-      "meaning": "to practice",
+      "jp": "彫金ます",
+      "reading": "ちょうきんます",
+      "meaning": "khắc kim loại",
       "pos": "verb",
-      "note": "Suru-verb used often with skills and habits.",
-      "example": "毎日練習しています。"
+      "note": "Cách viết này có vẻ không tự nhiên; nếu ý bạn là động từ liên quan đến khắc thì thường gặp là 彫ります hoặc 彫金をします.",
+      "example": "工房で金属を彫金します。"
     },
     {
-      "jp": "起きる",
-      "reading": "おきる",
-      "meaning": "to wake up; to get up",
+      "jp": "太ります",
+      "reading": "ふとります",
+      "meaning": "béo lên; tăng cân",
       "pos": "verb",
-      "note": "Useful with ようになります for habit changes.",
-      "example": "毎朝、早く起きるようになりました。"
+      "note": "Dùng khi cân nặng tăng lên.",
+      "example": "最近、少し太りました。"
     },
     {
-      "jp": "最近",
-      "reading": "さいきん",
-      "meaning": "recently; lately",
-      "pos": "adverb",
-      "note": "Often signals a recent change.",
-      "example": "最近、コーヒーを飲まなくなりました。"
+      "jp": "やせます",
+      "reading": "やせます",
+      "meaning": "gầy đi; giảm cân",
+      "pos": "verb",
+      "note": "Dùng khi cơ thể trở nên gầy hơn hoặc cân nặng giảm.",
+      "example": "運動して、やせました。"
+    },
+    {
+      "jp": "過ぎます",
+      "reading": "すぎます",
+      "meaning": "quá; vượt quá",
+      "pos": "verb",
+      "note": "Hay dùng với mức độ, thời gian, hoặc giới hạn.",
+      "example": "食べ過ぎないように気をつけます。"
+    },
+    {
+      "jp": "なれます",
+      "reading": "なれます",
+      "meaning": "quen; thành thạo",
+      "pos": "verb",
+      "note": "Thường dùng khi quen với môi trường, công việc, hoặc thói quen mới.",
+      "example": "新しい仕事にだんだんなれました。"
+    },
+    {
+      "jp": "固い",
+      "reading": "かたい",
+      "meaning": "cứng; chắc",
+      "pos": "adjective",
+      "note": "Dùng cho vật có độ cứng cao hoặc thái độ rất nghiêm.",
+      "example": "このパンは少し固いです。"
+    },
+    {
+      "jp": "軟らかい",
+      "reading": "やわらかい",
+      "meaning": "mềm",
+      "pos": "adjective",
+      "note": "Cũng có thể viết là 柔らかい. Dùng cho vật có độ mềm hoặc giọng điệu nhẹ nhàng.",
+      "example": "この肉はとても軟らかいです。"
+    },
+    {
+      "jp": "電子ー",
+      "reading": "でんし",
+      "meaning": "điện tử; điện",
+      "pos": "prefix",
+      "note": "Dạng này giống tiền tố hơn là một từ độc lập; thường xuất hiện trong các từ ghép như 電子メール.",
+      "example": "電子メールを送りました。"
+    },
+    {
+      "jp": "携帯ー",
+      "reading": "けいたい",
+      "meaning": "di động; cầm tay",
+      "pos": "prefix",
+      "note": "Thường dùng trong từ ghép như 携帯電話. Dạng ghi với dấu gạch ngang có vẻ là ký hiệu từ ghép.",
+      "example": "携帯電話はとても便利です。"
+    },
+    {
+      "jp": "工場",
+      "reading": "こうじょう",
+      "meaning": "nhà máy",
+      "pos": "noun",
+      "note": "Nơi sản xuất hàng hóa.",
+      "example": "その工場では車を作っています。"
     },
     {
       "jp": "健康",
       "reading": "けんこう",
-      "meaning": "health",
+      "meaning": "sức khỏe",
       "pos": "noun",
-      "note": "Often appears in purpose phrases like 健康のために.",
-      "example": "健康のために、野菜を食べます。"
+      "note": "Từ rất thường dùng trong câu nói về cơ thể và lối sống.",
+      "example": "健康のために毎日歩きます。"
     },
     {
-      "jp": "野菜",
-      "reading": "やさい",
-      "meaning": "vegetables",
+      "jp": "剣道",
+      "reading": "けんどう",
+      "meaning": "kiếm đạo",
       "pos": "noun",
-      "note": "Common daily-life noun for habit examples.",
-      "example": "もっと野菜を食べるようにします。"
+      "note": "Môn võ dùng kiếm tre trong văn hóa Nhật.",
+      "example": "学生のころ、剣道をしていました。"
+    },
+    {
+      "jp": "毎週",
+      "reading": "まいしゅう",
+      "meaning": "mỗi tuần",
+      "pos": "adverb",
+      "note": "Chỉ tần suất theo tuần.",
+      "example": "毎週月曜日に会議があります。"
+    },
+    {
+      "jp": "毎月",
+      "reading": "まいつき",
+      "meaning": "mỗi tháng",
+      "pos": "adverb",
+      "note": "Chỉ tần suất theo tháng.",
+      "example": "毎月、家賃を払います。"
+    },
+    {
+      "jp": "毎年",
+      "reading": "まいとし",
+      "meaning": "mỗi năm",
+      "pos": "adverb",
+      "note": "Cũng có thể đọc là まいねん trong một số ngữ cảnh.",
+      "example": "毎年、家族で旅行します。"
+    },
+    {
+      "jp": "やっと",
+      "reading": "やっと",
+      "meaning": "cuối cùng cũng; mãi mới",
+      "pos": "adverb",
+      "note": "Dùng khi hoàn thành việc gì sau khi chờ đợi hoặc cố gắng lâu.",
+      "example": "やっと試験が終わりました。"
+    },
+    {
+      "jp": "かなり",
+      "reading": "かなり",
+      "meaning": "khá; tương đối; đáng kể",
+      "pos": "adverb",
+      "note": "Mức độ cao hơn mức trung bình, nhưng không cực đoan.",
+      "example": "今日はかなり寒いです。"
+    },
+    {
+      "jp": "必ず",
+      "reading": "かならず",
+      "meaning": "nhất định; chắc chắn",
+      "pos": "adverb",
+      "note": "Chỉ sự chắc chắn hoặc bắt buộc phải xảy ra.",
+      "example": "行く前に必ず電話してください。"
+    },
+    {
+      "jp": "絶対に",
+      "reading": "ぜったいに",
+      "meaning": "tuyệt đối; chắc chắn",
+      "pos": "adverb",
+      "note": "Rất mạnh về mức độ khẳng định hoặc phủ định.",
+      "example": "絶対に遅れないでください。"
+    },
+    {
+      "jp": "上手に",
+      "reading": "じょうずに",
+      "meaning": "khéo léo; giỏi; một cách tốt",
+      "pos": "adverb",
+      "note": "Dùng để chỉ làm gì đó một cách thành thạo.",
+      "example": "彼は日本語を上手に話します。"
+    },
+    {
+      "jp": "できるだけ",
+      "reading": "できるだけ",
+      "meaning": "càng... càng tốt; hết sức có thể",
+      "pos": "adverb",
+      "note": "Diễn tả nỗ lực ở mức tối đa trong khả năng.",
+      "example": "できるだけ早く来てください。"
+    },
+    {
+      "jp": "このごろ",
+      "reading": "このごろ",
+      "meaning": "dạo này; gần đây",
+      "pos": "adverb",
+      "note": "Chỉ thời gian gần hiện tại.",
+      "example": "このごろ、忙しいです。"
+    },
+    {
+      "jp": "そのほうがー",
+      "reading": "そのほうが",
+      "meaning": "như thế thì; như vậy thì",
+      "pos": "phrase",
+      "note": "Dạng ghi này có vẻ là nửa câu hoặc mẫu so sánh. Cần ngữ cảnh để diễn đạt hoàn chỉnh.",
+      "example": "そのほうがいいです。"
+    },
+    {
+      "jp": "お客様",
+      "reading": "おきゃくさま",
+      "meaning": "quý khách; khách hàng",
+      "pos": "noun",
+      "note": "Cách nói kính trọng của お客.",
+      "example": "お客様はこちらへどうぞ。"
+    },
+    {
+      "jp": "特別（な）",
+      "reading": "とくべつ",
+      "meaning": "đặc biệt",
+      "pos": "adjective",
+      "note": "Dùng cho điều nổi bật, không bình thường, hoặc có ý nghĩa riêng.",
+      "example": "今日は特別な日です。"
+    },
+    {
+      "jp": "していらっしゃいます",
+      "reading": "していらっしゃいます",
+      "meaning": "đang làm; đang thực hiện (kính ngữ)",
+      "pos": "phrase",
+      "note": "Cách nói kính ngữ của しています.",
+      "example": "先生は今、研究をしていらっしゃいます。"
+    },
+    {
+      "jp": "水泳",
+      "reading": "すいえい",
+      "meaning": "bơi lội",
+      "pos": "noun",
+      "note": "Môn thể thao hoặc hoạt động bơi.",
+      "example": "水泳が好きです。"
+    },
+    {
+      "jp": "～とか、～とか",
+      "reading": "とか",
+      "meaning": "như là... hay là...; chẳng hạn như...",
+      "pos": "phrase",
+      "note": "Dùng để liệt kê ví dụ không đầy đủ, mang sắc thái đời thường.",
+      "example": "週末は映画とか買い物とかをします。"
+    },
+    {
+      "jp": "タンゴ",
+      "reading": "タンゴ",
+      "meaning": "tango",
+      "pos": "noun",
+      "note": "Tên điệu nhảy/môn nghệ thuật du nhập từ nước ngoài.",
+      "example": "彼はタンゴを踊れます。"
+    },
+    {
+      "jp": "チャレンジします",
+      "reading": "チャレンジします",
+      "meaning": "thử thách; thử làm",
+      "pos": "verb",
+      "note": "Từ mượn thường dùng trong đời sống hiện đại.",
+      "example": "新しいことにチャレンジします。"
+    },
+    {
+      "jp": "気持ち",
+      "reading": "きもち",
+      "meaning": "cảm giác; tâm trạng; tình cảm",
+      "pos": "noun",
+      "note": "Từ rất linh hoạt, có thể chỉ cảm xúc hoặc cảm giác cơ thể.",
+      "example": "気持ちがいいです。"
+    },
+    {
+      "jp": "乗り物",
+      "reading": "のりもの",
+      "meaning": "phương tiện đi lại",
+      "pos": "noun",
+      "note": "Chỉ xe cộ, tàu, máy bay, và các phương tiện di chuyển.",
+      "example": "この乗り物は子どもに人気があります。"
+    },
+    {
+      "jp": "歴史",
+      "reading": "れきし",
+      "meaning": "lịch sử",
+      "pos": "noun",
+      "note": "Dùng cho lịch sử của một quốc gia, vùng đất, hoặc tổ chức.",
+      "example": "日本の歴史を勉強しています。"
+    },
+    {
+      "jp": "ー世紀",
+      "reading": "せいき",
+      "meaning": "thế kỷ",
+      "pos": "suffix",
+      "note": "Gắn sau số để chỉ thế kỷ, ví dụ 21世紀.",
+      "example": "21世紀は情報の時代です。"
+    },
+    {
+      "jp": "とおく",
+      "reading": "とおく",
+      "meaning": "xa",
+      "pos": "adverb",
+      "note": "Dạng ghi này thường là とおく của 遠く.",
+      "example": "駅はここから遠くです。"
+    },
+    {
+      "jp": "汽車",
+      "reading": "きしゃ",
+      "meaning": "tàu hỏa; xe lửa",
+      "pos": "noun",
+      "note": "Từ hơi cổ hoặc văn cảnh nhất định; hiện nay thường dùng 電車 hoặc 列車 hơn.",
+      "example": "子どものころ、汽車を見に行きました。"
+    },
+    {
+      "jp": "汽船",
+      "reading": "きせん",
+      "meaning": "tàu thủy",
+      "pos": "noun",
+      "note": "Từ hơi cổ, chỉ tàu chạy bằng hơi nước hoặc tàu thủy nói chung trong văn cảnh cũ.",
+      "example": "昔は汽船で海を渡りました。"
+    },
+    {
+      "jp": "大勢の（人）",
+      "reading": "おおぜいのひと",
+      "meaning": "rất đông người",
+      "pos": "noun",
+      "note": "Chỉ số lượng người nhiều.",
+      "example": "今日は大勢の人が来ました。"
+    },
+    {
+      "jp": "運びます",
+      "reading": "はこびます",
+      "meaning": "mang; vận chuyển",
+      "pos": "verb",
+      "note": "Dùng khi chuyển đồ vật từ nơi này sang nơi khác.",
+      "example": "荷物を部屋まで運びました。"
+    },
+    {
+      "jp": "あんぜん（な）",
+      "reading": "あんぜん",
+      "meaning": "an toàn",
+      "pos": "adjective",
+      "note": "Cách viết chuẩn là 安全（な）.",
+      "example": "この道は安全です。"
+    },
+    {
+      "jp": "飛びます",
+      "reading": "とびます",
+      "meaning": "bay; nhảy",
+      "pos": "verb",
+      "note": "Dùng cho người, chim, côn trùng, hoặc vật bay trong không trung.",
+      "example": "鳥が空を飛んでいます。"
+    },
+    {
+      "jp": "宇宙",
+      "reading": "うちゅう",
+      "meaning": "vũ trụ",
+      "pos": "noun",
+      "note": "Chỉ không gian ngoài Trái Đất.",
+      "example": "宇宙に行くのは夢です。"
+    },
+    {
+      "jp": "地球",
+      "reading": "ちきゅう",
+      "meaning": "Trái Đất",
+      "pos": "noun",
+      "note": "Tên hành tinh chúng ta đang sống.",
+      "example": "地球を大切にしたいです。"
     }
   ],
   "kanji": [
