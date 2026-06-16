@@ -125,6 +125,20 @@ function clampVocabCardIndex(vocab){
   vocabCardIndex = Math.max(0, Math.min(vocabCardIndex, vocab.length - 1));
 }
 
+function goToPreviousVocabCard(vocab){
+  if(!vocab.length || vocabCardIndex === 0) return;
+  vocabCardIndex -= 1;
+  vocabCardFlipped = false;
+  renderVocabPanel();
+}
+
+function goToNextVocabCard(vocab){
+  if(!vocab.length) return;
+  vocabCardIndex = vocabCardIndex >= vocab.length - 1 ? 0 : vocabCardIndex + 1;
+  vocabCardFlipped = false;
+  renderVocabPanel();
+}
+
 function renderVocabList(vocab){
   return `
     <div class="vocab-list">
@@ -242,7 +256,7 @@ function renderVocabFlashcard(vocab){
       <div class="flashcard-controls">
         <button class="flashcard-nav" id="vocabPrevBtn" type="button" ${vocabCardIndex === 0 ? "disabled" : ""}>Trước</button>
         <button class="flashcard-flip-btn" id="vocabFlipBtn" type="button">${vocabCardFlipped ? "Xem mặt trước" : "Lật thẻ"}</button>
-        <button class="flashcard-nav" id="vocabNextBtn" type="button" ${vocabCardIndex === flashcardItems.length - 1 ? "disabled" : ""}>Tiếp</button>
+        <button class="flashcard-nav" id="vocabNextBtn" type="button">Tiếp</button>
       </div>
     </div>
   `;
@@ -265,7 +279,60 @@ function bindVocabInteractions(vocab){
     renderVocabPanel();
   };
 
-  document.getElementById("vocabFlashcard")?.addEventListener("click", flipCard);
+  const flashcard = document.getElementById("vocabFlashcard");
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchMoved = false;
+  let swipeTriggered = false;
+  const swipeThreshold = 48;
+  const verticalTolerance = 36;
+
+  flashcard?.addEventListener("touchstart", event => {
+    const touch = event.changedTouches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    touchMoved = false;
+    swipeTriggered = false;
+  }, { passive: true });
+
+  flashcard?.addEventListener("touchmove", event => {
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+
+    if(Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8){
+      touchMoved = true;
+    }
+  }, { passive: true });
+
+  flashcard?.addEventListener("touchend", event => {
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+
+    if(Math.abs(deltaX) >= swipeThreshold && Math.abs(deltaY) <= verticalTolerance){
+      swipeTriggered = true;
+      if(deltaX < 0){
+        goToNextVocabCard(vocab);
+      }else{
+        goToPreviousVocabCard(vocab);
+      }
+    }
+  });
+
+  flashcard?.addEventListener("click", event => {
+    if(swipeTriggered){
+      swipeTriggered = false;
+      return;
+    }
+
+    if(touchMoved){
+      touchMoved = false;
+      return;
+    }
+
+    flipCard(event);
+  });
   document.getElementById("vocabFlipBtn")?.addEventListener("click", flipCard);
   document.getElementById("vocabShuffleBtn")?.addEventListener("click", () => {
     vocabShuffleEnabled = !vocabShuffleEnabled;
@@ -279,16 +346,10 @@ function bindVocabInteractions(vocab){
     renderVocabPanel();
   });
   document.getElementById("vocabPrevBtn")?.addEventListener("click", () => {
-    if(vocabCardIndex === 0) return;
-    vocabCardIndex -= 1;
-    vocabCardFlipped = false;
-    renderVocabPanel();
+    goToPreviousVocabCard(vocab);
   });
   document.getElementById("vocabNextBtn")?.addEventListener("click", () => {
-    if(vocabCardIndex >= vocab.length - 1) return;
-    vocabCardIndex += 1;
-    vocabCardFlipped = false;
-    renderVocabPanel();
+    goToNextVocabCard(vocab);
   });
 }
 

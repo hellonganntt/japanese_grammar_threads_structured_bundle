@@ -258,6 +258,8 @@
       padding:0;
       position:relative;
       overflow:hidden;
+      touch-action:pan-y;
+      user-select:none;
     }
     .flashcard-face{
       display:none;
