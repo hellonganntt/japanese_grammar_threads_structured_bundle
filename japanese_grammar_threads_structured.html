@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Japanese Grammar Outline</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">文法 Outline</div>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeBtn" title="Đổi nền">◐</button>
+    </div>
+  </header>
+
+  <section class="intro">
+    <h1>Học ngữ pháp Nhật</h1>
+    <p>Mở từng phần ngữ pháp, xem mẫu câu, ví dụ và ghi chú học nhanh trong cùng một chỗ.</p>
+  </section>
+
+  <section class="filter-section">
+    <div class="filter-label">Bài học</div>
+    <nav class="filters lesson-filters" id="lessonFilters">
+    </nav>
+
+    <section class="vocab-panel" id="vocabPanel">
+      <button class="vocab-toggle" id="vocabToggle" type="button" aria-expanded="false">
+        <span class="vocab-title" id="vocabTitle">Từ vựng</span>
+        <span class="vocab-meta" id="vocabMeta">0 từ ▾</span>
+      </button>
+      <div class="vocab-content" id="vocabContent"></div>
+    </section>
+
+    <section class="kanji-panel" id="kanjiPanel">
+      <button class="kanji-toggle" id="kanjiToggle" type="button" aria-expanded="false">
+        <span class="kanji-title" id="kanjiTitle">漢字</span>
+        <span class="kanji-meta" id="kanjiMeta">0 chữ ▾</span>
+      </button>
+      <div class="kanji-content" id="kanjiContent"></div>
+    </section>
+  </section>
+
+  <main class="grammar-outline" id="grammarOutline"></main>
+  <div class="footer">Mở từng mục để học đúng phần bạn cần.</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="./assets/app.js" defer></script>
+</body>
+</html>
+

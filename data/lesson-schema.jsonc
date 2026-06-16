@@ -1,0 +1,134 @@
+{
+  // Required lesson number used by the manifest and UI.
+  "lesson": 36,
+
+  // Optional lesson-level vocabulary list shown in the Vocabulary panel.
+  "vocab": [
+    {
+      // Japanese headword in kana/kanji.
+      "jp": "話せる",
+
+      // Optional reading in hiragana. Omit if the headword is already simple kana.
+      "reading": "はなせる",
+
+      // English or target-language meaning shown to the learner.
+      "meaning": "can speak",
+
+      // Optional part of speech label, for example: noun, verb, adjective, adverb.
+      "pos": "verb",
+
+      // Optional usage note, nuance, or reminder.
+      "note": "Potential form of 話す.",
+
+      // Optional example sentence using the vocabulary item.
+      "example": "日本語が少し話せるようになりました。"
+    }
+  ],
+
+  // Optional lesson-level kanji list shown in the Kanji panel.
+  "kanji": [
+    {
+      // Single kanji character or compound head kanji.
+      "kanji": "話",
+
+      // Meaning or gloss for the kanji.
+      "meaning": "speak; talk",
+
+      // Optional on-yomi readings.
+      "onyomi": ["ワ"],
+
+      // Optional kun-yomi readings.
+      "kunyomi": ["はなす", "はなし"],
+
+      // Optional example words showing the kanji in context.
+      "examples": [
+        {
+          // Example word containing the kanji.
+          "word": "話せる",
+
+          // Optional reading for the example word.
+          "reading": "はなせる",
+
+          // Optional gloss for the example word.
+          "meaning": "can speak"
+        }
+      ],
+
+      // Optional note about usage, memory aid, or nuance.
+      "note": "Useful in ability examples with ように."
+    }
+  ],
+
+  // Grammar outline rendered in collapsible sections.
+  "grammarSections": [
+    {
+      // Stable identifier for the grammar section.
+      "id": "lesson-grammar",
+
+      // Section title shown in the UI.
+      "title": "Ngữ pháp",
+
+      // Optional. If false, the section starts collapsed. Defaults to open.
+      "open": true,
+
+      // Grammar points inside this section.
+      "points": [
+        {
+          // Stable identifier for the grammar point.
+          "id": "you-ni-purpose",
+
+          // Heading text for the grammar point.
+          "title": "Vる / Vない + ように、V2",
+
+          // Optional short label or badge text.
+          "tag": "Mẫu 2 · Mục đích",
+
+          // Optional book/source name.
+          "book": "Minna no Nihongo",
+
+          // Optional grouping label used by generators or editors.
+          "contentType": "lesson",
+
+          // Main explanatory content for the grammar point.
+          "sections": [
+            {
+              // Supported section types:
+              // text, pattern, example_jp, translation, tip
+              "type": "text",
+
+              // Text content for this block.
+              "text": "Dùng để diễn tả việc làm V2 nhằm đạt được hoặc tránh một trạng thái/kết quả V1."
+            }
+          ],
+
+          // Optional supporting blocks such as extra explanation, drills, or nested examples.
+          // Each note may be a plain object or a nested note with its own sections and notes.
+          "notes": [
+            {
+              // Optional note title.
+              "title": "Cách nhớ nhanh",
+
+              // Optional note tag shown above the note body.
+              "tag": "Mẹo",
+
+              // Optional note body sections. Same section types as above.
+              "sections": [
+                {
+                  "type": "text",
+                  "text": "Hãy hỏi: V1 là kết quả mong muốn hay hành động chủ ý?"
+                }
+              ],
+
+              // Optional nested notes for deeper hierarchy.
+              "notes": [
+                {
+                  "text": "Nếu là kết quả hoặc trạng thái, ように thường phù hợp."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

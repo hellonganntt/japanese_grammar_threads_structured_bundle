@@ -1,0 +1,4 @@
+display_name: Lesson Data Generator
+short_description: Generate and review structured lesson JSON files.
+default_prompt: Use this skill to turn lesson inputs into a valid `data/lesson-XX.json` file that follows the project schema, with Vietnamese explanations and natural Japanese examples, then self-review for accuracy and JSON validity.
+

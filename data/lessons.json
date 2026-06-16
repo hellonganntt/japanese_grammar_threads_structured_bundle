@@ -1,0 +1,12 @@
+{
+  "lessons": [
+    {
+      "lesson": 36,
+      "file": "./data/lesson-36.json"
+    },
+    {
+      "lesson": 37,
+      "file": "./data/lesson-37.json"
+    }
+  ]
+}

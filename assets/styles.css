@@ -1,0 +1,575 @@
+﻿    :root{
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:#777777;
+      --border:#e8e8e8;
+      --soft:#f7f7f7;
+      --accent:#111111;
+      --danger:#e5484d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    }
+    button{font:inherit}
+    .app{
+      max-width:680px;
+      margin:0 auto;
+      min-height:100vh;
+      border-left:1px solid var(--border);
+      border-right:1px solid var(--border);
+    }
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:64px;
+      padding:0 18px;
+      background:rgba(255,255,255,.93);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+    }
+    .brand{
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:-.3px;
+    }
+    .top-actions{display:flex; gap:8px}
+    .icon-btn{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      border:1px solid var(--border);
+      background:#fff;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition:.2s;
+    }
+    .icon-btn:hover{background:var(--soft); transform:translateY(-1px)}
+    .intro{
+      padding:18px 20px;
+      border-bottom:1px solid var(--border);
+    }
+    .intro h1{font-size:22px;margin:0 0 8px}
+    .intro p{margin:0;color:var(--muted);line-height:1.6}
+    .filters{
+      display:flex;
+      gap:8px;
+      overflow:auto;
+      padding:12px 16px;
+      border-bottom:1px solid var(--border);
+      scrollbar-width:none;
+    }
+    .filters::-webkit-scrollbar{display:none}
+    .chip{
+      white-space:nowrap;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      cursor:pointer;
+      color:#444;
+    }
+    .chip.active{
+      background:#111;
+      color:#fff;
+      border-color:#111;
+    }
+    .filter-section{
+      border-bottom:1px solid var(--border);
+    }
+    .filter-label{
+      padding:12px 16px 0;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+    .filter-section .filters{
+      border-bottom:0;
+      padding-top:8px;
+    }
+    .vocab-panel,
+    .kanji-panel,
+    .grammar-section{
+      border-bottom:1px solid var(--border);
+      background:var(--bg);
+    }
+    .vocab-toggle,
+    .kanji-toggle,
+    .grammar-section-toggle{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 18px;
+      cursor:pointer;
+      text-align:left;
+    }
+    .vocab-title,
+    .kanji-title{
+      font-weight:800;
+      font-size:15px;
+    }
+    .vocab-meta,
+    .kanji-meta,
+    .grammar-count{
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .vocab-content,
+    .kanji-content,
+    .grammar-section-content{
+      display:none;
+      padding:0 16px 16px;
+    }
+    .vocab-panel.open .vocab-content,
+    .kanji-panel.open .kanji-content,
+    .grammar-section.open .grammar-section-content{display:grid}
+    .vocab-list{
+      display:grid;
+      gap:8px;
+    }
+    .vocab-mode-switch{
+      display:inline-flex;
+      gap:4px;
+      padding:4px;
+      margin-bottom:12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--soft);
+      align-self:start;
+    }
+    .vocab-mode-btn{
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      border-radius:999px;
+      padding:7px 12px;
+      cursor:pointer;
+      font-size:13px;
+      font-weight:700;
+    }
+    .vocab-mode-btn.active{
+      background:var(--bg);
+      color:var(--text);
+      box-shadow:inset 0 0 0 1px var(--border);
+    }
+    .vocab-item,
+    .kanji-card,
+    .grammar-point{
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:10px 12px;
+      background:var(--soft);
+    }
+    .vocab-head{
+      display:flex;
+      align-items:baseline;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:4px;
+    }
+    .vocab-jp{
+      font-weight:800;
+      font-size:16px;
+    }
+    .vocab-reading{
+      color:var(--muted);
+      font-size:13px;
+    }
+    .vocab-pos{
+      margin-left:auto;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+    }
+    .vocab-meaning{
+      font-size:14px;
+      line-height:1.5;
+    }
+    .vocab-note,
+    .vocab-example{
+      margin-top:5px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .flashcard-shell{
+      display:grid;
+      gap:10px;
+    }
+    .flashcard-toolbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .flashcard-status{
+      color:var(--muted);
+      font-size:13px;
+      text-align:right;
+    }
+    .flashcard-options{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .flashcard-option-btn{
+      min-height:34px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--bg);
+      color:var(--muted);
+      cursor:pointer;
+      padding:0 12px;
+      font-size:12px;
+      font-weight:700;
+    }
+    .flashcard-option-btn.active{
+      background:#111;
+      border-color:#111;
+      color:#fff;
+    }
+    .flashcard{
+      width:100%;
+      min-height:260px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:var(--soft);
+      color:var(--text);
+      cursor:pointer;
+      padding:0;
+      position:relative;
+      overflow:hidden;
+    }
+    .flashcard-face{
+      display:none;
+      padding:18px;
+      min-height:260px;
+      text-align:left;
+    }
+    .flashcard[data-face="front"] .flashcard-front,
+    .flashcard[data-face="back"] .flashcard-back{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .flashcard-face-label{
+      margin-bottom:14px;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+    }
+    .flashcard-main{
+      font-size:32px;
+      font-weight:800;
+      line-height:1.2;
+    }
+    .flashcard-reading,
+    .flashcard-pos,
+    .flashcard-note,
+    .flashcard-example{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .flashcard-meaning{
+      font-size:22px;
+      font-weight:800;
+      line-height:1.35;
+    }
+    .flashcard-controls{
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      gap:8px;
+      align-items:center;
+    }
+    .flashcard-nav,
+    .flashcard-flip-btn{
+      min-height:40px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--bg);
+      color:var(--text);
+      cursor:pointer;
+      padding:0 14px;
+      font-weight:700;
+    }
+    .flashcard-nav[disabled]{
+      opacity:.45;
+      cursor:default;
+    }
+    .flashcard-flip-btn{
+      background:#111;
+      border-color:#111;
+      color:#fff;
+    }
+    .kanji-list{
+      display:grid;
+      gap:8px;
+    }
+    .kanji-card{
+      display:grid;
+      grid-template-columns:56px 1fr;
+      gap:12px;
+    }
+    .kanji-char{
+      width:56px;
+      height:56px;
+      display:grid;
+      place-items:center;
+      border-radius:8px;
+      background:var(--bg);
+      border:1px solid var(--border);
+      font-size:34px;
+      font-weight:800;
+      line-height:1;
+    }
+    .kanji-meaning{
+      font-weight:800;
+      line-height:1.4;
+      margin-bottom:5px;
+    }
+    .kanji-readings{
+      display:grid;
+      gap:3px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .kanji-reading-label{
+      font-weight:700;
+      color:var(--text);
+      margin-right:5px;
+    }
+    .kanji-examples{
+      display:grid;
+      gap:4px;
+      margin-top:8px;
+      font-size:13px;
+      line-height:1.5;
+    }
+    .kanji-example-word{
+      font-weight:700;
+    }
+    .kanji-note{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .grammar-outline{min-height:60vh}
+    .grammar-section{
+      animation:fadeIn .35s ease;
+    }
+    .grammar-point-toggle{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      cursor:pointer;
+      text-align:left;
+    }
+    .toggle-mark{
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+      white-space:nowrap;
+    }
+    .grammar-section-toggle{
+      font-weight:800;
+      font-size:15px;
+    }
+    .grammar-point-content{
+      display:none;
+    }
+    .grammar-point.open .grammar-point-content{
+      display:block;
+    }
+    .grammar-point{
+      padding:0;
+      overflow:hidden;
+    }
+    .grammar-section-content{
+      gap:8px;
+    }
+    .grammar-point-toggle{
+      padding:12px;
+    }
+    .grammar-point-toggle > span:first-child{
+      min-width:0;
+    }
+    .grammar-point-toggle .grammar-title{
+      display:block;
+      margin:8px 0 0;
+    }
+    .grammar-point-content{
+      padding:0 12px 12px;
+      border-top:1px solid var(--border);
+    }
+    .grammar-body{
+      line-height:1.72;
+      font-size:15px;
+    }
+    .grammar-body p{margin:0 0 10px}
+    .supporting-material{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+    .supporting-block{
+      padding:12px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:var(--soft);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .supporting-title{
+      margin:0 0 4px;
+      font-weight:700;
+      color:var(--text);
+    }
+    .supporting-tag{
+      display:inline-block;
+      margin:0 0 6px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .supporting-body{
+      margin-top:6px;
+    }
+    .supporting-body .pattern,
+    .supporting-body .tip{
+      margin:8px 0;
+      padding:10px 12px;
+    }
+    .supporting-nested{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid var(--border);
+    }
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(6px)}
+      to{opacity:1; transform:none}
+    }
+    .tag{
+      display:inline-block;
+      margin:0 0 0 6px;
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:var(--soft);
+      color:#555;
+    }
+    .grammar-title{
+      font-size:18px;
+      font-weight:800;
+      margin:0 0 10px;
+      line-height:1.45;
+    }
+    .pattern{
+      padding:12px 14px;
+      margin:10px 0;
+      border-radius:12px;
+      background:#f5f5f5;
+      font-weight:700;
+      overflow-wrap:anywhere;
+    }
+    .jp{
+      font-size:16px;
+      line-height:1.8;
+    }
+    .translation{
+      color:#666;
+      font-size:14px;
+      margin-top:-5px !important;
+    }
+    .tip{
+      border-left:3px solid #111;
+      padding:9px 12px;
+      background:#fafafa;
+      border-radius:0 10px 10px 0;
+    }
+    .empty{
+      text-align:center;
+      color:var(--muted);
+      padding:48px 20px;
+    }
+    .footer{
+      padding:24px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .toast{
+      position:fixed;
+      bottom:24px;
+      left:50%;
+      transform:translateX(-50%) translateY(20px);
+      background:#111;
+      color:#fff;
+      padding:10px 16px;
+      border-radius:999px;
+      opacity:0;
+      pointer-events:none;
+      transition:.25s;
+      z-index:30;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    @media(max-width:700px){
+      .app{border:0}
+      .vocab-toggle,
+      .kanji-toggle,
+      .grammar-section-toggle,
+      .grammar-point-toggle,
+      .vocab-content,
+      .kanji-content,
+      .grammar-section-content,
+      .grammar-point-content{padding-left:14px;padding-right:14px}
+      .flashcard{
+        min-height:220px;
+      }
+      .flashcard-toolbar{
+        align-items:flex-start;
+      }
+      .flashcard-face{
+        min-height:220px;
+        padding:16px;
+      }
+      .flashcard-main{
+        font-size:28px;
+      }
+      .flashcard-meaning{
+        font-size:20px;
+      }
+      .flashcard-controls{
+        grid-template-columns:1fr;
+      }
+    }

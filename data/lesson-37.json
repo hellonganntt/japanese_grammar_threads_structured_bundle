@@ -1,0 +1,635 @@
+{
+  "lesson": 37,
+  "vocab": [
+    {
+      "jp": "褒めます",
+      "reading": "ほめます",
+      "meaning": "khen",
+      "pos": "verb",
+      "note": "Dùng khi đánh giá tích cực hành động hoặc kết quả của ai đó.",
+      "example": "先生は学生の発表を褒めました。"
+    },
+    {
+      "jp": "しかります",
+      "reading": "しかります",
+      "meaning": "mắng; quở trách",
+      "pos": "verb",
+      "note": "Dùng khi người lớn hoặc người có trách nhiệm trách ai đó vì làm sai.",
+      "example": "母は子どもをしかりました。"
+    },
+    {
+      "jp": "誘います",
+      "reading": "さそいます",
+      "meaning": "rủ; mời",
+      "pos": "verb",
+      "note": "Hay dùng khi rủ ai đó đi chơi, đi ăn, hoặc tham gia việc gì đó.",
+      "example": "友だちを映画に誘いました。"
+    },
+    {
+      "jp": "起こします",
+      "reading": "おこします",
+      "meaning": "đánh thức",
+      "pos": "verb",
+      "note": "Dạng tha động của 起きます.",
+      "example": "毎朝、母が子どもを起こします。"
+    },
+    {
+      "jp": "招待します",
+      "reading": "しょうたいします",
+      "meaning": "mời; trân trọng mời",
+      "pos": "verb",
+      "note": "Trang trọng hơn 誘います, thường dùng với khách, tiệc, sự kiện.",
+      "example": "友人を結婚式に招待しました。"
+    },
+    {
+      "jp": "頼みます",
+      "reading": "たのみます",
+      "meaning": "nhờ; yêu cầu",
+      "pos": "verb",
+      "note": "Dùng khi nhờ ai đó làm việc gì hoặc đặt yêu cầu.",
+      "example": "先生に宿題を見てもらうように頼みました。"
+    },
+    {
+      "jp": "注意します",
+      "reading": "ちゅういします",
+      "meaning": "nhắc nhở; cảnh báo; chú ý",
+      "pos": "verb",
+      "note": "Có thể là nhắc người khác hoặc cảnh báo về nguy hiểm, lỗi sai.",
+      "example": "危ないので、先生が学生に注意しました。"
+    },
+    {
+      "jp": "とります",
+      "reading": "とります",
+      "meaning": "lấy; nhặt; ghi lại; chụp",
+      "pos": "verb",
+      "note": "Tùy ngữ cảnh có thể mang nghĩa khác nhau, ví dụ chụp ảnh, lấy đồ, ghi chép.",
+      "example": "写真をとりました。"
+    },
+    {
+      "jp": "踏みます",
+      "reading": "ふみます",
+      "meaning": "giẫm; đạp",
+      "pos": "verb",
+      "note": "Hay dùng khi bước hoặc đạp lên vật gì đó.",
+      "example": "道でねこを踏まないように気をつけました。"
+    },
+    {
+      "jp": "壊します",
+      "reading": "こわします",
+      "meaning": "làm hỏng; phá vỡ",
+      "pos": "verb",
+      "note": "Dùng cho đồ vật, máy móc, quan hệ, hoặc cấu trúc bị hỏng.",
+      "example": "子どもがおもちゃを壊しました。"
+    },
+    {
+      "jp": "汚します",
+      "reading": "よごします",
+      "meaning": "làm bẩn",
+      "pos": "verb",
+      "note": "Dùng khi làm cho quần áo, bàn, sàn nhà, hoặc vật gì đó bị bẩn.",
+      "example": "服を汚してしまいました。"
+    },
+    {
+      "jp": "行います",
+      "reading": "おこないます",
+      "meaning": "tiến hành; tổ chức; thực hiện",
+      "pos": "verb",
+      "note": "Từ trang trọng, thường dùng trong văn viết hoặc thông báo.",
+      "example": "来週、会社で会議を行います。"
+    },
+    {
+      "jp": "輸出します",
+      "reading": "ゆしゅつします",
+      "meaning": "xuất khẩu",
+      "pos": "verb",
+      "note": "Dùng khi hàng hóa được đưa từ trong nước ra nước ngoài.",
+      "example": "この会社は車をたくさん輸出しています。"
+    },
+    {
+      "jp": "輸入します",
+      "reading": "ゆにゅうします",
+      "meaning": "nhập khẩu",
+      "pos": "verb",
+      "note": "Dùng khi hàng hóa được đưa từ nước ngoài vào trong nước.",
+      "example": "日本は多くの食べ物を輸入しています。"
+    },
+    {
+      "jp": "翻訳します",
+      "reading": "ほんやくします",
+      "meaning": "dịch",
+      "pos": "verb",
+      "note": "Dùng cho dịch viết hoặc dịch nội dung sang ngôn ngữ khác.",
+      "example": "この本は日本語に翻訳されました。"
+    },
+    {
+      "jp": "発明します",
+      "reading": "はつめいします",
+      "meaning": "phát minh",
+      "pos": "verb",
+      "note": "Dùng cho việc tạo ra một thứ mới chưa từng có trước đó.",
+      "example": "電話を発明した人は世界を変えました。"
+    },
+    {
+      "jp": "発見します",
+      "reading": "はっけんします",
+      "meaning": "phát hiện",
+      "pos": "verb",
+      "note": "Dùng khi tìm ra điều mới hoặc nhận ra điều chưa biết trước đó.",
+      "example": "新しい星が発見されました。"
+    },
+    {
+      "jp": "設計します",
+      "reading": "せっけいします",
+      "meaning": "thiết kế",
+      "pos": "verb",
+      "note": "Thường dùng cho nhà cửa, máy móc, hệ thống, sản phẩm.",
+      "example": "この建物は有名な建築家が設計しました。"
+    },
+    {
+      "jp": "米",
+      "reading": "こめ",
+      "meaning": "gạo",
+      "pos": "noun",
+      "note": "Lương thực cơ bản trong bữa ăn Nhật.",
+      "example": "日本では米をよく食べます。"
+    },
+    {
+      "jp": "麦",
+      "reading": "むぎ",
+      "meaning": "lúa mì; lúa mạch",
+      "pos": "noun",
+      "note": "Tùy ngữ cảnh có thể chỉ wheat hoặc barley.",
+      "example": "このパンは麦から作られています。"
+    },
+    {
+      "jp": "石油",
+      "reading": "せきゆ",
+      "meaning": "dầu mỏ",
+      "pos": "noun",
+      "note": "Từ thường dùng trong kinh tế, năng lượng, công nghiệp.",
+      "example": "石油は世界中で使われています。"
+    },
+    {
+      "jp": "原料",
+      "reading": "げんりょう",
+      "meaning": "nguyên liệu",
+      "pos": "noun",
+      "note": "Chỉ vật liệu gốc dùng để sản xuất thứ khác.",
+      "example": "このお菓子の原料は何ですか。"
+    },
+    {
+      "jp": "デート",
+      "reading": "デート",
+      "meaning": "buổi hẹn hò",
+      "pos": "noun",
+      "note": "Thường chỉ cuộc hẹn riêng tư giữa hai người.",
+      "example": "週末に彼女とデートします。"
+    },
+    {
+      "jp": "泥棒",
+      "reading": "どろぼう",
+      "meaning": "kẻ trộm",
+      "pos": "noun",
+      "note": "Người ăn trộm đồ của người khác.",
+      "example": "泥棒が家に入ったそうです。"
+    },
+    {
+      "jp": "警官",
+      "reading": "けいかん",
+      "meaning": "cảnh sát",
+      "pos": "noun",
+      "note": "Từ thông dụng chỉ sĩ quan cảnh sát.",
+      "example": "警官が道で交通整理をしています。"
+    },
+    {
+      "jp": "建築家",
+      "reading": "けんちくか",
+      "meaning": "kiến trúc sư",
+      "pos": "noun",
+      "note": "Người thiết kế công trình, nhà cửa.",
+      "example": "その建築家は世界中で有名です。"
+    },
+    {
+      "jp": "科学者",
+      "reading": "かがくしゃ",
+      "meaning": "nhà khoa học",
+      "pos": "noun",
+      "note": "Người nghiên cứu khoa học.",
+      "example": "科学者が新しい技術を発見しました。"
+    },
+    {
+      "jp": "漫画",
+      "reading": "まんが",
+      "meaning": "truyện tranh; manga",
+      "pos": "noun",
+      "note": "Văn hóa đọc rất quen thuộc ở Nhật.",
+      "example": "この漫画は世界中で人気があります。"
+    },
+    {
+      "jp": "世界中",
+      "reading": "せかいじゅう",
+      "meaning": "khắp thế giới",
+      "pos": "noun",
+      "note": "Chỉ toàn bộ thế giới, ở mọi nơi trên thế giới.",
+      "example": "このアニメは世界中で見られています。"
+    },
+    {
+      "jp": "ー中",
+      "reading": "ちゅう",
+      "meaning": "đang trong; suốt",
+      "pos": "suffix",
+      "note": "Gắn sau danh từ để chỉ đang ở giữa một trạng thái hoặc giai đoạn.",
+      "example": "会議中です。"
+    },
+    {
+      "jp": "―によって",
+      "reading": "によって",
+      "meaning": "bởi; do; tùy theo",
+      "pos": "phrase",
+      "note": "Dùng trong câu bị động, văn viết trang trọng, hoặc để chỉ sự khác nhau tùy trường hợp.",
+      "example": "結果は人によって違います。"
+    },
+    {
+      "jp": "よかったですね",
+      "reading": "よかったですね",
+      "meaning": "tốt quá nhỉ; mừng cho bạn quá",
+      "pos": "phrase",
+      "note": "Dùng để bày tỏ sự vui mừng, chia sẻ niềm vui với người nghe.",
+      "example": "合格したんですか。よかったですね。"
+    },
+    {
+      "jp": "埋め立てます",
+      "reading": "うめたてます",
+      "meaning": "lấp đất; lấn biển; san lấp",
+      "pos": "verb",
+      "note": "Dùng khi đổ đất, cát, hoặc vật liệu để tạo mặt bằng mới.",
+      "example": "この海岸を埋め立てて、土地を作ります。"
+    },
+    {
+      "jp": "技術",
+      "reading": "ぎじゅつ",
+      "meaning": "kỹ thuật; công nghệ",
+      "pos": "noun",
+      "note": "Từ rất rộng, dùng cho kỹ năng, công nghệ, hoặc phương pháp kỹ thuật.",
+      "example": "この技術は世界中で使われています。"
+    },
+    {
+      "jp": "土地",
+      "reading": "とち",
+      "meaning": "đất; khu đất",
+      "pos": "noun",
+      "note": "Chỉ mảnh đất, vùng đất, hoặc khu vực sử dụng được.",
+      "example": "新しい土地に家を建てました。"
+    },
+    {
+      "jp": "騒音",
+      "reading": "そうおん",
+      "meaning": "tiếng ồn",
+      "pos": "noun",
+      "note": "Âm thanh gây khó chịu hoặc ảnh hưởng đến người khác.",
+      "example": "工事の騒音がうるさいです。"
+    },
+    {
+      "jp": "利用します",
+      "reading": "りようします",
+      "meaning": "sử dụng; tận dụng",
+      "pos": "verb",
+      "note": "Thường dùng khi khai thác dịch vụ, tài nguyên, hoặc phương tiện.",
+      "example": "電車を利用する人が多いです。"
+    },
+    {
+      "jp": "アクセス",
+      "reading": "アクセス",
+      "meaning": "truy cập; đi đến; tiếp cận",
+      "pos": "noun",
+      "note": "Hay dùng với internet, hệ thống, hoặc vị trí giao thông.",
+      "example": "このサイトにアクセスできません。"
+    },
+    {
+      "jp": "ドミニカ",
+      "reading": "ドミニカ",
+      "meaning": "Dominica",
+      "pos": "noun",
+      "note": "Tên riêng của quốc gia/quần đảo trong tiếng Nhật.",
+      "example": "ドミニカはカリブ海にあります。"
+    },
+    {
+      "jp": "ー世紀",
+      "reading": "せいき",
+      "meaning": "thế kỷ",
+      "pos": "suffix",
+      "note": "Gắn sau số để chỉ thế kỷ, ví dụ 20世紀.",
+      "example": "20世紀は大きく変わった時代です。"
+    },
+    {
+      "jp": "豪華（な）",
+      "reading": "ごうか",
+      "meaning": "xa hoa; lộng lẫy",
+      "pos": "adjective",
+      "note": "Dùng để tả đồ vật, bữa ăn, phòng ốc, hoặc sự kiện rất sang trọng.",
+      "example": "今日は豪華な料理を食べました。"
+    },
+    {
+      "jp": "彫刻",
+      "reading": "ちょうこく",
+      "meaning": "điêu khắc; tượng điêu khắc",
+      "pos": "noun",
+      "note": "Chỉ nghệ thuật khắc, tạc hoặc tác phẩm điêu khắc.",
+      "example": "この彫刻はとても有名です。"
+    },
+    {
+      "jp": "眠ります",
+      "reading": "ねむります",
+      "meaning": "ngủ",
+      "pos": "verb",
+      "note": "Từ trang trọng hơn 寝ます, thường dùng khi nói về việc ngủ hoặc say giấc.",
+      "example": "夜は早く眠ります。"
+    },
+    {
+      "jp": "彫ります",
+      "reading": "ほります",
+      "meaning": "khắc; tạc",
+      "pos": "verb",
+      "note": "Dùng khi khắc chữ, tạc tượng, hoặc chạm khắc trên bề mặt.",
+      "example": "木に名前を彫りました。"
+    },
+    {
+      "jp": "仲間",
+      "reading": "なかま",
+      "meaning": "đồng đội; bạn cùng nhóm; đồng hành",
+      "pos": "noun",
+      "note": "Chỉ người cùng chung nhóm, mục tiêu, hoặc quan hệ gần gũi.",
+      "example": "仲間と一緒に頑張ります。"
+    },
+    {
+      "jp": "そのあと",
+      "reading": "そのあと",
+      "meaning": "sau đó",
+      "pos": "adverb",
+      "note": "Dùng để nối trình tự hành động.",
+      "example": "昼ごはんを食べました。そのあと、買い物に行きました。"
+    },
+    {
+      "jp": "一生懸命",
+      "reading": "いっしょうけんめい",
+      "meaning": "hết sức; chăm chỉ",
+      "pos": "adverb",
+      "note": "Diễn tả việc cố gắng rất nhiều và tập trung cao độ.",
+      "example": "学生は一生懸命勉強しています。"
+    },
+    {
+      "jp": "ねずみ",
+      "reading": "ねずみ",
+      "meaning": "chuột",
+      "pos": "noun",
+      "note": "Con vật nhỏ, thường xuất hiện trong câu chuyện hoặc ví dụ so sánh.",
+      "example": "台所にねずみがいました。"
+    },
+    {
+      "jp": "一匹もいません",
+      "reading": "いっぴきもいません",
+      "meaning": "không có con nào cả",
+      "pos": "phrase",
+      "note": "Dùng để nhấn mạnh là số lượng động vật bằng 0.",
+      "example": "この部屋にはねずみが一匹もいません。"
+    }
+  ],
+  "kanji": [],
+  "grammarSections": [
+    {
+      "id": "lesson-grammar",
+      "title": "Ngữ pháp",
+      "open": true,
+      "points": [
+        {
+          "id": "passive-overview",
+          "title": "Động từ ở thể bị động",
+          "tag": "Mẫu 1 · Tổng quan",
+          "contentType": "lesson",
+          "sections": [
+            {
+              "type": "text",
+              "text": "Thể bị động dùng khi **người hoặc vật được nhắc tới chịu tác động từ người khác hoặc từ một sự việc bên ngoài**. Tiêu điểm của câu chuyển sang phía người/vật bị ảnh hưởng."
+            },
+            {
+              "type": "pattern",
+              "text": "Vる → Vられる\nVう/つ/る → Vわれる\nVく → Vかれる\nVぐ → Vがれる\nVす → Vされる\nする → される\n来る → 来られる"
+            },
+            {
+              "type": "text",
+              "text": "Trong bài này, thể bị động thường đi với ý **bị ai đó làm cho...**, **bị tác động bởi...**, hoặc **được làm** tùy ngữ cảnh."
+            }
+          ],
+          "notes": [
+            {
+              "text": "Không nên hiểu thể bị động chỉ là nghĩa tiêu cực. Trong tiếng Nhật, nó còn dùng để diễn đạt lịch sự, khách quan, hoặc đơn giản là chuyển trọng tâm câu."
+            },
+            {
+              "text": "Với động từ nhóm 2, cách chia thường là thêm られる. Với động từ nhóm 1, cần chú ý biến đổi âm cuối trước khi thêm."
+            }
+          ]
+        },
+        {
+          "id": "passive-direct-person",
+          "title": "N1 は N2 に V (thể bị động)",
+          "tag": "Mẫu 2 · Bị tác động trực tiếp",
+          "contentType": "lesson",
+          "sections": [
+            {
+              "type": "text",
+              "text": "Mẫu này dùng khi **N1 bị N2 tác động trực tiếp**. N1 là người hoặc vật chịu ảnh hưởng, N2 là tác nhân gây ra hành động."
+            },
+            {
+              "type": "pattern",
+              "text": "N1 は N2 に V(被動態)"
+            },
+            {
+              "type": "example_jp",
+              "text": "私は友だちに写真を見られました。"
+            },
+            {
+              "type": "translation",
+              "text": "Tôi đã bị bạn xem ảnh."
+            },
+            {
+              "type": "example_jp",
+              "text": "子どもは先生にほめられました。"
+            },
+            {
+              "type": "translation",
+              "text": "Đứa trẻ được thầy cô khen."
+            }
+          ],
+          "notes": [
+            {
+              "text": "Nếu ngữ cảnh cho thấy người nói bị ảnh hưởng rõ rệt, tiếng Việt thường tự nhiên hơn khi dịch bằng “bị”, nhưng không phải lúc nào cũng tiêu cực."
+            },
+            {
+              "text": "Khi N2 là người gây tác động, に thường được dùng để đánh dấu tác nhân trong câu bị động cơ bản."
+            }
+          ]
+        },
+        {
+          "id": "passive-body-part-possession",
+          "title": "N1 は N2 に N3 を V (thể bị động)",
+          "tag": "Mẫu 3 · Bộ phận / sở hữu",
+          "contentType": "lesson",
+          "sections": [
+            {
+              "type": "text",
+              "text": "Mẫu này dùng khi **N3 là vật thuộc sở hữu hoặc là một bộ phận của N1**. Trong câu chủ động bình thường, N3 thường là tân ngữ; sang bị động, câu nhấn mạnh việc N1 bị ảnh hưởng."
+            },
+            {
+              "type": "pattern",
+              "text": "N1 は N2 に N3 を V(被動態)"
+            },
+            {
+              "type": "example_jp",
+              "text": "私は子どもに手をつかまれました。"
+            },
+            {
+              "type": "translation",
+              "text": "Tôi bị đứa trẻ nắm tay."
+            },
+            {
+              "type": "example_jp",
+              "text": "私は犬にかばんをかじられました。"
+            },
+            {
+              "type": "translation",
+              "text": "Tôi bị con chó cắn túi xách."
+            }
+          ],
+          "notes": [
+            {
+              "text": "Đây là kiểu câu rất hay gặp khi một bộ phận cơ thể hoặc đồ vật cá nhân của N1 bị tác động."
+            },
+            {
+              "text": "Tiếng Việt thường dịch tự nhiên bằng “bị + động từ”, vì câu Nhật nhấn vào trải nghiệm bị ảnh hưởng của người nói."
+            }
+          ]
+        },
+        {
+          "id": "passive-thing-subject",
+          "title": "N (vật) が / は V (thể bị động)",
+          "tag": "Mẫu 4 · Chủ ngữ là vật",
+          "contentType": "lesson",
+          "sections": [
+            {
+              "type": "text",
+              "text": "Khi **chủ ngữ là vật hoặc sự việc**, câu bị động có thể dùng để miêu tả việc vật đó **được làm ra, được sử dụng, được phát hiện, hoặc bị ảnh hưởng**."
+            },
+            {
+              "type": "pattern",
+              "text": "N(物) が / は V(被動態)"
+            },
+            {
+              "type": "example_jp",
+              "text": "この本は多くの人に読まれています。"
+            },
+            {
+              "type": "translation",
+              "text": "Cuốn sách này được nhiều người đọc."
+            },
+            {
+              "type": "example_jp",
+              "text": "駅で新しい店が建てられました。"
+            },
+            {
+              "type": "translation",
+              "text": "Ở ga, một cửa hàng mới đã được xây."
+            }
+          ],
+          "notes": [
+            {
+              "text": "Dạng này thường mang sắc thái khách quan hơn so với khi dùng chủ thể là người."
+            },
+            {
+              "text": "Trong văn viết, が và は đều có thể gặp tùy vào việc người nói muốn nhấn vào sự tồn tại hay muốn nối ý với chủ đề trước đó."
+            }
+          ]
+        },
+        {
+          "id": "passive-agent-niyotte",
+          "title": "N1 は N2 によって V (thể bị động)",
+          "tag": "Mẫu 5 · Tác nhân chính thức",
+          "contentType": "lesson",
+          "sections": [
+            {
+              "type": "text",
+              "text": "Mẫu **に よって** dùng để chỉ tác nhân trong văn phong trang trọng hơn. Cách này thường thấy trong báo chí, văn bản, hoặc câu có tính giới thiệu thông tin."
+            },
+            {
+              "type": "pattern",
+              "text": "N1 は N2 によって V(被動態)"
+            },
+            {
+              "type": "example_jp",
+              "text": "この建物は有名な建築家によって設計されました。"
+            },
+            {
+              "type": "translation",
+              "text": "Tòa nhà này được thiết kế bởi một kiến trúc sư nổi tiếng."
+            },
+            {
+              "type": "example_jp",
+              "text": "その記事は先生によって書かれました。"
+            },
+            {
+              "type": "translation",
+              "text": "Bài viết đó đã được viết bởi thầy giáo."
+            }
+          ],
+          "notes": [
+            {
+              "text": "に よって thường nhấn mạnh người/tổ chức thực hiện hành động theo kiểu trang trọng hoặc khách quan."
+            },
+            {
+              "text": "Trong giao tiếp đời thường, に cũng rất phổ biến. によって thường phù hợp hơn khi muốn giữ giọng văn trung tính, chính thức."
+            }
+          ]
+        },
+        {
+          "id": "kara-de-tsukurimasu",
+          "title": "N から / N で つくります",
+          "tag": "Mẫu 6 · Nguyên liệu / vật liệu",
+          "contentType": "lesson",
+          "sections": [
+            {
+              "type": "text",
+              "text": "Mẫu này dùng để nói **làm ra một thứ gì đó từ nguyên liệu hoặc bằng vật liệu nào đó**. から nhấn mạnh nguyên liệu gốc, còn で nhấn mạnh chất liệu hoặc thành phần dùng để tạo ra vật đó."
+            },
+            {
+              "type": "pattern",
+              "text": "N から つくります\nN で つくります"
+            },
+            {
+              "type": "example_jp",
+              "text": "このジュースはりんごから作ります。"
+            },
+            {
+              "type": "translation",
+              "text": "Loại nước ép này được làm từ táo."
+            },
+            {
+              "type": "example_jp",
+              "text": "この机は木で作られています。"
+            },
+            {
+              "type": "translation",
+              "text": "Cái bàn này được làm bằng gỗ."
+            }
+          ],
+          "notes": [
+            {
+              "text": "Hãy tách ý như sau: から = từ nguyên liệu ban đầu; で = bằng chất liệu, công cụ, hoặc phương tiện tạo ra."
+            },
+            {
+              "text": "Khi câu đã ở thể bị động, つくります có thể chuyển thành つくられます tùy ngữ cảnh, nhưng trọng tâm của bài này là cách diễn đạt nguyên liệu và chất liệu."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
