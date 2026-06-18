@@ -12,7 +12,7 @@ let kanjiPanelOpen = false;
 let currentAudio = null;
 let currentAudioSequenceId = 0;
 let suppressNextVocabAutoplay = false;
-let vocabAudioAutoplayEnabled = localStorage.getItem("vocabAudioAutoplay") === "true";
+let vocabAudioAutoplayEnabled = localStorage.getItem("vocabAudioAutoplay") !== "false";
 
 function escapeHtml(value){
   return String(value ?? "").replace(/[&<>"']/g, char => ({
