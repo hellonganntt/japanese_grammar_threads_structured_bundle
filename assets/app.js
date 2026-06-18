@@ -11,6 +11,7 @@ let vocabCardOrder = [];
 let kanjiPanelOpen = false;
 let currentAudio = null;
 let currentAudioSequenceId = 0;
+let pendingAudioSequencePaths = [];
 let suppressNextVocabAutoplay = false;
 let vocabAudioAutoplayEnabled = localStorage.getItem("vocabAudioAutoplay") !== "false";
 
@@ -43,6 +44,7 @@ function getVocabAudioPaths(item){
 
 function stopCurrentAudio(){
   currentAudioSequenceId += 1;
+  pendingAudioSequencePaths = [];
 
   if(currentAudio){
     currentAudio.pause();
@@ -73,7 +75,7 @@ function waitForAudioEnd(audio, sequenceId){
   });
 }
 
-async function playAudioSequence(paths){
+async function playAudioSequence(paths, options = {}){
   const audioPaths = paths.filter(Boolean);
   if(!audioPaths.length) return;
 
@@ -90,7 +92,12 @@ async function playAudioSequence(paths){
       await audio.play();
     }catch(error){
       if(sequenceId === currentAudioSequenceId){
-        showToast("Click once to allow audio playback.");
+        if(options.deferOnBlocked){
+          pendingAudioSequencePaths = audioPaths;
+          showToast("Click once to start autoplay.");
+        }else{
+          showToast("Click once to allow audio playback.");
+        }
       }
       return;
     }
@@ -109,8 +116,21 @@ function maybeAutoplayVocab(item){
     return;
   }
 
-  playAudioSequence(getVocabAudioPaths(item));
+  playAudioSequence(getVocabAudioPaths(item), {
+    deferOnBlocked: true
+  });
 }
+
+function playPendingAudioAfterInteraction(){
+  if(!pendingAudioSequencePaths.length || !vocabAudioAutoplayEnabled) return;
+
+  const paths = [...pendingAudioSequencePaths];
+  pendingAudioSequencePaths = [];
+  playAudioSequence(paths);
+}
+
+document.addEventListener("pointerdown", playPendingAudioAfterInteraction, true);
+document.addEventListener("keydown", playPendingAudioAfterInteraction, true);
 
 function syncVocabAutoplayButton(){
   const button = document.getElementById("vocabAutoplayBtn");
