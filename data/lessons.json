@@ -7,6 +7,10 @@
     {
       "lesson": 37,
       "file": "./data/lesson-37.json"
+    },
+    {
+      "lesson": 38,
+      "file": "./data/lesson-38.json"
     }
   ]
 }
