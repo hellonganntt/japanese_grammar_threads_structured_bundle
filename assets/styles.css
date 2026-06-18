@@ -184,6 +184,26 @@
       gap:8px;
       margin-bottom:4px;
     }
+    .audio-btn{
+      width:28px;
+      height:28px;
+      border:1px solid var(--border);
+      border-radius:50%;
+      background:var(--bg);
+      color:var(--text);
+      cursor:pointer;
+      display:inline-grid;
+      place-items:center;
+      flex:0 0 auto;
+      font-size:11px;
+      line-height:1;
+      padding:0;
+    }
+    .audio-btn:hover{
+      background:#111;
+      border-color:#111;
+      color:#fff;
+    }
     .vocab-jp{
       font-weight:800;
       font-size:16px;
@@ -209,6 +229,12 @@
       font-size:13px;
       line-height:1.5;
     }
+    .vocab-example{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
     .flashcard-shell{
       display:grid;
       gap:10px;
@@ -233,6 +259,9 @@
     }
     .flashcard-option-btn{
       min-height:34px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       border:1px solid var(--border);
       border-radius:999px;
       background:var(--bg);
@@ -241,6 +270,8 @@
       padding:0 12px;
       font-size:12px;
       font-weight:700;
+      line-height:1;
+      white-space:nowrap;
     }
     .flashcard-option-btn.active{
       background:#111;
@@ -286,6 +317,12 @@
       font-weight:800;
       line-height:1.2;
     }
+    .flashcard-line{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
     .flashcard-reading,
     .flashcard-pos,
     .flashcard-note,
@@ -294,6 +331,12 @@
       color:var(--muted);
       font-size:14px;
       line-height:1.6;
+    }
+    .flashcard-example{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
     }
     .flashcard-meaning{
       font-size:22px;

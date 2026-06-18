@@ -2,13 +2,17 @@ let grammarSections = [];
 let lessonFiles = [];
 const lessonCache = new Map();
 let activeLesson = "";
-let vocabPanelOpen = false;
-let vocabMode = "list";
+let vocabPanelOpen = true;
+let vocabMode = "flashcard";
 let vocabCardIndex = 0;
 let vocabCardFlipped = false;
 let vocabShuffleEnabled = false;
 let vocabCardOrder = [];
 let kanjiPanelOpen = false;
+let currentAudio = null;
+let currentAudioSequenceId = 0;
+let suppressNextVocabAutoplay = false;
+let vocabAudioAutoplayEnabled = localStorage.getItem("vocabAudioAutoplay") === "true";
 
 function escapeHtml(value){
   return String(value ?? "").replace(/[&<>"']/g, char => ({
@@ -22,6 +26,98 @@ function escapeHtml(value){
 
 function renderInlineMarkdown(text){
   return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+}
+
+function renderAudioButton(src, label){
+  if(!src) return "";
+
+  return `<button class="audio-btn" type="button" data-audio-src="${escapeHtml(src)}" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}">▶</button>`;
+}
+
+function getVocabAudioPaths(item){
+  return [
+    item?.audio?.word,
+    item?.audio?.example
+  ].filter(Boolean);
+}
+
+function stopCurrentAudio(){
+  currentAudioSequenceId += 1;
+
+  if(currentAudio){
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio = null;
+  }
+}
+
+function waitForAudioEnd(audio, sequenceId){
+  return new Promise(resolve => {
+    const cleanup = () => {
+      audio.removeEventListener("ended", onDone);
+      audio.removeEventListener("error", onDone);
+      audio.removeEventListener("pause", onPause);
+    };
+    const onDone = () => {
+      cleanup();
+      resolve(true);
+    };
+    const onPause = () => {
+      cleanup();
+      resolve(sequenceId === currentAudioSequenceId);
+    };
+
+    audio.addEventListener("ended", onDone, { once: true });
+    audio.addEventListener("error", onDone, { once: true });
+    audio.addEventListener("pause", onPause, { once: true });
+  });
+}
+
+async function playAudioSequence(paths){
+  const audioPaths = paths.filter(Boolean);
+  if(!audioPaths.length) return;
+
+  stopCurrentAudio();
+  const sequenceId = currentAudioSequenceId;
+
+  for(const path of audioPaths){
+    if(sequenceId !== currentAudioSequenceId) return;
+
+    const audio = new Audio(path);
+    currentAudio = audio;
+
+    try{
+      await audio.play();
+    }catch(error){
+      if(sequenceId === currentAudioSequenceId){
+        showToast("Click once to allow audio playback.");
+      }
+      return;
+    }
+
+    await waitForAudioEnd(audio, sequenceId);
+  }
+
+  if(sequenceId === currentAudioSequenceId){
+    currentAudio = null;
+  }
+}
+
+function maybeAutoplayVocab(item){
+  if(!vocabAudioAutoplayEnabled || suppressNextVocabAutoplay){
+    suppressNextVocabAutoplay = false;
+    return;
+  }
+
+  playAudioSequence(getVocabAudioPaths(item));
+}
+
+function syncVocabAutoplayButton(){
+  const button = document.getElementById("vocabAutoplayBtn");
+  if(!button) return;
+
+  button.classList.toggle("active", vocabAudioAutoplayEnabled);
+  button.textContent = vocabAudioAutoplayEnabled ? "Audio: On" : "Audio: Off";
 }
 
 function renderSections(sections = []){
@@ -118,6 +214,7 @@ function resetVocabFlashcard(){
 
 function clampVocabCardIndex(vocab){
   if(!vocab.length){
+    stopCurrentAudio();
     vocabCardIndex = 0;
     return;
   }
@@ -127,6 +224,7 @@ function clampVocabCardIndex(vocab){
 
 function goToPreviousVocabCard(vocab){
   if(!vocab.length || vocabCardIndex === 0) return;
+  stopCurrentAudio();
   vocabCardIndex -= 1;
   vocabCardFlipped = false;
   renderVocabPanel();
@@ -134,6 +232,7 @@ function goToPreviousVocabCard(vocab){
 
 function goToNextVocabCard(vocab){
   if(!vocab.length) return;
+  stopCurrentAudio();
   vocabCardIndex = vocabCardIndex >= vocab.length - 1 ? 0 : vocabCardIndex + 1;
   vocabCardFlipped = false;
   renderVocabPanel();
@@ -146,12 +245,13 @@ function renderVocabList(vocab){
         <article class="vocab-item">
           <div class="vocab-head">
             <span class="vocab-jp">${escapeHtml(item.jp)}</span>
+            ${renderAudioButton(item.audio?.word, "Play vocabulary audio")}
             ${item.reading ? `<span class="vocab-reading">${escapeHtml(item.reading)}</span>` : ""}
             ${item.pos ? `<span class="vocab-pos">${escapeHtml(item.pos)}</span>` : ""}
           </div>
           <div class="vocab-meaning">${escapeHtml(item.meaning)}</div>
           ${item.note ? `<div class="vocab-note">${escapeHtml(item.note)}</div>` : ""}
-          ${item.example ? `<div class="vocab-example">${escapeHtml(item.example)}</div>` : ""}
+          ${item.example ? `<div class="vocab-example"><span>${escapeHtml(item.example)}</span>${renderAudioButton(item.audio?.example, "Play example audio")}</div>` : ""}
         </article>
       `).join("")}
     </div>
@@ -235,14 +335,18 @@ function renderVocabFlashcard(vocab){
       <div class="flashcard-toolbar">
         <div class="flashcard-status">${vocabCardIndex + 1} / ${flashcardItems.length}</div>
         <div class="flashcard-options">
+          <button class="flashcard-option-btn ${vocabAudioAutoplayEnabled ? "active" : ""}" id="vocabAutoplayBtn" type="button">${vocabAudioAutoplayEnabled ? "Audio: On" : "Audio: Off"}</button>
           <button class="flashcard-option-btn ${vocabShuffleEnabled ? "active" : ""}" id="vocabShuffleBtn" type="button">${vocabShuffleEnabled ? "Trộn: Bật" : "Trộn: Tắt"}</button>
           ${vocabShuffleEnabled ? '<button class="flashcard-option-btn" id="vocabReshuffleBtn" type="button">Trộn lại</button>' : ""}
         </div>
       </div>
-      <button class="flashcard" id="vocabFlashcard" type="button" data-face="${vocabCardFlipped ? "back" : "front"}" aria-label="Lật thẻ từ vựng">
+      <div class="flashcard" id="vocabFlashcard" role="button" tabindex="0" data-face="${vocabCardFlipped ? "back" : "front"}" aria-label="Lật thẻ từ vựng">
         <div class="flashcard-face flashcard-front">
           <div class="flashcard-face-label">Mặt trước</div>
-          <div class="flashcard-main">${escapeHtml(item.jp)}</div>
+          <div class="flashcard-line">
+            <div class="flashcard-main">${escapeHtml(item.jp)}</div>
+            ${renderAudioButton(item.audio?.word, "Play vocabulary audio")}
+          </div>
           ${item.reading ? `<div class="flashcard-reading">${escapeHtml(item.reading)}</div>` : ""}
           ${item.pos ? `<div class="flashcard-pos">${escapeHtml(item.pos)}</div>` : ""}
         </div>
@@ -250,9 +354,9 @@ function renderVocabFlashcard(vocab){
           <div class="flashcard-face-label">Mặt sau</div>
           <div class="flashcard-meaning">${escapeHtml(item.meaning)}</div>
           ${item.note ? `<div class="flashcard-note">${escapeHtml(item.note)}</div>` : ""}
-          ${item.example ? `<div class="flashcard-example">${escapeHtml(item.example)}</div>` : ""}
+          ${item.example ? `<div class="flashcard-example"><span>${escapeHtml(item.example)}</span>${renderAudioButton(item.audio?.example, "Play example audio")}</div>` : ""}
         </div>
-      </button>
+      </div>
       <div class="flashcard-controls">
         <button class="flashcard-nav" id="vocabPrevBtn" type="button" ${vocabCardIndex === 0 ? "disabled" : ""}>Trước</button>
         <button class="flashcard-flip-btn" id="vocabFlipBtn" type="button">${vocabCardFlipped ? "Xem mặt trước" : "Lật thẻ"}</button>
@@ -263,9 +367,17 @@ function renderVocabFlashcard(vocab){
 }
 
 function bindVocabInteractions(vocab){
+  document.querySelectorAll(".audio-btn").forEach(btn => {
+    btn.addEventListener("click", event => {
+      event.stopPropagation();
+      playAudioSequence([btn.dataset.audioSrc]);
+    });
+  });
+
   document.querySelectorAll(".vocab-mode-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       if(vocabMode === btn.dataset.mode) return;
+      stopCurrentAudio();
       vocabMode = btn.dataset.mode;
       resetVocabFlashcard();
       renderVocabPanel();
@@ -276,6 +388,7 @@ function bindVocabInteractions(vocab){
 
   const flipCard = () => {
     vocabCardFlipped = !vocabCardFlipped;
+    suppressNextVocabAutoplay = true;
     renderVocabPanel();
   };
 
@@ -321,6 +434,8 @@ function bindVocabInteractions(vocab){
   });
 
   flashcard?.addEventListener("click", event => {
+    if(event.target.closest(".audio-btn")) return;
+
     if(swipeTriggered){
       swipeTriggered = false;
       return;
@@ -333,13 +448,34 @@ function bindVocabInteractions(vocab){
 
     flipCard(event);
   });
+  flashcard?.addEventListener("keydown", event => {
+    if(event.target.closest(".audio-btn")) return;
+    if(event.key !== "Enter" && event.key !== " ") return;
+
+    event.preventDefault();
+    flipCard(event);
+  });
   document.getElementById("vocabFlipBtn")?.addEventListener("click", flipCard);
+  document.getElementById("vocabAutoplayBtn")?.addEventListener("click", () => {
+    vocabAudioAutoplayEnabled = !vocabAudioAutoplayEnabled;
+    localStorage.setItem("vocabAudioAutoplay", String(vocabAudioAutoplayEnabled));
+    syncVocabAutoplayButton();
+
+    if(vocabAudioAutoplayEnabled){
+      const flashcardItems = getVocabFlashcardItems(vocab);
+      playAudioSequence(getVocabAudioPaths(flashcardItems[vocabCardIndex]));
+    }else{
+      stopCurrentAudio();
+    }
+  });
   document.getElementById("vocabShuffleBtn")?.addEventListener("click", () => {
+    stopCurrentAudio();
     vocabShuffleEnabled = !vocabShuffleEnabled;
     resetVocabFlashcard();
     renderVocabPanel();
   });
   document.getElementById("vocabReshuffleBtn")?.addEventListener("click", () => {
+    stopCurrentAudio();
     vocabCardOrder = createShuffledOrder(vocab.length);
     vocabCardIndex = 0;
     vocabCardFlipped = false;
@@ -362,9 +498,9 @@ function renderVocabPanel(){
   const vocab = getVocabForSelectedLesson();
 
   title.textContent = "Từ vựng";
-  meta.textContent = `${vocab.length} từ ${vocabPanelOpen ? "▴" : "▾"}`;
-  toggle.setAttribute("aria-expanded", String(vocabPanelOpen));
-  panel.classList.toggle("open", vocabPanelOpen);
+  meta.textContent = `${vocab.length} từ`;
+  toggle.setAttribute("aria-expanded", "true");
+  panel.classList.add("open");
 
   if(!vocab.length){
     content.innerHTML = '<div class="empty" style="padding:18px 8px">Chưa có từ vựng cho bài này.</div>';
@@ -379,6 +515,13 @@ function renderVocabPanel(){
     ${vocabMode === "flashcard" ? renderVocabFlashcard(vocab) : renderVocabList(vocab)}
   `;
   bindVocabInteractions(vocab);
+
+  if(vocabMode === "flashcard"){
+    const flashcardItems = getVocabFlashcardItems(vocab);
+    maybeAutoplayVocab(flashcardItems[vocabCardIndex]);
+  }else{
+    suppressNextVocabAutoplay = false;
+  }
 }
 
 function getKanjiForSelectedLesson(){
@@ -442,6 +585,7 @@ function renderKanjiPanel(){
 
 function render(){
   const outline = document.getElementById("grammarOutline");
+  if(!outline) return;
   if(!grammarSections.length){
     outline.innerHTML = '<div class="empty">Không có ngữ pháp cho bài này.</div>';
     return;
@@ -519,6 +663,7 @@ function renderLessonFilters(){
 
   container.querySelectorAll(".chip").forEach(chip => {
     chip.addEventListener("click", async () => {
+      stopCurrentAudio();
       activeLesson = chip.dataset.lesson;
       resetVocabFlashcard();
       renderLessonFilters();
@@ -526,11 +671,6 @@ function renderLessonFilters(){
     });
   });
 }
-
-document.getElementById("vocabToggle").addEventListener("click", () => {
-  vocabPanelOpen = !vocabPanelOpen;
-  renderVocabPanel();
-});
 
 const kanjiToggle = document.getElementById("kanjiToggle");
 if(kanjiToggle){
@@ -608,7 +748,9 @@ async function loadLessonData(lesson){
 
 async function loadGrammarForSelectedLesson(){
   const outline = document.getElementById("grammarOutline");
-  outline.innerHTML = '<div class="empty">Loading grammar data...</div>';
+  if(outline){
+    outline.innerHTML = '<div class="empty">Loading grammar data...</div>';
+  }
 
   try{
     grammarSections = (await loadLessonData(activeLesson)).grammarSections;
@@ -618,22 +760,26 @@ async function loadGrammarForSelectedLesson(){
     render();
   }catch(error){
     console.error(error);
-    outline.innerHTML = `
-      <div class="empty">
-        <p><b>Cannot load the selected lesson JSON file.</b></p>
-        <p>Check data/lessons.json and the per-lesson files in the data folder.</p>
-        <p>Browsers usually block fetch from file://, so run:</p>
-        <div class="pattern" style="text-align:left">py -m http.server 8000</div>
-        <p>Then open:</p>
-        <div class="pattern" style="text-align:left">http://localhost:8000/japanese_grammar_threads_structured.html</div>
-      </div>
-    `;
+    if(outline){
+      outline.innerHTML = `
+        <div class="empty">
+          <p><b>Cannot load the selected lesson JSON file.</b></p>
+          <p>Check data/lessons.json and the per-lesson files in the data folder.</p>
+          <p>Browsers usually block fetch from file://, so run:</p>
+          <div class="pattern" style="text-align:left">py -m http.server 8000</div>
+          <p>Then open:</p>
+          <div class="pattern" style="text-align:left">http://localhost:8000/japanese_grammar_threads_structured.html</div>
+        </div>
+      `;
+    }
   }
 }
 
 async function loadGrammarData(){
   const outline = document.getElementById("grammarOutline");
-  outline.innerHTML = '<div class="empty">Loading lesson list...</div>';
+  if(outline){
+    outline.innerHTML = '<div class="empty">Loading lesson list...</div>';
+  }
 
   try{
     await loadLessonManifest();
@@ -641,16 +787,18 @@ async function loadGrammarData(){
     await loadGrammarForSelectedLesson();
   }catch(error){
     console.error(error);
-    outline.innerHTML = `
-      <div class="empty">
-        <p><b>Cannot load data/lessons.json.</b></p>
-        <p>The lesson manifest must point to each lesson JSON file.</p>
-        <p>Browsers usually block fetch from file://, so run:</p>
-        <div class="pattern" style="text-align:left">py -m http.server 8000</div>
-        <p>Then open:</p>
-        <div class="pattern" style="text-align:left">http://localhost:8000/japanese_grammar_threads_structured.html</div>
-      </div>
-    `;
+    if(outline){
+      outline.innerHTML = `
+        <div class="empty">
+          <p><b>Cannot load data/lessons.json.</b></p>
+          <p>The lesson manifest must point to each lesson JSON file.</p>
+          <p>Browsers usually block fetch from file://, so run:</p>
+          <div class="pattern" style="text-align:left">py -m http.server 8000</div>
+          <p>Then open:</p>
+          <div class="pattern" style="text-align:left">http://localhost:8000/japanese_grammar_threads_structured.html</div>
+        </div>
+      `;
+    }
   }
 }
 

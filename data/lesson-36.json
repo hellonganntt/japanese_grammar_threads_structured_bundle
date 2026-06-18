@@ -7,7 +7,11 @@
       "meaning": "được gửi tới; đến nơi",
       "pos": "verb",
       "note": "Dùng khi thư từ, hàng hóa, hoặc thông tin đến được người nhận.",
-      "example": "昨日、荷物が無事に届きました。"
+      "example": "昨日、荷物が無事に届きました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-001-word.mp3",
+        "example": "./audio/lesson-36/vocab-001-example.mp3"
+      }
     },
     {
       "jp": "出ます",
@@ -15,7 +19,11 @@
       "meaning": "ra; xuất hiện; tham gia",
       "pos": "verb",
       "note": "Tùy ngữ cảnh có thể là ra ngoài, xuất hiện, hoặc tham dự.",
-      "example": "会議に出ます。"
+      "example": "会議に出ます。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-002-word.mp3",
+        "example": "./audio/lesson-36/vocab-002-example.mp3"
+      }
     },
     {
       "jp": "打ちます",
@@ -23,7 +31,11 @@
       "meaning": "đánh; gõ; đánh máy",
       "pos": "verb",
       "note": "Dùng cho việc gõ phím, đánh bóng, hoặc đập vào vật gì đó.",
-      "example": "キーボードを打ちます。"
+      "example": "キーボードを打ちます。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-003-word.mp3",
+        "example": "./audio/lesson-36/vocab-003-example.mp3"
+      }
     },
     {
       "jp": "彫金ます",
@@ -31,7 +43,11 @@
       "meaning": "khắc kim loại",
       "pos": "verb",
       "note": "Cách viết này có vẻ không tự nhiên; nếu ý bạn là động từ liên quan đến khắc thì thường gặp là 彫ります hoặc 彫金をします.",
-      "example": "工房で金属を彫金します。"
+      "example": "工房で金属を彫金します。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-004-word.mp3",
+        "example": "./audio/lesson-36/vocab-004-example.mp3"
+      }
     },
     {
       "jp": "太ります",
@@ -39,7 +55,11 @@
       "meaning": "béo lên; tăng cân",
       "pos": "verb",
       "note": "Dùng khi cân nặng tăng lên.",
-      "example": "最近、少し太りました。"
+      "example": "最近、少し太りました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-005-word.mp3",
+        "example": "./audio/lesson-36/vocab-005-example.mp3"
+      }
     },
     {
       "jp": "やせます",
@@ -47,7 +67,11 @@
       "meaning": "gầy đi; giảm cân",
       "pos": "verb",
       "note": "Dùng khi cơ thể trở nên gầy hơn hoặc cân nặng giảm.",
-      "example": "運動して、やせました。"
+      "example": "運動して、やせました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-006-word.mp3",
+        "example": "./audio/lesson-36/vocab-006-example.mp3"
+      }
     },
     {
       "jp": "過ぎます",
@@ -55,7 +79,11 @@
       "meaning": "quá; vượt quá",
       "pos": "verb",
       "note": "Hay dùng với mức độ, thời gian, hoặc giới hạn.",
-      "example": "食べ過ぎないように気をつけます。"
+      "example": "食べ過ぎないように気をつけます。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-007-word.mp3",
+        "example": "./audio/lesson-36/vocab-007-example.mp3"
+      }
     },
     {
       "jp": "なれます",
@@ -63,7 +91,11 @@
       "meaning": "quen; thành thạo",
       "pos": "verb",
       "note": "Thường dùng khi quen với môi trường, công việc, hoặc thói quen mới.",
-      "example": "新しい仕事にだんだんなれました。"
+      "example": "新しい仕事にだんだんなれました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-008-word.mp3",
+        "example": "./audio/lesson-36/vocab-008-example.mp3"
+      }
     },
     {
       "jp": "固い",
@@ -71,7 +103,11 @@
       "meaning": "cứng; chắc",
       "pos": "adjective",
       "note": "Dùng cho vật có độ cứng cao hoặc thái độ rất nghiêm.",
-      "example": "このパンは少し固いです。"
+      "example": "このパンは少し固いです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-009-word.mp3",
+        "example": "./audio/lesson-36/vocab-009-example.mp3"
+      }
     },
     {
       "jp": "軟らかい",
@@ -79,7 +115,11 @@
       "meaning": "mềm",
       "pos": "adjective",
       "note": "Cũng có thể viết là 柔らかい. Dùng cho vật có độ mềm hoặc giọng điệu nhẹ nhàng.",
-      "example": "この肉はとても軟らかいです。"
+      "example": "この肉はとても軟らかいです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-010-word.mp3",
+        "example": "./audio/lesson-36/vocab-010-example.mp3"
+      }
     },
     {
       "jp": "電子ー",
@@ -87,7 +127,11 @@
       "meaning": "điện tử; điện",
       "pos": "prefix",
       "note": "Dạng này giống tiền tố hơn là một từ độc lập; thường xuất hiện trong các từ ghép như 電子メール.",
-      "example": "電子メールを送りました。"
+      "example": "電子メールを送りました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-011-word.mp3",
+        "example": "./audio/lesson-36/vocab-011-example.mp3"
+      }
     },
     {
       "jp": "携帯ー",
@@ -95,7 +139,11 @@
       "meaning": "di động; cầm tay",
       "pos": "prefix",
       "note": "Thường dùng trong từ ghép như 携帯電話. Dạng ghi với dấu gạch ngang có vẻ là ký hiệu từ ghép.",
-      "example": "携帯電話はとても便利です。"
+      "example": "携帯電話はとても便利です。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-012-word.mp3",
+        "example": "./audio/lesson-36/vocab-012-example.mp3"
+      }
     },
     {
       "jp": "工場",
@@ -103,7 +151,11 @@
       "meaning": "nhà máy",
       "pos": "noun",
       "note": "Nơi sản xuất hàng hóa.",
-      "example": "その工場では車を作っています。"
+      "example": "その工場では車を作っています。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-013-word.mp3",
+        "example": "./audio/lesson-36/vocab-013-example.mp3"
+      }
     },
     {
       "jp": "健康",
@@ -111,7 +163,11 @@
       "meaning": "sức khỏe",
       "pos": "noun",
       "note": "Từ rất thường dùng trong câu nói về cơ thể và lối sống.",
-      "example": "健康のために毎日歩きます。"
+      "example": "健康のために毎日歩きます。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-014-word.mp3",
+        "example": "./audio/lesson-36/vocab-014-example.mp3"
+      }
     },
     {
       "jp": "剣道",
@@ -119,7 +175,11 @@
       "meaning": "kiếm đạo",
       "pos": "noun",
       "note": "Môn võ dùng kiếm tre trong văn hóa Nhật.",
-      "example": "学生のころ、剣道をしていました。"
+      "example": "学生のころ、剣道をしていました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-015-word.mp3",
+        "example": "./audio/lesson-36/vocab-015-example.mp3"
+      }
     },
     {
       "jp": "毎週",
@@ -127,7 +187,11 @@
       "meaning": "mỗi tuần",
       "pos": "adverb",
       "note": "Chỉ tần suất theo tuần.",
-      "example": "毎週月曜日に会議があります。"
+      "example": "毎週月曜日に会議があります。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-016-word.mp3",
+        "example": "./audio/lesson-36/vocab-016-example.mp3"
+      }
     },
     {
       "jp": "毎月",
@@ -135,7 +199,11 @@
       "meaning": "mỗi tháng",
       "pos": "adverb",
       "note": "Chỉ tần suất theo tháng.",
-      "example": "毎月、家賃を払います。"
+      "example": "毎月、家賃を払います。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-017-word.mp3",
+        "example": "./audio/lesson-36/vocab-017-example.mp3"
+      }
     },
     {
       "jp": "毎年",
@@ -143,7 +211,11 @@
       "meaning": "mỗi năm",
       "pos": "adverb",
       "note": "Cũng có thể đọc là まいねん trong một số ngữ cảnh.",
-      "example": "毎年、家族で旅行します。"
+      "example": "毎年、家族で旅行します。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-018-word.mp3",
+        "example": "./audio/lesson-36/vocab-018-example.mp3"
+      }
     },
     {
       "jp": "やっと",
@@ -151,7 +223,11 @@
       "meaning": "cuối cùng cũng; mãi mới",
       "pos": "adverb",
       "note": "Dùng khi hoàn thành việc gì sau khi chờ đợi hoặc cố gắng lâu.",
-      "example": "やっと試験が終わりました。"
+      "example": "やっと試験が終わりました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-019-word.mp3",
+        "example": "./audio/lesson-36/vocab-019-example.mp3"
+      }
     },
     {
       "jp": "かなり",
@@ -159,7 +235,11 @@
       "meaning": "khá; tương đối; đáng kể",
       "pos": "adverb",
       "note": "Mức độ cao hơn mức trung bình, nhưng không cực đoan.",
-      "example": "今日はかなり寒いです。"
+      "example": "今日はかなり寒いです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-020-word.mp3",
+        "example": "./audio/lesson-36/vocab-020-example.mp3"
+      }
     },
     {
       "jp": "必ず",
@@ -167,7 +247,11 @@
       "meaning": "nhất định; chắc chắn",
       "pos": "adverb",
       "note": "Chỉ sự chắc chắn hoặc bắt buộc phải xảy ra.",
-      "example": "行く前に必ず電話してください。"
+      "example": "行く前に必ず電話してください。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-021-word.mp3",
+        "example": "./audio/lesson-36/vocab-021-example.mp3"
+      }
     },
     {
       "jp": "絶対に",
@@ -175,7 +259,11 @@
       "meaning": "tuyệt đối; chắc chắn",
       "pos": "adverb",
       "note": "Rất mạnh về mức độ khẳng định hoặc phủ định.",
-      "example": "絶対に遅れないでください。"
+      "example": "絶対に遅れないでください。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-022-word.mp3",
+        "example": "./audio/lesson-36/vocab-022-example.mp3"
+      }
     },
     {
       "jp": "上手に",
@@ -183,7 +271,11 @@
       "meaning": "khéo léo; giỏi; một cách tốt",
       "pos": "adverb",
       "note": "Dùng để chỉ làm gì đó một cách thành thạo.",
-      "example": "彼は日本語を上手に話します。"
+      "example": "彼は日本語を上手に話します。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-023-word.mp3",
+        "example": "./audio/lesson-36/vocab-023-example.mp3"
+      }
     },
     {
       "jp": "できるだけ",
@@ -191,7 +283,11 @@
       "meaning": "càng... càng tốt; hết sức có thể",
       "pos": "adverb",
       "note": "Diễn tả nỗ lực ở mức tối đa trong khả năng.",
-      "example": "できるだけ早く来てください。"
+      "example": "できるだけ早く来てください。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-024-word.mp3",
+        "example": "./audio/lesson-36/vocab-024-example.mp3"
+      }
     },
     {
       "jp": "このごろ",
@@ -199,7 +295,11 @@
       "meaning": "dạo này; gần đây",
       "pos": "adverb",
       "note": "Chỉ thời gian gần hiện tại.",
-      "example": "このごろ、忙しいです。"
+      "example": "このごろ、忙しいです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-025-word.mp3",
+        "example": "./audio/lesson-36/vocab-025-example.mp3"
+      }
     },
     {
       "jp": "そのほうがー",
@@ -207,7 +307,11 @@
       "meaning": "như thế thì; như vậy thì",
       "pos": "phrase",
       "note": "Dạng ghi này có vẻ là nửa câu hoặc mẫu so sánh. Cần ngữ cảnh để diễn đạt hoàn chỉnh.",
-      "example": "そのほうがいいです。"
+      "example": "そのほうがいいです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-026-word.mp3",
+        "example": "./audio/lesson-36/vocab-026-example.mp3"
+      }
     },
     {
       "jp": "お客様",
@@ -215,7 +319,11 @@
       "meaning": "quý khách; khách hàng",
       "pos": "noun",
       "note": "Cách nói kính trọng của お客.",
-      "example": "お客様はこちらへどうぞ。"
+      "example": "お客様はこちらへどうぞ。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-027-word.mp3",
+        "example": "./audio/lesson-36/vocab-027-example.mp3"
+      }
     },
     {
       "jp": "特別（な）",
@@ -223,7 +331,11 @@
       "meaning": "đặc biệt",
       "pos": "adjective",
       "note": "Dùng cho điều nổi bật, không bình thường, hoặc có ý nghĩa riêng.",
-      "example": "今日は特別な日です。"
+      "example": "今日は特別な日です。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-028-word.mp3",
+        "example": "./audio/lesson-36/vocab-028-example.mp3"
+      }
     },
     {
       "jp": "していらっしゃいます",
@@ -231,7 +343,11 @@
       "meaning": "đang làm; đang thực hiện (kính ngữ)",
       "pos": "phrase",
       "note": "Cách nói kính ngữ của しています.",
-      "example": "先生は今、研究をしていらっしゃいます。"
+      "example": "先生は今、研究をしていらっしゃいます。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-029-word.mp3",
+        "example": "./audio/lesson-36/vocab-029-example.mp3"
+      }
     },
     {
       "jp": "水泳",
@@ -239,7 +355,11 @@
       "meaning": "bơi lội",
       "pos": "noun",
       "note": "Môn thể thao hoặc hoạt động bơi.",
-      "example": "水泳が好きです。"
+      "example": "水泳が好きです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-030-word.mp3",
+        "example": "./audio/lesson-36/vocab-030-example.mp3"
+      }
     },
     {
       "jp": "～とか、～とか",
@@ -247,7 +367,11 @@
       "meaning": "như là... hay là...; chẳng hạn như...",
       "pos": "phrase",
       "note": "Dùng để liệt kê ví dụ không đầy đủ, mang sắc thái đời thường.",
-      "example": "週末は映画とか買い物とかをします。"
+      "example": "週末は映画とか買い物とかをします。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-031-word.mp3",
+        "example": "./audio/lesson-36/vocab-031-example.mp3"
+      }
     },
     {
       "jp": "タンゴ",
@@ -255,7 +379,11 @@
       "meaning": "tango",
       "pos": "noun",
       "note": "Tên điệu nhảy/môn nghệ thuật du nhập từ nước ngoài.",
-      "example": "彼はタンゴを踊れます。"
+      "example": "彼はタンゴを踊れます。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-032-word.mp3",
+        "example": "./audio/lesson-36/vocab-032-example.mp3"
+      }
     },
     {
       "jp": "チャレンジします",
@@ -263,7 +391,11 @@
       "meaning": "thử thách; thử làm",
       "pos": "verb",
       "note": "Từ mượn thường dùng trong đời sống hiện đại.",
-      "example": "新しいことにチャレンジします。"
+      "example": "新しいことにチャレンジします。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-033-word.mp3",
+        "example": "./audio/lesson-36/vocab-033-example.mp3"
+      }
     },
     {
       "jp": "気持ち",
@@ -271,7 +403,11 @@
       "meaning": "cảm giác; tâm trạng; tình cảm",
       "pos": "noun",
       "note": "Từ rất linh hoạt, có thể chỉ cảm xúc hoặc cảm giác cơ thể.",
-      "example": "気持ちがいいです。"
+      "example": "気持ちがいいです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-034-word.mp3",
+        "example": "./audio/lesson-36/vocab-034-example.mp3"
+      }
     },
     {
       "jp": "乗り物",
@@ -279,7 +415,11 @@
       "meaning": "phương tiện đi lại",
       "pos": "noun",
       "note": "Chỉ xe cộ, tàu, máy bay, và các phương tiện di chuyển.",
-      "example": "この乗り物は子どもに人気があります。"
+      "example": "この乗り物は子どもに人気があります。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-035-word.mp3",
+        "example": "./audio/lesson-36/vocab-035-example.mp3"
+      }
     },
     {
       "jp": "歴史",
@@ -287,7 +427,11 @@
       "meaning": "lịch sử",
       "pos": "noun",
       "note": "Dùng cho lịch sử của một quốc gia, vùng đất, hoặc tổ chức.",
-      "example": "日本の歴史を勉強しています。"
+      "example": "日本の歴史を勉強しています。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-036-word.mp3",
+        "example": "./audio/lesson-36/vocab-036-example.mp3"
+      }
     },
     {
       "jp": "ー世紀",
@@ -295,7 +439,11 @@
       "meaning": "thế kỷ",
       "pos": "suffix",
       "note": "Gắn sau số để chỉ thế kỷ, ví dụ 21世紀.",
-      "example": "21世紀は情報の時代です。"
+      "example": "21世紀は情報の時代です。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-037-word.mp3",
+        "example": "./audio/lesson-36/vocab-037-example.mp3"
+      }
     },
     {
       "jp": "とおく",
@@ -303,7 +451,11 @@
       "meaning": "xa",
       "pos": "adverb",
       "note": "Dạng ghi này thường là とおく của 遠く.",
-      "example": "駅はここから遠くです。"
+      "example": "駅はここから遠くです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-038-word.mp3",
+        "example": "./audio/lesson-36/vocab-038-example.mp3"
+      }
     },
     {
       "jp": "汽車",
@@ -311,7 +463,11 @@
       "meaning": "tàu hỏa; xe lửa",
       "pos": "noun",
       "note": "Từ hơi cổ hoặc văn cảnh nhất định; hiện nay thường dùng 電車 hoặc 列車 hơn.",
-      "example": "子どものころ、汽車を見に行きました。"
+      "example": "子どものころ、汽車を見に行きました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-039-word.mp3",
+        "example": "./audio/lesson-36/vocab-039-example.mp3"
+      }
     },
     {
       "jp": "汽船",
@@ -319,7 +475,11 @@
       "meaning": "tàu thủy",
       "pos": "noun",
       "note": "Từ hơi cổ, chỉ tàu chạy bằng hơi nước hoặc tàu thủy nói chung trong văn cảnh cũ.",
-      "example": "昔は汽船で海を渡りました。"
+      "example": "昔は汽船で海を渡りました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-040-word.mp3",
+        "example": "./audio/lesson-36/vocab-040-example.mp3"
+      }
     },
     {
       "jp": "大勢の（人）",
@@ -327,7 +487,11 @@
       "meaning": "rất đông người",
       "pos": "noun",
       "note": "Chỉ số lượng người nhiều.",
-      "example": "今日は大勢の人が来ました。"
+      "example": "今日は大勢の人が来ました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-041-word.mp3",
+        "example": "./audio/lesson-36/vocab-041-example.mp3"
+      }
     },
     {
       "jp": "運びます",
@@ -335,15 +499,23 @@
       "meaning": "mang; vận chuyển",
       "pos": "verb",
       "note": "Dùng khi chuyển đồ vật từ nơi này sang nơi khác.",
-      "example": "荷物を部屋まで運びました。"
+      "example": "荷物を部屋まで運びました。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-042-word.mp3",
+        "example": "./audio/lesson-36/vocab-042-example.mp3"
+      }
     },
     {
-      "jp": "あんぜん（な）",
+      "jp": "安全（な）",
       "reading": "あんぜん",
       "meaning": "an toàn",
       "pos": "adjective",
       "note": "Cách viết chuẩn là 安全（な）.",
-      "example": "この道は安全です。"
+      "example": "この道は安全です。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-043-word.mp3",
+        "example": "./audio/lesson-36/vocab-043-example.mp3"
+      }
     },
     {
       "jp": "飛びます",
@@ -351,7 +523,11 @@
       "meaning": "bay; nhảy",
       "pos": "verb",
       "note": "Dùng cho người, chim, côn trùng, hoặc vật bay trong không trung.",
-      "example": "鳥が空を飛んでいます。"
+      "example": "鳥が空を飛んでいます。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-044-word.mp3",
+        "example": "./audio/lesson-36/vocab-044-example.mp3"
+      }
     },
     {
       "jp": "宇宙",
@@ -359,7 +535,11 @@
       "meaning": "vũ trụ",
       "pos": "noun",
       "note": "Chỉ không gian ngoài Trái Đất.",
-      "example": "宇宙に行くのは夢です。"
+      "example": "宇宙に行くのは夢です。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-045-word.mp3",
+        "example": "./audio/lesson-36/vocab-045-example.mp3"
+      }
     },
     {
       "jp": "地球",
@@ -367,7 +547,11 @@
       "meaning": "Trái Đất",
       "pos": "noun",
       "note": "Tên hành tinh chúng ta đang sống.",
-      "example": "地球を大切にしたいです。"
+      "example": "地球を大切にしたいです。",
+      "audio": {
+        "word": "./audio/lesson-36/vocab-046-word.mp3",
+        "example": "./audio/lesson-36/vocab-046-example.mp3"
+      }
     }
   ],
   "kanji": [

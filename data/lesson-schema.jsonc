@@ -21,7 +21,20 @@
       "note": "Potential form of 話す.",
 
       // Optional example sentence using the vocabulary item.
-      "example": "日本語が少し話せるようになりました。"
+      "example": "日本語が少し話せるようになりました。",
+
+      // Optional static audio file paths for vocabulary and example playback.
+      "audio": {
+        "word": "./audio/lesson-36/vocab-001-word.mp3",
+        "example": "./audio/lesson-36/vocab-001-example.mp3"
+      },
+
+      // Optional generation-only text overrides when TTS mispronounces kanji or phrasing.
+      // These values are not shown in the UI.
+      "audioText": {
+        "word": "はなせる",
+        "example": "にほんごが、すこし、はなせるように、なりました。"
+      }
     }
   ],
 
