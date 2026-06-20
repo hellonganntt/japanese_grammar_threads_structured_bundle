@@ -561,6 +561,17 @@
       font-weight:800;
       line-height:1;
     }
+    .quiz-summary-meta{
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+    .quiz-summary-actions{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
     .empty{
       text-align:center;
       color:var(--muted);

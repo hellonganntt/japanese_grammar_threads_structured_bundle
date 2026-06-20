@@ -5,7 +5,6 @@ let vocabPanelOpen = true;
 let vocabMode = "flashcard";
 let vocabCardIndex = 0;
 let vocabCardFlipped = false;
-let vocabShuffleEnabled = false;
 let vocabCardOrder = [];
 let currentAudio = null;
 let currentAudioSequenceId = 0;
@@ -19,6 +18,9 @@ let vocabQuizQuestions = [];
 let vocabQuizQuestionIndex = 0;
 let vocabQuizSelectedChoice = null;
 let vocabQuizScore = 0;
+let vocabQuizMissedQuestions = [];
+let vocabQuizIsReview = false;
+let vocabQuizReviewCompleted = false;
 
 const AUDIO_RESULT = {
   BLOCKED: "blocked",
@@ -39,7 +41,7 @@ function escapeHtml(value){
 function renderAudioButton(src, label){
   if(!src) return "";
 
-  return `<button class="audio-btn" type="button" data-audio-src="${escapeHtml(src)}" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}">▶</button>`;
+  return `<button class="audio-btn" type="button" data-audio-src="${escapeHtml(src)}" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}">&gt;</button>`;
 }
 
 function getVocabAudioPaths(item){
@@ -204,21 +206,8 @@ function createShuffledOrder(length){
   return order;
 }
 
-function syncVocabCardOrder(vocab){
-  if(!vocabShuffleEnabled){
-    vocabCardOrder = [];
-    return;
-  }
-
-  if(vocabCardOrder.length !== vocab.length){
-    vocabCardOrder = createShuffledOrder(vocab.length);
-  }
-}
-
 function getVocabFlashcardItems(vocab){
-  syncVocabCardOrder(vocab);
-
-  if(!vocabShuffleEnabled){
+  if(vocabCardOrder.length !== vocab.length){
     return vocab;
   }
 
@@ -236,6 +225,9 @@ function resetVocabQuiz(){
   vocabQuizQuestionIndex = 0;
   vocabQuizSelectedChoice = null;
   vocabQuizScore = 0;
+  vocabQuizMissedQuestions = [];
+  vocabQuizIsReview = false;
+  vocabQuizReviewCompleted = false;
 }
 
 function clampVocabCardIndex(vocab){
@@ -344,73 +336,6 @@ function renderVocabList(vocab){
   `;
 }
 
-function renderVocabFlashcardLegacy(vocab){
-  clampVocabCardIndex(vocab);
-  const item = vocab[vocabCardIndex];
-
-  return `
-    <div class="flashcard-shell">
-      <div class="flashcard-status">${vocabCardIndex + 1} / ${vocab.length}</div>
-      <button class="flashcard" id="vocabFlashcard" type="button" data-face="${vocabCardFlipped ? "back" : "front"}" aria-label="Lật thẻ từ vựng">
-        <div class="flashcard-face flashcard-front">
-          <div class="flashcard-face-label">Mặt trước</div>
-          <div class="flashcard-main">${escapeHtml(item.jp)}</div>
-          ${item.reading ? `<div class="flashcard-reading">${escapeHtml(item.reading)}</div>` : ""}
-          ${item.pos ? `<div class="flashcard-pos">${escapeHtml(item.pos)}</div>` : ""}
-        </div>
-        <div class="flashcard-face flashcard-back">
-          <div class="flashcard-face-label">Mặt sau</div>
-          <div class="flashcard-meaning">${escapeHtml(item.meaning)}</div>
-          ${item.note ? `<div class="flashcard-note">${escapeHtml(item.note)}</div>` : ""}
-          ${item.example ? `<div class="flashcard-example">${escapeHtml(item.example)}</div>` : ""}
-        </div>
-      </button>
-      <div class="flashcard-controls">
-        <button class="flashcard-nav" id="vocabPrevBtn" type="button" ${vocabCardIndex === 0 ? "disabled" : ""}>Trước</button>
-        <button class="flashcard-flip-btn" id="vocabFlipBtn" type="button">${vocabCardFlipped ? "Xem mặt trước" : "Lật thẻ"}</button>
-        <button class="flashcard-nav" id="vocabNextBtn" type="button" ${vocabCardIndex === vocab.length - 1 ? "disabled" : ""}>Tiếp</button>
-      </div>
-    </div>
-  `;
-}
-
-function renderVocabFlashcardBroken(vocab){
-  const flashcardItems = getVocabFlashcardItems(vocab);
-  clampVocabCardIndex(flashcardItems);
-  const item = flashcardItems[vocabCardIndex];
-
-  return `
-    <div class="flashcard-shell">
-      <div class="flashcard-toolbar">
-        <div class="flashcard-status">${vocabCardIndex + 1} / ${flashcardItems.length}</div>
-        <div class="flashcard-options">
-          <button class="flashcard-option-btn ${vocabShuffleEnabled ? "active" : ""}" id="vocabShuffleBtn" type="button">${vocabShuffleEnabled ? "Shuffle: On" : "Shuffle: Off"}</button>
-          ${vocabShuffleEnabled ? '<button class="flashcard-option-btn" id="vocabReshuffleBtn" type="button">Shuffle Again</button>' : ""}
-        </div>
-      </div>
-      <button class="flashcard" id="vocabFlashcard" type="button" data-face="${vocabCardFlipped ? "back" : "front"}" aria-label="Láº­t tháº» tá»« vá»±ng">
-        <div class="flashcard-face flashcard-front">
-          <div class="flashcard-face-label">Máº·t trÆ°á»›c</div>
-          <div class="flashcard-main">${escapeHtml(item.jp)}</div>
-          ${item.reading ? `<div class="flashcard-reading">${escapeHtml(item.reading)}</div>` : ""}
-          ${item.pos ? `<div class="flashcard-pos">${escapeHtml(item.pos)}</div>` : ""}
-        </div>
-        <div class="flashcard-face flashcard-back">
-          <div class="flashcard-face-label">Máº·t sau</div>
-          <div class="flashcard-meaning">${escapeHtml(item.meaning)}</div>
-          ${item.note ? `<div class="flashcard-note">${escapeHtml(item.note)}</div>` : ""}
-          ${item.example ? `<div class="flashcard-example">${escapeHtml(item.example)}</div>` : ""}
-        </div>
-      </button>
-      <div class="flashcard-controls">
-        <button class="flashcard-nav" id="vocabPrevBtn" type="button" ${vocabCardIndex === 0 ? "disabled" : ""}>TrÆ°á»›c</button>
-        <button class="flashcard-flip-btn" id="vocabFlipBtn" type="button">${vocabCardFlipped ? "Xem máº·t trÆ°á»›c" : "Láº­t tháº»"}</button>
-        <button class="flashcard-nav" id="vocabNextBtn" type="button" ${vocabCardIndex === flashcardItems.length - 1 ? "disabled" : ""}>Tiáº¿p</button>
-      </div>
-    </div>
-  `;
-}
-
 function renderVocabFlashcard(vocab){
   const flashcardItems = getVocabFlashcardItems(vocab);
   clampVocabCardIndex(flashcardItems);
@@ -423,13 +348,12 @@ function renderVocabFlashcard(vocab){
         <div class="flashcard-options">
           <button class="flashcard-option-btn ${vocabAudioAutoplayEnabled ? "active" : ""}" id="vocabAutoplayBtn" type="button">${vocabAudioAutoplayEnabled ? "Audio: On" : "Audio: Off"}</button>
           <button class="flashcard-option-btn ${vocabIdleLearningEnabled ? "active" : ""}" id="vocabIdleBtn" type="button">${vocabIdleLearningEnabled ? "Idle: On" : "Idle: Off"}</button>
-          <button class="flashcard-option-btn ${vocabShuffleEnabled ? "active" : ""}" id="vocabShuffleBtn" type="button">${vocabShuffleEnabled ? "Trộn: Bật" : "Trộn: Tắt"}</button>
-          ${vocabShuffleEnabled ? '<button class="flashcard-option-btn" id="vocabReshuffleBtn" type="button">Trộn lại</button>' : ""}
+          <button class="flashcard-option-btn" id="vocabShuffleBtn" type="button">Shuffle</button>
         </div>
       </div>
-      <div class="flashcard" id="vocabFlashcard" role="button" tabindex="0" data-face="${vocabCardFlipped ? "back" : "front"}" aria-label="Lật thẻ từ vựng">
+      <div class="flashcard" id="vocabFlashcard" role="button" tabindex="0" data-face="${vocabCardFlipped ? "back" : "front"}" aria-label="Flip vocabulary card">
         <div class="flashcard-face flashcard-front">
-          <div class="flashcard-face-label">Mặt trước</div>
+          <div class="flashcard-face-label">Front</div>
           <div class="flashcard-line">
             <div class="flashcard-main">${escapeHtml(item.jp)}</div>
             ${renderAudioButton(item.audio?.word, "Play vocabulary audio")}
@@ -438,16 +362,16 @@ function renderVocabFlashcard(vocab){
           ${item.pos ? `<div class="flashcard-pos">${escapeHtml(item.pos)}</div>` : ""}
         </div>
         <div class="flashcard-face flashcard-back">
-          <div class="flashcard-face-label">Mặt sau</div>
+          <div class="flashcard-face-label">Back</div>
           <div class="flashcard-meaning">${escapeHtml(item.meaning)}</div>
           ${item.note ? `<div class="flashcard-note">${escapeHtml(item.note)}</div>` : ""}
           ${item.example ? `<div class="flashcard-example"><span>${escapeHtml(item.example)}</span>${renderAudioButton(item.audio?.example, "Play example audio")}</div>` : ""}
         </div>
       </div>
       <div class="flashcard-controls">
-        <button class="flashcard-nav" id="vocabPrevBtn" type="button" ${vocabCardIndex === 0 ? "disabled" : ""}>Trước</button>
-        <button class="flashcard-flip-btn" id="vocabFlipBtn" type="button">${vocabCardFlipped ? "Xem mặt trước" : "Lật thẻ"}</button>
-        <button class="flashcard-nav" id="vocabNextBtn" type="button">Tiếp</button>
+        <button class="flashcard-nav" id="vocabPrevBtn" type="button" ${vocabCardIndex === 0 ? "disabled" : ""}>Previous</button>
+        <button class="flashcard-flip-btn" id="vocabFlipBtn" type="button">${vocabCardFlipped ? "Show Front" : "Flip Card"}</button>
+        <button class="flashcard-nav" id="vocabNextBtn" type="button">Next</button>
       </div>
     </div>
   `;
@@ -474,6 +398,41 @@ function getQuizChoiceMeanings(vocab, item){
   return createShuffledOrder(choices.length).map(index => choices[index]);
 }
 
+function createVocabQuizQuestions(items, choicePool){
+  return createShuffledOrder(items.length).map(index => {
+    const item = items[index];
+    return {
+      item,
+      choices: getQuizChoiceMeanings(choicePool, item)
+    };
+  });
+}
+
+function resetVocabQuizProgress(){
+  vocabQuizQuestionIndex = 0;
+  vocabQuizSelectedChoice = null;
+  vocabQuizScore = 0;
+}
+
+function startVocabMissedReview(vocab){
+  const usableItems = getUsableQuizItems(vocab);
+  const missedItems = vocabQuizMissedQuestions.map(question => question.item).filter(Boolean);
+
+  vocabQuizQuestions = createVocabQuizQuestions(missedItems, usableItems);
+  vocabQuizIsReview = true;
+  vocabQuizReviewCompleted = true;
+  resetVocabQuizProgress();
+}
+
+function trackMissedVocabQuestion(question){
+  if(vocabQuizIsReview || !question?.item) return;
+
+  const alreadyMissed = vocabQuizMissedQuestions.some(missed => missed.item === question.item);
+  if(!alreadyMissed){
+    vocabQuizMissedQuestions.push(question);
+  }
+}
+
 function ensureVocabQuizQuestions(vocab){
   const usableItems = getUsableQuizItems(vocab);
 
@@ -484,16 +443,8 @@ function ensureVocabQuizQuestions(vocab){
 
   if(vocabQuizQuestions.length) return usableItems;
 
-  vocabQuizQuestions = createShuffledOrder(usableItems.length).map(index => {
-    const item = usableItems[index];
-    return {
-      item,
-      choices: getQuizChoiceMeanings(usableItems, item)
-    };
-  });
-  vocabQuizQuestionIndex = 0;
-  vocabQuizSelectedChoice = null;
-  vocabQuizScore = 0;
+  vocabQuizQuestions = createVocabQuizQuestions(usableItems, usableItems);
+  resetVocabQuizProgress();
 
   return usableItems;
 }
@@ -502,16 +453,24 @@ function renderVocabQuiz(vocab){
   const usableItems = ensureVocabQuizQuestions(vocab);
 
   if(usableItems.length < 2){
-    return '<div class="empty" style="padding:18px 8px">Cần ít nhất 2 từ có nghĩa để làm quiz.</div>';
+    return '<div class="empty" style="padding:18px 8px">At least 2 words with meanings are needed for a quiz.</div>';
   }
 
   if(vocabQuizQuestionIndex >= vocabQuizQuestions.length){
+    const missedCount = vocabQuizMissedQuestions.length;
+    const canReviewMissed = missedCount > 0 && !vocabQuizIsReview && !vocabQuizReviewCompleted;
+    const showMissedCount = missedCount > 0 && !vocabQuizIsReview;
+
     return `
       <div class="quiz-shell">
         <div class="quiz-summary">
-          <div class="quiz-summary-label">Hoàn thành</div>
+          <div class="quiz-summary-label">${vocabQuizIsReview ? "Review Complete" : "Complete"}</div>
           <div class="quiz-summary-score">${vocabQuizScore} / ${vocabQuizQuestions.length}</div>
-          <button class="quiz-primary-btn" id="vocabQuizRestartBtn" type="button">Làm lại</button>
+          ${showMissedCount ? `<div class="quiz-summary-meta">Missed: ${missedCount}</div>` : ""}
+          <div class="quiz-summary-actions">
+            ${canReviewMissed ? '<button class="quiz-primary-btn" id="vocabQuizReviewBtn" type="button">Review Missed</button>' : ""}
+            <button class="quiz-primary-btn" id="vocabQuizRestartBtn" type="button">Try Again</button>
+          </div>
         </div>
       </div>
     `;
@@ -525,11 +484,11 @@ function renderVocabQuiz(vocab){
   return `
     <div class="quiz-shell">
       <div class="quiz-toolbar">
-        <div class="quiz-status">Câu ${vocabQuizQuestionIndex + 1} / ${vocabQuizQuestions.length}</div>
-        <div class="quiz-score">Điểm: ${vocabQuizScore}</div>
+        <div class="quiz-status">Question ${vocabQuizQuestionIndex + 1} / ${vocabQuizQuestions.length}</div>
+        <div class="quiz-score">Score: ${vocabQuizScore}</div>
       </div>
       <div class="quiz-card">
-        <div class="quiz-prompt-label">Chọn nghĩa đúng</div>
+        <div class="quiz-prompt-label">Choose the correct meaning</div>
         <div class="quiz-prompt">${escapeHtml(question.item.jp)}</div>
         ${question.item.reading ? `<div class="quiz-reading">${escapeHtml(question.item.reading)}</div>` : ""}
       </div>
@@ -548,12 +507,12 @@ function renderVocabQuiz(vocab){
       </div>
       ${answered ? `
         <div class="quiz-feedback ${selectedIsCorrect ? "correct" : "incorrect"}">
-          ${selectedIsCorrect ? "Đúng rồi." : `Chưa đúng. Đáp án: ${escapeHtml(correctChoice)}`}
+          ${selectedIsCorrect ? "Correct." : `Not quite. Answer: ${escapeHtml(correctChoice)}`}
         </div>
       ` : ""}
       <div class="quiz-actions">
         <button class="quiz-primary-btn" id="vocabQuizNextBtn" type="button" ${answered ? "" : "disabled"}>
-          ${vocabQuizQuestionIndex === vocabQuizQuestions.length - 1 ? "Xem kết quả" : "Tiếp"}
+          ${vocabQuizQuestionIndex === vocabQuizQuestions.length - 1 ? "Show Results" : "Next"}
         </button>
       </div>
     </div>
@@ -593,6 +552,8 @@ function bindVocabInteractions(vocab){
 
         if(choice === currentQuestion.item.meaning){
           vocabQuizScore += 1;
+        }else{
+          trackMissedVocabQuestion(currentQuestion);
         }
 
         renderVocabPanel();
@@ -609,6 +570,11 @@ function bindVocabInteractions(vocab){
 
     document.getElementById("vocabQuizRestartBtn")?.addEventListener("click", () => {
       resetVocabQuiz();
+      renderVocabPanel();
+    });
+
+    document.getElementById("vocabQuizReviewBtn")?.addEventListener("click", () => {
+      startVocabMissedReview(vocab);
       renderVocabPanel();
     });
 
@@ -721,13 +687,6 @@ function bindVocabInteractions(vocab){
   document.getElementById("vocabShuffleBtn")?.addEventListener("click", () => {
     stopVocabIdleLearning({ disable: true });
     stopCurrentAudio();
-    vocabShuffleEnabled = !vocabShuffleEnabled;
-    resetVocabFlashcard();
-    renderVocabPanel();
-  });
-  document.getElementById("vocabReshuffleBtn")?.addEventListener("click", () => {
-    stopVocabIdleLearning({ disable: true });
-    stopCurrentAudio();
     vocabCardOrder = createShuffledOrder(vocab.length);
     vocabCardIndex = 0;
     vocabCardFlipped = false;
@@ -749,19 +708,19 @@ function renderVocabPanel(){
   const content = document.getElementById("vocabContent");
   const vocab = getVocabForSelectedLesson();
 
-  title.textContent = "Từ vựng";
-  meta.textContent = `${vocab.length} từ`;
+  title.textContent = "Vocabulary";
+  meta.textContent = `${vocab.length} ${vocab.length === 1 ? "word" : "words"}`;
   toggle.setAttribute("aria-expanded", "true");
   panel.classList.add("open");
 
   if(!vocab.length){
     stopVocabIdleLearning({ disable: true });
-    content.innerHTML = '<div class="empty" style="padding:18px 8px">Chưa có từ vựng cho bài này.</div>';
+    content.innerHTML = '<div class="empty" style="padding:18px 8px">No vocabulary is available for this lesson yet.</div>';
     return;
   }
 
   content.innerHTML = `
-    <div class="vocab-mode-switch" role="tablist" aria-label="Chế độ từ vựng">
+    <div class="vocab-mode-switch" role="tablist" aria-label="Vocabulary mode">
       <button class="vocab-mode-btn ${vocabMode === "list" ? "active" : ""}" type="button" data-mode="list">List</button>
       <button class="vocab-mode-btn ${vocabMode === "flashcard" ? "active" : ""}" type="button" data-mode="flashcard">Flashcard</button>
       <button class="vocab-mode-btn ${vocabMode === "quiz" ? "active" : ""}" type="button" data-mode="quiz">Quiz</button>
@@ -803,7 +762,7 @@ function renderLessonFilters(){
   container.innerHTML = `
     ${lessons.map(lesson => `
       <button class="chip ${String(activeLesson) === String(lesson) ? "active" : ""}" data-lesson="${lesson}">
-        Bài ${lesson}
+        Lesson ${lesson}
       </button>
     `).join("")}
   `;
