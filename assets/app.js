@@ -1,4 +1,3 @@
-let grammarSections = [];
 let lessonFiles = [];
 const lessonCache = new Map();
 let activeLesson = "";
@@ -8,12 +7,24 @@ let vocabCardIndex = 0;
 let vocabCardFlipped = false;
 let vocabShuffleEnabled = false;
 let vocabCardOrder = [];
-let kanjiPanelOpen = false;
 let currentAudio = null;
 let currentAudioSequenceId = 0;
-let pendingAudioSequencePaths = [];
+let pendingAudioSequence = null;
 let suppressNextVocabAutoplay = false;
+let suppressNextVocabIdleStart = false;
 let vocabAudioAutoplayEnabled = localStorage.getItem("vocabAudioAutoplay") !== "false";
+let vocabIdleLearningEnabled = localStorage.getItem("vocabIdleLearning") === "true";
+let vocabIdleRunId = 0;
+let vocabQuizQuestions = [];
+let vocabQuizQuestionIndex = 0;
+let vocabQuizSelectedChoice = null;
+let vocabQuizScore = 0;
+
+const AUDIO_RESULT = {
+  BLOCKED: "blocked",
+  CANCELLED: "cancelled",
+  COMPLETE: "complete"
+};
 
 function escapeHtml(value){
   return String(value ?? "").replace(/[&<>"']/g, char => ({
@@ -23,10 +34,6 @@ function escapeHtml(value){
     '"': "&quot;",
     "'": "&#039;"
   })[char]);
-}
-
-function renderInlineMarkdown(text){
-  return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
 }
 
 function renderAudioButton(src, label){
@@ -44,7 +51,7 @@ function getVocabAudioPaths(item){
 
 function stopCurrentAudio(){
   currentAudioSequenceId += 1;
-  pendingAudioSequencePaths = [];
+  pendingAudioSequence = null;
 
   if(currentAudio){
     currentAudio.pause();
@@ -77,13 +84,13 @@ function waitForAudioEnd(audio, sequenceId){
 
 async function playAudioSequence(paths, options = {}){
   const audioPaths = paths.filter(Boolean);
-  if(!audioPaths.length) return;
+  if(!audioPaths.length) return AUDIO_RESULT.COMPLETE;
 
   stopCurrentAudio();
   const sequenceId = currentAudioSequenceId;
 
   for(const path of audioPaths){
-    if(sequenceId !== currentAudioSequenceId) return;
+    if(sequenceId !== currentAudioSequenceId) return AUDIO_RESULT.CANCELLED;
 
     const audio = new Audio(path);
     currentAudio = audio;
@@ -93,25 +100,37 @@ async function playAudioSequence(paths, options = {}){
     }catch(error){
       if(sequenceId === currentAudioSequenceId){
         if(options.deferOnBlocked){
-          pendingAudioSequencePaths = audioPaths;
+          pendingAudioSequence = {
+            paths: audioPaths,
+            onComplete: options.onComplete
+          };
           showToast("Click once to start autoplay.");
         }else{
           showToast("Click once to allow audio playback.");
         }
       }
-      return;
+      return AUDIO_RESULT.BLOCKED;
     }
 
-    await waitForAudioEnd(audio, sequenceId);
+    const finished = await waitForAudioEnd(audio, sequenceId);
+    if(!finished || sequenceId !== currentAudioSequenceId){
+      return AUDIO_RESULT.CANCELLED;
+    }
   }
 
   if(sequenceId === currentAudioSequenceId){
     currentAudio = null;
   }
+
+  if(typeof options.onComplete === "function"){
+    options.onComplete();
+  }
+
+  return AUDIO_RESULT.COMPLETE;
 }
 
 function maybeAutoplayVocab(item){
-  if(!vocabAudioAutoplayEnabled || suppressNextVocabAutoplay){
+  if(vocabIdleLearningEnabled || !vocabAudioAutoplayEnabled || suppressNextVocabAutoplay){
     suppressNextVocabAutoplay = false;
     return;
   }
@@ -121,15 +140,27 @@ function maybeAutoplayVocab(item){
   });
 }
 
-function playPendingAudioAfterInteraction(){
-  if(!pendingAudioSequencePaths.length || !vocabAudioAutoplayEnabled) return;
+function playPendingAudioAfterInteraction(event){
+  if(!pendingAudioSequence || !vocabAudioAutoplayEnabled) return;
 
-  const paths = [...pendingAudioSequencePaths];
-  pendingAudioSequencePaths = [];
-  playAudioSequence(paths);
+  const pending = pendingAudioSequence;
+  pendingAudioSequence = null;
+
+  if(event){
+    if(event.cancelable){
+      event.preventDefault();
+    }
+    event.stopImmediatePropagation();
+  }
+
+  playAudioSequence(pending.paths, {
+    onComplete: pending.onComplete
+  });
 }
 
-document.addEventListener("pointerdown", playPendingAudioAfterInteraction, true);
+document.addEventListener("pointerup", playPendingAudioAfterInteraction, true);
+document.addEventListener("touchend", playPendingAudioAfterInteraction, { capture: true, passive: false });
+document.addEventListener("click", playPendingAudioAfterInteraction, true);
 document.addEventListener("keydown", playPendingAudioAfterInteraction, true);
 
 function syncVocabAutoplayButton(){
@@ -140,54 +171,22 @@ function syncVocabAutoplayButton(){
   button.textContent = vocabAudioAutoplayEnabled ? "Audio: On" : "Audio: Off";
 }
 
-function renderSections(sections = []){
-  return sections.map(section => {
-    switch(section.type){
-      case "text":
-        return `<p>${renderInlineMarkdown(section.text)}</p>`;
-      case "pattern":
-        return `<div class="pattern">${escapeHtml(section.text).replace(/\n/g, "<br>")}</div>`;
-      case "example_jp":
-        return `<p class="jp">${escapeHtml(section.text)}</p>`;
-      case "translation":
-        return `<p class="translation">${escapeHtml(section.text)}</p>`;
-      case "tip":
-        return `<div class="tip">${renderInlineMarkdown(section.text).replace(/\n/g, "<br>")}</div>`;
-      default:
-        return section.text ? `<p>${escapeHtml(section.text)}</p>` : "";
-    }
-  }).join("");
+function syncVocabIdleButton(){
+  const button = document.getElementById("vocabIdleBtn");
+  if(!button) return;
+
+  button.classList.toggle("active", vocabIdleLearningEnabled);
+  button.textContent = vocabIdleLearningEnabled ? "Idle: On" : "Idle: Off";
 }
 
-function normalizeNote(note){
-  if(Array.isArray(note)){
-    return {
-      text: note[1]
-    };
+function stopVocabIdleLearning(options = {}){
+  vocabIdleRunId += 1;
+
+  if(options.disable){
+    vocabIdleLearningEnabled = false;
+    localStorage.setItem("vocabIdleLearning", "false");
+    syncVocabIdleButton();
   }
-
-  return note || {};
-}
-
-function renderSupportingBlock(note){
-  const item = normalizeNote(note);
-  const nestedNotes = Array.isArray(item.notes) && item.notes.length
-    ? `<div class="supporting-nested">${item.notes.map(renderSupportingBlock).join("")}</div>`
-    : "";
-  const title = item.title ? `<div class="supporting-title">${escapeHtml(item.title)}</div>` : "";
-  const tag = item.tag ? `<div class="supporting-tag">${escapeHtml(item.tag)}</div>` : "";
-  const body = item.sections
-    ? `<div class="supporting-body">${renderSections(item.sections)}</div>`
-    : escapeHtml(item.text || "");
-
-  return `
-    <div class="supporting-block">
-      ${title}
-      ${tag}
-      ${body}
-      ${nestedNotes}
-    </div>
-  `;
 }
 
 function getVocabForSelectedLesson(){
@@ -232,6 +231,13 @@ function resetVocabFlashcard(){
   vocabCardOrder = [];
 }
 
+function resetVocabQuiz(){
+  vocabQuizQuestions = [];
+  vocabQuizQuestionIndex = 0;
+  vocabQuizSelectedChoice = null;
+  vocabQuizScore = 0;
+}
+
 function clampVocabCardIndex(vocab){
   if(!vocab.length){
     stopCurrentAudio();
@@ -244,18 +250,78 @@ function clampVocabCardIndex(vocab){
 
 function goToPreviousVocabCard(vocab){
   if(!vocab.length || vocabCardIndex === 0) return;
+  stopVocabIdleLearning({ disable: true });
   stopCurrentAudio();
   vocabCardIndex -= 1;
   vocabCardFlipped = false;
   renderVocabPanel();
 }
 
-function goToNextVocabCard(vocab){
+function goToNextVocabCard(vocab, options = {}){
   if(!vocab.length) return;
-  stopCurrentAudio();
+  if(options.disableIdle !== false){
+    stopVocabIdleLearning({ disable: true });
+  }
+  if(options.stopAudio !== false){
+    stopCurrentAudio();
+  }
   vocabCardIndex = vocabCardIndex >= vocab.length - 1 ? 0 : vocabCardIndex + 1;
   vocabCardFlipped = false;
   renderVocabPanel();
+}
+
+async function continueVocabIdleAfterWord(runId, item){
+  if(runId !== vocabIdleRunId || !vocabIdleLearningEnabled || vocabMode !== "flashcard") return;
+
+  vocabCardFlipped = true;
+  suppressNextVocabAutoplay = true;
+  suppressNextVocabIdleStart = true;
+  renderVocabPanel();
+
+  if(runId !== vocabIdleRunId || !vocabIdleLearningEnabled) return;
+
+  const exampleResult = await playAudioSequence([item?.audio?.example]);
+  if(exampleResult !== AUDIO_RESULT.COMPLETE || runId !== vocabIdleRunId || !vocabIdleLearningEnabled) return;
+
+  const flashcardItems = getVocabFlashcardItems(getVocabForSelectedLesson());
+  goToNextVocabCard(flashcardItems, {
+    disableIdle: false,
+    stopAudio: false
+  });
+}
+
+async function startVocabIdleLearningCycle(vocab){
+  if(!vocabIdleLearningEnabled || vocabMode !== "flashcard" || !vocab.length) return;
+
+  if(!vocabAudioAutoplayEnabled){
+    vocabAudioAutoplayEnabled = true;
+    localStorage.setItem("vocabAudioAutoplay", "true");
+    syncVocabAutoplayButton();
+  }
+
+  if(vocabCardFlipped){
+    vocabCardFlipped = false;
+    suppressNextVocabAutoplay = true;
+    renderVocabPanel();
+    return;
+  }
+
+  const runId = vocabIdleRunId + 1;
+  vocabIdleRunId = runId;
+  const item = vocab[vocabCardIndex];
+  const continueAfterWord = () => {
+    continueVocabIdleAfterWord(runId, item);
+  };
+
+  if(!item?.audio?.word){
+    continueAfterWord();
+    return;
+  }
+
+  await playAudioSequence([item.audio.word], {
+    deferOnBlocked: true,
+    onComplete: continueAfterWord
+  });
 }
 
 function renderVocabList(vocab){
@@ -356,6 +422,7 @@ function renderVocabFlashcard(vocab){
         <div class="flashcard-status">${vocabCardIndex + 1} / ${flashcardItems.length}</div>
         <div class="flashcard-options">
           <button class="flashcard-option-btn ${vocabAudioAutoplayEnabled ? "active" : ""}" id="vocabAutoplayBtn" type="button">${vocabAudioAutoplayEnabled ? "Audio: On" : "Audio: Off"}</button>
+          <button class="flashcard-option-btn ${vocabIdleLearningEnabled ? "active" : ""}" id="vocabIdleBtn" type="button">${vocabIdleLearningEnabled ? "Idle: On" : "Idle: Off"}</button>
           <button class="flashcard-option-btn ${vocabShuffleEnabled ? "active" : ""}" id="vocabShuffleBtn" type="button">${vocabShuffleEnabled ? "Trộn: Bật" : "Trộn: Tắt"}</button>
           ${vocabShuffleEnabled ? '<button class="flashcard-option-btn" id="vocabReshuffleBtn" type="button">Trộn lại</button>' : ""}
         </div>
@@ -386,10 +453,118 @@ function renderVocabFlashcard(vocab){
   `;
 }
 
+function getUsableQuizItems(vocab){
+  return vocab.filter(item => item?.jp && item?.meaning);
+}
+
+function getQuizChoiceMeanings(vocab, item){
+  const distractors = [];
+  const seen = new Set([item.meaning]);
+
+  for(const candidate of createShuffledOrder(vocab.length).map(index => vocab[index])){
+    if(!candidate?.meaning || seen.has(candidate.meaning)) continue;
+
+    seen.add(candidate.meaning);
+    distractors.push(candidate.meaning);
+
+    if(distractors.length >= 3) break;
+  }
+
+  const choices = [item.meaning, ...distractors];
+  return createShuffledOrder(choices.length).map(index => choices[index]);
+}
+
+function ensureVocabQuizQuestions(vocab){
+  const usableItems = getUsableQuizItems(vocab);
+
+  if(usableItems.length < 2){
+    resetVocabQuiz();
+    return usableItems;
+  }
+
+  if(vocabQuizQuestions.length) return usableItems;
+
+  vocabQuizQuestions = createShuffledOrder(usableItems.length).map(index => {
+    const item = usableItems[index];
+    return {
+      item,
+      choices: getQuizChoiceMeanings(usableItems, item)
+    };
+  });
+  vocabQuizQuestionIndex = 0;
+  vocabQuizSelectedChoice = null;
+  vocabQuizScore = 0;
+
+  return usableItems;
+}
+
+function renderVocabQuiz(vocab){
+  const usableItems = ensureVocabQuizQuestions(vocab);
+
+  if(usableItems.length < 2){
+    return '<div class="empty" style="padding:18px 8px">Cần ít nhất 2 từ có nghĩa để làm quiz.</div>';
+  }
+
+  if(vocabQuizQuestionIndex >= vocabQuizQuestions.length){
+    return `
+      <div class="quiz-shell">
+        <div class="quiz-summary">
+          <div class="quiz-summary-label">Hoàn thành</div>
+          <div class="quiz-summary-score">${vocabQuizScore} / ${vocabQuizQuestions.length}</div>
+          <button class="quiz-primary-btn" id="vocabQuizRestartBtn" type="button">Làm lại</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const question = vocabQuizQuestions[vocabQuizQuestionIndex];
+  const answered = vocabQuizSelectedChoice !== null;
+  const correctChoice = question.item.meaning;
+  const selectedIsCorrect = vocabQuizSelectedChoice === correctChoice;
+
+  return `
+    <div class="quiz-shell">
+      <div class="quiz-toolbar">
+        <div class="quiz-status">Câu ${vocabQuizQuestionIndex + 1} / ${vocabQuizQuestions.length}</div>
+        <div class="quiz-score">Điểm: ${vocabQuizScore}</div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-prompt-label">Chọn nghĩa đúng</div>
+        <div class="quiz-prompt">${escapeHtml(question.item.jp)}</div>
+        ${question.item.reading ? `<div class="quiz-reading">${escapeHtml(question.item.reading)}</div>` : ""}
+      </div>
+      <div class="quiz-choices">
+        ${question.choices.map((choice, index) => {
+          const isSelected = choice === vocabQuizSelectedChoice;
+          const isCorrect = choice === correctChoice;
+          const resultClass = answered && isCorrect ? "correct" : answered && isSelected ? "incorrect" : "";
+
+          return `
+            <button class="quiz-choice ${isSelected ? "selected" : ""} ${resultClass}" type="button" data-choice-index="${index}" ${answered ? "disabled" : ""}>
+              ${escapeHtml(choice)}
+            </button>
+          `;
+        }).join("")}
+      </div>
+      ${answered ? `
+        <div class="quiz-feedback ${selectedIsCorrect ? "correct" : "incorrect"}">
+          ${selectedIsCorrect ? "Đúng rồi." : `Chưa đúng. Đáp án: ${escapeHtml(correctChoice)}`}
+        </div>
+      ` : ""}
+      <div class="quiz-actions">
+        <button class="quiz-primary-btn" id="vocabQuizNextBtn" type="button" ${answered ? "" : "disabled"}>
+          ${vocabQuizQuestionIndex === vocabQuizQuestions.length - 1 ? "Xem kết quả" : "Tiếp"}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
 function bindVocabInteractions(vocab){
   document.querySelectorAll(".audio-btn").forEach(btn => {
     btn.addEventListener("click", event => {
       event.stopPropagation();
+      stopVocabIdleLearning({ disable: true });
       playAudioSequence([btn.dataset.audioSrc]);
     });
   });
@@ -397,16 +572,53 @@ function bindVocabInteractions(vocab){
   document.querySelectorAll(".vocab-mode-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       if(vocabMode === btn.dataset.mode) return;
+      stopVocabIdleLearning({ disable: true });
       stopCurrentAudio();
       vocabMode = btn.dataset.mode;
       resetVocabFlashcard();
+      resetVocabQuiz();
       renderVocabPanel();
     });
   });
 
+  if(vocabMode === "quiz"){
+    const currentQuestion = vocabQuizQuestions[vocabQuizQuestionIndex];
+
+    document.querySelectorAll(".quiz-choice").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if(vocabQuizSelectedChoice !== null || !currentQuestion) return;
+
+        const choice = currentQuestion.choices[Number(btn.dataset.choiceIndex)];
+        vocabQuizSelectedChoice = choice;
+
+        if(choice === currentQuestion.item.meaning){
+          vocabQuizScore += 1;
+        }
+
+        renderVocabPanel();
+      });
+    });
+
+    document.getElementById("vocabQuizNextBtn")?.addEventListener("click", () => {
+      if(vocabQuizSelectedChoice === null) return;
+
+      vocabQuizQuestionIndex += 1;
+      vocabQuizSelectedChoice = null;
+      renderVocabPanel();
+    });
+
+    document.getElementById("vocabQuizRestartBtn")?.addEventListener("click", () => {
+      resetVocabQuiz();
+      renderVocabPanel();
+    });
+
+    return;
+  }
+
   if(vocabMode !== "flashcard" || !vocab.length) return;
 
   const flipCard = () => {
+    stopVocabIdleLearning({ disable: true });
     vocabCardFlipped = !vocabCardFlipped;
     suppressNextVocabAutoplay = true;
     renderVocabPanel();
@@ -485,16 +697,36 @@ function bindVocabInteractions(vocab){
       const flashcardItems = getVocabFlashcardItems(vocab);
       playAudioSequence(getVocabAudioPaths(flashcardItems[vocabCardIndex]));
     }else{
+      stopVocabIdleLearning({ disable: true });
+      stopCurrentAudio();
+    }
+  });
+  document.getElementById("vocabIdleBtn")?.addEventListener("click", () => {
+    vocabIdleLearningEnabled = !vocabIdleLearningEnabled;
+    localStorage.setItem("vocabIdleLearning", String(vocabIdleLearningEnabled));
+    syncVocabIdleButton();
+
+    if(vocabIdleLearningEnabled){
+      vocabAudioAutoplayEnabled = true;
+      localStorage.setItem("vocabAudioAutoplay", "true");
+      vocabCardFlipped = false;
+      suppressNextVocabAutoplay = true;
+      stopCurrentAudio();
+      renderVocabPanel();
+    }else{
+      stopVocabIdleLearning();
       stopCurrentAudio();
     }
   });
   document.getElementById("vocabShuffleBtn")?.addEventListener("click", () => {
+    stopVocabIdleLearning({ disable: true });
     stopCurrentAudio();
     vocabShuffleEnabled = !vocabShuffleEnabled;
     resetVocabFlashcard();
     renderVocabPanel();
   });
   document.getElementById("vocabReshuffleBtn")?.addEventListener("click", () => {
+    stopVocabIdleLearning({ disable: true });
     stopCurrentAudio();
     vocabCardOrder = createShuffledOrder(vocab.length);
     vocabCardIndex = 0;
@@ -523,6 +755,7 @@ function renderVocabPanel(){
   panel.classList.add("open");
 
   if(!vocab.length){
+    stopVocabIdleLearning({ disable: true });
     content.innerHTML = '<div class="empty" style="padding:18px 8px">Chưa có từ vựng cho bài này.</div>';
     return;
   }
@@ -531,134 +764,28 @@ function renderVocabPanel(){
     <div class="vocab-mode-switch" role="tablist" aria-label="Chế độ từ vựng">
       <button class="vocab-mode-btn ${vocabMode === "list" ? "active" : ""}" type="button" data-mode="list">List</button>
       <button class="vocab-mode-btn ${vocabMode === "flashcard" ? "active" : ""}" type="button" data-mode="flashcard">Flashcard</button>
+      <button class="vocab-mode-btn ${vocabMode === "quiz" ? "active" : ""}" type="button" data-mode="quiz">Quiz</button>
     </div>
-    ${vocabMode === "flashcard" ? renderVocabFlashcard(vocab) : renderVocabList(vocab)}
+    ${vocabMode === "flashcard" ? renderVocabFlashcard(vocab) : vocabMode === "quiz" ? renderVocabQuiz(vocab) : renderVocabList(vocab)}
   `;
   bindVocabInteractions(vocab);
 
   if(vocabMode === "flashcard"){
     const flashcardItems = getVocabFlashcardItems(vocab);
-    maybeAutoplayVocab(flashcardItems[vocabCardIndex]);
+    if(vocabIdleLearningEnabled){
+      if(suppressNextVocabIdleStart){
+        suppressNextVocabIdleStart = false;
+      }else{
+        startVocabIdleLearningCycle(flashcardItems);
+      }
+    }else{
+      suppressNextVocabIdleStart = false;
+      maybeAutoplayVocab(flashcardItems[vocabCardIndex]);
+    }
   }else{
     suppressNextVocabAutoplay = false;
+    suppressNextVocabIdleStart = false;
   }
-}
-
-function getKanjiForSelectedLesson(){
-  return lessonCache.get(String(activeLesson))?.kanji || [];
-}
-
-function renderKanjiExamples(examples = []){
-  if(!Array.isArray(examples) || !examples.length) return "";
-
-  return `
-    <div class="kanji-examples">
-      ${examples.map(example => `
-        <div>
-          <span class="kanji-example-word">${escapeHtml(example.word)}</span>
-          ${example.reading ? `<span class="vocab-reading">${escapeHtml(example.reading)}</span>` : ""}
-          ${example.meaning ? ` - ${escapeHtml(example.meaning)}` : ""}
-        </div>
-      `).join("")}
-    </div>
-  `;
-}
-
-function renderKanjiPanel(){
-  const panel = document.getElementById("kanjiPanel");
-  const toggle = document.getElementById("kanjiToggle");
-  const title = document.getElementById("kanjiTitle");
-  const meta = document.getElementById("kanjiMeta");
-  const content = document.getElementById("kanjiContent");
-  if(!panel || !toggle || !title || !meta || !content) return;
-  const kanji = getKanjiForSelectedLesson();
-
-  title.textContent = "漢字";
-  meta.textContent = `${kanji.length} chữ ${kanjiPanelOpen ? "▴" : "▾"}`;
-  toggle.setAttribute("aria-expanded", String(kanjiPanelOpen));
-  panel.classList.toggle("open", kanjiPanelOpen);
-
-  if(!kanji.length){
-    content.innerHTML = '<div class="empty" style="padding:18px 8px">Chưa có kanji cho bài này.</div>';
-    return;
-  }
-
-  content.innerHTML = `
-    <div class="kanji-list">
-      ${kanji.map(item => `
-        <article class="kanji-card">
-          <div class="kanji-char">${escapeHtml(item.kanji)}</div>
-          <div>
-            <div class="kanji-meaning">${escapeHtml(item.meaning)}</div>
-            <div class="kanji-readings">
-              ${Array.isArray(item.onyomi) && item.onyomi.length ? `<div><span class="kanji-reading-label">On</span>${escapeHtml(item.onyomi.join("、"))}</div>` : ""}
-              ${Array.isArray(item.kunyomi) && item.kunyomi.length ? `<div><span class="kanji-reading-label">Kun</span>${escapeHtml(item.kunyomi.join("、"))}</div>` : ""}
-            </div>
-            ${renderKanjiExamples(item.examples)}
-            ${item.note ? `<div class="kanji-note">${escapeHtml(item.note)}</div>` : ""}
-          </div>
-        </article>
-      `).join("")}
-    </div>
-  `;
-}
-
-function render(){
-  const outline = document.getElementById("grammarOutline");
-  if(!outline) return;
-  if(!grammarSections.length){
-    outline.innerHTML = '<div class="empty">Không có ngữ pháp cho bài này.</div>';
-    return;
-  }
-
-  outline.innerHTML = grammarSections.map((section, sectionIndex) => `
-    <section class="grammar-section">
-      <button class="grammar-section-toggle" type="button" aria-expanded="${section.open !== false}">
-        <span>${escapeHtml(section.title || `Ngữ pháp ${sectionIndex + 1}`)}</span>
-        <span class="grammar-count">${Array.isArray(section.points) ? section.points.length : 0} mục ▾</span>
-      </button>
-      <div class="grammar-section-content">
-        ${(section.points || []).map((point, pointIndex) => `
-          <article class="grammar-point">
-            <button class="grammar-point-toggle" type="button" aria-expanded="false">
-              <span>
-                ${point.tag ? `<span class="tag">${escapeHtml(point.tag)}</span>` : ""}
-                <span class="grammar-title">${escapeHtml(point.title || `Mục ${pointIndex + 1}`)}</span>
-              </span>
-              <span class="toggle-mark">▾</span>
-            </button>
-            <div class="grammar-point-content">
-              ${point.sections && point.sections.length ? `<div class="grammar-body">${renderSections(point.sections)}</div>` : ""}
-              ${point.notes && point.notes.length ? `
-                <div class="supporting-material">
-                  ${point.notes.map(renderSupportingBlock).join("")}
-                </div>
-              ` : ""}
-            </div>
-          </article>
-        `).join("")}
-      </div>
-    </section>
-  `).join("");
-  bindInteractions();
-}
-
-function bindCollapsible(selector){
-  document.querySelectorAll(selector).forEach(toggle => {
-    const setOpen = isOpen => {
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.parentElement.classList.toggle("open", isOpen);
-    };
-    setOpen(toggle.getAttribute("aria-expanded") === "true");
-    toggle.addEventListener("click", () => {
-      setOpen(toggle.getAttribute("aria-expanded") !== "true");
-    });
-  });
-}
-
-function bindInteractions(){
-  bindCollapsible(".grammar-section-toggle");
-  bindCollapsible(".grammar-point-toggle");
 }
 
 function showToast(text){
@@ -683,20 +810,14 @@ function renderLessonFilters(){
 
   container.querySelectorAll(".chip").forEach(chip => {
     chip.addEventListener("click", async () => {
+      stopVocabIdleLearning({ disable: true });
       stopCurrentAudio();
       activeLesson = chip.dataset.lesson;
       resetVocabFlashcard();
+      resetVocabQuiz();
       renderLessonFilters();
-      await loadGrammarForSelectedLesson();
+      await loadVocabForSelectedLesson();
     });
-  });
-}
-
-const kanjiToggle = document.getElementById("kanjiToggle");
-if(kanjiToggle){
-  kanjiToggle.addEventListener("click", () => {
-    kanjiPanelOpen = !kanjiPanelOpen;
-    renderKanjiPanel();
   });
 }
 
@@ -752,74 +873,37 @@ async function loadLessonData(lesson){
   }
 
   const data = await fetchJson(lessonFile.file);
-  if(!data || !Array.isArray(data.grammarSections)){
-    throw new Error(`${lessonFile.file} must contain a grammarSections array.`);
+  if(!data || typeof data !== "object"){
+    throw new Error(`${lessonFile.file} must contain a lesson data object.`);
   }
 
   const lessonData = {
-    grammarSections: data.grammarSections,
-    vocab: data.vocab || [],
-    kanji: data.kanji || []
+    vocab: Array.isArray(data.vocab) ? data.vocab : []
   };
 
   lessonCache.set(lessonKey, lessonData);
   return lessonData;
 }
 
-async function loadGrammarForSelectedLesson(){
-  const outline = document.getElementById("grammarOutline");
-  if(outline){
-    outline.innerHTML = '<div class="empty">Loading grammar data...</div>';
-  }
-
+async function loadVocabForSelectedLesson(){
   try{
-    grammarSections = (await loadLessonData(activeLesson)).grammarSections;
-
+    await loadLessonData(activeLesson);
     renderVocabPanel();
-    renderKanjiPanel();
-    render();
   }catch(error){
     console.error(error);
-    if(outline){
-      outline.innerHTML = `
-        <div class="empty">
-          <p><b>Cannot load the selected lesson JSON file.</b></p>
-          <p>Check data/lessons.json and the per-lesson files in the data folder.</p>
-          <p>Browsers usually block fetch from file://, so run:</p>
-          <div class="pattern" style="text-align:left">py -m http.server 8000</div>
-          <p>Then open:</p>
-          <div class="pattern" style="text-align:left">http://localhost:8000/japanese_grammar_threads_structured.html</div>
-        </div>
-      `;
-    }
+    showToast("Cannot load the selected lesson.");
   }
 }
 
-async function loadGrammarData(){
-  const outline = document.getElementById("grammarOutline");
-  if(outline){
-    outline.innerHTML = '<div class="empty">Loading lesson list...</div>';
-  }
-
+async function loadVocabData(){
   try{
     await loadLessonManifest();
     renderLessonFilters();
-    await loadGrammarForSelectedLesson();
+    await loadVocabForSelectedLesson();
   }catch(error){
     console.error(error);
-    if(outline){
-      outline.innerHTML = `
-        <div class="empty">
-          <p><b>Cannot load data/lessons.json.</b></p>
-          <p>The lesson manifest must point to each lesson JSON file.</p>
-          <p>Browsers usually block fetch from file://, so run:</p>
-          <div class="pattern" style="text-align:left">py -m http.server 8000</div>
-          <p>Then open:</p>
-          <div class="pattern" style="text-align:left">http://localhost:8000/japanese_grammar_threads_structured.html</div>
-        </div>
-      `;
-    }
+    showToast("Cannot load the lesson list.");
   }
 }
 
-loadGrammarData();
+loadVocabData();
