@@ -1,0 +1,691 @@
+{
+  "lesson": 40,
+  "vocab": [
+    {
+      "jp": "数えます",
+      "reading": "かぞえます",
+      "meaning": "đếm",
+      "pos": "verb",
+      "note": "Dùng khi đếm số lượng người, vật hoặc sự việc.",
+      "example": "子どもたちはりんごの数を数えました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-001-word.mp3",
+        "example": "./audio/lesson-40/vocab-001-example.mp3"
+      }
+    },
+    {
+      "jp": "測ります／量ります",
+      "reading": "はかります",
+      "meaning": "đo; cân; đo lường",
+      "pos": "verb",
+      "note": "測ります thường dùng cho chiều dài, chiều cao, nhiệt độ; 量ります thường dùng cho trọng lượng hoặc lượng.",
+      "example": "荷物の重さを量ってから送ります。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-002-word.mp3",
+        "example": "./audio/lesson-40/vocab-002-example.mp3"
+      }
+    },
+    {
+      "jp": "確かめます",
+      "reading": "たしかめます",
+      "meaning": "xác nhận; kiểm tra cho chắc",
+      "pos": "verb",
+      "note": "Dùng khi kiểm tra lại để biết điều gì đúng hay không.",
+      "example": "出発の時間をもう一度確かめました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-003-word.mp3",
+        "example": "./audio/lesson-40/vocab-003-example.mp3"
+      }
+    },
+    {
+      "jp": "合います",
+      "reading": "あいます",
+      "meaning": "hợp; vừa; phù hợp",
+      "pos": "verb",
+      "note": "Dùng khi kích cỡ, màu sắc, lịch trình, tính cách... phù hợp với nhau.",
+      "example": "このズボンはサイズがよく合います。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-004-word.mp3",
+        "example": "./audio/lesson-40/vocab-004-example.mp3"
+      }
+    },
+    {
+      "jp": "出発します",
+      "reading": "しゅっぱつします",
+      "meaning": "xuất phát; khởi hành",
+      "pos": "verb",
+      "note": "Dùng cho người, xe, tàu, máy bay... bắt đầu rời đi.",
+      "example": "バスは七時に出発します。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-005-word.mp3",
+        "example": "./audio/lesson-40/vocab-005-example.mp3"
+      }
+    },
+    {
+      "jp": "到着します",
+      "reading": "とうちゃくします",
+      "meaning": "đến nơi; tới nơi",
+      "pos": "verb",
+      "note": "Dùng khi người hoặc phương tiện đến đích.",
+      "example": "飛行機は午後三時に到着しました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-006-word.mp3",
+        "example": "./audio/lesson-40/vocab-006-example.mp3"
+      }
+    },
+    {
+      "jp": "酔います",
+      "reading": "よいます",
+      "meaning": "say; bị say",
+      "pos": "verb",
+      "note": "Dùng cho say rượu hoặc say tàu xe: お酒に酔います, 車に酔います.",
+      "example": "船に乗ると、すぐ酔ってしまいます。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-007-word.mp3",
+        "example": "./audio/lesson-40/vocab-007-example.mp3"
+      }
+    },
+    {
+      "jp": "危険（な）",
+      "reading": "きけん",
+      "meaning": "nguy hiểm",
+      "pos": "adjective",
+      "note": "Tính từ な. Dùng cho nơi, hành động hoặc tình huống có rủi ro.",
+      "example": "ここで泳ぐのは危険です。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-008-word.mp3",
+        "example": "./audio/lesson-40/vocab-008-example.mp3"
+      }
+    },
+    {
+      "jp": "必要（な）",
+      "reading": "ひつよう",
+      "meaning": "cần thiết",
+      "pos": "adjective",
+      "note": "Tính từ な. Thường dùng trong mẫu N が必要です.",
+      "example": "申し込みにはパスポートが必要です。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-009-word.mp3",
+        "example": "./audio/lesson-40/vocab-009-example.mp3"
+      }
+    },
+    {
+      "jp": "宇宙",
+      "reading": "うちゅう",
+      "meaning": "vũ trụ; không gian",
+      "pos": "noun",
+      "note": "Dùng để nói về không gian ngoài Trái Đất.",
+      "example": "いつか宇宙へ行ってみたいです。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-010-word.mp3",
+        "example": "./audio/lesson-40/vocab-010-example.mp3"
+      }
+    },
+    {
+      "jp": "地球",
+      "reading": "ちきゅう",
+      "meaning": "Trái Đất",
+      "pos": "noun",
+      "note": "Tên hành tinh chúng ta đang sống.",
+      "example": "地球は太陽の周りを回っています。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-011-word.mp3",
+        "example": "./audio/lesson-40/vocab-011-example.mp3"
+      }
+    },
+    {
+      "jp": "忘年会",
+      "reading": "ぼうねんかい",
+      "meaning": "tiệc cuối năm",
+      "pos": "noun",
+      "note": "Buổi tiệc tổ chức vào cuối năm để khép lại một năm làm việc.",
+      "example": "会社の忘年会は来週の金曜日です。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-012-word.mp3",
+        "example": "./audio/lesson-40/vocab-012-example.mp3"
+      }
+    },
+    {
+      "jp": "新年会",
+      "reading": "しんねんかい",
+      "meaning": "tiệc đầu năm",
+      "pos": "noun",
+      "note": "Buổi tiệc mừng năm mới, thường tổ chức ở công ty hoặc nhóm bạn.",
+      "example": "一月にクラスの新年会をします。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-013-word.mp3",
+        "example": "./audio/lesson-40/vocab-013-example.mp3"
+      }
+    },
+    {
+      "jp": "二次会",
+      "reading": "にじかい",
+      "meaning": "tăng hai; buổi tiệc tiếp theo",
+      "pos": "noun",
+      "note": "Buổi đi tiếp sau buổi tiệc chính, thường là uống thêm hoặc hát karaoke.",
+      "example": "忘年会のあとで二次会に行きました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-014-word.mp3",
+        "example": "./audio/lesson-40/vocab-014-example.mp3"
+      }
+    },
+    {
+      "jp": "大会",
+      "reading": "たいかい",
+      "meaning": "đại hội; cuộc thi; giải đấu",
+      "pos": "noun",
+      "note": "Dùng cho sự kiện quy mô lớn như giải thể thao, hội nghị, cuộc thi.",
+      "example": "来月、スピーチ大会に出ます。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-015-word.mp3",
+        "example": "./audio/lesson-40/vocab-015-example.mp3"
+      }
+    },
+    {
+      "jp": "マラソン",
+      "reading": "マラソン",
+      "meaning": "marathon; chạy đường dài",
+      "pos": "noun",
+      "note": "Từ mượn, dùng cho môn chạy marathon hoặc sự kiện chạy đường dài.",
+      "example": "父は日曜日にマラソン大会に出ます。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-016-word.mp3",
+        "example": "./audio/lesson-40/vocab-016-example.mp3"
+      }
+    },
+    {
+      "jp": "コンテスト",
+      "reading": "コンテスト",
+      "meaning": "cuộc thi",
+      "pos": "noun",
+      "note": "Từ mượn, thường dùng cho cuộc thi hát, ảnh, thiết kế, nói tiếng Nhật...",
+      "example": "写真コンテストに申し込みました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-017-word.mp3",
+        "example": "./audio/lesson-40/vocab-017-example.mp3"
+      }
+    },
+    {
+      "jp": "表",
+      "reading": "おもて",
+      "meaning": "mặt trước; mặt ngoài",
+      "pos": "noun",
+      "note": "Đối lập với 裏. Dùng cho mặt trước của giấy, áo, đồng xu...",
+      "example": "名前は紙の表に書いてください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-018-word.mp3",
+        "example": "./audio/lesson-40/vocab-018-example.mp3"
+      }
+    },
+    {
+      "jp": "裏",
+      "reading": "うら",
+      "meaning": "mặt sau; mặt trái; phía sau",
+      "pos": "noun",
+      "note": "Đối lập với 表. Cũng có thể chỉ mặt trái của quần áo hoặc phía sau nhà.",
+      "example": "答えは紙の裏にあります。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-019-word.mp3",
+        "example": "./audio/lesson-40/vocab-019-example.mp3"
+      }
+    },
+    {
+      "jp": "返事",
+      "reading": "へんじ",
+      "meaning": "câu trả lời; hồi âm",
+      "pos": "noun",
+      "note": "Dùng cho trả lời thư, email, lời gọi hoặc câu hỏi.",
+      "example": "メールの返事をまだもらっていません。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-020-word.mp3",
+        "example": "./audio/lesson-40/vocab-020-example.mp3"
+      }
+    },
+    {
+      "jp": "申し込み",
+      "reading": "もうしこみ",
+      "meaning": "sự đăng ký; đơn đăng ký",
+      "pos": "noun",
+      "note": "Dùng khi đăng ký tham gia sự kiện, lớp học, dịch vụ...",
+      "example": "コンテストの申し込みは明日までです。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-021-word.mp3",
+        "example": "./audio/lesson-40/vocab-021-example.mp3"
+      }
+    },
+    {
+      "jp": "本当",
+      "reading": "ほんとう",
+      "meaning": "sự thật; thật",
+      "pos": "noun",
+      "note": "Dùng để xác nhận điều gì là thật: 本当ですか.",
+      "example": "その話は本当ですか。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-022-word.mp3",
+        "example": "./audio/lesson-40/vocab-022-example.mp3"
+      }
+    },
+    {
+      "jp": "まちがい",
+      "reading": "まちがい",
+      "meaning": "lỗi; sự nhầm lẫn",
+      "pos": "noun",
+      "note": "Có thể viết là 間違い. Dùng cho lỗi trong bài làm, thông tin, phán đoán...",
+      "example": "テストの答えにまちがいがありました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-023-word.mp3",
+        "example": "./audio/lesson-40/vocab-023-example.mp3"
+      }
+    },
+    {
+      "jp": "傷",
+      "reading": "きず",
+      "meaning": "vết thương; vết xước",
+      "pos": "noun",
+      "note": "Dùng cho vết thương trên cơ thể hoặc vết xước trên đồ vật.",
+      "example": "転んで、ひざに傷ができました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-024-word.mp3",
+        "example": "./audio/lesson-40/vocab-024-example.mp3"
+      }
+    },
+    {
+      "jp": "ズボン",
+      "reading": "ズボン",
+      "meaning": "quần dài",
+      "pos": "noun",
+      "note": "Từ thường dùng trong đời sống để chỉ quần mặc phần dưới.",
+      "example": "このズボンは少し長いです。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-025-word.mp3",
+        "example": "./audio/lesson-40/vocab-025-example.mp3"
+      }
+    },
+    {
+      "jp": "長さ",
+      "reading": "ながさ",
+      "meaning": "chiều dài; độ dài",
+      "pos": "noun",
+      "note": "Danh từ hóa từ 長い, dùng để nói độ dài của vật.",
+      "example": "この机の長さを測ってください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-026-word.mp3",
+        "example": "./audio/lesson-40/vocab-026-example.mp3"
+      }
+    },
+    {
+      "jp": "重さ",
+      "reading": "おもさ",
+      "meaning": "cân nặng; trọng lượng",
+      "pos": "noun",
+      "note": "Danh từ hóa từ 重い, dùng để nói vật nặng bao nhiêu.",
+      "example": "荷物の重さは二キロです。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-027-word.mp3",
+        "example": "./audio/lesson-40/vocab-027-example.mp3"
+      }
+    },
+    {
+      "jp": "高さ",
+      "reading": "たかさ",
+      "meaning": "chiều cao; độ cao",
+      "pos": "noun",
+      "note": "Danh từ hóa từ 高い, dùng cho chiều cao của người, vật, tòa nhà, núi...",
+      "example": "このビルの高さは百メートル以上です。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-028-word.mp3",
+        "example": "./audio/lesson-40/vocab-028-example.mp3"
+      }
+    },
+    {
+      "jp": "大きさ",
+      "reading": "おおきさ",
+      "meaning": "kích thước; độ lớn",
+      "pos": "noun",
+      "note": "Danh từ hóa từ 大きい, dùng để nói vật lớn cỡ nào.",
+      "example": "この箱の大きさを確かめてください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-029-word.mp3",
+        "example": "./audio/lesson-40/vocab-029-example.mp3"
+      }
+    },
+    {
+      "jp": "～便",
+      "reading": "びん",
+      "meaning": "chuyến; chuyến bay/chuyến gửi",
+      "pos": "suffix",
+      "note": "Gắn sau số hoặc tên để chỉ chuyến bay, chuyến xe, chuyến gửi hàng: 3便, 航空便.",
+      "example": "午後の便で大阪へ行きます。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-030-word.mp3",
+        "example": "./audio/lesson-40/vocab-030-example.mp3"
+      }
+    },
+    {
+      "jp": "～号",
+      "reading": "ごう",
+      "meaning": "số; hiệu; chuyến số...",
+      "pos": "suffix",
+      "note": "Dùng cho số hiệu tàu, xe, phòng, báo/tạp chí... tùy ngữ cảnh.",
+      "example": "新幹線のぞみ25号に乗ります。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-031-word.mp3",
+        "example": "./audio/lesson-40/vocab-031-example.mp3"
+      }
+    },
+    {
+      "jp": "～個",
+      "reading": "こ",
+      "meaning": "cái; viên; món",
+      "pos": "counter",
+      "note": "Lượng từ dùng cho đồ vật nhỏ hoặc vật không có lượng từ riêng rõ ràng.",
+      "example": "りんごを三個買いました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-032-word.mp3",
+        "example": "./audio/lesson-40/vocab-032-example.mp3"
+      }
+    },
+    {
+      "jp": "～本",
+      "reading": "ほん",
+      "meaning": "cây; chiếc; chai",
+      "pos": "counter",
+      "note": "Lượng từ cho vật dài, mảnh như bút, chai, cây, dây, phim...",
+      "example": "水を二本ください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-033-word.mp3",
+        "example": "./audio/lesson-40/vocab-033-example.mp3"
+      }
+    },
+    {
+      "jp": "～杯",
+      "reading": "はい",
+      "meaning": "ly; chén; bát",
+      "pos": "counter",
+      "note": "Lượng từ cho đồ uống hoặc vật chứa trong cốc/chén/bát.",
+      "example": "コーヒーを一杯飲みました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-034-word.mp3",
+        "example": "./audio/lesson-40/vocab-034-example.mp3"
+      }
+    },
+    {
+      "jp": "～キロ",
+      "reading": "キロ",
+      "meaning": "ki-lô; ki-lô-mét; ki-lô-gam",
+      "pos": "counter",
+      "note": "Có thể chỉ kilogram hoặc kilometer tùy ngữ cảnh.",
+      "example": "駅まで三キロぐらいあります。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-035-word.mp3",
+        "example": "./audio/lesson-40/vocab-035-example.mp3"
+      }
+    },
+    {
+      "jp": "～グラム",
+      "reading": "グラム",
+      "meaning": "gam",
+      "pos": "counter",
+      "note": "Đơn vị đo trọng lượng nhỏ hơn kilogram.",
+      "example": "砂糖を百グラム入れてください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-036-word.mp3",
+        "example": "./audio/lesson-40/vocab-036-example.mp3"
+      }
+    },
+    {
+      "jp": "～センチ",
+      "reading": "センチ",
+      "meaning": "xăng-ti-mét",
+      "pos": "counter",
+      "note": "Cách nói ngắn của センチメートル.",
+      "example": "この箱の高さは三十センチです。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-037-word.mp3",
+        "example": "./audio/lesson-40/vocab-037-example.mp3"
+      }
+    },
+    {
+      "jp": "～ミリ",
+      "reading": "ミリ",
+      "meaning": "mi-li-mét; mi-li",
+      "pos": "counter",
+      "note": "Cách nói ngắn, thường chỉ millimeter; cũng có thể là milliliter tùy ngữ cảnh.",
+      "example": "この板の厚さは五ミリです。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-038-word.mp3",
+        "example": "./audio/lesson-40/vocab-038-example.mp3"
+      }
+    },
+    {
+      "jp": "～以上",
+      "reading": "いじょう",
+      "meaning": "từ... trở lên; hơn hoặc bằng",
+      "pos": "suffix",
+      "note": "Bao gồm cả mốc được nêu. 18歳以上 = từ 18 tuổi trở lên.",
+      "example": "この大会は十八歳以上の人が参加できます。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-039-word.mp3",
+        "example": "./audio/lesson-40/vocab-039-example.mp3"
+      }
+    },
+    {
+      "jp": "～以下",
+      "reading": "いか",
+      "meaning": "từ... trở xuống; dưới hoặc bằng",
+      "pos": "suffix",
+      "note": "Bao gồm cả mốc được nêu. 10人以下 = tối đa 10 người.",
+      "example": "荷物は二十キロ以下にしてください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-040-word.mp3",
+        "example": "./audio/lesson-40/vocab-040-example.mp3"
+      }
+    },
+    {
+      "jp": "さあ",
+      "reading": "さあ",
+      "meaning": "nào; ừm; không biết nữa",
+      "pos": "interjection",
+      "note": "Dùng để thúc giục, bắt đầu hành động, hoặc khi chưa biết trả lời.",
+      "example": "さあ、出発しましょう。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-041-word.mp3",
+        "example": "./audio/lesson-40/vocab-041-example.mp3"
+      }
+    },
+    {
+      "jp": "どうでしょうか",
+      "reading": "どうでしょうか",
+      "meaning": "thế nào ạ; không biết thế nào",
+      "pos": "phrase",
+      "note": "Cách nói lịch sự để hỏi ý kiến hoặc trả lời khi chưa chắc chắn.",
+      "example": "この計画でどうでしょうか。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-042-word.mp3",
+        "example": "./audio/lesson-40/vocab-042-example.mp3"
+      }
+    },
+    {
+      "jp": "クラス",
+      "reading": "クラス",
+      "meaning": "lớp học; lớp",
+      "pos": "noun",
+      "note": "Từ mượn, dùng cho lớp học hoặc nhóm học sinh/sinh viên.",
+      "example": "このクラスには学生が二十五人います。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-043-word.mp3",
+        "example": "./audio/lesson-40/vocab-043-example.mp3"
+      }
+    },
+    {
+      "jp": "テスト",
+      "reading": "テスト",
+      "meaning": "bài kiểm tra",
+      "pos": "noun",
+      "note": "Từ mượn, dùng cho bài kiểm tra nhỏ hoặc kỳ kiểm tra.",
+      "example": "明日、漢字のテストがあります。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-044-word.mp3",
+        "example": "./audio/lesson-40/vocab-044-example.mp3"
+      }
+    },
+    {
+      "jp": "成績",
+      "reading": "せいせき",
+      "meaning": "thành tích; điểm số; kết quả học tập",
+      "pos": "noun",
+      "note": "Dùng cho kết quả học tập, thi cử, công việc hoặc thể thao.",
+      "example": "今学期の成績はよかったです。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-045-word.mp3",
+        "example": "./audio/lesson-40/vocab-045-example.mp3"
+      }
+    },
+    {
+      "jp": "ところで",
+      "reading": "ところで",
+      "meaning": "nhân tiện; mà này",
+      "pos": "conjunction",
+      "note": "Dùng khi chuyển sang chủ đề khác trong hội thoại.",
+      "example": "ところで、申し込みはもうしましたか。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-046-word.mp3",
+        "example": "./audio/lesson-40/vocab-046-example.mp3"
+      }
+    },
+    {
+      "jp": "いらっしゃいます",
+      "reading": "いらっしゃいます",
+      "meaning": "ở; đi; đến (kính ngữ)",
+      "pos": "verb",
+      "note": "Kính ngữ của います, 行きます, 来ます tùy ngữ cảnh.",
+      "example": "先生は研究室にいらっしゃいます。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-047-word.mp3",
+        "example": "./audio/lesson-40/vocab-047-example.mp3"
+      }
+    },
+    {
+      "jp": "様子",
+      "reading": "ようす",
+      "meaning": "tình hình; vẻ; dáng vẻ",
+      "pos": "noun",
+      "note": "Dùng để nói trạng thái, tình hình hoặc vẻ ngoài của người/sự việc.",
+      "example": "子どもの様子を見に行きました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-048-word.mp3",
+        "example": "./audio/lesson-40/vocab-048-example.mp3"
+      }
+    },
+    {
+      "jp": "事件",
+      "reading": "じけん",
+      "meaning": "vụ việc; sự kiện; vụ án",
+      "pos": "noun",
+      "note": "Thường dùng cho sự việc nghiêm trọng hoặc liên quan đến cảnh sát/báo chí.",
+      "example": "駅の近くで大きな事件がありました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-049-word.mp3",
+        "example": "./audio/lesson-40/vocab-049-example.mp3"
+      }
+    },
+    {
+      "jp": "爆弾",
+      "reading": "ばくだん",
+      "meaning": "bom",
+      "pos": "noun",
+      "note": "Vật nổ gây nguy hiểm; thường gặp trong tin tức hoặc câu chuyện.",
+      "example": "警察は爆弾のような物を見つけました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-050-word.mp3",
+        "example": "./audio/lesson-40/vocab-050-example.mp3"
+      }
+    },
+    {
+      "jp": "積みます",
+      "reading": "つみます",
+      "meaning": "chất lên; xếp lên",
+      "pos": "verb",
+      "note": "Dùng khi chất hàng, hành lý, đồ vật lên xe, thuyền hoặc nơi nào đó.",
+      "example": "トラックに荷物を積みました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-051-word.mp3",
+        "example": "./audio/lesson-40/vocab-051-example.mp3"
+      }
+    },
+    {
+      "jp": "運転手",
+      "reading": "うんてんしゅ",
+      "meaning": "tài xế; người lái xe",
+      "pos": "noun",
+      "note": "Dùng cho người lái xe buýt, taxi, xe tải...",
+      "example": "タクシーの運転手に駅までお願いしました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-052-word.mp3",
+        "example": "./audio/lesson-40/vocab-052-example.mp3"
+      }
+    },
+    {
+      "jp": "離れた",
+      "reading": "はなれた",
+      "meaning": "cách xa; rời xa",
+      "pos": "modifier",
+      "note": "Dạng quá khứ của 離れます dùng bổ nghĩa danh từ: 離れた所 = nơi cách xa.",
+      "example": "駅から少し離れた所に住んでいます。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-053-word.mp3",
+        "example": "./audio/lesson-40/vocab-053-example.mp3"
+      }
+    },
+    {
+      "jp": "が",
+      "reading": "が",
+      "meaning": "nhưng; tuy nhiên",
+      "pos": "particle",
+      "note": "Trong hội thoại có thể nối hai vế với nghĩa đối lập nhẹ hoặc mở lời lịch sự.",
+      "example": "すみませんが、もう一度言ってください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-054-word.mp3",
+        "example": "./audio/lesson-40/vocab-054-example.mp3"
+      }
+    },
+    {
+      "jp": "急に",
+      "reading": "きゅうに",
+      "meaning": "đột nhiên; bất chợt",
+      "pos": "adverb",
+      "note": "Dùng khi sự việc xảy ra nhanh và bất ngờ.",
+      "example": "急に雨が降り出しました。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-055-word.mp3",
+        "example": "./audio/lesson-40/vocab-055-example.mp3"
+      }
+    },
+    {
+      "jp": "動かします",
+      "reading": "うごかします",
+      "meaning": "di chuyển; làm cho chuyển động",
+      "pos": "verb",
+      "note": "Tha động từ của 動きます. Dùng khi làm vật gì chuyển động hoặc đổi vị trí.",
+      "example": "この机を少し動かしてください。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-056-word.mp3",
+        "example": "./audio/lesson-40/vocab-056-example.mp3"
+      }
+    },
+    {
+      "jp": "一所懸命",
+      "reading": "いっしょけんめい",
+      "meaning": "hết sức; chăm chỉ; nỗ lực hết mình",
+      "pos": "adverb",
+      "note": "Cũng thường viết là 一生懸命. Dùng để nói làm gì với toàn bộ nỗ lực.",
+      "example": "学生たちは一所懸命勉強しています。",
+      "audio": {
+        "word": "./audio/lesson-40/vocab-057-word.mp3",
+        "example": "./audio/lesson-40/vocab-057-example.mp3"
+      }
+    }
+  ],
+  "kanji": [],
+  "grammarSections": []
+}

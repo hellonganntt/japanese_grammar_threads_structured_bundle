@@ -11,6 +11,14 @@
     {
       "lesson": 38,
       "file": "./data/lesson-38.json"
+    },
+    {
+      "lesson": 39,
+      "file": "./data/lesson-39.json"
+    },
+    {
+      "lesson": 40,
+      "file": "./data/lesson-40.json"
     }
   ]
 }
