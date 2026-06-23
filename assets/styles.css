@@ -133,6 +133,30 @@
       display:grid;
       gap:8px;
     }
+    .vocab-chunk-switch{
+      display:flex;
+      gap:8px;
+      overflow:auto;
+      padding-bottom:10px;
+      margin-bottom:12px;
+      scrollbar-width:none;
+    }
+    .vocab-chunk-switch::-webkit-scrollbar{display:none}
+    .vocab-chunk-btn{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      cursor:pointer;
+      color:#444;
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+    .vocab-chunk-btn.active{
+      background:#111;
+      border-color:#111;
+      color:#fff;
+    }
     .vocab-mode-switch{
       display:inline-flex;
       gap:4px;

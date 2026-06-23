@@ -22,6 +22,8 @@ let vocabQuizMissedQuestions = [];
 let vocabQuizIsReview = false;
 let vocabQuizReviewCompleted = false;
 
+const VOCAB_CHUNK_SIZE = 10;
+
 const AUDIO_RESULT = {
   BLOCKED: "blocked",
   CANCELLED: "cancelled",
@@ -195,6 +197,57 @@ function getVocabForSelectedLesson(){
   return lessonCache.get(String(activeLesson))?.vocab || [];
 }
 
+function getVocabChunkStorageKey(lesson){
+  return `vocabChunk:${lesson}`;
+}
+
+function getVocabChunks(vocab){
+  const chunks = [];
+
+  for(let start = 0; start < vocab.length; start += VOCAB_CHUNK_SIZE){
+    const end = Math.min(start + VOCAB_CHUNK_SIZE, vocab.length);
+    chunks.push({
+      index: chunks.length,
+      start,
+      end,
+      items: vocab.slice(start, end)
+    });
+  }
+
+  return chunks;
+}
+
+function getSelectedChunkIndex(lesson, chunkCount){
+  if(chunkCount <= 0) return 0;
+
+  const storageKey = getVocabChunkStorageKey(lesson);
+  const savedIndex = Number(localStorage.getItem(storageKey));
+  const selectedIndex = Number.isInteger(savedIndex) ? savedIndex : 0;
+  const clampedIndex = Math.max(0, Math.min(selectedIndex, chunkCount - 1));
+
+  if(clampedIndex !== savedIndex){
+    localStorage.setItem(storageKey, String(clampedIndex));
+  }
+
+  return clampedIndex;
+}
+
+function saveSelectedChunkIndex(lesson, chunkIndex){
+  localStorage.setItem(getVocabChunkStorageKey(lesson), String(chunkIndex));
+}
+
+function getActiveVocabChunk(vocab = getVocabForSelectedLesson()){
+  const chunks = getVocabChunks(vocab);
+  const selectedIndex = getSelectedChunkIndex(activeLesson, chunks.length);
+
+  return chunks[selectedIndex] || {
+    index: 0,
+    start: 0,
+    end: 0,
+    items: []
+  };
+}
+
 function createShuffledOrder(length){
   const order = Array.from({ length }, (_, index) => index);
 
@@ -275,7 +328,7 @@ async function continueVocabIdleAfterWord(runId, item){
   const exampleResult = await playAudioSequence([item?.audio?.example]);
   if(exampleResult !== AUDIO_RESULT.COMPLETE || runId !== vocabIdleRunId || !vocabIdleLearningEnabled) return;
 
-  const flashcardItems = getVocabFlashcardItems(getVocabForSelectedLesson());
+  const flashcardItems = getVocabFlashcardItems(getActiveVocabChunk().items);
   goToNextVocabCard(flashcardItems, {
     disableIdle: false,
     stopAudio: false
@@ -519,12 +572,43 @@ function renderVocabQuiz(vocab){
   `;
 }
 
+function renderVocabChunkSwitch(chunks, activeChunkIndex){
+  if(!chunks.length) return "";
+
+  return `
+    <div class="vocab-chunk-switch" role="tablist" aria-label="Vocabulary chunks">
+      ${chunks.map(chunk => `
+        <button class="vocab-chunk-btn ${chunk.index === activeChunkIndex ? "active" : ""}" type="button" data-chunk-index="${chunk.index}">
+          <span>${chunk.start + 1}-${chunk.end}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+}
+
 function bindVocabInteractions(vocab){
   document.querySelectorAll(".audio-btn").forEach(btn => {
     btn.addEventListener("click", event => {
       event.stopPropagation();
       stopVocabIdleLearning({ disable: true });
       playAudioSequence([btn.dataset.audioSrc]);
+    });
+  });
+
+  document.querySelectorAll(".vocab-chunk-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const chunkIndex = Number(btn.dataset.chunkIndex);
+      if(!Number.isInteger(chunkIndex)) return;
+
+      const currentChunkIndex = getActiveVocabChunk().index;
+      if(chunkIndex === currentChunkIndex) return;
+
+      stopVocabIdleLearning({ disable: true });
+      stopCurrentAudio();
+      saveSelectedChunkIndex(activeLesson, chunkIndex);
+      resetVocabFlashcard();
+      resetVocabQuiz();
+      renderVocabPanel();
     });
   });
 
@@ -706,20 +790,26 @@ function renderVocabPanel(){
   const title = document.getElementById("vocabTitle");
   const meta = document.getElementById("vocabMeta");
   const content = document.getElementById("vocabContent");
-  const vocab = getVocabForSelectedLesson();
+  const allVocab = getVocabForSelectedLesson();
+  const chunks = getVocabChunks(allVocab);
+  const activeChunk = getActiveVocabChunk(allVocab);
+  const vocab = activeChunk.items;
 
   title.textContent = "Vocabulary";
-  meta.textContent = `${vocab.length} ${vocab.length === 1 ? "word" : "words"}`;
+  meta.textContent = allVocab.length
+    ? `${allVocab.length} ${allVocab.length === 1 ? "word" : "words"} · studying ${activeChunk.start + 1}-${activeChunk.end}`
+    : "0 words";
   toggle.setAttribute("aria-expanded", "true");
   panel.classList.add("open");
 
-  if(!vocab.length){
+  if(!allVocab.length){
     stopVocabIdleLearning({ disable: true });
     content.innerHTML = '<div class="empty" style="padding:18px 8px">No vocabulary is available for this lesson yet.</div>';
     return;
   }
 
   content.innerHTML = `
+    ${renderVocabChunkSwitch(chunks, activeChunk.index)}
     <div class="vocab-mode-switch" role="tablist" aria-label="Vocabulary mode">
       <button class="vocab-mode-btn ${vocabMode === "list" ? "active" : ""}" type="button" data-mode="list">List</button>
       <button class="vocab-mode-btn ${vocabMode === "flashcard" ? "active" : ""}" type="button" data-mode="flashcard">Flashcard</button>
