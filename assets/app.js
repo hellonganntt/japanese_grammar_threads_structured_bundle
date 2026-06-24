@@ -996,6 +996,46 @@ function completeDailyReview(){
   }
 }
 
+function renderDailyReviewSyncStatus(reviewedCount){
+  if(!reviewedCount) return "";
+
+  if(driveSyncInFlight){
+    return `
+      <div class="srs-sync-status" data-state="syncing" role="status">
+        Syncing with Google Drive&hellip;
+      </div>
+    `;
+  }
+
+  if(driveLastError && driveMetadata.dirty){
+    return `
+      <div class="srs-sync-status" data-state="error" role="status">
+        <span>Progress saved locally &middot; Drive sync failed</span>
+        <button class="study-secondary-btn" id="srsRetrySyncBtn" type="button">Retry Sync</button>
+      </div>
+    `;
+  }
+
+  if(driveMetadata.dirty && !hasValidDriveToken()){
+    return `
+      <div class="srs-sync-status" data-state="pending" role="status">
+        <span>Progress saved locally &middot; Sync pending</span>
+        <button class="study-secondary-btn" id="srsOpenSettingsBtn" type="button">Open Settings</button>
+      </div>
+    `;
+  }
+
+  if(!driveMetadata.dirty && driveMetadata.lastSyncedAt){
+    return `
+      <div class="srs-sync-status" data-state="synced" role="status">
+        Synced
+      </div>
+    `;
+  }
+
+  return "";
+}
+
 function rateCurrentDailyReviewCard(rating){
   const entry = dailyReviewQueue[dailyReviewIndex];
   if(!entry || !dailyReviewRevealed) return;
@@ -1050,6 +1090,7 @@ function renderDailyReview(){
             Again ${session.ratings.again} · Hard ${session.ratings.hard} · Good ${session.ratings.good} · Easy ${session.ratings.easy}<br>
             ${stats.due} due now · ${stats.learning} learning · ${stats.mature} mature
           </div>
+          ${renderDailyReviewSyncStatus(session.reviewed)}
           <button class="study-primary-btn" id="srsDoneBtn" type="button">Done</button>
         </div>
       </div>
@@ -1112,6 +1153,12 @@ function renderDailyReview(){
 function bindDailyReviewInteractions(){
   document.getElementById("srsBackBtn")?.addEventListener("click", exitDailyReview);
   document.getElementById("srsDoneBtn")?.addEventListener("click", exitDailyReview);
+  document.getElementById("srsOpenSettingsBtn")?.addEventListener("click", () => {
+    setSettingsOpen(true);
+  });
+  document.getElementById("srsRetrySyncBtn")?.addEventListener("click", () => {
+    syncDriveProgress();
+  });
   document.getElementById("srsRevealBtn")?.addEventListener("click", () => {
     dailyReviewRevealed = true;
     renderDailyReview();
@@ -1154,6 +1201,7 @@ function renderDriveStatus(){
   const status = document.getElementById("driveStatus");
   const connectButton = document.getElementById("connectDriveBtn");
   const syncButton = document.getElementById("syncDriveBtn");
+  updateSettingsButtonState();
   if(!status || !connectButton || !syncButton) return;
 
   if(!GOOGLE_CLIENT_ID){
@@ -1369,6 +1417,7 @@ async function syncDriveProgress(options = {}){
   driveSyncInFlight = true;
   driveLastError = "";
   renderDriveStatus();
+  if(appView === "daily") renderDailyReview();
 
   try{
     let file = await findDriveProgressFile();
@@ -1389,7 +1438,6 @@ async function syncDriveProgress(options = {}){
     driveMetadata.dirty = false;
     saveDriveMetadata();
     renderSrsDashboard();
-    if(appView === "daily") renderDailyReview();
     if(!options.quiet) showToast("Google Drive sync complete.");
   }catch(error){
     console.error(error);
@@ -1400,6 +1448,7 @@ async function syncDriveProgress(options = {}){
   }finally{
     driveSyncInFlight = false;
     renderDriveStatus();
+    if(appView === "daily") renderDailyReview();
   }
 }
 
@@ -1497,10 +1546,20 @@ const settingsButton = document.getElementById("settingsBtn");
 const settingsPopover = document.getElementById("settingsPopover");
 const settingsCloseButton = document.getElementById("settingsCloseBtn");
 
+function updateSettingsButtonState(){
+  const isOpen = !settingsPopover.hidden;
+  const hasPendingSync = Boolean(driveMetadata.dirty);
+  settingsButton.classList.toggle("has-unsynced", hasPendingSync);
+  settingsButton.setAttribute(
+    "aria-label",
+    `${isOpen ? "Close" : "Open"} settings${hasPendingSync ? " - sync pending" : ""}`
+  );
+}
+
 function setSettingsOpen(isOpen, options = {}){
   settingsPopover.hidden = !isOpen;
   settingsButton.setAttribute("aria-expanded", String(isOpen));
-  settingsButton.setAttribute("aria-label", isOpen ? "Close settings" : "Open settings");
+  updateSettingsButtonState();
 
   if(isOpen){
     renderDriveStatus();
