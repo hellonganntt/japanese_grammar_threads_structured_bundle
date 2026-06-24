@@ -740,43 +740,12 @@ function renderVocabQuiz(vocab){
   `;
 }
 
-function renderVocabChunkSwitch(chunks, activeChunkIndex){
-  if(!chunks.length) return "";
-
-  return `
-    <div class="vocab-chunk-switch" role="tablist" aria-label="Vocabulary chunks">
-      ${chunks.map(chunk => `
-        <button class="vocab-chunk-btn ${chunk.index === activeChunkIndex ? "active" : ""}" type="button" data-chunk-index="${chunk.index}">
-          <span>${chunk.start + 1}-${chunk.end}</span>
-        </button>
-      `).join("")}
-    </div>
-  `;
-}
-
 function bindVocabInteractions(vocab){
   document.querySelectorAll(".audio-btn").forEach(btn => {
     btn.addEventListener("click", event => {
       event.stopPropagation();
       stopVocabIdleLearning({ disable: true });
       playAudioSequence([btn.dataset.audioSrc]);
-    });
-  });
-
-  document.querySelectorAll(".vocab-chunk-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const chunkIndex = Number(btn.dataset.chunkIndex);
-      if(!Number.isInteger(chunkIndex)) return;
-
-      const currentChunkIndex = getActiveVocabChunk().index;
-      if(chunkIndex === currentChunkIndex) return;
-
-      stopVocabIdleLearning({ disable: true });
-      stopCurrentAudio();
-      saveSelectedChunkIndex(activeLesson, chunkIndex);
-      resetVocabFlashcard();
-      resetVocabQuiz();
-      renderVocabPanel();
     });
   });
 
@@ -1463,6 +1432,7 @@ function renderVocabPanel(){
   const activeChunk = getActiveVocabChunk(allVocab);
   const vocab = activeChunk.items;
 
+  renderVocabSetSelect(chunks, activeChunk.index);
   title.textContent = "Vocabulary";
   meta.textContent = allVocab.length
     ? `${allVocab.length} ${allVocab.length === 1 ? "word" : "words"} · studying ${activeChunk.start + 1}-${activeChunk.end}`
@@ -1477,7 +1447,6 @@ function renderVocabPanel(){
   }
 
   content.innerHTML = `
-    ${renderVocabChunkSwitch(chunks, activeChunk.index)}
     <div class="vocab-mode-switch" role="tablist" aria-label="Vocabulary mode">
       <button class="vocab-mode-btn ${vocabMode === "list" ? "active" : ""}" type="button" data-mode="list">List</button>
       <button class="vocab-mode-btn ${vocabMode === "flashcard" ? "active" : ""}" type="button" data-mode="flashcard">Flashcard</button>
@@ -1512,35 +1481,52 @@ function showToast(text){
   setTimeout(() => toast.classList.remove("show"), 1800);
 }
 
+function renderVocabSetSelect(chunks, activeChunkIndex){
+  const select = document.getElementById("vocabSetSelect");
+  select.disabled = chunks.length === 0;
+  select.innerHTML = chunks.length
+    ? chunks.map(chunk => `
+        <option value="${chunk.index}" ${chunk.index === activeChunkIndex ? "selected" : ""}>
+          Words ${chunk.start + 1}-${chunk.end}
+        </option>
+      `).join("")
+    : "<option>None</option>";
+}
+
 function renderLessonFilters(){
-  const container = document.getElementById("lessonFilters");
+  const select = document.getElementById("lessonSelect");
   const lessons = lessonFiles.map(item => item.lesson).filter(Boolean)
     .sort((a, b) => Number(a) - Number(b));
 
-  container.innerHTML = `
-    ${lessons.map(lesson => `
-      <button class="chip ${String(activeLesson) === String(lesson) ? "active" : ""}" data-lesson="${lesson}">
-        Lesson ${lesson}
-      </button>
-    `).join("")}
-  `;
-
-  container.querySelectorAll(".chip").forEach(chip => {
-    chip.addEventListener("click", async () => {
-      stopVocabIdleLearning({ disable: true });
-      stopCurrentAudio();
-      activeLesson = chip.dataset.lesson;
-      resetVocabFlashcard();
-      resetVocabQuiz();
-      renderLessonFilters();
-      await loadVocabForSelectedLesson();
-    });
-  });
+  select.innerHTML = lessons.map(lesson => `
+    <option value="${lesson}" ${String(activeLesson) === String(lesson) ? "selected" : ""}>
+      Lesson ${lesson}
+    </option>
+  `).join("");
 }
 
 document.getElementById("startDailyReviewBtn").addEventListener("click", startDailyReview);
 document.getElementById("connectDriveBtn").addEventListener("click", connectGoogleDrive);
 document.getElementById("syncDriveBtn").addEventListener("click", () => syncDriveProgress());
+document.getElementById("lessonSelect").addEventListener("change", async event => {
+  stopVocabIdleLearning({ disable: true });
+  stopCurrentAudio();
+  activeLesson = event.target.value;
+  resetVocabFlashcard();
+  resetVocabQuiz();
+  await loadVocabForSelectedLesson();
+});
+document.getElementById("vocabSetSelect").addEventListener("change", event => {
+  const chunkIndex = Number(event.target.value);
+  if(!Number.isInteger(chunkIndex) || chunkIndex === getActiveVocabChunk().index) return;
+
+  stopVocabIdleLearning({ disable: true });
+  stopCurrentAudio();
+  saveSelectedChunkIndex(activeLesson, chunkIndex);
+  resetVocabFlashcard();
+  resetVocabQuiz();
+  renderVocabPanel();
+});
 
 const settingsButton = document.getElementById("settingsBtn");
 const settingsPopover = document.getElementById("settingsPopover");
@@ -1598,7 +1584,7 @@ document.getElementById("themeBtn").addEventListener("click", () => {
   document.documentElement.style.setProperty("--border", dark ? "#2a2a2a" : "#e8e8e8");
   document.documentElement.style.setProperty("--soft", dark ? "#1b1b1b" : "#f7f7f7");
   document.querySelector(".topbar").style.background = dark ? "rgba(16,16,16,.93)" : "rgba(255,255,255,.93)";
-  document.querySelectorAll(".icon-btn,.chip").forEach(el => {
+  document.querySelectorAll(".icon-btn").forEach(el => {
     if(!el.classList.contains("active")) el.style.background = dark ? "#151515" : "#fff";
   });
 });

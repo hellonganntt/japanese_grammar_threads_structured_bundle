@@ -48,9 +48,18 @@
   </section>
 
   <section class="filter-section" id="lessonStudySection">
-    <div class="filter-label">Lessons</div>
-    <nav class="filters lesson-filters" id="lessonFilters">
-    </nav>
+    <div class="study-selectors">
+      <label class="study-selector">
+        <span>Lesson</span>
+        <select class="study-select" id="lessonSelect" aria-label="Choose lesson"></select>
+      </label>
+      <label class="study-selector">
+        <span>Set</span>
+        <select class="study-select" id="vocabSetSelect" aria-label="Choose vocabulary set" disabled>
+          <option>None</option>
+        </select>
+      </label>
+    </div>
 
     <section class="vocab-panel" id="vocabPanel">
       <div class="vocab-toggle" id="vocabToggle" aria-expanded="true">
