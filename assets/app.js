@@ -21,8 +21,10 @@ let vocabQuizScore = 0;
 let vocabQuizMissedQuestions = [];
 let vocabQuizIsReview = false;
 let vocabQuizReviewCompleted = false;
+let vocabQuizAutoAdvanceTimer = null;
 
 const VOCAB_CHUNK_SIZE = 10;
+const VOCAB_QUIZ_AUTO_ADVANCE_DELAY = 1500;
 
 const AUDIO_RESULT = {
   BLOCKED: "blocked",
@@ -273,7 +275,15 @@ function resetVocabFlashcard(){
   vocabCardOrder = [];
 }
 
+function cancelVocabQuizAutoAdvance(){
+  if(vocabQuizAutoAdvanceTimer === null) return;
+
+  clearTimeout(vocabQuizAutoAdvanceTimer);
+  vocabQuizAutoAdvanceTimer = null;
+}
+
 function resetVocabQuiz(){
+  cancelVocabQuizAutoAdvance();
   vocabQuizQuestions = [];
   vocabQuizQuestionIndex = 0;
   vocabQuizSelectedChoice = null;
@@ -462,9 +472,37 @@ function createVocabQuizQuestions(items, choicePool){
 }
 
 function resetVocabQuizProgress(){
+  cancelVocabQuizAutoAdvance();
   vocabQuizQuestionIndex = 0;
   vocabQuizSelectedChoice = null;
   vocabQuizScore = 0;
+}
+
+function advanceVocabQuizQuestion(expectedQuestion = null, expectedQuestionIndex = null){
+  cancelVocabQuizAutoAdvance();
+
+  if(vocabQuizSelectedChoice === null) return;
+  if(expectedQuestion && vocabQuizQuestions[vocabQuizQuestionIndex] !== expectedQuestion) return;
+  if(expectedQuestionIndex !== null && vocabQuizQuestionIndex !== expectedQuestionIndex) return;
+
+  vocabQuizQuestionIndex += 1;
+  vocabQuizSelectedChoice = null;
+  renderVocabPanel();
+}
+
+function scheduleVocabQuizAutoAdvance(question, questionIndex){
+  cancelVocabQuizAutoAdvance();
+
+  vocabQuizAutoAdvanceTimer = setTimeout(() => {
+    vocabQuizAutoAdvanceTimer = null;
+
+    if(vocabMode !== "quiz") return;
+    if(vocabQuizQuestions[vocabQuizQuestionIndex] !== question) return;
+    if(vocabQuizQuestionIndex !== questionIndex) return;
+    if(vocabQuizSelectedChoice !== question.item.meaning) return;
+
+    advanceVocabQuizQuestion(question, questionIndex);
+  }, VOCAB_QUIZ_AUTO_ADVANCE_DELAY);
 }
 
 function startVocabMissedReview(vocab){
@@ -636,20 +674,17 @@ function bindVocabInteractions(vocab){
 
         if(choice === currentQuestion.item.meaning){
           vocabQuizScore += 1;
+          renderVocabPanel();
+          scheduleVocabQuizAutoAdvance(currentQuestion, vocabQuizQuestionIndex);
         }else{
           trackMissedVocabQuestion(currentQuestion);
+          renderVocabPanel();
         }
-
-        renderVocabPanel();
       });
     });
 
     document.getElementById("vocabQuizNextBtn")?.addEventListener("click", () => {
-      if(vocabQuizSelectedChoice === null) return;
-
-      vocabQuizQuestionIndex += 1;
-      vocabQuizSelectedChoice = null;
-      renderVocabPanel();
+      advanceVocabQuizQuestion(currentQuestion, vocabQuizQuestionIndex);
     });
 
     document.getElementById("vocabQuizRestartBtn")?.addEventListener("click", () => {
