@@ -41,7 +41,11 @@
       font-size:18px;
       letter-spacing:-.3px;
     }
-    .top-actions{display:flex; gap:8px}
+    .top-actions{
+      position:relative;
+      display:flex;
+      gap:8px;
+    }
     .icon-btn{
       width:38px;
       height:38px;
@@ -54,20 +58,55 @@
       transition:.2s;
     }
     .icon-btn:hover{background:var(--soft); transform:translateY(-1px)}
-    .intro{
-      padding:18px 20px;
-      border-bottom:1px solid var(--border);
+    .settings-popover{
+      position:absolute;
+      top:48px;
+      right:0;
+      width:min(340px, calc(100vw - 24px));
+      padding:16px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:var(--bg);
+      box-shadow:0 16px 44px rgba(0,0,0,.16);
+      z-index:40;
     }
-    .intro h1{font-size:22px;margin:0 0 8px}
-    .intro p{margin:0;color:var(--muted);line-height:1.6}
+    .settings-popover[hidden]{display:none}
+    .settings-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    .settings-header h2{
+      margin:0;
+      font-size:18px;
+    }
+    .settings-close-btn{
+      width:32px;
+      height:32px;
+      border:0;
+      border-radius:50%;
+      background:transparent;
+      color:var(--muted);
+      cursor:pointer;
+      font-size:24px;
+      line-height:1;
+    }
+    .settings-close-btn:hover{background:var(--soft);color:var(--text)}
+    .settings-section{
+      display:grid;
+      gap:14px;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+    }
     .study-dashboard{
       padding:16px;
       border-bottom:1px solid var(--border);
       display:grid;
       gap:12px;
     }
-    .study-dashboard-main,
-    .drive-toolbar{
+    .study-dashboard-main{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -90,12 +129,6 @@
       color:var(--muted);
       font-size:13px;
       line-height:1.5;
-    }
-    .drive-toolbar{
-      border:1px solid var(--border);
-      border-radius:10px;
-      padding:12px;
-      background:var(--soft);
     }
     .drive-status[data-state="synced"]{color:#1f8f4d}
     .drive-status[data-state="unsynced"],
@@ -824,8 +857,7 @@
     .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
     @media(max-width:700px){
       .app{border:0}
-      .study-dashboard-main,
-      .drive-toolbar{
+      .study-dashboard-main{
         align-items:stretch;
         flex-direction:column;
       }
@@ -833,6 +865,13 @@
       .drive-actions,
       .drive-actions .study-secondary-btn{
         width:100%;
+      }
+      .settings-popover{
+        position:fixed;
+        top:70px;
+        right:12px;
+        left:12px;
+        width:auto;
       }
       .srs-card{
         min-height:260px;

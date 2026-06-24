@@ -1493,6 +1493,43 @@ document.getElementById("startDailyReviewBtn").addEventListener("click", startDa
 document.getElementById("connectDriveBtn").addEventListener("click", connectGoogleDrive);
 document.getElementById("syncDriveBtn").addEventListener("click", () => syncDriveProgress());
 
+const settingsButton = document.getElementById("settingsBtn");
+const settingsPopover = document.getElementById("settingsPopover");
+const settingsCloseButton = document.getElementById("settingsCloseBtn");
+
+function setSettingsOpen(isOpen, options = {}){
+  settingsPopover.hidden = !isOpen;
+  settingsButton.setAttribute("aria-expanded", String(isOpen));
+  settingsButton.setAttribute("aria-label", isOpen ? "Close settings" : "Open settings");
+
+  if(isOpen){
+    renderDriveStatus();
+    settingsCloseButton.focus();
+  }else if(options.restoreFocus){
+    settingsButton.focus();
+  }
+}
+
+settingsButton.addEventListener("click", () => {
+  setSettingsOpen(settingsPopover.hidden);
+});
+
+settingsCloseButton.addEventListener("click", () => {
+  setSettingsOpen(false, { restoreFocus: true });
+});
+
+document.addEventListener("click", event => {
+  if(settingsPopover.hidden) return;
+  if(settingsPopover.contains(event.target) || settingsButton.contains(event.target)) return;
+  setSettingsOpen(false);
+});
+
+document.addEventListener("keydown", event => {
+  if(event.key !== "Escape" || settingsPopover.hidden) return;
+  event.preventDefault();
+  setSettingsOpen(false, { restoreFocus: true });
+});
+
 let dark = false;
 document.getElementById("themeBtn").addEventListener("click", () => {
   dark = !dark;
