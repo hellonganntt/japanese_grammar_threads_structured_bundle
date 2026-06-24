@@ -47,6 +47,18 @@
     <div id="dailyReviewContent"></div>
   </section>
 
+  <dialog class="sync-reminder-dialog" id="syncReminderDialog" aria-labelledby="syncReminderTitle">
+    <form method="dialog">
+      <div class="study-dashboard-label">Before your review</div>
+      <h2 id="syncReminderTitle">Sync your latest progress?</h2>
+      <p>Syncing first prevents words reviewed on another device from appearing as new here.</p>
+      <div class="sync-reminder-actions">
+        <button class="study-secondary-btn" id="continueOfflineBtn" type="submit" value="offline">Continue offline</button>
+        <button class="study-primary-btn" id="syncBeforeReviewBtn" type="button">Sync first</button>
+      </div>
+    </form>
+  </dialog>
+
   <section class="filter-section" id="lessonStudySection">
     <div class="study-selectors">
       <label class="study-selector">

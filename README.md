@@ -82,7 +82,7 @@ window.APP_CONFIG = {
 
 The client ID is public browser configuration, not a secret. Never add a client secret or access token to the repository.
 
-On each fresh browser session, use **Connect Drive** once. The app merges local and cloud cards by each card's latest `updatedAt`, uploads the result, and automatically syncs again after a completed review session while authorization remains valid. If authorization expires or the device is offline, progress remains safe locally.
+Use **Connect Drive** once per browser tab session. The short-lived Google access token is kept in `sessionStorage`, so the connection survives page refreshes in the same tab but is cleared when the tab closes or the token expires. The app merges local and cloud cards by each card's latest `updatedAt`, uploads the result, and automatically syncs again after a completed review session while authorization remains valid. If authorization expires or the device is offline, progress remains safe locally.
 
 ## Vocabulary Audio
 

@@ -35,17 +35,20 @@ let driveAccessTokenExpiresAt = 0;
 let driveAuthorizationPending = false;
 let driveSyncInFlight = false;
 let driveLastError = "";
+let startReviewAfterDriveSync = false;
 
 const VOCAB_CHUNK_SIZE = 10;
 const VOCAB_QUIZ_AUTO_ADVANCE_DELAY = 1500;
 const SRS_STORAGE_KEY = "japaneseVocabSrs:v1";
 const SRS_DRIVE_META_KEY = "japaneseVocabSrsDrive:v1";
+const SRS_DRIVE_SESSION_KEY = "japaneseVocabSrsDriveSession:v1";
 const SRS_NEW_CARD_LIMIT = 10;
 const SRS_DRIVE_FILENAME = "japanese-vocab-progress.json";
 const GOOGLE_DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.appdata";
 const GOOGLE_CLIENT_ID = window.APP_CONFIG?.googleClientId?.trim() || "";
 let srsProgress = loadSrsProgress();
 let driveMetadata = loadDriveMetadata();
+restoreDriveSession();
 
 const AUDIO_RESULT = {
   BLOCKED: "blocked",
@@ -103,6 +106,44 @@ function loadDriveMetadata(){
 
 function saveDriveMetadata(){
   localStorage.setItem(SRS_DRIVE_META_KEY, JSON.stringify(driveMetadata));
+}
+
+function restoreDriveSession(){
+  try{
+    const saved = JSON.parse(sessionStorage.getItem(SRS_DRIVE_SESSION_KEY) || "null");
+    const expiresAt = Number(saved?.expiresAt) || 0;
+
+    if(typeof saved?.accessToken === "string" && expiresAt > Date.now() + 30000){
+      driveAccessToken = saved.accessToken;
+      driveAccessTokenExpiresAt = expiresAt;
+      return;
+    }
+
+    sessionStorage.removeItem(SRS_DRIVE_SESSION_KEY);
+  }catch(error){
+    console.warn("Could not restore the Drive session.", error);
+  }
+}
+
+function saveDriveSession(){
+  try{
+    sessionStorage.setItem(SRS_DRIVE_SESSION_KEY, JSON.stringify({
+      accessToken: driveAccessToken,
+      expiresAt: driveAccessTokenExpiresAt
+    }));
+  }catch(error){
+    console.warn("Could not save the Drive session.", error);
+  }
+}
+
+function clearDriveSession(){
+  driveAccessToken = null;
+  driveAccessTokenExpiresAt = 0;
+  try{
+    sessionStorage.removeItem(SRS_DRIVE_SESSION_KEY);
+  }catch(error){
+    console.warn("Could not clear the Drive session.", error);
+  }
 }
 
 function saveSrsProgress(progress, options = {}){
@@ -950,6 +991,31 @@ function startDailyReview(){
   renderAppView();
 }
 
+async function requestDailyReviewStart(){
+  const startButton = document.getElementById("startDailyReviewBtn");
+
+  if(hasValidDriveToken()){
+    startButton.disabled = true;
+    startButton.textContent = "Syncing…";
+    const synced = await syncDriveProgress({ quiet: true });
+    renderSrsDashboard();
+
+    if(synced){
+      startDailyReview();
+    }else{
+      document.getElementById("syncReminderDialog").showModal();
+    }
+    return;
+  }
+
+  if(GOOGLE_CLIENT_ID){
+    document.getElementById("syncReminderDialog").showModal();
+    return;
+  }
+
+  startDailyReview();
+}
+
 function exitDailyReview(){
   stopCurrentAudio();
   appView = "lessons";
@@ -1163,7 +1229,11 @@ function renderAppView(){
 }
 
 function hasValidDriveToken(){
-  return Boolean(driveAccessToken && Date.now() < driveAccessTokenExpiresAt - 30000);
+  const valid = Boolean(driveAccessToken && Date.now() < driveAccessTokenExpiresAt - 30000);
+  if(!valid && driveAccessToken){
+    clearDriveSession();
+  }
+  return valid;
 }
 
 function renderDriveStatus(){
@@ -1222,6 +1292,7 @@ function initializeDriveTokenClient(){
     callback: async response => {
       driveAuthorizationPending = false;
       if(response?.error || !response?.access_token){
+        startReviewAfterDriveSync = false;
         driveLastError = "Google Drive authorization failed";
         renderDriveStatus();
         return;
@@ -1229,11 +1300,19 @@ function initializeDriveTokenClient(){
 
       driveAccessToken = response.access_token;
       driveAccessTokenExpiresAt = Date.now() + (Number(response.expires_in) || 3600) * 1000;
+      saveDriveSession();
       driveLastError = "";
       renderDriveStatus();
-      await syncDriveProgress();
+      const synced = await syncDriveProgress();
+      if(startReviewAfterDriveSync && synced){
+        startReviewAfterDriveSync = false;
+        startDailyReview();
+      }else if(!synced){
+        startReviewAfterDriveSync = false;
+      }
     },
     error_callback: () => {
+      startReviewAfterDriveSync = false;
       driveAuthorizationPending = false;
       driveLastError = "Google Drive connection was cancelled";
       renderDriveStatus();
@@ -1245,11 +1324,13 @@ function initializeDriveTokenClient(){
 
 function connectGoogleDrive(){
   if(!GOOGLE_CLIENT_ID){
+    startReviewAfterDriveSync = false;
     showToast("Add your Google OAuth client ID in assets/config.js.");
     return;
   }
 
   if(!initializeDriveTokenClient()){
+    startReviewAfterDriveSync = false;
     showToast("Google sign-in is still loading. Try again.");
     return;
   }
@@ -1260,6 +1341,7 @@ function connectGoogleDrive(){
   try{
     driveTokenClient.requestAccessToken({ prompt: "" });
   }catch(error){
+    startReviewAfterDriveSync = false;
     driveAuthorizationPending = false;
     driveLastError = "Could not open Google Drive authorization";
     renderDriveStatus();
@@ -1268,7 +1350,7 @@ function connectGoogleDrive(){
 
 async function driveApiFetch(url, options = {}){
   if(!hasValidDriveToken()){
-    driveAccessToken = null;
+    clearDriveSession();
     throw new Error("Google Drive authorization expired. Connect again.");
   }
 
@@ -1280,8 +1362,7 @@ async function driveApiFetch(url, options = {}){
   });
 
   if(response.status === 401){
-    driveAccessToken = null;
-    driveAccessTokenExpiresAt = 0;
+    clearDriveSession();
     throw new Error("Google Drive authorization expired. Connect again.");
   }
   if(!response.ok){
@@ -1377,10 +1458,10 @@ async function uploadDriveProgress(fileId, progress){
 }
 
 async function syncDriveProgress(options = {}){
-  if(driveSyncInFlight) return;
+  if(driveSyncInFlight) return false;
   if(!hasValidDriveToken()){
     if(!options.quiet) connectGoogleDrive();
-    return;
+    return false;
   }
 
   driveSyncInFlight = true;
@@ -1408,12 +1489,14 @@ async function syncDriveProgress(options = {}){
     saveDriveMetadata();
     renderSrsDashboard();
     if(!options.quiet) showToast("Google Drive sync complete.");
+    return true;
   }catch(error){
     console.error(error);
     driveLastError = error.message || "Google Drive sync failed";
     driveMetadata.dirty = true;
     saveDriveMetadata();
     if(!options.quiet) showToast("Drive sync failed. Progress is safe locally.");
+    return false;
   }finally{
     driveSyncInFlight = false;
     renderDriveStatus();
@@ -1505,9 +1588,18 @@ function renderLessonFilters(){
   `).join("");
 }
 
-document.getElementById("startDailyReviewBtn").addEventListener("click", startDailyReview);
+document.getElementById("startDailyReviewBtn").addEventListener("click", requestDailyReviewStart);
 document.getElementById("connectDriveBtn").addEventListener("click", connectGoogleDrive);
 document.getElementById("syncDriveBtn").addEventListener("click", () => syncDriveProgress());
+document.getElementById("continueOfflineBtn").addEventListener("click", () => {
+  startReviewAfterDriveSync = false;
+  startDailyReview();
+});
+document.getElementById("syncBeforeReviewBtn").addEventListener("click", () => {
+  document.getElementById("syncReminderDialog").close();
+  startReviewAfterDriveSync = true;
+  connectGoogleDrive();
+});
 document.getElementById("lessonSelect").addEventListener("change", async event => {
   stopVocabIdleLearning({ disable: true });
   stopCurrentAudio();
