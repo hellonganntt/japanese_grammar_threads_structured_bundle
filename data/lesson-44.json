@@ -2,6 +2,7 @@
   "lesson": 44,
   "vocab": [
     {
+      "id": "l44-v001",
       "jp": "泣きます",
       "reading": "なきます",
       "meaning": "khóc",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l44-v002",
       "jp": "笑います",
       "reading": "わらいます",
       "meaning": "cười",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l44-v003",
       "jp": "乾きます",
       "reading": "かわきます",
       "meaning": "khô",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l44-v004",
       "jp": "ぬれます",
       "reading": "ぬれます",
       "meaning": "bị ướt",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l44-v005",
       "jp": "滑ります",
       "reading": "すべります",
       "meaning": "trượt; trơn trượt",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l44-v006",
       "jp": "起きます",
       "reading": "おきます",
       "meaning": "xảy ra; phát sinh",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l44-v007",
       "jp": "調節します",
       "reading": "ちょうせつします",
       "meaning": "điều chỉnh",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l44-v008",
       "jp": "安全（な）",
       "reading": "あんぜん",
       "meaning": "an toàn",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l44-v009",
       "jp": "丁寧（な）",
       "reading": "ていねい",
       "meaning": "lịch sự; cẩn thận; kỹ lưỡng",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l44-v010",
       "jp": "細かい",
       "reading": "こまかい",
       "meaning": "nhỏ; chi tiết; tỉ mỉ",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l44-v011",
       "jp": "濃い",
       "reading": "こい",
       "meaning": "đậm; đặc; nồng",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l44-v012",
       "jp": "薄い",
       "reading": "うすい",
       "meaning": "nhạt; loãng; mỏng",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l44-v013",
       "jp": "空気",
       "reading": "くうき",
       "meaning": "không khí; bầu không khí",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l44-v014",
       "jp": "涙",
       "reading": "なみだ",
       "meaning": "nước mắt",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l44-v015",
       "jp": "和食",
       "reading": "わしょく",
       "meaning": "món ăn Nhật; ẩm thực Nhật Bản",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l44-v016",
       "jp": "洋食",
       "reading": "ようしょく",
       "meaning": "món ăn phương Tây",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l44-v017",
       "jp": "おかず",
       "reading": "おかず",
       "meaning": "thức ăn kèm; món ăn ăn cùng cơm",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l44-v018",
       "jp": "量",
       "reading": "りょう",
       "meaning": "lượng; số lượng",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l44-v019",
       "jp": "倍",
       "reading": "ばい",
       "meaning": "lần; gấp",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l44-v020",
       "jp": "半分",
       "reading": "はんぶん",
       "meaning": "một nửa",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l44-v021",
       "jp": "シングル",
       "reading": "シングル",
       "meaning": "phòng đơn; loại đơn",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l44-v022",
       "jp": "ツイン",
       "reading": "ツイン",
       "meaning": "phòng hai giường đơn",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l44-v023",
       "jp": "たんす",
       "reading": "たんす",
       "meaning": "tủ ngăn kéo; tủ quần áo",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l44-v024",
       "jp": "洗濯物",
       "reading": "せんたくもの",
       "meaning": "quần áo cần giặt; đồ đã giặt",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l44-v025",
       "jp": "理由",
       "reading": "りゆう",
       "meaning": "lý do",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l44-v026",
       "jp": "どうなさいますか",
       "reading": "どうなさいますか",
       "meaning": "quý khách muốn thế nào; ngài sẽ làm gì",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l44-v027",
       "jp": "カット",
       "reading": "カット",
       "meaning": "cắt; việc cắt tóc",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l44-v028",
       "jp": "シャンプー",
       "reading": "シャンプー",
       "meaning": "dầu gội; việc gội đầu",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l44-v029",
       "jp": "どういうふうになさいますか",
       "reading": "どういうふうになさいますか",
       "meaning": "quý khách muốn làm theo kiểu nào",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l44-v030",
       "jp": "ショート",
       "reading": "ショート",
       "meaning": "tóc ngắn; kiểu ngắn",
@@ -362,6 +392,7 @@
       }
     },
     {
+      "id": "l44-v031",
       "jp": "～みたいにしてください",
       "reading": "みたいにしてください",
       "meaning": "hãy làm giống như...",
@@ -374,6 +405,7 @@
       }
     },
     {
+      "id": "l44-v032",
       "jp": "これでよろしいでしょうか",
       "reading": "これでよろしいでしょうか",
       "meaning": "như thế này đã được chưa ạ",
@@ -386,6 +418,7 @@
       }
     },
     {
+      "id": "l44-v033",
       "jp": "（どうも）お疲れさまでした",
       "reading": "どうもおつかれさまでした",
       "meaning": "cảm ơn, quý khách đã vất vả; xin cảm ơn",
@@ -398,6 +431,7 @@
       }
     },
     {
+      "id": "l44-v034",
       "jp": "嫌がります",
       "reading": "いやがります",
       "meaning": "tỏ ra không thích; tỏ vẻ khó chịu",
@@ -410,6 +444,7 @@
       }
     },
     {
+      "id": "l44-v035",
       "jp": "また",
       "reading": "また",
       "meaning": "lại; thêm nữa; ngoài ra",
@@ -422,6 +457,7 @@
       }
     },
     {
+      "id": "l44-v036",
       "jp": "順序",
       "reading": "じゅんじょ",
       "meaning": "thứ tự; trình tự",
@@ -434,6 +470,7 @@
       }
     },
     {
+      "id": "l44-v037",
       "jp": "表現",
       "reading": "ひょうげん",
       "meaning": "cách diễn đạt; biểu hiện",
@@ -446,6 +483,7 @@
       }
     },
     {
+      "id": "l44-v038",
       "jp": "例えば",
       "reading": "たとえば",
       "meaning": "ví dụ; chẳng hạn",
@@ -458,6 +496,7 @@
       }
     },
     {
+      "id": "l44-v039",
       "jp": "別れます",
       "reading": "わかれます",
       "meaning": "chia tay; từ biệt",
@@ -470,6 +509,7 @@
       }
     },
     {
+      "id": "l44-v040",
       "jp": "これら",
       "reading": "これら",
       "meaning": "những cái này; những điều này",
@@ -482,6 +522,7 @@
       }
     },
     {
+      "id": "l44-v041",
       "jp": "縁起が悪い",
       "reading": "えんぎがわるい",
       "meaning": "điềm xấu; không may mắn",

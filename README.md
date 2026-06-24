@@ -1,12 +1,14 @@
-# Japanese Grammar Outline
+# Japanese Vocabulary Study App
 
-Static Japanese grammar lesson viewer backed by structured JSON data.
+Static Japanese vocabulary study app backed by structured lesson JSON. It includes lesson browsing, flashcards, quizzes, audio, and a local-first spaced-repetition Daily Review.
 
 ## Files
 
-- `japanese_grammar_threads_structured.html` - browser page shell
+- `index.html` - browser page shell
 - `assets/styles.css` - UI styles
 - `assets/app.js` - data loading and rendering logic
+- `assets/srs.js` - SRS scheduling, progress validation, and merge logic
+- `assets/config.js` - public browser configuration such as the Google OAuth client ID
 - `scripts/generate-vocab-audio.mjs` - optional vocab audio generator
 - `data/lessons.json` - lesson manifest used by the lesson selector
 - `data/lesson-36.json` - structured lesson data for lesson 36
@@ -29,12 +31,66 @@ http://localhost:8000/index.html
 
 Opening the HTML file directly with `file://` may fail because browsers often block JSON loading from local files.
 
+## Daily Review and SRS
+
+Daily Review loads vocabulary from every lesson and presents:
+
+- all cards currently due
+- up to 10 unseen cards in lesson order
+- Japanese-first recall cards with answer reveal
+- `Again`, `Hard`, `Good`, and `Easy` ratings
+
+Progress is saved immediately in browser `localStorage` under:
+
+```text
+japaneseVocabSrs:v1
+```
+
+Lesson JSON remains read-only. Every vocabulary item has a permanent ID such as `l36-v001`; do not change an existing ID when reordering or editing vocabulary.
+
+Run the scheduler tests and ID validation with:
+
+```powershell
+node tests/srs.test.cjs
+node scripts/validate-vocab-ids.mjs
+```
+
+## Optional Google Drive Sync
+
+Google Drive sync stores `japanese-vocab-progress.json` in the signed-in account's private Drive `appDataFolder`. The app remains fully usable without Drive.
+
+Setup:
+
+1. Create a project in [Google Cloud Console](https://console.cloud.google.com/).
+2. Enable the Google Drive API.
+3. Configure the OAuth consent screen.
+4. Create an OAuth 2.0 Client ID with application type **Web application**.
+5. Add authorized JavaScript origins for each URL used to run the app, for example:
+
+```text
+http://localhost:8000
+https://YOUR_GITHUB_USERNAME.github.io
+```
+
+6. Put the public client ID in `assets/config.js`:
+
+```js
+window.APP_CONFIG = {
+  googleClientId: "YOUR_CLIENT_ID.apps.googleusercontent.com"
+};
+```
+
+The client ID is public browser configuration, not a secret. Never add a client secret or access token to the repository.
+
+On each fresh browser session, use **Connect Drive** once. The app merges local and cloud cards by each card's latest `updatedAt`, uploads the result, and automatically syncs again after a completed review session while authorization remains valid. If authorization expires or the device is offline, progress remains safe locally.
+
 ## Vocabulary Audio
 
 Vocabulary items can include optional static audio paths:
 
 ```json
 {
+  "id": "l36-v001",
   "jp": "話せる",
   "reading": "はなせる",
   "meaning": "can speak",
@@ -101,7 +157,13 @@ Lesson files use this shape:
 ```json
 {
   "lesson": 36,
-  "vocab": [],
+  "vocab": [
+    {
+      "id": "l36-v001",
+      "jp": "...",
+      "meaning": "..."
+    }
+  ],
   "kanji": [],
   "grammarSections": [
     {

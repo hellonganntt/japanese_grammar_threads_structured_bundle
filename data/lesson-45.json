@@ -2,6 +2,7 @@
   "lesson": 45,
   "vocab": [
     {
+      "id": "l45-v001",
       "jp": "謝ります",
       "reading": "あやまります",
       "meaning": "xin lỗi; nhận lỗi",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l45-v002",
       "jp": "あいます（事故に～）",
       "reading": "あいます",
       "meaning": "gặp phải; bị (tai nạn)",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l45-v003",
       "jp": "信じます",
       "reading": "しんじます",
       "meaning": "tin; tin tưởng",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l45-v004",
       "jp": "用意します",
       "reading": "よういします",
       "meaning": "chuẩn bị",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l45-v005",
       "jp": "キャンセルします",
       "reading": "キャンセルします",
       "meaning": "hủy; hủy đặt chỗ",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l45-v006",
       "jp": "到着します",
       "reading": "とうちゃくします",
       "meaning": "đến nơi",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l45-v007",
       "jp": "保証書",
       "reading": "ほしょうしょ",
       "meaning": "phiếu bảo hành; giấy bảo hành",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l45-v008",
       "jp": "領収書",
       "reading": "りょうしゅうしょ",
       "meaning": "hóa đơn; biên lai",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l45-v009",
       "jp": "贈り物",
       "reading": "おくりもの",
       "meaning": "quà tặng",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l45-v010",
       "jp": "間違い電話",
       "reading": "まちがいでんわ",
       "meaning": "cuộc gọi nhầm số",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l45-v011",
       "jp": "キャンプ",
       "reading": "キャンプ",
       "meaning": "cắm trại",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l45-v012",
       "jp": "係",
       "reading": "かかり",
       "meaning": "bộ phận phụ trách; nhiệm vụ phụ trách",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l45-v013",
       "jp": "中止",
       "reading": "ちゅうし",
       "meaning": "sự hủy bỏ; đình chỉ",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l45-v014",
       "jp": "点",
       "reading": "てん",
       "meaning": "điểm; điểm số; điểm đặc trưng",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l45-v015",
       "jp": "レバー",
       "reading": "レバー",
       "meaning": "cần gạt; gan",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l45-v016",
       "jp": "「円」札",
       "reading": "えんさつ",
       "meaning": "tờ tiền ... yên",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l45-v017",
       "jp": "ちゃんと",
       "reading": "ちゃんと",
       "meaning": "đàng hoàng; đúng cách; đầy đủ",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l45-v018",
       "jp": "急に",
       "reading": "きゅうに",
       "meaning": "đột nhiên; bất chợt",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l45-v019",
       "jp": "楽しみにしています",
       "reading": "たのしみにしています",
       "meaning": "đang mong chờ; rất trông đợi",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l45-v020",
       "jp": "以上です",
       "reading": "いじょうです",
       "meaning": "hết; trên đây là tất cả",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l45-v021",
       "jp": "係員",
       "reading": "かかりいん",
       "meaning": "nhân viên phụ trách",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l45-v022",
       "jp": "ロース",
       "reading": "ロース",
       "meaning": "thịt thăn; phần thịt lưng",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l45-v023",
       "jp": "スタート",
       "reading": "スタート",
       "meaning": "sự bắt đầu; điểm xuất phát",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l45-v024",
       "jp": "優勝します",
       "reading": "ゆうしょうします",
       "meaning": "vô địch; giành giải nhất",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l45-v025",
       "jp": "悩み",
       "reading": "なやみ",
       "meaning": "nỗi lo; điều phiền muộn",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l45-v026",
       "jp": "目覚まし時計",
       "reading": "めざましどけい",
       "meaning": "đồng hồ báo thức",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l45-v027",
       "jp": "眠ります",
       "reading": "ねむります",
       "meaning": "ngủ",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l45-v028",
       "jp": "目が覚めます",
       "reading": "めがさめます",
       "meaning": "tỉnh giấc; thức giấc",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l45-v029",
       "jp": "大学生",
       "reading": "だいがくせい",
       "meaning": "sinh viên đại học",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l45-v030",
       "jp": "回答",
       "reading": "かいとう",
       "meaning": "câu trả lời; sự trả lời",
@@ -362,6 +392,7 @@
       }
     },
     {
+      "id": "l45-v031",
       "jp": "なります",
       "reading": "なります",
       "meaning": "trở thành; reo; đến giờ",
@@ -374,6 +405,7 @@
       }
     },
     {
+      "id": "l45-v032",
       "jp": "セットします",
       "reading": "セットします",
       "meaning": "cài đặt; đặt sẵn; sắp thành bộ",
@@ -386,6 +418,7 @@
       }
     },
     {
+      "id": "l45-v033",
       "jp": "それでも",
       "reading": "それでも",
       "meaning": "dù vậy; tuy thế",

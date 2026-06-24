@@ -2,6 +2,7 @@
   "lesson": 38,
   "vocab": [
     {
+      "id": "l38-v001",
       "jp": "育てます",
       "reading": "そだてます",
       "meaning": "nuôi; nuôi dưỡng; trồng và chăm sóc",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l38-v002",
       "jp": "運びます",
       "reading": "はこびます",
       "meaning": "mang; vận chuyển",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l38-v003",
       "jp": "亡くなります",
       "reading": "なくなります",
       "meaning": "mất; qua đời",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l38-v004",
       "jp": "入院します",
       "reading": "にゅういんします",
       "meaning": "nhập viện",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l38-v005",
       "jp": "退院します",
       "reading": "たいいんします",
       "meaning": "xuất viện",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l38-v006",
       "jp": "入れます",
       "reading": "いれます",
       "meaning": "cho vào; bật; pha",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l38-v007",
       "jp": "切ります",
       "reading": "きります",
       "meaning": "cắt; tắt; ngắt",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l38-v008",
       "jp": "掛けます",
       "reading": "かけます",
       "meaning": "khóa; treo; gọi điện; phủ lên",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l38-v009",
       "jp": "気持ちがいい",
       "reading": "きもちがいい",
       "meaning": "dễ chịu; thoải mái",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l38-v010",
       "jp": "気持ちが悪い",
       "reading": "きもちがわるい",
       "meaning": "khó chịu; buồn nôn; ghê",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l38-v011",
       "jp": "大きな",
       "reading": "おおきな",
       "meaning": "to; lớn",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l38-v012",
       "jp": "小さな",
       "reading": "ちいさな",
       "meaning": "nhỏ; bé",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l38-v013",
       "jp": "赤ちゃん",
       "reading": "あかちゃん",
       "meaning": "em bé",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l38-v014",
       "jp": "小学校",
       "reading": "しょうがっこう",
       "meaning": "trường tiểu học",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l38-v015",
       "jp": "中学校",
       "reading": "ちゅうがっこう",
       "meaning": "trường trung học cơ sở",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l38-v016",
       "jp": "駅前",
       "reading": "えきまえ",
       "meaning": "trước nhà ga; khu trước ga",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l38-v017",
       "jp": "海岸",
       "reading": "かいがん",
       "meaning": "bờ biển; bãi biển",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l38-v018",
       "jp": "うそ",
       "reading": "うそ",
       "meaning": "lời nói dối; không thật",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l38-v019",
       "jp": "書類",
       "reading": "しょるい",
       "meaning": "giấy tờ; tài liệu",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l38-v020",
       "jp": "電源",
       "reading": "でんげん",
       "meaning": "nguồn điện; nút nguồn",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l38-v021",
       "jp": "～製",
       "reading": "せい",
       "meaning": "làm tại; sản xuất tại; làm bằng",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l38-v022",
       "jp": "あ、いけない",
       "reading": "あ、いけない",
       "meaning": "Ôi, chết rồi; thôi chết",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l38-v023",
       "jp": "お先に",
       "reading": "おさきに",
       "meaning": "tôi xin phép trước",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l38-v024",
       "jp": "回覧",
       "reading": "かいらん",
       "meaning": "văn bản chuyền xem; luân chuyển để xem",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l38-v025",
       "jp": "研究室",
       "reading": "けんきゅうしつ",
       "meaning": "phòng nghiên cứu; phòng làm việc của giảng viên",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l38-v026",
       "jp": "きちんと",
       "reading": "きちんと",
       "meaning": "cẩn thận; gọn gàng; đúng cách",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l38-v027",
       "jp": "整理します",
       "reading": "せいりします",
       "meaning": "sắp xếp; chỉnh lý; dọn cho ngăn nắp",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l38-v028",
       "jp": "はんこ",
       "reading": "はんこ",
       "meaning": "con dấu cá nhân",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l38-v029",
       "jp": "押します",
       "reading": "おします",
       "meaning": "ấn; đẩy; đóng dấu",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l38-v030",
       "jp": "双子",
       "reading": "ふたご",
       "meaning": "cặp sinh đôi; người sinh đôi",
@@ -362,6 +392,7 @@
       }
     },
     {
+      "id": "l38-v031",
       "jp": "姉妹",
       "reading": "しまい",
       "meaning": "chị em gái",
@@ -374,6 +405,7 @@
       }
     },
     {
+      "id": "l38-v032",
       "jp": "5年生",
       "reading": "ごねんせい",
       "meaning": "học sinh lớp 5; sinh viên năm 5",
@@ -386,6 +418,7 @@
       }
     },
     {
+      "id": "l38-v033",
       "jp": "似ています",
       "reading": "にています",
       "meaning": "giống; trông giống",
@@ -398,6 +431,7 @@
       }
     },
     {
+      "id": "l38-v034",
       "jp": "性格",
       "reading": "せいかく",
       "meaning": "tính cách",
@@ -410,6 +444,7 @@
       }
     },
     {
+      "id": "l38-v035",
       "jp": "おとなしい",
       "reading": "おとなしい",
       "meaning": "hiền; trầm; ngoan",
@@ -422,6 +457,7 @@
       }
     },
     {
+      "id": "l38-v036",
       "jp": "世話をします",
       "reading": "せわをします",
       "meaning": "chăm sóc; trông nom",
@@ -434,6 +470,7 @@
       }
     },
     {
+      "id": "l38-v037",
       "jp": "時間がたちます",
       "reading": "じかんがたちます",
       "meaning": "thời gian trôi qua",
@@ -446,6 +483,7 @@
       }
     },
     {
+      "id": "l38-v038",
       "jp": "大好き",
       "reading": "だいすき",
       "meaning": "rất thích; yêu thích",
@@ -458,6 +496,7 @@
       }
     },
     {
+      "id": "l38-v039",
       "jp": "クラス",
       "reading": "クラス",
       "meaning": "lớp học; lớp",
@@ -470,6 +509,7 @@
       }
     },
     {
+      "id": "l38-v040",
       "jp": "けんかします",
       "reading": "けんかします",
       "meaning": "cãi nhau; đánh nhau",
@@ -482,6 +522,7 @@
       }
     },
     {
+      "id": "l38-v041",
       "jp": "不思議（な）",
       "reading": "ふしぎ",
       "meaning": "kỳ lạ; bí ẩn; khó hiểu",

@@ -2,6 +2,7 @@
   "lesson": 42,
   "vocab": [
     {
+      "id": "l42-v001",
       "jp": "包みます",
       "reading": "つつみます",
       "meaning": "gói; bọc",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l42-v002",
       "jp": "沸かします",
       "reading": "わかします",
       "meaning": "đun sôi; làm nóng",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l42-v003",
       "jp": "混ぜます",
       "reading": "まぜます",
       "meaning": "trộn; khuấy",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l42-v004",
       "jp": "計算します",
       "reading": "けいさんします",
       "meaning": "tính toán",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l42-v005",
       "jp": "厚い",
       "reading": "あつい",
       "meaning": "dày",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l42-v006",
       "jp": "薄い",
       "reading": "うすい",
       "meaning": "mỏng; nhạt",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l42-v007",
       "jp": "弁護士",
       "reading": "べんごし",
       "meaning": "luật sư",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l42-v008",
       "jp": "音楽家",
       "reading": "おんがくか",
       "meaning": "nhạc sĩ; nhà hoạt động âm nhạc",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l42-v009",
       "jp": "子どもたち",
       "reading": "こどもたち",
       "meaning": "những đứa trẻ; trẻ em",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l42-v010",
       "jp": "二人",
       "reading": "ふたり",
       "meaning": "hai người",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l42-v011",
       "jp": "教育",
       "reading": "きょういく",
       "meaning": "giáo dục",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l42-v012",
       "jp": "歴史",
       "reading": "れきし",
       "meaning": "lịch sử",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l42-v013",
       "jp": "文化",
       "reading": "ぶんか",
       "meaning": "văn hóa",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l42-v014",
       "jp": "社会",
       "reading": "しゃかい",
       "meaning": "xã hội",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l42-v015",
       "jp": "法律",
       "reading": "ほうりつ",
       "meaning": "pháp luật; luật",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l42-v016",
       "jp": "戦争",
       "reading": "せんそう",
       "meaning": "chiến tranh",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l42-v017",
       "jp": "平和",
       "reading": "へいわ",
       "meaning": "hòa bình",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l42-v018",
       "jp": "目的",
       "reading": "もくてき",
       "meaning": "mục đích",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l42-v019",
       "jp": "安全",
       "reading": "あんぜん",
       "meaning": "an toàn",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l42-v020",
       "jp": "論文",
       "reading": "ろんぶん",
       "meaning": "luận văn; bài nghiên cứu",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l42-v021",
       "jp": "関係",
       "reading": "かんけい",
       "meaning": "quan hệ; sự liên quan",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l42-v022",
       "jp": "ミキサー",
       "reading": "ミキサー",
       "meaning": "máy xay; máy trộn",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l42-v023",
       "jp": "やかん",
       "reading": "やかん",
       "meaning": "ấm đun nước",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l42-v024",
       "jp": "栓抜き",
       "reading": "せんぬき",
       "meaning": "đồ mở nắp chai",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l42-v025",
       "jp": "缶切り",
       "reading": "かんきり",
       "meaning": "đồ khui hộp; dụng cụ mở đồ hộp",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l42-v026",
       "jp": "缶詰",
       "reading": "かんづめ",
       "meaning": "đồ hộp; thực phẩm đóng hộp",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l42-v027",
       "jp": "ふろしき",
       "reading": "ふろしき",
       "meaning": "khăn vuông dùng để gói đồ",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l42-v028",
       "jp": "そろばん",
       "reading": "そろばん",
       "meaning": "bàn tính",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l42-v029",
       "jp": "体温計",
       "reading": "たいおんけい",
       "meaning": "nhiệt kế đo thân nhiệt",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l42-v030",
       "jp": "材料",
       "reading": "ざいりょう",
       "meaning": "nguyên liệu; vật liệu",
@@ -362,6 +392,7 @@
       }
     },
     {
+      "id": "l42-v031",
       "jp": "石",
       "reading": "いし",
       "meaning": "đá; hòn đá",
@@ -374,6 +405,7 @@
       }
     },
     {
+      "id": "l42-v032",
       "jp": "ピラミッド",
       "reading": "ピラミッド",
       "meaning": "kim tự tháp",
@@ -386,6 +418,7 @@
       }
     },
     {
+      "id": "l42-v033",
       "jp": "データ",
       "reading": "データ",
       "meaning": "dữ liệu",
@@ -398,6 +431,7 @@
       }
     },
     {
+      "id": "l42-v034",
       "jp": "ファイル",
       "reading": "ファイル",
       "meaning": "tệp tin; bìa hồ sơ",
@@ -410,6 +444,7 @@
       }
     },
     {
+      "id": "l42-v035",
       "jp": "ある～",
       "reading": "ある",
       "meaning": "một... nọ; một... nào đó",
@@ -422,6 +457,7 @@
       }
     },
     {
+      "id": "l42-v036",
       "jp": "一生懸命",
       "reading": "いっしょうけんめい",
       "meaning": "hết sức; hết mình; chăm chỉ",
@@ -434,6 +470,7 @@
       }
     },
     {
+      "id": "l42-v037",
       "jp": "なぜ",
       "reading": "なぜ",
       "meaning": "tại sao",
@@ -446,6 +483,7 @@
       }
     },
     {
+      "id": "l42-v038",
       "jp": "国連",
       "reading": "こくれん",
       "meaning": "Liên Hợp Quốc",
@@ -458,6 +496,7 @@
       }
     },
     {
+      "id": "l42-v039",
       "jp": "国際連合",
       "reading": "こくさいれんごう",
       "meaning": "Liên Hợp Quốc",
@@ -470,6 +509,7 @@
       }
     },
     {
+      "id": "l42-v040",
       "jp": "ポーランド",
       "reading": "ポーランド",
       "meaning": "Ba Lan",
@@ -482,6 +522,7 @@
       }
     },
     {
+      "id": "l42-v041",
       "jp": "ローン",
       "reading": "ローン",
       "meaning": "khoản vay; khoản trả góp",
@@ -494,6 +535,7 @@
       }
     },
     {
+      "id": "l42-v042",
       "jp": "セット",
       "reading": "セット",
       "meaning": "bộ; phần ăn theo bộ; cài đặt",
@@ -506,6 +548,7 @@
       }
     },
     {
+      "id": "l42-v043",
       "jp": "あとは",
       "reading": "あとは",
       "meaning": "còn lại thì; sau đó chỉ còn",
@@ -518,6 +561,7 @@
       }
     },
     {
+      "id": "l42-v044",
       "jp": "カップラーメン",
       "reading": "カップラーメン",
       "meaning": "mì cốc; mì ăn liền đựng trong cốc",
@@ -530,6 +574,7 @@
       }
     },
     {
+      "id": "l42-v045",
       "jp": "インスタントラーメン",
       "reading": "インスタントラーメン",
       "meaning": "mì ăn liền",
@@ -542,6 +587,7 @@
       }
     },
     {
+      "id": "l42-v046",
       "jp": "なべ",
       "reading": "なべ",
       "meaning": "nồi; món lẩu",
@@ -554,6 +600,7 @@
       }
     },
     {
+      "id": "l42-v047",
       "jp": "どんぶり",
       "reading": "どんぶり",
       "meaning": "bát tô; món cơm tô",
@@ -566,6 +613,7 @@
       }
     },
     {
+      "id": "l42-v048",
       "jp": "食品",
       "reading": "しょくひん",
       "meaning": "thực phẩm",
@@ -578,6 +626,7 @@
       }
     },
     {
+      "id": "l42-v049",
       "jp": "調査",
       "reading": "ちょうさ",
       "meaning": "sự điều tra; khảo sát; nghiên cứu",
@@ -590,6 +639,7 @@
       }
     },
     {
+      "id": "l42-v050",
       "jp": "カップ",
       "reading": "カップ",
       "meaning": "cốc; tách",
@@ -602,6 +652,7 @@
       }
     },
     {
+      "id": "l42-v051",
       "jp": "また",
       "reading": "また",
       "meaning": "lại; thêm nữa; ngoài ra",
@@ -614,6 +665,7 @@
       }
     },
     {
+      "id": "l42-v052",
       "jp": "～の代わりに",
       "reading": "のかわりに",
       "meaning": "thay cho...; thay vì...",
@@ -626,6 +678,7 @@
       }
     },
     {
+      "id": "l42-v053",
       "jp": "どこででも",
       "reading": "どこででも",
       "meaning": "ở bất cứ đâu",
@@ -638,6 +691,7 @@
       }
     },
     {
+      "id": "l42-v054",
       "jp": "今では",
       "reading": "いまでは",
       "meaning": "ngày nay; hiện giờ thì",

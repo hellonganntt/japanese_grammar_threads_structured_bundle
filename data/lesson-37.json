@@ -2,6 +2,7 @@
   "lesson": 37,
   "vocab": [
     {
+      "id": "l37-v001",
       "jp": "褒めます",
       "reading": "ほめます",
       "meaning": "khen",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l37-v002",
       "jp": "しかります",
       "reading": "しかります",
       "meaning": "mắng; quở trách",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l37-v003",
       "jp": "誘います",
       "reading": "さそいます",
       "meaning": "rủ; mời",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l37-v004",
       "jp": "起こします",
       "reading": "おこします",
       "meaning": "đánh thức",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l37-v005",
       "jp": "招待します",
       "reading": "しょうたいします",
       "meaning": "mời; trân trọng mời",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l37-v006",
       "jp": "頼みます",
       "reading": "たのみます",
       "meaning": "nhờ; yêu cầu",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l37-v007",
       "jp": "注意します",
       "reading": "ちゅういします",
       "meaning": "nhắc nhở; cảnh báo; chú ý",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l37-v008",
       "jp": "とります",
       "reading": "とります",
       "meaning": "lấy; nhặt; ghi lại; chụp",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l37-v009",
       "jp": "踏みます",
       "reading": "ふみます",
       "meaning": "giẫm; đạp",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l37-v010",
       "jp": "壊します",
       "reading": "こわします",
       "meaning": "làm hỏng; phá vỡ",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l37-v011",
       "jp": "汚します",
       "reading": "よごします",
       "meaning": "làm bẩn",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l37-v012",
       "jp": "行います",
       "reading": "おこないます",
       "meaning": "tiến hành; tổ chức; thực hiện",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l37-v013",
       "jp": "輸出します",
       "reading": "ゆしゅつします",
       "meaning": "xuất khẩu",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l37-v014",
       "jp": "輸入します",
       "reading": "ゆにゅうします",
       "meaning": "nhập khẩu",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l37-v015",
       "jp": "翻訳します",
       "reading": "ほんやくします",
       "meaning": "dịch",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l37-v016",
       "jp": "発明します",
       "reading": "はつめいします",
       "meaning": "phát minh",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l37-v017",
       "jp": "発見します",
       "reading": "はっけんします",
       "meaning": "phát hiện",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l37-v018",
       "jp": "設計します",
       "reading": "せっけいします",
       "meaning": "thiết kế",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l37-v019",
       "jp": "米",
       "reading": "こめ",
       "meaning": "gạo",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l37-v020",
       "jp": "麦",
       "reading": "むぎ",
       "meaning": "lúa mì; lúa mạch",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l37-v021",
       "jp": "石油",
       "reading": "せきゆ",
       "meaning": "dầu mỏ",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l37-v022",
       "jp": "原料",
       "reading": "げんりょう",
       "meaning": "nguyên liệu",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l37-v023",
       "jp": "デート",
       "reading": "デート",
       "meaning": "buổi hẹn hò",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l37-v024",
       "jp": "泥棒",
       "reading": "どろぼう",
       "meaning": "kẻ trộm",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l37-v025",
       "jp": "警官",
       "reading": "けいかん",
       "meaning": "cảnh sát",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l37-v026",
       "jp": "建築家",
       "reading": "けんちくか",
       "meaning": "kiến trúc sư",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l37-v027",
       "jp": "科学者",
       "reading": "かがくしゃ",
       "meaning": "nhà khoa học",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l37-v028",
       "jp": "漫画",
       "reading": "まんが",
       "meaning": "truyện tranh; manga",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l37-v029",
       "jp": "世界中",
       "reading": "せかいじゅう",
       "meaning": "khắp thế giới",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l37-v030",
       "jp": "ー中",
       "reading": "ちゅう",
       "meaning": "đang trong; suốt",
@@ -362,6 +392,7 @@
       }
     },
     {
+      "id": "l37-v031",
       "jp": "―によって",
       "reading": "によって",
       "meaning": "bởi; do; tùy theo",
@@ -374,6 +405,7 @@
       }
     },
     {
+      "id": "l37-v032",
       "jp": "よかったですね",
       "reading": "よかったですね",
       "meaning": "tốt quá nhỉ; mừng cho bạn quá",
@@ -386,6 +418,7 @@
       }
     },
     {
+      "id": "l37-v033",
       "jp": "埋め立てます",
       "reading": "うめたてます",
       "meaning": "lấp đất; lấn biển; san lấp",
@@ -398,6 +431,7 @@
       }
     },
     {
+      "id": "l37-v034",
       "jp": "技術",
       "reading": "ぎじゅつ",
       "meaning": "kỹ thuật; công nghệ",
@@ -410,6 +444,7 @@
       }
     },
     {
+      "id": "l37-v035",
       "jp": "土地",
       "reading": "とち",
       "meaning": "đất; khu đất",
@@ -422,6 +457,7 @@
       }
     },
     {
+      "id": "l37-v036",
       "jp": "騒音",
       "reading": "そうおん",
       "meaning": "tiếng ồn",
@@ -434,6 +470,7 @@
       }
     },
     {
+      "id": "l37-v037",
       "jp": "利用します",
       "reading": "りようします",
       "meaning": "sử dụng; tận dụng",
@@ -446,6 +483,7 @@
       }
     },
     {
+      "id": "l37-v038",
       "jp": "アクセス",
       "reading": "アクセス",
       "meaning": "truy cập; đi đến; tiếp cận",
@@ -458,6 +496,7 @@
       }
     },
     {
+      "id": "l37-v039",
       "jp": "ドミニカ",
       "reading": "ドミニカ",
       "meaning": "Dominica",
@@ -470,6 +509,7 @@
       }
     },
     {
+      "id": "l37-v040",
       "jp": "ー世紀",
       "reading": "せいき",
       "meaning": "thế kỷ",
@@ -482,6 +522,7 @@
       }
     },
     {
+      "id": "l37-v041",
       "jp": "豪華（な）",
       "reading": "ごうか",
       "meaning": "xa hoa; lộng lẫy",
@@ -494,6 +535,7 @@
       }
     },
     {
+      "id": "l37-v042",
       "jp": "彫刻",
       "reading": "ちょうこく",
       "meaning": "điêu khắc; tượng điêu khắc",
@@ -506,6 +548,7 @@
       }
     },
     {
+      "id": "l37-v043",
       "jp": "眠ります",
       "reading": "ねむります",
       "meaning": "ngủ",
@@ -518,6 +561,7 @@
       }
     },
     {
+      "id": "l37-v044",
       "jp": "彫ります",
       "reading": "ほります",
       "meaning": "khắc; tạc",
@@ -530,6 +574,7 @@
       }
     },
     {
+      "id": "l37-v045",
       "jp": "仲間",
       "reading": "なかま",
       "meaning": "đồng đội; bạn cùng nhóm; đồng hành",
@@ -542,6 +587,7 @@
       }
     },
     {
+      "id": "l37-v046",
       "jp": "そのあと",
       "reading": "そのあと",
       "meaning": "sau đó",
@@ -554,6 +600,7 @@
       }
     },
     {
+      "id": "l37-v047",
       "jp": "一生懸命",
       "reading": "いっしょうけんめい",
       "meaning": "hết sức; chăm chỉ",
@@ -566,6 +613,7 @@
       }
     },
     {
+      "id": "l37-v048",
       "jp": "ねずみ",
       "reading": "ねずみ",
       "meaning": "chuột",
@@ -578,6 +626,7 @@
       }
     },
     {
+      "id": "l37-v049",
       "jp": "一匹もいません",
       "reading": "いっぴきもいません",
       "meaning": "không có con nào cả",

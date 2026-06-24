@@ -17,10 +17,35 @@
 
   <section class="intro">
     <h1>Study Japanese Vocabulary</h1>
-    <p>Practice each lesson with flashcards, audio, shuffle, quizzes, and hands-free review.</p>
+    <p>Practice each lesson or use Daily Review to study words when they are due.</p>
   </section>
 
-  <section class="filter-section">
+  <section class="study-dashboard" id="studyDashboard">
+    <div class="study-dashboard-main">
+      <div>
+        <div class="study-dashboard-label">Spaced repetition</div>
+        <h2>Daily Review</h2>
+        <div class="study-dashboard-stats" id="srsDashboardStats">Loading vocabulary…</div>
+      </div>
+      <button class="study-primary-btn" id="startDailyReviewBtn" type="button" disabled>Start Review</button>
+    </div>
+    <div class="drive-toolbar">
+      <div>
+        <div class="drive-title">Google Drive</div>
+        <div class="drive-status" id="driveStatus">Local only</div>
+      </div>
+      <div class="drive-actions">
+        <button class="study-secondary-btn" id="connectDriveBtn" type="button">Connect Drive</button>
+        <button class="study-secondary-btn" id="syncDriveBtn" type="button" hidden>Sync Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="daily-review-section" id="dailyReviewSection" hidden>
+    <div id="dailyReviewContent"></div>
+  </section>
+
+  <section class="filter-section" id="lessonStudySection">
     <div class="filter-label">Lessons</div>
     <nav class="filters lesson-filters" id="lessonFilters">
     </nav>
@@ -38,6 +63,9 @@
 </div>
 <div class="toast" id="toast"></div>
 
+<script src="./assets/config.js"></script>
+<script src="./assets/srs.js"></script>
+<script src="https://accounts.google.com/gsi/client" async></script>
 <script src="./assets/app.js" defer></script>
 </body>
 </html>

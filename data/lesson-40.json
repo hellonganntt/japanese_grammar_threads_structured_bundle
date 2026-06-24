@@ -2,6 +2,7 @@
   "lesson": 40,
   "vocab": [
     {
+      "id": "l40-v001",
       "jp": "数えます",
       "reading": "かぞえます",
       "meaning": "đếm",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l40-v002",
       "jp": "測ります／量ります",
       "reading": "はかります",
       "meaning": "đo; cân; đo lường",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l40-v003",
       "jp": "確かめます",
       "reading": "たしかめます",
       "meaning": "xác nhận; kiểm tra cho chắc",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l40-v004",
       "jp": "合います",
       "reading": "あいます",
       "meaning": "hợp; vừa; phù hợp",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l40-v005",
       "jp": "出発します",
       "reading": "しゅっぱつします",
       "meaning": "xuất phát; khởi hành",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l40-v006",
       "jp": "到着します",
       "reading": "とうちゃくします",
       "meaning": "đến nơi; tới nơi",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l40-v007",
       "jp": "酔います",
       "reading": "よいます",
       "meaning": "say; bị say",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l40-v008",
       "jp": "危険（な）",
       "reading": "きけん",
       "meaning": "nguy hiểm",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l40-v009",
       "jp": "必要（な）",
       "reading": "ひつよう",
       "meaning": "cần thiết",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l40-v010",
       "jp": "宇宙",
       "reading": "うちゅう",
       "meaning": "vũ trụ; không gian",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l40-v011",
       "jp": "地球",
       "reading": "ちきゅう",
       "meaning": "Trái Đất",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l40-v012",
       "jp": "忘年会",
       "reading": "ぼうねんかい",
       "meaning": "tiệc cuối năm",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l40-v013",
       "jp": "新年会",
       "reading": "しんねんかい",
       "meaning": "tiệc đầu năm",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l40-v014",
       "jp": "二次会",
       "reading": "にじかい",
       "meaning": "tăng hai; buổi tiệc tiếp theo",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l40-v015",
       "jp": "大会",
       "reading": "たいかい",
       "meaning": "đại hội; cuộc thi; giải đấu",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l40-v016",
       "jp": "マラソン",
       "reading": "マラソン",
       "meaning": "marathon; chạy đường dài",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l40-v017",
       "jp": "コンテスト",
       "reading": "コンテスト",
       "meaning": "cuộc thi",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l40-v018",
       "jp": "表",
       "reading": "おもて",
       "meaning": "mặt trước; mặt ngoài",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l40-v019",
       "jp": "裏",
       "reading": "うら",
       "meaning": "mặt sau; mặt trái; phía sau",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l40-v020",
       "jp": "返事",
       "reading": "へんじ",
       "meaning": "câu trả lời; hồi âm",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l40-v021",
       "jp": "申し込み",
       "reading": "もうしこみ",
       "meaning": "sự đăng ký; đơn đăng ký",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l40-v022",
       "jp": "本当",
       "reading": "ほんとう",
       "meaning": "sự thật; thật",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l40-v023",
       "jp": "まちがい",
       "reading": "まちがい",
       "meaning": "lỗi; sự nhầm lẫn",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l40-v024",
       "jp": "傷",
       "reading": "きず",
       "meaning": "vết thương; vết xước",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l40-v025",
       "jp": "ズボン",
       "reading": "ズボン",
       "meaning": "quần dài",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l40-v026",
       "jp": "長さ",
       "reading": "ながさ",
       "meaning": "chiều dài; độ dài",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l40-v027",
       "jp": "重さ",
       "reading": "おもさ",
       "meaning": "cân nặng; trọng lượng",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l40-v028",
       "jp": "高さ",
       "reading": "たかさ",
       "meaning": "chiều cao; độ cao",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l40-v029",
       "jp": "大きさ",
       "reading": "おおきさ",
       "meaning": "kích thước; độ lớn",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l40-v030",
       "jp": "～便",
       "reading": "びん",
       "meaning": "chuyến; chuyến bay/chuyến gửi",
@@ -362,6 +392,7 @@
       }
     },
     {
+      "id": "l40-v031",
       "jp": "～号",
       "reading": "ごう",
       "meaning": "số; hiệu; chuyến số...",
@@ -374,6 +405,7 @@
       }
     },
     {
+      "id": "l40-v032",
       "jp": "～個",
       "reading": "こ",
       "meaning": "cái; viên; món",
@@ -386,6 +418,7 @@
       }
     },
     {
+      "id": "l40-v033",
       "jp": "～本",
       "reading": "ほん",
       "meaning": "cây; chiếc; chai",
@@ -398,6 +431,7 @@
       }
     },
     {
+      "id": "l40-v034",
       "jp": "～杯",
       "reading": "はい",
       "meaning": "ly; chén; bát",
@@ -410,6 +444,7 @@
       }
     },
     {
+      "id": "l40-v035",
       "jp": "～キロ",
       "reading": "キロ",
       "meaning": "ki-lô; ki-lô-mét; ki-lô-gam",
@@ -422,6 +457,7 @@
       }
     },
     {
+      "id": "l40-v036",
       "jp": "～グラム",
       "reading": "グラム",
       "meaning": "gam",
@@ -434,6 +470,7 @@
       }
     },
     {
+      "id": "l40-v037",
       "jp": "～センチ",
       "reading": "センチ",
       "meaning": "xăng-ti-mét",
@@ -446,6 +483,7 @@
       }
     },
     {
+      "id": "l40-v038",
       "jp": "～ミリ",
       "reading": "ミリ",
       "meaning": "mi-li-mét; mi-li",
@@ -458,6 +496,7 @@
       }
     },
     {
+      "id": "l40-v039",
       "jp": "～以上",
       "reading": "いじょう",
       "meaning": "từ... trở lên; hơn hoặc bằng",
@@ -470,6 +509,7 @@
       }
     },
     {
+      "id": "l40-v040",
       "jp": "～以下",
       "reading": "いか",
       "meaning": "từ... trở xuống; dưới hoặc bằng",
@@ -482,6 +522,7 @@
       }
     },
     {
+      "id": "l40-v041",
       "jp": "さあ",
       "reading": "さあ",
       "meaning": "nào; ừm; không biết nữa",
@@ -494,6 +535,7 @@
       }
     },
     {
+      "id": "l40-v042",
       "jp": "どうでしょうか",
       "reading": "どうでしょうか",
       "meaning": "thế nào ạ; không biết thế nào",
@@ -506,6 +548,7 @@
       }
     },
     {
+      "id": "l40-v043",
       "jp": "クラス",
       "reading": "クラス",
       "meaning": "lớp học; lớp",
@@ -518,6 +561,7 @@
       }
     },
     {
+      "id": "l40-v044",
       "jp": "テスト",
       "reading": "テスト",
       "meaning": "bài kiểm tra",
@@ -530,6 +574,7 @@
       }
     },
     {
+      "id": "l40-v045",
       "jp": "成績",
       "reading": "せいせき",
       "meaning": "thành tích; điểm số; kết quả học tập",
@@ -542,6 +587,7 @@
       }
     },
     {
+      "id": "l40-v046",
       "jp": "ところで",
       "reading": "ところで",
       "meaning": "nhân tiện; mà này",
@@ -554,6 +600,7 @@
       }
     },
     {
+      "id": "l40-v047",
       "jp": "いらっしゃいます",
       "reading": "いらっしゃいます",
       "meaning": "ở; đi; đến (kính ngữ)",
@@ -566,6 +613,7 @@
       }
     },
     {
+      "id": "l40-v048",
       "jp": "様子",
       "reading": "ようす",
       "meaning": "tình hình; vẻ; dáng vẻ",
@@ -578,6 +626,7 @@
       }
     },
     {
+      "id": "l40-v049",
       "jp": "事件",
       "reading": "じけん",
       "meaning": "vụ việc; sự kiện; vụ án",
@@ -590,6 +639,7 @@
       }
     },
     {
+      "id": "l40-v050",
       "jp": "爆弾",
       "reading": "ばくだん",
       "meaning": "bom",
@@ -602,6 +652,7 @@
       }
     },
     {
+      "id": "l40-v051",
       "jp": "積みます",
       "reading": "つみます",
       "meaning": "chất lên; xếp lên",
@@ -614,6 +665,7 @@
       }
     },
     {
+      "id": "l40-v052",
       "jp": "運転手",
       "reading": "うんてんしゅ",
       "meaning": "tài xế; người lái xe",
@@ -626,6 +678,7 @@
       }
     },
     {
+      "id": "l40-v053",
       "jp": "離れた",
       "reading": "はなれた",
       "meaning": "cách xa; rời xa",
@@ -638,6 +691,7 @@
       }
     },
     {
+      "id": "l40-v054",
       "jp": "が",
       "reading": "が",
       "meaning": "nhưng; tuy nhiên",
@@ -650,6 +704,7 @@
       }
     },
     {
+      "id": "l40-v055",
       "jp": "急に",
       "reading": "きゅうに",
       "meaning": "đột nhiên; bất chợt",
@@ -662,6 +717,7 @@
       }
     },
     {
+      "id": "l40-v056",
       "jp": "動かします",
       "reading": "うごかします",
       "meaning": "di chuyển; làm cho chuyển động",
@@ -674,6 +730,7 @@
       }
     },
     {
+      "id": "l40-v057",
       "jp": "一所懸命",
       "reading": "いっしょけんめい",
       "meaning": "hết sức; chăm chỉ; nỗ lực hết mình",

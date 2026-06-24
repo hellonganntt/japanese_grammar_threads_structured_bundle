@@ -5,6 +5,10 @@
   // Optional lesson-level vocabulary list shown in the Vocabulary panel.
   "vocab": [
     {
+      // Required permanent SRS identifier. Assign once using l{lesson}-v{number}
+      // and never change it when vocabulary entries are reordered.
+      "id": "l36-v001",
+
       // Japanese headword in kana/kanji.
       "jp": "話せる",
 

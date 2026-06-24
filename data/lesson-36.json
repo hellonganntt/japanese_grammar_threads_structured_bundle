@@ -2,6 +2,7 @@
   "lesson": 36,
   "vocab": [
     {
+      "id": "l36-v001",
       "jp": "届きます",
       "reading": "とどきます",
       "meaning": "được gửi tới; đến nơi",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l36-v002",
       "jp": "出ます",
       "reading": "でます",
       "meaning": "ra; xuất hiện; tham gia",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l36-v003",
       "jp": "打ちます",
       "reading": "うちます",
       "meaning": "đánh; gõ; đánh máy",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l36-v004",
       "jp": "彫金ます",
       "reading": "ちょうきんます",
       "meaning": "khắc kim loại",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l36-v005",
       "jp": "太ります",
       "reading": "ふとります",
       "meaning": "béo lên; tăng cân",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l36-v006",
       "jp": "やせます",
       "reading": "やせます",
       "meaning": "gầy đi; giảm cân",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l36-v007",
       "jp": "過ぎます",
       "reading": "すぎます",
       "meaning": "quá; vượt quá",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l36-v008",
       "jp": "なれます",
       "reading": "なれます",
       "meaning": "quen; thành thạo",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l36-v009",
       "jp": "固い",
       "reading": "かたい",
       "meaning": "cứng; chắc",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l36-v010",
       "jp": "軟らかい",
       "reading": "やわらかい",
       "meaning": "mềm",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l36-v011",
       "jp": "電子ー",
       "reading": "でんし",
       "meaning": "điện tử; điện",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l36-v012",
       "jp": "携帯ー",
       "reading": "けいたい",
       "meaning": "di động; cầm tay",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l36-v013",
       "jp": "工場",
       "reading": "こうじょう",
       "meaning": "nhà máy",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l36-v014",
       "jp": "健康",
       "reading": "けんこう",
       "meaning": "sức khỏe",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l36-v015",
       "jp": "剣道",
       "reading": "けんどう",
       "meaning": "kiếm đạo",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l36-v016",
       "jp": "毎週",
       "reading": "まいしゅう",
       "meaning": "mỗi tuần",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l36-v017",
       "jp": "毎月",
       "reading": "まいつき",
       "meaning": "mỗi tháng",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l36-v018",
       "jp": "毎年",
       "reading": "まいとし",
       "meaning": "mỗi năm",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l36-v019",
       "jp": "やっと",
       "reading": "やっと",
       "meaning": "cuối cùng cũng; mãi mới",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l36-v020",
       "jp": "かなり",
       "reading": "かなり",
       "meaning": "khá; tương đối; đáng kể",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l36-v021",
       "jp": "必ず",
       "reading": "かならず",
       "meaning": "nhất định; chắc chắn",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l36-v022",
       "jp": "絶対に",
       "reading": "ぜったいに",
       "meaning": "tuyệt đối; chắc chắn",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l36-v023",
       "jp": "上手に",
       "reading": "じょうずに",
       "meaning": "khéo léo; giỏi; một cách tốt",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l36-v024",
       "jp": "できるだけ",
       "reading": "できるだけ",
       "meaning": "càng... càng tốt; hết sức có thể",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l36-v025",
       "jp": "このごろ",
       "reading": "このごろ",
       "meaning": "dạo này; gần đây",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l36-v026",
       "jp": "そのほうがー",
       "reading": "そのほうが",
       "meaning": "như thế thì; như vậy thì",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l36-v027",
       "jp": "お客様",
       "reading": "おきゃくさま",
       "meaning": "quý khách; khách hàng",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l36-v028",
       "jp": "特別（な）",
       "reading": "とくべつ",
       "meaning": "đặc biệt",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l36-v029",
       "jp": "していらっしゃいます",
       "reading": "していらっしゃいます",
       "meaning": "đang làm; đang thực hiện (kính ngữ)",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l36-v030",
       "jp": "水泳",
       "reading": "すいえい",
       "meaning": "bơi lội",
@@ -362,6 +392,7 @@
       }
     },
     {
+      "id": "l36-v031",
       "jp": "～とか、～とか",
       "reading": "とか",
       "meaning": "như là... hay là...; chẳng hạn như...",
@@ -374,6 +405,7 @@
       }
     },
     {
+      "id": "l36-v032",
       "jp": "タンゴ",
       "reading": "タンゴ",
       "meaning": "tango",
@@ -386,6 +418,7 @@
       }
     },
     {
+      "id": "l36-v033",
       "jp": "チャレンジします",
       "reading": "チャレンジします",
       "meaning": "thử thách; thử làm",
@@ -398,6 +431,7 @@
       }
     },
     {
+      "id": "l36-v034",
       "jp": "気持ち",
       "reading": "きもち",
       "meaning": "cảm giác; tâm trạng; tình cảm",
@@ -410,6 +444,7 @@
       }
     },
     {
+      "id": "l36-v035",
       "jp": "乗り物",
       "reading": "のりもの",
       "meaning": "phương tiện đi lại",
@@ -422,6 +457,7 @@
       }
     },
     {
+      "id": "l36-v036",
       "jp": "歴史",
       "reading": "れきし",
       "meaning": "lịch sử",
@@ -434,6 +470,7 @@
       }
     },
     {
+      "id": "l36-v037",
       "jp": "ー世紀",
       "reading": "せいき",
       "meaning": "thế kỷ",
@@ -446,6 +483,7 @@
       }
     },
     {
+      "id": "l36-v038",
       "jp": "とおく",
       "reading": "とおく",
       "meaning": "xa",
@@ -458,6 +496,7 @@
       }
     },
     {
+      "id": "l36-v039",
       "jp": "汽車",
       "reading": "きしゃ",
       "meaning": "tàu hỏa; xe lửa",
@@ -470,6 +509,7 @@
       }
     },
     {
+      "id": "l36-v040",
       "jp": "汽船",
       "reading": "きせん",
       "meaning": "tàu thủy",
@@ -482,6 +522,7 @@
       }
     },
     {
+      "id": "l36-v041",
       "jp": "大勢の（人）",
       "reading": "おおぜいのひと",
       "meaning": "rất đông người",
@@ -494,6 +535,7 @@
       }
     },
     {
+      "id": "l36-v042",
       "jp": "運びます",
       "reading": "はこびます",
       "meaning": "mang; vận chuyển",
@@ -506,6 +548,7 @@
       }
     },
     {
+      "id": "l36-v043",
       "jp": "安全（な）",
       "reading": "あんぜん",
       "meaning": "an toàn",
@@ -518,6 +561,7 @@
       }
     },
     {
+      "id": "l36-v044",
       "jp": "飛びます",
       "reading": "とびます",
       "meaning": "bay; nhảy",
@@ -530,6 +574,7 @@
       }
     },
     {
+      "id": "l36-v045",
       "jp": "宇宙",
       "reading": "うちゅう",
       "meaning": "vũ trụ",
@@ -542,6 +587,7 @@
       }
     },
     {
+      "id": "l36-v046",
       "jp": "地球",
       "reading": "ちきゅう",
       "meaning": "Trái Đất",

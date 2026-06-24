@@ -22,9 +22,30 @@ let vocabQuizMissedQuestions = [];
 let vocabQuizIsReview = false;
 let vocabQuizReviewCompleted = false;
 let vocabQuizAutoAdvanceTimer = null;
+let vocabularyCatalog = [];
+let appView = "lessons";
+let dailyReviewQueue = [];
+let dailyReviewIndex = 0;
+let dailyReviewRevealed = false;
+let dailyReviewCompleted = false;
+let dailyReviewSessionStats = null;
+let driveTokenClient = null;
+let driveAccessToken = null;
+let driveAccessTokenExpiresAt = 0;
+let driveAuthorizationPending = false;
+let driveSyncInFlight = false;
+let driveLastError = "";
 
 const VOCAB_CHUNK_SIZE = 10;
 const VOCAB_QUIZ_AUTO_ADVANCE_DELAY = 1500;
+const SRS_STORAGE_KEY = "japaneseVocabSrs:v1";
+const SRS_DRIVE_META_KEY = "japaneseVocabSrsDrive:v1";
+const SRS_NEW_CARD_LIMIT = 10;
+const SRS_DRIVE_FILENAME = "japanese-vocab-progress.json";
+const GOOGLE_DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.appdata";
+const GOOGLE_CLIENT_ID = window.APP_CONFIG?.googleClientId?.trim() || "";
+let srsProgress = loadSrsProgress();
+let driveMetadata = loadDriveMetadata();
 
 const AUDIO_RESULT = {
   BLOCKED: "blocked",
@@ -40,6 +61,115 @@ function escapeHtml(value){
     '"': "&quot;",
     "'": "&#039;"
   })[char]);
+}
+
+function loadSrsProgress(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || "null");
+    return SRSCore.normalizeProgress(saved);
+  }catch(error){
+    console.warn("Could not load SRS progress.", error);
+    return SRSCore.createEmptyProgress();
+  }
+}
+
+function createDeviceId(){
+  if(globalThis.crypto?.randomUUID){
+    return globalThis.crypto.randomUUID();
+  }
+
+  return `device-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function loadDriveMetadata(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(SRS_DRIVE_META_KEY) || "null");
+    return {
+      driveFileId: typeof saved?.driveFileId === "string" ? saved.driveFileId : "",
+      lastSyncedAt: typeof saved?.lastSyncedAt === "string" ? saved.lastSyncedAt : "",
+      deviceId: typeof saved?.deviceId === "string" ? saved.deviceId : createDeviceId(),
+      dirty: saved?.dirty === true
+    };
+  }catch(error){
+    console.warn("Could not load Drive metadata.", error);
+    return {
+      driveFileId: "",
+      lastSyncedAt: "",
+      deviceId: createDeviceId(),
+      dirty: false
+    };
+  }
+}
+
+function saveDriveMetadata(){
+  localStorage.setItem(SRS_DRIVE_META_KEY, JSON.stringify(driveMetadata));
+}
+
+function saveSrsProgress(progress, options = {}){
+  srsProgress = SRSCore.normalizeProgress(progress);
+  localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(srsProgress));
+
+  if(options.markDirty !== false){
+    driveMetadata.dirty = true;
+    saveDriveMetadata();
+  }
+
+  renderSrsDashboard();
+  renderDriveStatus();
+}
+
+function buildVocabularyCatalog(){
+  const seen = new Set();
+  const catalog = [];
+  const sortedLessons = [...lessonFiles].sort((left, right) => Number(left.lesson) - Number(right.lesson));
+
+  sortedLessons.forEach(lessonEntry => {
+    const vocab = lessonCache.get(String(lessonEntry.lesson))?.vocab || [];
+    vocab.forEach((item, index) => {
+      if(!item?.id){
+        throw new Error(`Lesson ${lessonEntry.lesson} vocabulary ${index + 1} is missing an id.`);
+      }
+      if(seen.has(item.id)){
+        throw new Error(`Duplicate vocabulary id: ${item.id}`);
+      }
+
+      seen.add(item.id);
+      catalog.push({
+        ...item,
+        lesson: Number(lessonEntry.lesson),
+        lessonIndex: index,
+        order: catalog.length
+      });
+    });
+  });
+
+  vocabularyCatalog = catalog;
+}
+
+function getSrsStats(){
+  return SRSCore.getProgressStats(
+    vocabularyCatalog,
+    srsProgress,
+    new Date(),
+    SRS_NEW_CARD_LIMIT
+  );
+}
+
+function renderSrsDashboard(){
+  const statsElement = document.getElementById("srsDashboardStats");
+  const startButton = document.getElementById("startDailyReviewBtn");
+  if(!statsElement || !startButton) return;
+
+  if(!vocabularyCatalog.length){
+    statsElement.textContent = "No vocabulary loaded.";
+    startButton.disabled = true;
+    return;
+  }
+
+  const stats = getSrsStats();
+  statsElement.textContent = `${stats.due} due · ${stats.newToday} new today · ${stats.learning} learning · ${stats.mature} mature`;
+  startButton.disabled = stats.due + stats.newToday === 0;
+  startButton.textContent = stats.due + stats.newToday === 0 ? "All Caught Up" : "Start Review";
 }
 
 function renderAudioButton(src, label){
@@ -819,6 +949,460 @@ function bindVocabInteractions(vocab){
   });
 }
 
+function formatSrsInterval(card){
+  if(card.state === "learning" && card.intervalDays === 0) return "10m";
+  return `${card.intervalDays}d`;
+}
+
+function startDailyReview(){
+  stopVocabIdleLearning({ disable: true });
+  stopCurrentAudio();
+  cancelVocabQuizAutoAdvance();
+  dailyReviewQueue = SRSCore.buildDailyQueue(
+    vocabularyCatalog,
+    srsProgress,
+    new Date(),
+    SRS_NEW_CARD_LIMIT
+  );
+  dailyReviewIndex = 0;
+  dailyReviewRevealed = false;
+  dailyReviewCompleted = dailyReviewQueue.length === 0;
+  dailyReviewSessionStats = {
+    started: dailyReviewQueue.length,
+    reviewed: 0,
+    ratings: {
+      again: 0,
+      hard: 0,
+      good: 0,
+      easy: 0
+    }
+  };
+  appView = "daily";
+  renderAppView();
+}
+
+function exitDailyReview(){
+  stopCurrentAudio();
+  appView = "lessons";
+  renderAppView();
+}
+
+function completeDailyReview(){
+  dailyReviewCompleted = true;
+  renderDailyReview();
+
+  if(hasValidDriveToken()){
+    syncDriveProgress({ quiet: true });
+  }
+}
+
+function rateCurrentDailyReviewCard(rating){
+  const entry = dailyReviewQueue[dailyReviewIndex];
+  if(!entry || !dailyReviewRevealed) return;
+
+  const now = new Date();
+  const nextCard = SRSCore.rateCard(srsProgress.cards[entry.id], rating, now);
+  const nextProgress = {
+    ...srsProgress,
+    updatedAt: now.toISOString(),
+    cards: {
+      ...srsProgress.cards,
+      [entry.id]: nextCard
+    }
+  };
+
+  saveSrsProgress(nextProgress);
+  dailyReviewSessionStats.reviewed += 1;
+  dailyReviewSessionStats.ratings[rating] += 1;
+  dailyReviewIndex += 1;
+  dailyReviewRevealed = false;
+  stopCurrentAudio();
+
+  if(dailyReviewIndex >= dailyReviewQueue.length){
+    completeDailyReview();
+  }else{
+    renderDailyReview();
+  }
+}
+
+function renderDailyReview(){
+  const container = document.getElementById("dailyReviewContent");
+  if(!container) return;
+
+  if(dailyReviewCompleted || dailyReviewIndex >= dailyReviewQueue.length){
+    const session = dailyReviewSessionStats || {
+      reviewed: 0,
+      ratings: { again: 0, hard: 0, good: 0, easy: 0 }
+    };
+    const stats = getSrsStats();
+    container.innerHTML = `
+      <div class="srs-shell">
+        <div class="srs-toolbar">
+          <div class="srs-progress">Daily Review</div>
+          <div class="srs-toolbar-actions">
+            <button class="study-secondary-btn" id="srsBackBtn" type="button">Back to Lessons</button>
+          </div>
+        </div>
+        <div class="srs-summary">
+          <div class="srs-card-label">Session complete</div>
+          <h2>${session.reviewed} ${session.reviewed === 1 ? "card" : "cards"} reviewed</h2>
+          <div class="srs-summary-stats">
+            Again ${session.ratings.again} · Hard ${session.ratings.hard} · Good ${session.ratings.good} · Easy ${session.ratings.easy}<br>
+            ${stats.due} due now · ${stats.learning} learning · ${stats.mature} mature
+          </div>
+          <button class="study-primary-btn" id="srsDoneBtn" type="button">Done</button>
+        </div>
+      </div>
+    `;
+    bindDailyReviewInteractions();
+    return;
+  }
+
+  const entry = dailyReviewQueue[dailyReviewIndex];
+  const previousCard = srsProgress.cards[entry.id];
+  const previewTime = new Date();
+  const ratingIntervals = Object.fromEntries(
+    ["again", "hard", "good", "easy"].map(rating => [
+      rating,
+      formatSrsInterval(SRSCore.rateCard(previousCard, rating, previewTime))
+    ])
+  );
+
+  container.innerHTML = `
+    <div class="srs-shell">
+      <div class="srs-toolbar">
+        <div class="srs-progress">
+          ${dailyReviewIndex + 1} / ${dailyReviewQueue.length} · Lesson ${entry.lesson} · ${entry.queueType === "new" ? "New" : "Due"}
+        </div>
+        <div class="srs-toolbar-actions">
+          <button class="study-secondary-btn" id="srsBackBtn" type="button">Back to Lessons</button>
+        </div>
+      </div>
+      <article class="srs-card">
+        <div class="srs-card-label">Recall the meaning</div>
+        <div class="srs-card-main">
+          <span>${escapeHtml(entry.jp)}</span>
+          ${renderAudioButton(entry.audio?.word, "Play vocabulary audio")}
+        </div>
+        ${dailyReviewRevealed ? `
+          <div class="srs-card-answer">
+            ${entry.reading ? `<div class="srs-card-reading">${escapeHtml(entry.reading)}</div>` : ""}
+            ${entry.pos ? `<div class="srs-card-pos">${escapeHtml(entry.pos)}</div>` : ""}
+            <div class="srs-card-meaning">${escapeHtml(entry.meaning)}</div>
+            ${entry.note ? `<div class="srs-card-note">${escapeHtml(entry.note)}</div>` : ""}
+            ${entry.example ? `<div class="srs-card-example"><span>${escapeHtml(entry.example)}</span>${renderAudioButton(entry.audio?.example, "Play example audio")}</div>` : ""}
+          </div>
+        ` : ""}
+      </article>
+      ${dailyReviewRevealed ? `
+        <div class="srs-ratings" aria-label="Rate recall">
+          ${["again", "hard", "good", "easy"].map(rating => `
+            <button class="srs-rating-btn" type="button" data-rating="${rating}">
+              ${rating[0].toUpperCase()}${rating.slice(1)}
+              <small>${ratingIntervals[rating]}</small>
+            </button>
+          `).join("")}
+        </div>
+      ` : '<button class="srs-reveal-btn" id="srsRevealBtn" type="button">Show Answer</button>'}
+    </div>
+  `;
+  bindDailyReviewInteractions();
+}
+
+function bindDailyReviewInteractions(){
+  document.getElementById("srsBackBtn")?.addEventListener("click", exitDailyReview);
+  document.getElementById("srsDoneBtn")?.addEventListener("click", exitDailyReview);
+  document.getElementById("srsRevealBtn")?.addEventListener("click", () => {
+    dailyReviewRevealed = true;
+    renderDailyReview();
+  });
+  document.querySelectorAll(".srs-rating-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      rateCurrentDailyReviewCard(button.dataset.rating);
+    });
+  });
+  document.querySelectorAll("#dailyReviewContent .audio-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      playAudioSequence([button.dataset.audioSrc]);
+    });
+  });
+}
+
+function renderAppView(){
+  const dashboard = document.getElementById("studyDashboard");
+  const lessons = document.getElementById("lessonStudySection");
+  const review = document.getElementById("dailyReviewSection");
+  const isDailyReview = appView === "daily";
+
+  dashboard.hidden = isDailyReview;
+  lessons.hidden = isDailyReview;
+  review.hidden = !isDailyReview;
+
+  if(isDailyReview){
+    renderDailyReview();
+  }else{
+    renderSrsDashboard();
+    renderDriveStatus();
+  }
+}
+
+function hasValidDriveToken(){
+  return Boolean(driveAccessToken && Date.now() < driveAccessTokenExpiresAt - 30000);
+}
+
+function renderDriveStatus(){
+  const status = document.getElementById("driveStatus");
+  const connectButton = document.getElementById("connectDriveBtn");
+  const syncButton = document.getElementById("syncDriveBtn");
+  if(!status || !connectButton || !syncButton) return;
+
+  if(!GOOGLE_CLIENT_ID){
+    status.textContent = "Local only · add a Google client ID to enable sync";
+    status.dataset.state = "disconnected";
+    connectButton.textContent = "Drive Setup";
+    connectButton.disabled = false;
+    syncButton.hidden = true;
+    return;
+  }
+
+  if(driveAuthorizationPending || driveSyncInFlight){
+    status.textContent = driveAuthorizationPending ? "Connecting…" : "Syncing…";
+    status.dataset.state = "connecting";
+    connectButton.disabled = true;
+    syncButton.disabled = true;
+    return;
+  }
+
+  connectButton.disabled = false;
+  syncButton.disabled = false;
+
+  if(driveLastError){
+    status.textContent = driveLastError;
+    status.dataset.state = "error";
+  }else if(hasValidDriveToken() && driveMetadata.dirty){
+    status.textContent = "Connected · local changes not synced";
+    status.dataset.state = "unsynced";
+  }else if(hasValidDriveToken() && driveMetadata.lastSyncedAt){
+    status.textContent = `Synced ${new Date(driveMetadata.lastSyncedAt).toLocaleString()}`;
+    status.dataset.state = "synced";
+  }else{
+    status.textContent = driveMetadata.dirty ? "Local changes waiting for Drive" : "Local only";
+    status.dataset.state = driveMetadata.dirty ? "unsynced" : "disconnected";
+  }
+
+  connectButton.textContent = hasValidDriveToken() ? "Reconnect Drive" : "Connect Drive";
+  syncButton.hidden = !hasValidDriveToken();
+}
+
+function initializeDriveTokenClient(){
+  if(driveTokenClient || !GOOGLE_CLIENT_ID || !globalThis.google?.accounts?.oauth2){
+    return Boolean(driveTokenClient);
+  }
+
+  driveTokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: GOOGLE_CLIENT_ID,
+    scope: GOOGLE_DRIVE_SCOPE,
+    callback: async response => {
+      driveAuthorizationPending = false;
+      if(response?.error || !response?.access_token){
+        driveLastError = "Google Drive authorization failed";
+        renderDriveStatus();
+        return;
+      }
+
+      driveAccessToken = response.access_token;
+      driveAccessTokenExpiresAt = Date.now() + (Number(response.expires_in) || 3600) * 1000;
+      driveLastError = "";
+      renderDriveStatus();
+      await syncDriveProgress();
+    },
+    error_callback: () => {
+      driveAuthorizationPending = false;
+      driveLastError = "Google Drive connection was cancelled";
+      renderDriveStatus();
+    }
+  });
+
+  return true;
+}
+
+function connectGoogleDrive(){
+  if(!GOOGLE_CLIENT_ID){
+    showToast("Add your Google OAuth client ID in assets/config.js.");
+    return;
+  }
+
+  if(!initializeDriveTokenClient()){
+    showToast("Google sign-in is still loading. Try again.");
+    return;
+  }
+
+  driveLastError = "";
+  driveAuthorizationPending = true;
+  renderDriveStatus();
+  try{
+    driveTokenClient.requestAccessToken({ prompt: "" });
+  }catch(error){
+    driveAuthorizationPending = false;
+    driveLastError = "Could not open Google Drive authorization";
+    renderDriveStatus();
+  }
+}
+
+async function driveApiFetch(url, options = {}){
+  if(!hasValidDriveToken()){
+    driveAccessToken = null;
+    throw new Error("Google Drive authorization expired. Connect again.");
+  }
+
+  const headers = new Headers(options.headers || {});
+  headers.set("Authorization", `Bearer ${driveAccessToken}`);
+  const response = await fetch(url, {
+    ...options,
+    headers
+  });
+
+  if(response.status === 401){
+    driveAccessToken = null;
+    driveAccessTokenExpiresAt = 0;
+    throw new Error("Google Drive authorization expired. Connect again.");
+  }
+  if(!response.ok){
+    const details = await response.text();
+    throw new Error(`Google Drive request failed (${response.status}): ${details.slice(0, 160)}`);
+  }
+
+  return response;
+}
+
+function isDriveProgressDocument(value){
+  return Boolean(
+    value &&
+    typeof value === "object" &&
+    value.schemaVersion === SRSCore.SCHEMA_VERSION &&
+    value.cards &&
+    typeof value.cards === "object" &&
+    !Array.isArray(value.cards)
+  );
+}
+
+async function findDriveProgressFile(){
+  const query = encodeURIComponent(`name = '${SRS_DRIVE_FILENAME}' and trashed = false`);
+  const fields = encodeURIComponent("files(id,name,modifiedTime)");
+  const response = await driveApiFetch(
+    `https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=${query}&fields=${fields}&pageSize=10`
+  );
+  const data = await response.json();
+  return Array.isArray(data.files) ? data.files[0] || null : null;
+}
+
+async function downloadDriveProgress(fileId){
+  const response = await driveApiFetch(
+    `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}?alt=media`
+  );
+  const value = await response.json();
+
+  if(!isDriveProgressDocument(value)){
+    throw new Error("The Google Drive progress file is invalid or uses an unsupported version.");
+  }
+
+  const normalized = SRSCore.normalizeProgress(value);
+  if(Object.keys(normalized.cards).length !== Object.keys(value.cards).length){
+    throw new Error("The Google Drive progress file contains invalid card records.");
+  }
+
+  return normalized;
+}
+
+async function createDriveProgressFile(progress){
+  const boundary = `srs-${Date.now()}`;
+  const metadata = JSON.stringify({
+    name: SRS_DRIVE_FILENAME,
+    parents: ["appDataFolder"],
+    mimeType: "application/json"
+  });
+  const body = [
+    `--${boundary}`,
+    "Content-Type: application/json; charset=UTF-8",
+    "",
+    metadata,
+    `--${boundary}`,
+    "Content-Type: application/json",
+    "",
+    JSON.stringify(progress),
+    `--${boundary}--`
+  ].join("\r\n");
+
+  const response = await driveApiFetch(
+    "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": `multipart/related; boundary=${boundary}`
+      },
+      body
+    }
+  );
+  return response.json();
+}
+
+async function uploadDriveProgress(fileId, progress){
+  await driveApiFetch(
+    `https://www.googleapis.com/upload/drive/v3/files/${encodeURIComponent(fileId)}?uploadType=media`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(progress)
+    }
+  );
+}
+
+async function syncDriveProgress(options = {}){
+  if(driveSyncInFlight) return;
+  if(!hasValidDriveToken()){
+    if(!options.quiet) connectGoogleDrive();
+    return;
+  }
+
+  driveSyncInFlight = true;
+  driveLastError = "";
+  renderDriveStatus();
+
+  try{
+    let file = await findDriveProgressFile();
+    let merged = SRSCore.normalizeProgress(srsProgress);
+
+    if(file){
+      const cloud = await downloadDriveProgress(file.id);
+      merged = SRSCore.mergeProgress(srsProgress, cloud);
+      saveSrsProgress(merged, { markDirty: false });
+      await uploadDriveProgress(file.id, merged);
+    }else{
+      const created = await createDriveProgressFile(merged);
+      file = { id: created.id };
+    }
+
+    driveMetadata.driveFileId = file.id;
+    driveMetadata.lastSyncedAt = new Date().toISOString();
+    driveMetadata.dirty = false;
+    saveDriveMetadata();
+    renderSrsDashboard();
+    if(appView === "daily") renderDailyReview();
+    if(!options.quiet) showToast("Google Drive sync complete.");
+  }catch(error){
+    console.error(error);
+    driveLastError = error.message || "Google Drive sync failed";
+    driveMetadata.dirty = true;
+    saveDriveMetadata();
+    if(!options.quiet) showToast("Drive sync failed. Progress is safe locally.");
+  }finally{
+    driveSyncInFlight = false;
+    renderDriveStatus();
+  }
+}
+
 function renderVocabPanel(){
   const panel = document.getElementById("vocabPanel");
   const toggle = document.getElementById("vocabToggle");
@@ -905,6 +1489,10 @@ function renderLessonFilters(){
   });
 }
 
+document.getElementById("startDailyReviewBtn").addEventListener("click", startDailyReview);
+document.getElementById("connectDriveBtn").addEventListener("click", connectGoogleDrive);
+document.getElementById("syncDriveBtn").addEventListener("click", () => syncDriveProgress());
+
 let dark = false;
 document.getElementById("themeBtn").addEventListener("click", () => {
   dark = !dark;
@@ -962,6 +1550,7 @@ async function loadLessonData(lesson){
   }
 
   const lessonData = {
+    lesson: Number(data.lesson ?? lesson),
     vocab: Array.isArray(data.vocab) ? data.vocab : []
   };
 
@@ -982,8 +1571,12 @@ async function loadVocabForSelectedLesson(){
 async function loadVocabData(){
   try{
     await loadLessonManifest();
+    await Promise.all(lessonFiles.map(item => loadLessonData(item.lesson)));
+    buildVocabularyCatalog();
     renderLessonFilters();
     await loadVocabForSelectedLesson();
+    renderAppView();
+    renderDriveStatus();
   }catch(error){
     console.error(error);
     showToast("Cannot load the lesson list.");

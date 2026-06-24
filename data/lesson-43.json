@@ -2,6 +2,7 @@
   "lesson": 43,
   "vocab": [
     {
+      "id": "l43-v001",
       "jp": "増えます",
       "reading": "ふえます",
       "meaning": "tăng lên; nhiều lên",
@@ -14,6 +15,7 @@
       }
     },
     {
+      "id": "l43-v002",
       "jp": "減ります",
       "reading": "へります",
       "meaning": "giảm xuống; ít đi",
@@ -26,6 +28,7 @@
       }
     },
     {
+      "id": "l43-v003",
       "jp": "上がります",
       "reading": "あがります",
       "meaning": "tăng lên; lên cao",
@@ -38,6 +41,7 @@
       }
     },
     {
+      "id": "l43-v004",
       "jp": "下がります",
       "reading": "さがります",
       "meaning": "giảm xuống; hạ xuống",
@@ -50,6 +54,7 @@
       }
     },
     {
+      "id": "l43-v005",
       "jp": "切れます",
       "reading": "きれます",
       "meaning": "bị đứt; hết; bị ngắt",
@@ -62,6 +67,7 @@
       }
     },
     {
+      "id": "l43-v006",
       "jp": "とれます",
       "reading": "とれます",
       "meaning": "bị tuột; rơi ra; được lấy ra",
@@ -74,6 +80,7 @@
       }
     },
     {
+      "id": "l43-v007",
       "jp": "おちます",
       "reading": "おちます",
       "meaning": "rơi; rớt; giảm",
@@ -86,6 +93,7 @@
       }
     },
     {
+      "id": "l43-v008",
       "jp": "なくなります",
       "reading": "なくなります",
       "meaning": "hết; mất đi; không còn",
@@ -98,6 +106,7 @@
       }
     },
     {
+      "id": "l43-v009",
       "jp": "丈夫（な）",
       "reading": "じょうぶ",
       "meaning": "bền; chắc; khỏe mạnh",
@@ -110,6 +119,7 @@
       }
     },
     {
+      "id": "l43-v010",
       "jp": "変（な）",
       "reading": "へん",
       "meaning": "lạ; kỳ quặc; bất thường",
@@ -122,6 +132,7 @@
       }
     },
     {
+      "id": "l43-v011",
       "jp": "幸せ",
       "reading": "しあわせ",
       "meaning": "hạnh phúc; may mắn",
@@ -134,6 +145,7 @@
       }
     },
     {
+      "id": "l43-v012",
       "jp": "うまい",
       "reading": "うまい",
       "meaning": "ngon; giỏi; khéo",
@@ -146,6 +158,7 @@
       }
     },
     {
+      "id": "l43-v013",
       "jp": "まずい",
       "reading": "まずい",
       "meaning": "dở; không ngon; không ổn",
@@ -158,6 +171,7 @@
       }
     },
     {
+      "id": "l43-v014",
       "jp": "つまらない",
       "reading": "つまらない",
       "meaning": "chán; không thú vị; tầm thường",
@@ -170,6 +184,7 @@
       }
     },
     {
+      "id": "l43-v015",
       "jp": "ガソリン",
       "reading": "ガソリン",
       "meaning": "xăng",
@@ -182,6 +197,7 @@
       }
     },
     {
+      "id": "l43-v016",
       "jp": "火",
       "reading": "ひ",
       "meaning": "lửa; ngọn lửa",
@@ -194,6 +210,7 @@
       }
     },
     {
+      "id": "l43-v017",
       "jp": "暖房",
       "reading": "だんぼう",
       "meaning": "hệ thống sưởi; máy sưởi",
@@ -206,6 +223,7 @@
       }
     },
     {
+      "id": "l43-v018",
       "jp": "冷房",
       "reading": "れいぼう",
       "meaning": "hệ thống làm mát; máy lạnh",
@@ -218,6 +236,7 @@
       }
     },
     {
+      "id": "l43-v019",
       "jp": "センス",
       "reading": "センス",
       "meaning": "gu; khiếu thẩm mỹ; óc cảm nhận",
@@ -230,6 +249,7 @@
       }
     },
     {
+      "id": "l43-v020",
       "jp": "今にも",
       "reading": "いまにも",
       "meaning": "sắp sửa; bất cứ lúc nào cũng có thể",
@@ -242,6 +262,7 @@
       }
     },
     {
+      "id": "l43-v021",
       "jp": "わあ",
       "reading": "わあ",
       "meaning": "ồ; wow",
@@ -254,6 +275,7 @@
       }
     },
     {
+      "id": "l43-v022",
       "jp": "会員",
       "reading": "かいいん",
       "meaning": "hội viên; thành viên",
@@ -266,6 +288,7 @@
       }
     },
     {
+      "id": "l43-v023",
       "jp": "適当（な）",
       "reading": "てきとう",
       "meaning": "thích hợp; vừa phải; qua loa",
@@ -278,6 +301,7 @@
       }
     },
     {
+      "id": "l43-v024",
       "jp": "年齢",
       "reading": "ねんれい",
       "meaning": "tuổi; độ tuổi",
@@ -290,6 +314,7 @@
       }
     },
     {
+      "id": "l43-v025",
       "jp": "収入",
       "reading": "しゅうにゅう",
       "meaning": "thu nhập",
@@ -302,6 +327,7 @@
       }
     },
     {
+      "id": "l43-v026",
       "jp": "ぴったり",
       "reading": "ぴったり",
       "meaning": "vừa khít; hoàn toàn phù hợp; chính xác",
@@ -314,6 +340,7 @@
       }
     },
     {
+      "id": "l43-v027",
       "jp": "そのうえ",
       "reading": "そのうえ",
       "meaning": "hơn nữa; thêm vào đó",
@@ -326,6 +353,7 @@
       }
     },
     {
+      "id": "l43-v028",
       "jp": "～と言います",
       "reading": "といいます",
       "meaning": "nói rằng...; gọi là...",
@@ -338,6 +366,7 @@
       }
     },
     {
+      "id": "l43-v029",
       "jp": "ばら",
       "reading": "ばら",
       "meaning": "hoa hồng",
@@ -350,6 +379,7 @@
       }
     },
     {
+      "id": "l43-v030",
       "jp": "ドライブ",
       "reading": "ドライブ",
       "meaning": "chuyến đi chơi bằng ô tô; lái xe dạo",
