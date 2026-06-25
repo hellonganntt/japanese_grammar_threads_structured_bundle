@@ -65,6 +65,38 @@ function dueCard(overrides = {}){
 }
 
 {
+  const catalog = Array.from({ length: 25 }, (_, index) => ({
+    id: `daily-${index + 1}`,
+    order: index
+  }));
+  const progress = SRS.createEmptyProgress(now);
+
+  for(let index = 0; index < 7; index += 1){
+    progress.cards[catalog[index].id] = SRS.rateCard(null, "good", now);
+  }
+
+  const regularQueue = SRS.buildDailyQueue(catalog, progress, now, 10);
+  assert.equal(regularQueue.filter(item => item.queueType === "new").length, 3);
+  assert.equal(SRS.getProgressStats(catalog, progress, now, 10).newToday, 3);
+
+  const extraQueue = SRS.buildDailyQueue(catalog, progress, now, 10, 10);
+  assert.equal(extraQueue.filter(item => item.queueType === "new").length, 13);
+
+  const nextDay = new Date(now.getTime() + day);
+  const nextDayQueue = SRS.buildDailyQueue(catalog, progress, nextDay, 10);
+  assert.equal(nextDayQueue.filter(item => item.queueType === "new").length, 10);
+}
+
+{
+  const introduced = SRS.rateCard(null, "good", now);
+  const reviewedAgain = SRS.rateCard(introduced, "good", new Date(now.getTime() + day));
+  assert.equal(reviewedAgain.introducedAt, introduced.introducedAt);
+
+  const reviewedLegacyCard = SRS.rateCard(dueCard(), "good", now);
+  assert.equal(reviewedLegacyCard.introducedAt, null);
+}
+
+{
   const local = {
     schemaVersion: 1,
     updatedAt: "2026-06-24T10:00:00.000Z",

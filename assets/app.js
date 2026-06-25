@@ -36,6 +36,7 @@ let driveAuthorizationPending = false;
 let driveSyncInFlight = false;
 let driveLastError = "";
 let startReviewAfterDriveSync = false;
+let requestedReviewExtraNewLimit = 0;
 
 const VOCAB_CHUNK_SIZE = 10;
 const VOCAB_QUIZ_AUTO_ADVANCE_DELAY = 1500;
@@ -209,8 +210,15 @@ function renderSrsDashboard(){
 
   const stats = getSrsStats();
   statsElement.textContent = `${stats.due} due · ${stats.newToday} new today · ${stats.learning} learning · ${stats.mature} mature`;
-  startButton.disabled = stats.due + stats.newToday === 0;
-  startButton.textContent = stats.due + stats.newToday === 0 ? "All Caught Up" : "Start Review";
+  const hasRegularReview = stats.due + stats.newToday > 0;
+  const canLearnMore = !hasRegularReview && stats.unseen > 0;
+  startButton.disabled = !hasRegularReview && !canLearnMore;
+  startButton.dataset.extraNewLimit = canLearnMore ? String(SRS_NEW_CARD_LIMIT) : "0";
+  startButton.textContent = hasRegularReview
+    ? "Start Review"
+    : canLearnMore
+      ? `Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More`
+      : "All Caught Up";
 }
 
 function renderAudioButton(src, label){
@@ -317,8 +325,16 @@ function maybeAutoplayVocab(item){
   });
 }
 
+function maybeAutoplayDailyReviewWord(item){
+  if(dailyReviewRevealed || !item?.audio?.word) return;
+
+  playAudioSequence([item.audio.word], {
+    deferOnBlocked: true
+  });
+}
+
 function playPendingAudioAfterInteraction(event){
-  if(!pendingAudioSequence || !vocabAudioAutoplayEnabled) return;
+  if(!pendingAudioSequence) return;
 
   const pending = pendingAudioSequence;
   pendingAudioSequence = null;
@@ -964,7 +980,7 @@ function formatSrsInterval(card){
   return `${card.intervalDays}d`;
 }
 
-function startDailyReview(){
+function startDailyReview(options = {}){
   stopVocabIdleLearning({ disable: true });
   stopCurrentAudio();
   cancelVocabQuizAutoAdvance();
@@ -972,7 +988,8 @@ function startDailyReview(){
     vocabularyCatalog,
     srsProgress,
     new Date(),
-    SRS_NEW_CARD_LIMIT
+    SRS_NEW_CARD_LIMIT,
+    options.extraNewLimit || 0
   );
   dailyReviewIndex = 0;
   dailyReviewRevealed = false;
@@ -993,6 +1010,7 @@ function startDailyReview(){
 
 async function requestDailyReviewStart(){
   const startButton = document.getElementById("startDailyReviewBtn");
+  requestedReviewExtraNewLimit = Number(startButton.dataset.extraNewLimit) || 0;
 
   if(hasValidDriveToken()){
     startButton.disabled = true;
@@ -1001,7 +1019,8 @@ async function requestDailyReviewStart(){
     renderSrsDashboard();
 
     if(synced){
-      startDailyReview();
+      startDailyReview({ extraNewLimit: requestedReviewExtraNewLimit });
+      requestedReviewExtraNewLimit = 0;
     }else{
       document.getElementById("syncReminderDialog").showModal();
     }
@@ -1013,7 +1032,8 @@ async function requestDailyReviewStart(){
     return;
   }
 
-  startDailyReview();
+  startDailyReview({ extraNewLimit: requestedReviewExtraNewLimit });
+  requestedReviewExtraNewLimit = 0;
 }
 
 function exitDailyReview(){
@@ -1110,6 +1130,7 @@ function renderDailyReview(){
       ratings: { again: 0, hard: 0, good: 0, easy: 0 }
     };
     const stats = getSrsStats();
+    const canLearnMore = stats.unseen > 0;
     container.innerHTML = `
       <div class="srs-shell">
         <div class="srs-toolbar">
@@ -1126,6 +1147,7 @@ function renderDailyReview(){
             ${stats.due} due now · ${stats.learning} learning · ${stats.mature} mature
           </div>
           ${renderDailyReviewSyncStatus(session.reviewed)}
+          ${canLearnMore ? `<button class="study-secondary-btn" id="srsLearnMoreBtn" type="button">Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More</button>` : ""}
           <button class="study-primary-btn" id="srsDoneBtn" type="button">Done</button>
         </div>
       </div>
@@ -1183,11 +1205,15 @@ function renderDailyReview(){
     </div>
   `;
   bindDailyReviewInteractions();
+  maybeAutoplayDailyReviewWord(entry);
 }
 
 function bindDailyReviewInteractions(){
   document.getElementById("srsBackBtn")?.addEventListener("click", exitDailyReview);
   document.getElementById("srsDoneBtn")?.addEventListener("click", exitDailyReview);
+  document.getElementById("srsLearnMoreBtn")?.addEventListener("click", () => {
+    startDailyReview({ extraNewLimit: SRS_NEW_CARD_LIMIT });
+  });
   document.getElementById("srsOpenSettingsBtn")?.addEventListener("click", () => {
     setSettingsOpen(true);
   });
@@ -1293,6 +1319,7 @@ function initializeDriveTokenClient(){
       driveAuthorizationPending = false;
       if(response?.error || !response?.access_token){
         startReviewAfterDriveSync = false;
+        requestedReviewExtraNewLimit = 0;
         driveLastError = "Google Drive authorization failed";
         renderDriveStatus();
         return;
@@ -1306,13 +1333,16 @@ function initializeDriveTokenClient(){
       const synced = await syncDriveProgress();
       if(startReviewAfterDriveSync && synced){
         startReviewAfterDriveSync = false;
-        startDailyReview();
+        startDailyReview({ extraNewLimit: requestedReviewExtraNewLimit });
+        requestedReviewExtraNewLimit = 0;
       }else if(!synced){
         startReviewAfterDriveSync = false;
+        requestedReviewExtraNewLimit = 0;
       }
     },
     error_callback: () => {
       startReviewAfterDriveSync = false;
+      requestedReviewExtraNewLimit = 0;
       driveAuthorizationPending = false;
       driveLastError = "Google Drive connection was cancelled";
       renderDriveStatus();
@@ -1325,12 +1355,14 @@ function initializeDriveTokenClient(){
 function connectGoogleDrive(){
   if(!GOOGLE_CLIENT_ID){
     startReviewAfterDriveSync = false;
+    requestedReviewExtraNewLimit = 0;
     showToast("Add your Google OAuth client ID in assets/config.js.");
     return;
   }
 
   if(!initializeDriveTokenClient()){
     startReviewAfterDriveSync = false;
+    requestedReviewExtraNewLimit = 0;
     showToast("Google sign-in is still loading. Try again.");
     return;
   }
@@ -1342,6 +1374,7 @@ function connectGoogleDrive(){
     driveTokenClient.requestAccessToken({ prompt: "" });
   }catch(error){
     startReviewAfterDriveSync = false;
+    requestedReviewExtraNewLimit = 0;
     driveAuthorizationPending = false;
     driveLastError = "Could not open Google Drive authorization";
     renderDriveStatus();
@@ -1593,7 +1626,8 @@ document.getElementById("connectDriveBtn").addEventListener("click", connectGoog
 document.getElementById("syncDriveBtn").addEventListener("click", () => syncDriveProgress());
 document.getElementById("continueOfflineBtn").addEventListener("click", () => {
   startReviewAfterDriveSync = false;
-  startDailyReview();
+  startDailyReview({ extraNewLimit: requestedReviewExtraNewLimit });
+  requestedReviewExtraNewLimit = 0;
 });
 document.getElementById("syncBeforeReviewBtn").addEventListener("click", () => {
   document.getElementById("syncReminderDialog").close();

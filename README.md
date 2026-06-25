@@ -36,7 +36,8 @@ Opening the HTML file directly with `file://` may fail because browsers often bl
 Daily Review loads vocabulary from every lesson and presents:
 
 - all cards currently due
-- up to 10 unseen cards in lesson order
+- up to 10 unseen cards per local calendar day in lesson order
+- an option to learn another batch of up to 10 words after clearing the review queue
 - Japanese-first recall cards with answer reveal
 - `Again`, `Hard`, `Good`, and `Easy` ratings
 

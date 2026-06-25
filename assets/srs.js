@@ -24,6 +24,14 @@
     return typeof value === "string" && !Number.isNaN(Date.parse(value));
   }
 
+  function isSameLocalDay(leftValue, rightValue){
+    const left = leftValue instanceof Date ? leftValue : new Date(leftValue);
+    const right = rightValue instanceof Date ? rightValue : new Date(rightValue);
+    return left.getFullYear() === right.getFullYear()
+      && left.getMonth() === right.getMonth()
+      && left.getDate() === right.getDate();
+  }
+
   function createEmptyProgress(now = new Date()){
     return {
       schemaVersion: SCHEMA_VERSION,
@@ -54,6 +62,7 @@
       repetitions,
       lapses,
       lastRating,
+      introducedAt: isValidDate(card.introducedAt) ? card.introducedAt : null,
       lastReviewedAt: isValidDate(card.lastReviewedAt) ? card.lastReviewedAt : updatedAt,
       updatedAt
     };
@@ -84,7 +93,8 @@
     }
 
     const reviewedAt = now instanceof Date ? now : new Date(now);
-    const previous = normalizeCard(previousCard) || {
+    const normalizedPrevious = normalizeCard(previousCard);
+    const previous = normalizedPrevious || {
       state: "learning",
       due: toIso(reviewedAt),
       intervalDays: 0,
@@ -92,6 +102,7 @@
       repetitions: 0,
       lapses: 0,
       lastRating: null,
+      introducedAt: toIso(reviewedAt),
       lastReviewedAt: toIso(reviewedAt),
       updatedAt: toIso(reviewedAt)
     };
@@ -145,14 +156,23 @@
       repetitions,
       lapses,
       lastRating: rating,
+      introducedAt: normalizedPrevious ? previous.introducedAt : timestamp,
       lastReviewedAt: timestamp,
       updatedAt: timestamp
     };
   }
 
-  function buildDailyQueue(catalog, progressValue, now = new Date(), newLimit = 10){
+  function countIntroducedOnLocalDay(catalog, progress, now){
+    return catalog.reduce((count, entry) => {
+      const introducedAt = progress.cards[entry.id]?.introducedAt;
+      return count + (introducedAt && isSameLocalDay(introducedAt, now) ? 1 : 0);
+    }, 0);
+  }
+
+  function buildDailyQueue(catalog, progressValue, now = new Date(), newLimit = 10, extraNewLimit = 0){
     const progress = normalizeProgress(progressValue, now);
-    const timestamp = (now instanceof Date ? now : new Date(now)).getTime();
+    const currentDate = now instanceof Date ? now : new Date(now);
+    const timestamp = currentDate.getTime();
     const due = [];
     const unseen = [];
 
@@ -170,17 +190,21 @@
       return dueDifference || left.order - right.order;
     });
     unseen.sort((left, right) => left.order - right.order);
+    const introducedToday = countIntroducedOnLocalDay(catalog, progress, currentDate);
+    const remainingDailyNew = Math.max(0, newLimit - introducedToday);
+    const availableNew = remainingDailyNew + Math.max(0, extraNewLimit);
 
     return [
       ...due.map(entry => ({ ...entry, queueType: "due" })),
-      ...unseen.slice(0, Math.max(0, newLimit)).map(entry => ({ ...entry, queueType: "new" }))
+      ...unseen.slice(0, availableNew).map(entry => ({ ...entry, queueType: "new" }))
     ];
   }
 
   function getProgressStats(catalog, progressValue, now = new Date(), newLimit = 10){
     const progress = normalizeProgress(progressValue, now);
     const catalogIds = new Set(catalog.map(entry => entry.id));
-    const timestamp = (now instanceof Date ? now : new Date(now)).getTime();
+    const currentDate = now instanceof Date ? now : new Date(now);
+    const timestamp = currentDate.getTime();
     let due = 0;
     let unseen = 0;
     let learning = 0;
@@ -197,12 +221,15 @@
       if(card.state === "learning") learning += 1;
       if(card.intervalDays >= MATURE_INTERVAL_DAYS) mature += 1;
     });
+    const introducedToday = countIntroducedOnLocalDay(catalog, progress, currentDate);
+    const remainingDailyNew = Math.max(0, newLimit - introducedToday);
 
     return {
       total: catalog.length,
       tracked: Object.keys(progress.cards).filter(id => catalogIds.has(id)).length,
       due,
-      newToday: Math.min(unseen, Math.max(0, newLimit)),
+      newToday: Math.min(unseen, remainingDailyNew),
+      introducedToday,
       unseen,
       learning,
       mature
