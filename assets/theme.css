@@ -115,8 +115,9 @@
   .topbar{height:64px;padding:0 16px}.study-dashboard{margin:14px 12px 20px;padding:20px}
   .today-hero{grid-template-columns:auto minmax(0,1fr);gap:16px}.goal-ring{width:104px;height:104px}.goal-ring-inner{width:80px;height:80px}
   .goal-ring strong{font-size:22px}.today-copy{position:relative;z-index:1}.today-actions{display:grid}.study-metrics{grid-template-columns:repeat(2,1fr)}
-  .study-metric{border-left:1px solid var(--border);border-top:1px solid var(--border)}
-  .study-metric:nth-child(odd){border-left:0}.study-metric:nth-child(-n+2){border-top:0}
+  .study-metric{border-left:0;border-top:0}
+  .study-metric:nth-child(3),.study-metric:nth-child(5){border-left:1px solid var(--border)}
+  .study-metric:nth-child(n+4){border-top:1px solid var(--border)}
   .streak-metric{grid-column:1 / -1;border-left:0;border-top:0;border-bottom:1px solid var(--border)}
   .section-intro{align-items:start;flex-direction:column;padding:22px 16px 14px}.section-intro p{text-align:left}
   .study-selectors,.vocab-panel{margin-left:12px;margin-right:12px}.vocab-content{padding-left:14px;padding-right:14px}
