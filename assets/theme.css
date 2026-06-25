@@ -44,7 +44,7 @@
   transform:rotate(7deg);
   pointer-events:none;
 }
-.today-hero{position:relative;z-index:1;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:28px}
+.today-hero{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);align-items:center;gap:28px}
 .today-copy{max-width:540px}
 .study-dashboard-label{color:var(--vermilion);font-size:11px;letter-spacing:.12em}
 .today-copy p,.section-intro p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
@@ -65,7 +65,7 @@
 .goal-ring-inner{width:112px;height:112px;display:grid;place-content:center;text-align:center;border-radius:50%;background:var(--surface-raised);box-shadow:inset 0 0 0 1px var(--border)}
 .goal-ring strong{color:var(--indigo-deep);font-size:27px;line-height:1}
 .goal-ring span{margin-top:6px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.study-metrics{position:relative;z-index:1;display:grid;grid-template-columns:1.35fr repeat(4,1fr);overflow:hidden;border:1px solid var(--border);border-radius:16px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:inherit;font-size:inherit}
+.study-metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;border:1px solid var(--border);border-radius:16px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:inherit;font-size:inherit}
 .study-metric{min-width:0;display:grid;place-content:center;gap:2px;padding:10px 12px;text-align:center;border-left:1px solid var(--border)}
 .study-metric:first-child{border-left:0}.study-metric strong{color:var(--indigo-deep);font-size:18px;line-height:1.15}.study-metric span{color:var(--muted);font-size:10px;font-weight:700}
 .streak-metric{display:flex;align-items:center;justify-content:center;gap:8px;text-align:left}
@@ -113,11 +113,11 @@
 .toast{background:var(--indigo-deep);box-shadow:var(--shadow-md)}
 @media(max-width:700px){
   .topbar{height:64px;padding:0 16px}.study-dashboard{margin:14px 12px 20px;padding:20px}
-  .today-hero{grid-template-columns:auto minmax(0,1fr);gap:16px}.goal-ring{width:104px;height:104px}.goal-ring-inner{width:80px;height:80px}
+  .today-hero{grid-template-columns:minmax(0,1fr);gap:16px}.goal-ring{width:104px;height:104px}.goal-ring-inner{width:80px;height:80px}
   .goal-ring strong{font-size:22px}.today-copy{position:relative;z-index:1}.today-actions{display:grid}.study-metrics{grid-template-columns:repeat(2,1fr)}
   .study-metric{border-left:0;border-top:0}
-  .study-metric:nth-child(3),.study-metric:nth-child(5){border-left:1px solid var(--border)}
-  .study-metric:nth-child(n+4){border-top:1px solid var(--border)}
+  .study-metric:nth-child(even){border-left:1px solid var(--border)}
+  .study-metric:nth-child(n+3){border-top:1px solid var(--border)}
   .streak-metric{grid-column:1 / -1;border-left:0;border-top:0;border-bottom:1px solid var(--border)}
   .section-intro{align-items:start;flex-direction:column;padding:22px 16px 14px}.section-intro p{text-align:left}
   .study-selectors,.vocab-panel{margin-left:12px;margin-right:12px}.vocab-content{padding-left:14px;padding-right:14px}

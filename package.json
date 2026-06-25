@@ -1,0 +1,12 @@
+{
+  "name": "japanese-vocabulary-study-app",
+  "private": true,
+  "scripts": {
+    "catalog": "node scripts/generate-vocab-catalog.mjs",
+    "catalog:check": "node scripts/generate-vocab-catalog.mjs --check",
+    "test": "node tests/srs.test.cjs && node tests/srs-db.test.cjs && node tests/drive-sync.test.cjs && node scripts/generate-vocab-catalog.mjs --check && node scripts/validate-vocab-ids.mjs"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "^6.2.4"
+  }
+}

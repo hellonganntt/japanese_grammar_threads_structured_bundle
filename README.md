@@ -7,10 +7,12 @@ Static Japanese vocabulary study app backed by structured lesson JSON. It includ
 - `index.html` - browser page shell
 - `assets/styles.css` - UI styles
 - `assets/app.js` - data loading and rendering logic
-- `assets/srs.js` - SRS scheduling, progress validation, and merge logic
+- `assets/srs.js` - card-level SRS scheduling and Drive snapshot validation
+- `assets/srs-db.js` - IndexedDB persistence, indexed queue queries, and migration
 - `assets/config.js` - public browser configuration such as the Google OAuth client ID
 - `scripts/generate-vocab-audio.mjs` - optional vocab audio generator
 - `data/lessons.json` - lesson manifest used by the lesson selector
+- `data/vocab-catalog.json` - compact generated catalog used for SRS startup
 - `data/lesson-36.json` - structured lesson data for lesson 36
 - `grammar-data-structured.json` - combined data copy
 - `README-structured.txt` - original bundle notes
@@ -33,7 +35,7 @@ Opening the HTML file directly with `file://` may fail because browsers often bl
 
 ## Daily Review and SRS
 
-Daily Review loads vocabulary from every lesson and presents:
+Daily Review loads the compact vocabulary catalog at startup and fetches full lesson data only when it is needed. It presents:
 
 - all cards currently due
 - up to 10 unseen cards per local calendar day in lesson order
@@ -41,21 +43,29 @@ Daily Review loads vocabulary from every lesson and presents:
 - Japanese-first recall cards with answer reveal
 - `Again`, `Hard`, `Good`, and `Easy` ratings
 
-Progress is saved immediately in browser `localStorage` under:
+Progress is saved immediately in the browser's IndexedDB database:
 
 ```text
-japaneseVocabSrs:v1
+japanese-vocab-srs
 ```
 
-The stored document uses SRS schema version 2. It includes merge-safe daily activity, goal, and streak history in addition to card scheduling. Existing schema version 1 progress is migrated automatically when loaded.
+The database stores one record per vocabulary card, so reviewing a card does not rewrite the complete collection. Indexed indexes support due-card ordering, catalog ordering, daily-new limits, and dashboard counts for collections of 10,000 or more cards.
+
+Existing schema version 1 or 2 progress under `localStorage` key `japaneseVocabSrs:v1` is imported once. The legacy value is retained as a recovery backup but is no longer updated. Historical daily activity, goals, and streaks are intentionally not imported. The 10-new-cards-per-local-day limit is derived from each card's `introducedAt` timestamp.
 
 Lesson JSON remains read-only. Every vocabulary item has a permanent ID such as `l36-v001`; do not change an existing ID when reordering or editing vocabulary.
 
-Run the scheduler tests and ID validation with:
+Generate the compact catalog after editing lesson vocabulary:
 
 ```powershell
-node tests/srs.test.cjs
-node scripts/validate-vocab-ids.mjs
+npm run catalog
+```
+
+Run all scheduler, IndexedDB, Drive snapshot, catalog, and ID checks with:
+
+```powershell
+npm install
+npm test
 ```
 
 ## Optional Google Drive Sync
@@ -85,7 +95,7 @@ window.APP_CONFIG = {
 
 The client ID is public browser configuration, not a secret. Never add a client secret or access token to the repository.
 
-Use **Connect Drive** once per browser tab session. The short-lived Google access token is kept in `sessionStorage`, so the connection survives page refreshes in the same tab but is cleared when the tab closes or the token expires. The app merges local and cloud cards by each card's latest `updatedAt`, uploads the result, and automatically syncs again after a completed review session while authorization remains valid. If authorization expires or the device is offline, progress remains safe locally.
+Use **Connect Drive** once per browser tab session. The short-lived Google access token is kept in `sessionStorage`, so the connection survives page refreshes in the same tab but is cleared when the tab closes or the token expires. The app stores schema version 3 snapshots containing introduced card schedules only. It imports older version 1 and 2 snapshots, discards their activity history, merges cards by each card's latest `updatedAt`, and uploads the upgraded snapshot. If a review occurs during upload, the local revision remains dirty for the next sync. If authorization expires or the device is offline, progress remains safe in IndexedDB.
 
 ## Vocabulary Audio
 
@@ -154,6 +164,7 @@ Lesson data is split by file. To add another lesson:
 1. Create a file like `data/lesson-37.json`.
 2. Add `{ "lesson": 37, "file": "./data/lesson-37.json" }` to `data/lessons.json`.
 3. Store that lesson's shared vocabulary in `vocab`, kanji in `kanji`, and grammar outline in `grammarSections`.
+4. Run `npm run catalog` and commit the updated `data/vocab-catalog.json`.
 
 Lesson files use this shape:
 

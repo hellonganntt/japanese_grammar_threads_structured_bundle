@@ -35,12 +35,6 @@
 
   <section class="study-dashboard" id="studyDashboard" aria-label="Today's study">
     <div class="today-hero">
-      <div class="goal-ring" id="dailyGoalRing" role="img" aria-label="Daily goal progress: 0 percent">
-        <div class="goal-ring-inner">
-          <strong id="dailyGoalPercent">0%</strong>
-          <span>daily goal</span>
-        </div>
-      </div>
       <div class="today-copy">
         <div class="study-dashboard-label">今日の学習 · Today</div>
         <p id="todayMessage">Your next study session is being prepared.</p>
@@ -51,10 +45,6 @@
       </div>
     </div>
     <div class="study-metrics" id="srsDashboardStats">
-      <div class="study-metric streak-metric">
-        <span class="metric-icon" aria-hidden="true">火</span>
-        <div><strong id="streakCount">0 days</strong><span>Streak</span></div>
-      </div>
       <div class="study-metric"><strong id="dueCount">–</strong><span>Due</span></div>
       <div class="study-metric"><strong id="newCount">–</strong><span>New today</span></div>
       <div class="study-metric"><strong id="learningCount">–</strong><span>Learning</span></div>
@@ -114,6 +104,7 @@
 
 <script src="./assets/config.js"></script>
 <script src="./assets/srs.js"></script>
+<script src="./assets/srs-db.js"></script>
 <script src="https://accounts.google.com/gsi/client" async></script>
 <script src="./assets/app.js" defer></script>
 </body>

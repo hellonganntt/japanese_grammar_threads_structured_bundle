@@ -29,6 +29,7 @@ let dailyReviewIndex = 0;
 let dailyReviewRevealed = false;
 let dailyReviewCompleted = false;
 let dailyReviewSessionStats = null;
+let dailyReviewWritePending = false;
 let driveTokenClient = null;
 let driveAccessToken = null;
 let driveAccessTokenExpiresAt = 0;
@@ -47,8 +48,14 @@ const SRS_NEW_CARD_LIMIT = 10;
 const SRS_DRIVE_FILENAME = "japanese-vocab-progress.json";
 const GOOGLE_DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.appdata";
 const GOOGLE_CLIENT_ID = window.APP_CONFIG?.googleClientId?.trim() || "";
-let srsProgress = loadSrsProgress();
-let driveMetadata = loadDriveMetadata();
+const srsDatabase = new SrsDatabase.Database();
+let driveMetadata = {
+  driveFileId: "",
+  lastSyncedAt: "",
+  deviceId: "",
+  dirty: false
+};
+let srsDashboardRenderId = 0;
 restoreDriveSession();
 
 const AUDIO_RESULT = {
@@ -67,46 +74,11 @@ function escapeHtml(value){
   })[char]);
 }
 
-function loadSrsProgress(){
-  try{
-    const saved = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || "null");
-    return SRSCore.normalizeProgress(saved);
-  }catch(error){
-    console.warn("Could not load SRS progress.", error);
-    return SRSCore.createEmptyProgress();
-  }
-}
-
-function createDeviceId(){
-  if(globalThis.crypto?.randomUUID){
-    return globalThis.crypto.randomUUID();
-  }
-
-  return `device-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-}
-
-function loadDriveMetadata(){
-  try{
-    const saved = JSON.parse(localStorage.getItem(SRS_DRIVE_META_KEY) || "null");
-    return {
-      driveFileId: typeof saved?.driveFileId === "string" ? saved.driveFileId : "",
-      lastSyncedAt: typeof saved?.lastSyncedAt === "string" ? saved.lastSyncedAt : "",
-      deviceId: typeof saved?.deviceId === "string" ? saved.deviceId : createDeviceId(),
-      dirty: saved?.dirty === true
-    };
-  }catch(error){
-    console.warn("Could not load Drive metadata.", error);
-    return {
-      driveFileId: "",
-      lastSyncedAt: "",
-      deviceId: createDeviceId(),
-      dirty: false
-    };
-  }
-}
-
 function saveDriveMetadata(){
-  localStorage.setItem(SRS_DRIVE_META_KEY, JSON.stringify(driveMetadata));
+  return srsDatabase.setDriveMetadata({ ...driveMetadata }).catch(error => {
+    console.warn("Could not save Drive metadata.", error);
+    return false;
+  });
 }
 
 function restoreDriveSession(){
@@ -147,57 +119,12 @@ function clearDriveSession(){
   }
 }
 
-function saveSrsProgress(progress, options = {}){
-  srsProgress = SRSCore.normalizeProgress(progress);
-  localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(srsProgress));
-
-  if(options.markDirty !== false){
-    driveMetadata.dirty = true;
-    saveDriveMetadata();
-  }
-
-  renderSrsDashboard();
-  renderDriveStatus();
+async function getSrsStats(){
+  return srsDatabase.getStats(new Date(), SRS_NEW_CARD_LIMIT);
 }
 
-function buildVocabularyCatalog(){
-  const seen = new Set();
-  const catalog = [];
-  const sortedLessons = [...lessonFiles].sort((left, right) => Number(left.lesson) - Number(right.lesson));
-
-  sortedLessons.forEach(lessonEntry => {
-    const vocab = lessonCache.get(String(lessonEntry.lesson))?.vocab || [];
-    vocab.forEach((item, index) => {
-      if(!item?.id){
-        throw new Error(`Lesson ${lessonEntry.lesson} vocabulary ${index + 1} is missing an id.`);
-      }
-      if(seen.has(item.id)){
-        throw new Error(`Duplicate vocabulary id: ${item.id}`);
-      }
-
-      seen.add(item.id);
-      catalog.push({
-        ...item,
-        lesson: Number(lessonEntry.lesson),
-        lessonIndex: index,
-        order: catalog.length
-      });
-    });
-  });
-
-  vocabularyCatalog = catalog;
-}
-
-function getSrsStats(){
-  return SRSCore.getProgressStats(
-    vocabularyCatalog,
-    srsProgress,
-    new Date(),
-    SRS_NEW_CARD_LIMIT
-  );
-}
-
-function renderSrsDashboard(){
+async function renderSrsDashboard(){
+  const renderId = ++srsDashboardRenderId;
   const statsElement = document.getElementById("srsDashboardStats");
   const startButton = document.getElementById("startDailyReviewBtn");
   if(!statsElement || !startButton) return;
@@ -208,10 +135,8 @@ function renderSrsDashboard(){
     return;
   }
 
-  const now = new Date();
-  const stats = getSrsStats();
-  const goal = SRSCore.getDailyGoal(srsProgress, now);
-  const activity = SRSCore.getActivitySummary(srsProgress, now);
+  const stats = await getSrsStats();
+  if(renderId !== srsDashboardRenderId) return;
   const hasRegularReview = stats.due + stats.newToday > 0;
   const canLearnMore = !hasRegularReview && stats.unseen > 0;
 
@@ -219,20 +144,9 @@ function renderSrsDashboard(){
   document.getElementById("newCount").textContent = stats.newToday;
   document.getElementById("learningCount").textContent = stats.learning;
   document.getElementById("matureCount").textContent = stats.mature;
-  document.getElementById("dailyGoalPercent").textContent = `${goal.percent}%`;
-  const goalRing = document.getElementById("dailyGoalRing");
-  goalRing.style.setProperty("--goal-progress", `${goal.percent * 3.6}deg`);
-  goalRing.setAttribute("aria-label", `Daily goal progress: ${goal.percent} percent`);
-  document.getElementById("streakCount").textContent = `${activity.streak} ${activity.streak === 1 ? "day" : "days"}`;
 
   const todayMessage = document.getElementById("todayMessage");
-  if(goal.isComplete){
-    todayMessage.textContent = stats.unseen
-      ? "Today’s goal is complete. Keep the momentum if you feel like learning more."
-      : "Today’s goal is complete. Take a breath—you’ve earned it.";
-  }else if(goal.target){
-    todayMessage.textContent = `${goal.completed} of ${goal.target} goal cards complete. Pick up where you left off.`;
-  }else if(stats.due){
+  if(stats.due){
     todayMessage.textContent = `${stats.due} ${stats.due === 1 ? "word is" : "words are"} ready to come back to you.`;
   }else{
     todayMessage.textContent = stats.newToday
@@ -243,7 +157,7 @@ function renderSrsDashboard(){
   startButton.disabled = !hasRegularReview && !canLearnMore;
   startButton.dataset.extraNewLimit = canLearnMore ? String(SRS_NEW_CARD_LIMIT) : "0";
   startButton.textContent = hasRegularReview
-    ? goal.target && !goal.isComplete ? "Continue Today’s Study" : "Start Today’s Study"
+    ? "Start Today’s Study"
     : canLearnMore
       ? `Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More`
       : "All Caught Up";
@@ -1028,28 +942,27 @@ function scrollToDailyReview(){
   });
 }
 
-function startDailyReview(options = {}){
+async function hydrateReviewQueue(queue){
+  const lessons = [...new Set(queue.map(entry => String(entry.lesson)))];
+  await Promise.all(lessons.map(lesson => loadLessonData(lesson)));
+  const vocabById = new Map();
+  lessons.forEach(lesson => {
+    const vocab = lessonCache.get(lesson)?.vocab || [];
+    vocab.forEach(item => vocabById.set(item.id, item));
+  });
+  return queue.map(entry => ({ ...entry, ...(vocabById.get(entry.id) || {}) }));
+}
+
+async function startDailyReview(options = {}){
   stopVocabIdleLearning({ disable: true });
   stopCurrentAudio();
   cancelVocabQuizAutoAdvance();
-  dailyReviewQueue = SRSCore.buildDailyQueue(
-    vocabularyCatalog,
-    srsProgress,
+  const queue = await srsDatabase.buildDailyQueue(
     new Date(),
     SRS_NEW_CARD_LIMIT,
     options.extraNewLimit || 0
   );
-  const dateKey = SRSCore.getLocalDateKey(new Date());
-  const hadGoal = Boolean(srsProgress.activity?.[dateKey]?.goal);
-  const progressWithGoal = SRSCore.startDailyGoal(
-    srsProgress,
-    dailyReviewQueue,
-    new Date(),
-    options
-  );
-  if(!hadGoal && progressWithGoal.activity?.[dateKey]?.goal){
-    saveSrsProgress(progressWithGoal);
-  }
+  dailyReviewQueue = await hydrateReviewQueue(queue);
   dailyReviewIndex = 0;
   dailyReviewRevealed = false;
   dailyReviewCompleted = dailyReviewQueue.length === 0;
@@ -1103,7 +1016,7 @@ function exitDailyReview(){
   renderAppView();
 }
 
-function completeDailyReview(){
+async function completeDailyReview(){
   dailyReviewCompleted = true;
   renderDailyReview();
 
@@ -1152,38 +1065,40 @@ function renderDailyReviewSyncStatus(reviewedCount){
   return "";
 }
 
-function rateCurrentDailyReviewCard(rating){
+async function rateCurrentDailyReviewCard(rating){
   const entry = dailyReviewQueue[dailyReviewIndex];
-  if(!entry || !dailyReviewRevealed) return;
+  if(!entry || !dailyReviewRevealed || dailyReviewWritePending) return;
 
-  const now = new Date();
-  const wasNew = !srsProgress.cards[entry.id];
-  const nextCard = SRSCore.rateCard(srsProgress.cards[entry.id], rating, now);
-  let nextProgress = {
-    ...srsProgress,
-    updatedAt: now.toISOString(),
-    cards: {
-      ...srsProgress.cards,
-      [entry.id]: nextCard
+  dailyReviewWritePending = true;
+  renderDailyReview();
+  try{
+    const updated = await srsDatabase.rateCard(entry.id, rating, new Date());
+    dailyReviewQueue[dailyReviewIndex] = { ...entry, ...updated };
+    driveMetadata.dirty = true;
+    await saveDriveMetadata();
+    dailyReviewSessionStats.reviewed += 1;
+    dailyReviewSessionStats.ratings[rating] += 1;
+    dailyReviewIndex += 1;
+    dailyReviewRevealed = false;
+    stopCurrentAudio();
+
+    if(dailyReviewIndex >= dailyReviewQueue.length){
+      await completeDailyReview();
+    }else{
+      renderDailyReview();
     }
-  };
-  nextProgress = SRSCore.recordReviewActivity(nextProgress, entry.id, wasNew, now);
-
-  saveSrsProgress(nextProgress);
-  dailyReviewSessionStats.reviewed += 1;
-  dailyReviewSessionStats.ratings[rating] += 1;
-  dailyReviewIndex += 1;
-  dailyReviewRevealed = false;
-  stopCurrentAudio();
-
-  if(dailyReviewIndex >= dailyReviewQueue.length){
-    completeDailyReview();
-  }else{
+    renderSrsDashboard();
+    renderDriveStatus();
+  }catch(error){
+    console.error(error);
+    showToast("Progress was not saved. Please try again.");
+  }finally{
+    dailyReviewWritePending = false;
     renderDailyReview();
   }
 }
 
-function renderDailyReview(){
+async function renderDailyReview(){
   const container = document.getElementById("dailyReviewContent");
   if(!container) return;
 
@@ -1192,8 +1107,7 @@ function renderDailyReview(){
       reviewed: 0,
       ratings: { again: 0, hard: 0, good: 0, easy: 0 }
     };
-    const stats = getSrsStats();
-    const goal = SRSCore.getDailyGoal(srsProgress);
+    const stats = await getSrsStats();
     const canLearnMore = stats.unseen > 0;
     container.innerHTML = `
       <div class="srs-shell">
@@ -1204,10 +1118,10 @@ function renderDailyReview(){
           </div>
         </div>
         <div class="srs-summary">
-          <div class="completion-mark" aria-hidden="true">${goal.isComplete ? "花" : "✓"}</div>
-          <div class="srs-card-label">${goal.isComplete ? "Today’s goal complete" : "Session complete"}</div>
+          <div class="completion-mark" aria-hidden="true">✓</div>
+          <div class="srs-card-label">Session complete</div>
           <h2>${session.reviewed} ${session.reviewed === 1 ? "card" : "cards"} reviewed</h2>
-          <p class="completion-message">${goal.isComplete ? "A steady little step forward. Nice work." : "Good session. Your progress is safely saved."}</p>
+          <p class="completion-message">Good session. Your progress is safely saved.</p>
           <div class="srs-summary-stats">
             Again ${session.ratings.again} · Hard ${session.ratings.hard} · Good ${session.ratings.good} · Easy ${session.ratings.easy}<br>
             ${stats.due} due now · ${stats.learning} learning · ${stats.mature} mature
@@ -1223,7 +1137,7 @@ function renderDailyReview(){
   }
 
   const entry = dailyReviewQueue[dailyReviewIndex];
-  const previousCard = srsProgress.cards[entry.id];
+  const previousCard = entry.state === "new" ? null : entry;
   const previewTime = new Date();
   const ratingIntervals = Object.fromEntries(
     ["again", "hard", "good", "easy"].map(rating => [
@@ -1264,7 +1178,7 @@ function renderDailyReview(){
       ${dailyReviewRevealed ? `
         <div class="srs-ratings" aria-label="Rate recall">
           ${["again", "hard", "good", "easy"].map(rating => `
-            <button class="srs-rating-btn" type="button" data-rating="${rating}">
+            <button class="srs-rating-btn" type="button" data-rating="${rating}" ${dailyReviewWritePending ? "disabled" : ""}>
               ${rating[0].toUpperCase()}${rating.slice(1)}
               <small>${ratingIntervals[rating]}</small>
             </button>
@@ -1479,7 +1393,7 @@ function isDriveProgressDocument(value){
   return Boolean(
     value &&
     typeof value === "object" &&
-    (value.schemaVersion === 1 || value.schemaVersion === SRSCore.SCHEMA_VERSION) &&
+    [1, 2, SRSCore.SCHEMA_VERSION].includes(value.schemaVersion) &&
     value.cards &&
     typeof value.cards === "object" &&
     !Array.isArray(value.cards)
@@ -1506,7 +1420,10 @@ async function downloadDriveProgress(fileId){
     throw new Error("The Google Drive progress file is invalid or uses an unsupported version.");
   }
 
-  const normalized = SRSCore.normalizeProgress(value);
+  const normalized = SRSCore.normalizeSnapshot(value);
+  if(!normalized){
+    throw new Error("The Google Drive progress file is invalid or uses an unsupported version.");
+  }
   if(Object.keys(normalized.cards).length !== Object.keys(value.cards).length){
     throw new Error("The Google Drive progress file contains invalid card records.");
   }
@@ -1573,22 +1490,25 @@ async function syncDriveProgress(options = {}){
 
   try{
     let file = await findDriveProgressFile();
-    let merged = SRSCore.normalizeProgress(srsProgress);
 
     if(file){
       const cloud = await downloadDriveProgress(file.id);
-      merged = SRSCore.mergeProgress(srsProgress, cloud);
-      saveSrsProgress(merged, { markDirty: false });
-      await uploadDriveProgress(file.id, merged);
+      await srsDatabase.mergeSnapshot(cloud);
+      const uploadRevision = await srsDatabase.getRevision();
+      const snapshot = await srsDatabase.exportSnapshot(driveMetadata.deviceId);
+      await uploadDriveProgress(file.id, snapshot);
+      driveMetadata.dirty = (await srsDatabase.getRevision()) !== uploadRevision;
     }else{
-      const created = await createDriveProgressFile(merged);
+      const uploadRevision = await srsDatabase.getRevision();
+      const snapshot = await srsDatabase.exportSnapshot(driveMetadata.deviceId);
+      const created = await createDriveProgressFile(snapshot);
       file = { id: created.id };
+      driveMetadata.dirty = (await srsDatabase.getRevision()) !== uploadRevision;
     }
 
     driveMetadata.driveFileId = file.id;
     driveMetadata.lastSyncedAt = new Date().toISOString();
-    driveMetadata.dirty = false;
-    saveDriveMetadata();
+    await saveDriveMetadata();
     renderSrsDashboard();
     if(!options.quiet) showToast("Google Drive sync complete.");
     return true;
@@ -1596,7 +1516,7 @@ async function syncDriveProgress(options = {}){
     console.error(error);
     driveLastError = error.message || "Google Drive sync failed";
     driveMetadata.dirty = true;
-    saveDriveMetadata();
+    await saveDriveMetadata();
     if(!options.quiet) showToast("Drive sync failed. Progress is safe locally.");
     return false;
   }finally{
@@ -1841,6 +1761,15 @@ async function loadLessonData(lesson){
   return lessonData;
 }
 
+async function loadVocabularyCatalog(){
+  const data = await fetchJson("./data/vocab-catalog.json");
+  if(!data || typeof data.version !== "string" || !Array.isArray(data.cards)){
+    throw new Error("data/vocab-catalog.json must contain a version and cards array.");
+  }
+  vocabularyCatalog = data.cards;
+  return data;
+}
+
 async function loadVocabForSelectedLesson(){
   try{
     await loadLessonData(activeLesson);
@@ -1853,9 +1782,32 @@ async function loadVocabForSelectedLesson(){
 
 async function loadVocabData(){
   try{
-    await loadLessonManifest();
-    await Promise.all(lessonFiles.map(item => loadLessonData(item.lesson)));
-    buildVocabularyCatalog();
+    const [, catalog] = await Promise.all([
+      loadLessonManifest(),
+      loadVocabularyCatalog(),
+      srsDatabase.open()
+    ]);
+    await srsDatabase.reconcileCatalog(catalog);
+    const migrated = await srsDatabase.migrateLegacy(localStorage.getItem(SRS_STORAGE_KEY));
+    driveMetadata = await srsDatabase.getDriveMetadata();
+    try{
+      const legacyDriveMetadata = JSON.parse(localStorage.getItem(SRS_DRIVE_META_KEY) || "null");
+      if(legacyDriveMetadata && !driveMetadata.lastSyncedAt){
+        driveMetadata = {
+          ...driveMetadata,
+          driveFileId: typeof legacyDriveMetadata.driveFileId === "string" ? legacyDriveMetadata.driveFileId : "",
+          lastSyncedAt: typeof legacyDriveMetadata.lastSyncedAt === "string" ? legacyDriveMetadata.lastSyncedAt : "",
+          deviceId: typeof legacyDriveMetadata.deviceId === "string" ? legacyDriveMetadata.deviceId : driveMetadata.deviceId,
+          dirty: migrated || legacyDriveMetadata.dirty === true
+        };
+      }else if(migrated){
+        driveMetadata.dirty = true;
+      }
+    }catch(error){
+      console.warn("Could not migrate legacy Drive metadata.", error);
+    }
+    await saveDriveMetadata();
+    globalThis.navigator?.storage?.persist?.().catch(() => false);
     renderLessonFilters();
     await loadVocabForSelectedLesson();
     renderAppView();
