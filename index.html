@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Japanese Vocabulary Flashcards</title>
   <link rel="stylesheet" href="./assets/styles.css" />
+  <link rel="stylesheet" href="./assets/theme.css" />
 </head>
 <body>
 <div class="app">
@@ -32,14 +33,39 @@
     </div>
   </header>
 
-  <section class="study-dashboard" id="studyDashboard">
-    <div class="study-dashboard-main">
-      <div>
-        <div class="study-dashboard-label">Spaced repetition</div>
-        <h2>Daily Review</h2>
-        <div class="study-dashboard-stats" id="srsDashboardStats">Loading vocabulary…</div>
+  <section class="study-dashboard" id="studyDashboard" aria-labelledby="todayHeading">
+    <div class="today-hero">
+      <div class="today-copy">
+        <div class="study-dashboard-label">今日の学習 · Today</div>
+        <h1 id="todayHeading">A little Japanese, every day.</h1>
+        <p id="todayMessage">Your next study session is being prepared.</p>
+        <div class="today-actions">
+          <button class="study-primary-btn" id="startDailyReviewBtn" type="button" disabled>Start Today’s Study</button>
+          <button class="study-secondary-btn" id="browseLessonsBtn" type="button">Browse Lessons</button>
+        </div>
       </div>
-      <button class="study-primary-btn" id="startDailyReviewBtn" type="button" disabled>Start Review</button>
+      <div class="goal-ring" id="dailyGoalRing" role="img" aria-label="Daily goal progress: 0 percent">
+        <div class="goal-ring-inner">
+          <strong id="dailyGoalPercent">0%</strong>
+          <span>daily goal</span>
+        </div>
+      </div>
+    </div>
+    <div class="today-overview">
+      <div class="streak-card">
+        <span class="metric-icon" aria-hidden="true">火</span>
+        <div><strong id="streakCount">0 days</strong><span>Current rhythm</span></div>
+      </div>
+      <div class="weekly-card">
+        <div class="weekly-heading"><strong>This week</strong><span id="weeklySummary">No activity yet</span></div>
+        <div class="weekly-strip" id="weeklyActivity" aria-label="Seven day study activity"></div>
+      </div>
+    </div>
+    <div class="study-metrics" id="srsDashboardStats">
+      <div class="study-metric"><strong id="dueCount">–</strong><span>Due</span></div>
+      <div class="study-metric"><strong id="newCount">–</strong><span>New today</span></div>
+      <div class="study-metric"><strong id="learningCount">–</strong><span>Learning</span></div>
+      <div class="study-metric"><strong id="matureCount">–</strong><span>Mature</span></div>
     </div>
   </section>
 
@@ -60,6 +86,13 @@
   </dialog>
 
   <section class="filter-section" id="lessonStudySection">
+    <div class="section-intro">
+      <div>
+        <div class="study-dashboard-label">自分のペースで · Explore</div>
+        <h2>Learn from a lesson</h2>
+      </div>
+      <p>Browse words, flip through cards, or test yourself with a quick quiz.</p>
+    </div>
     <div class="study-selectors">
       <label class="study-selector">
         <span>Lesson</span>

@@ -47,6 +47,8 @@ Progress is saved immediately in browser `localStorage` under:
 japaneseVocabSrs:v1
 ```
 
+The stored document uses SRS schema version 2. It includes merge-safe daily activity, goal, and streak history in addition to card scheduling. Existing schema version 1 progress is migrated automatically when loaded.
+
 Lesson JSON remains read-only. Every vocabulary item has a permanent ID such as `l36-v001`; do not change an existing ID when reordering or editing vocabulary.
 
 Run the scheduler tests and ID validation with:

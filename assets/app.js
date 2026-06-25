@@ -203,19 +203,58 @@ function renderSrsDashboard(){
   if(!statsElement || !startButton) return;
 
   if(!vocabularyCatalog.length){
-    statsElement.textContent = "No vocabulary loaded.";
+    document.getElementById("todayMessage").textContent = "No vocabulary is available yet.";
     startButton.disabled = true;
     return;
   }
 
+  const now = new Date();
   const stats = getSrsStats();
-  statsElement.textContent = `${stats.due} due · ${stats.newToday} new today · ${stats.learning} learning · ${stats.mature} mature`;
+  const goal = SRSCore.getDailyGoal(srsProgress, now);
+  const activity = SRSCore.getActivitySummary(srsProgress, now);
   const hasRegularReview = stats.due + stats.newToday > 0;
   const canLearnMore = !hasRegularReview && stats.unseen > 0;
+
+  document.getElementById("dueCount").textContent = stats.due;
+  document.getElementById("newCount").textContent = stats.newToday;
+  document.getElementById("learningCount").textContent = stats.learning;
+  document.getElementById("matureCount").textContent = stats.mature;
+  document.getElementById("dailyGoalPercent").textContent = `${goal.percent}%`;
+  const goalRing = document.getElementById("dailyGoalRing");
+  goalRing.style.setProperty("--goal-progress", `${goal.percent * 3.6}deg`);
+  goalRing.setAttribute("aria-label", `Daily goal progress: ${goal.percent} percent`);
+  document.getElementById("streakCount").textContent = `${activity.streak} ${activity.streak === 1 ? "day" : "days"}`;
+
+  const activeDays = activity.days.filter(day => day.reviewed > 0).length;
+  document.getElementById("weeklySummary").textContent = activeDays
+    ? `${activeDays} active ${activeDays === 1 ? "day" : "days"}`
+    : "Begin your rhythm";
+  document.getElementById("weeklyActivity").innerHTML = activity.days.map(day => `
+    <div class="activity-day ${day.complete ? "complete" : day.reviewed ? "active" : ""}" title="${day.dateKey}: ${day.reviewed} reviewed">
+      <span class="activity-mark">${day.complete ? "✓" : day.reviewed || ""}</span>
+      <small>${escapeHtml(day.label)}</small>
+    </div>
+  `).join("");
+
+  const todayMessage = document.getElementById("todayMessage");
+  if(goal.isComplete){
+    todayMessage.textContent = stats.unseen
+      ? "Today’s goal is complete. Keep the momentum if you feel like learning more."
+      : "Today’s goal is complete. Take a breath—you’ve earned it.";
+  }else if(goal.target){
+    todayMessage.textContent = `${goal.completed} of ${goal.target} goal cards complete. Pick up where you left off.`;
+  }else if(stats.due){
+    todayMessage.textContent = `${stats.due} ${stats.due === 1 ? "word is" : "words are"} ready to come back to you.`;
+  }else{
+    todayMessage.textContent = stats.newToday
+      ? `Meet up to ${stats.newToday} new ${stats.newToday === 1 ? "word" : "words"} today.`
+      : "You are fully caught up.";
+  }
+
   startButton.disabled = !hasRegularReview && !canLearnMore;
   startButton.dataset.extraNewLimit = canLearnMore ? String(SRS_NEW_CARD_LIMIT) : "0";
   startButton.textContent = hasRegularReview
-    ? "Start Review"
+    ? goal.target && !goal.isComplete ? "Continue Today’s Study" : "Start Today’s Study"
     : canLearnMore
       ? `Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More`
       : "All Caught Up";
@@ -594,7 +633,10 @@ function renderVocabFlashcard(vocab){
   return `
     <div class="flashcard-shell">
       <div class="flashcard-toolbar">
-        <div class="flashcard-status">${vocabCardIndex + 1} / ${flashcardItems.length}</div>
+        <div class="learning-progress">
+          <div class="flashcard-status">${vocabCardIndex + 1} / ${flashcardItems.length}</div>
+          <div class="progress-track" aria-hidden="true"><span style="width:${Math.round(((vocabCardIndex + 1) / flashcardItems.length) * 100)}%"></span></div>
+        </div>
         <div class="flashcard-options">
           <button class="flashcard-option-btn ${vocabAudioAutoplayEnabled ? "active" : ""}" id="vocabAutoplayBtn" type="button">${vocabAudioAutoplayEnabled ? "Audio: On" : "Audio: Off"}</button>
           <button class="flashcard-option-btn ${vocabIdleLearningEnabled ? "active" : ""}" id="vocabIdleBtn" type="button">${vocabIdleLearningEnabled ? "Idle: On" : "Idle: Off"}</button>
@@ -762,7 +804,10 @@ function renderVocabQuiz(vocab){
   return `
     <div class="quiz-shell">
       <div class="quiz-toolbar">
-        <div class="quiz-status">Question ${vocabQuizQuestionIndex + 1} / ${vocabQuizQuestions.length}</div>
+        <div class="learning-progress">
+          <div class="quiz-status">Question ${vocabQuizQuestionIndex + 1} / ${vocabQuizQuestions.length}</div>
+          <div class="progress-track" aria-hidden="true"><span style="width:${Math.round(((vocabQuizQuestionIndex + 1) / vocabQuizQuestions.length) * 100)}%"></span></div>
+        </div>
         <div class="quiz-score">Score: ${vocabQuizScore}</div>
       </div>
       <div class="quiz-card">
@@ -785,7 +830,8 @@ function renderVocabQuiz(vocab){
       </div>
       ${answered ? `
         <div class="quiz-feedback ${selectedIsCorrect ? "correct" : "incorrect"}">
-          ${selectedIsCorrect ? "Correct." : `Not quite. Answer: ${escapeHtml(correctChoice)}`}
+          <strong>${selectedIsCorrect ? "That’s right." : `Answer: ${escapeHtml(correctChoice)}`}</strong>
+          ${question.item.example ? `<span>${escapeHtml(question.item.example)}</span>` : ""}
         </div>
       ` : ""}
       <div class="quiz-actions">
@@ -991,12 +1037,24 @@ function startDailyReview(options = {}){
     SRS_NEW_CARD_LIMIT,
     options.extraNewLimit || 0
   );
+  const dateKey = SRSCore.getLocalDateKey(new Date());
+  const hadGoal = Boolean(srsProgress.activity?.[dateKey]?.goal);
+  const progressWithGoal = SRSCore.startDailyGoal(
+    srsProgress,
+    dailyReviewQueue,
+    new Date(),
+    options
+  );
+  if(!hadGoal && progressWithGoal.activity?.[dateKey]?.goal){
+    saveSrsProgress(progressWithGoal);
+  }
   dailyReviewIndex = 0;
   dailyReviewRevealed = false;
   dailyReviewCompleted = dailyReviewQueue.length === 0;
   dailyReviewSessionStats = {
     started: dailyReviewQueue.length,
     reviewed: 0,
+    extraBatch: (options.extraNewLimit || 0) > 0,
     ratings: {
       again: 0,
       hard: 0,
@@ -1096,8 +1154,9 @@ function rateCurrentDailyReviewCard(rating){
   if(!entry || !dailyReviewRevealed) return;
 
   const now = new Date();
+  const wasNew = !srsProgress.cards[entry.id];
   const nextCard = SRSCore.rateCard(srsProgress.cards[entry.id], rating, now);
-  const nextProgress = {
+  let nextProgress = {
     ...srsProgress,
     updatedAt: now.toISOString(),
     cards: {
@@ -1105,6 +1164,7 @@ function rateCurrentDailyReviewCard(rating){
       [entry.id]: nextCard
     }
   };
+  nextProgress = SRSCore.recordReviewActivity(nextProgress, entry.id, wasNew, now);
 
   saveSrsProgress(nextProgress);
   dailyReviewSessionStats.reviewed += 1;
@@ -1130,6 +1190,7 @@ function renderDailyReview(){
       ratings: { again: 0, hard: 0, good: 0, easy: 0 }
     };
     const stats = getSrsStats();
+    const goal = SRSCore.getDailyGoal(srsProgress);
     const canLearnMore = stats.unseen > 0;
     container.innerHTML = `
       <div class="srs-shell">
@@ -1140,8 +1201,10 @@ function renderDailyReview(){
           </div>
         </div>
         <div class="srs-summary">
-          <div class="srs-card-label">Session complete</div>
+          <div class="completion-mark" aria-hidden="true">${goal.isComplete ? "花" : "✓"}</div>
+          <div class="srs-card-label">${goal.isComplete ? "Today’s goal complete" : "Session complete"}</div>
           <h2>${session.reviewed} ${session.reviewed === 1 ? "card" : "cards"} reviewed</h2>
+          <p class="completion-message">${goal.isComplete ? "A steady little step forward. Nice work." : "Good session. Your progress is safely saved."}</p>
           <div class="srs-summary-stats">
             Again ${session.ratings.again} · Hard ${session.ratings.hard} · Good ${session.ratings.good} · Easy ${session.ratings.easy}<br>
             ${stats.due} due now · ${stats.learning} learning · ${stats.mature} mature
@@ -1169,8 +1232,11 @@ function renderDailyReview(){
   container.innerHTML = `
     <div class="srs-shell">
       <div class="srs-toolbar">
-        <div class="srs-progress">
-          ${dailyReviewIndex + 1} / ${dailyReviewQueue.length} · Lesson ${entry.lesson} · ${entry.queueType === "new" ? "New" : "Due"}
+        <div class="srs-progress-group">
+          <div class="srs-progress">
+            ${dailyReviewIndex + 1} / ${dailyReviewQueue.length} · Lesson ${entry.lesson} · ${entry.queueType === "new" ? "New" : "Due"}
+          </div>
+          <div class="progress-track" aria-hidden="true"><span style="width:${Math.round((dailyReviewIndex / dailyReviewQueue.length) * 100)}%"></span></div>
         </div>
         <div class="srs-toolbar-actions">
           <button class="study-secondary-btn" id="srsBackBtn" type="button">Back to Lessons</button>
@@ -1410,7 +1476,7 @@ function isDriveProgressDocument(value){
   return Boolean(
     value &&
     typeof value === "object" &&
-    value.schemaVersion === SRSCore.SCHEMA_VERSION &&
+    (value.schemaVersion === 1 || value.schemaVersion === SRSCore.SCHEMA_VERSION) &&
     value.cards &&
     typeof value.cards === "object" &&
     !Array.isArray(value.cards)
@@ -1622,6 +1688,9 @@ function renderLessonFilters(){
 }
 
 document.getElementById("startDailyReviewBtn").addEventListener("click", requestDailyReviewStart);
+document.getElementById("browseLessonsBtn").addEventListener("click", () => {
+  document.getElementById("lessonStudySection").scrollIntoView({ behavior: "smooth", block: "start" });
+});
 document.getElementById("connectDriveBtn").addEventListener("click", connectGoogleDrive);
 document.getElementById("syncDriveBtn").addEventListener("click", () => syncDriveProgress());
 document.getElementById("continueOfflineBtn").addEventListener("click", () => {
@@ -1701,18 +1770,21 @@ document.addEventListener("keydown", event => {
   setSettingsOpen(false, { restoreFocus: true });
 });
 
-let dark = false;
-document.getElementById("themeBtn").addEventListener("click", () => {
+const themeButton = document.getElementById("themeBtn");
+let dark = localStorage.getItem("studyTheme") === "dark"
+  || (!localStorage.getItem("studyTheme") && globalThis.matchMedia?.("(prefers-color-scheme: dark)").matches);
+
+function applyTheme(){
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  themeButton.textContent = dark ? "☀" : "◐";
+  themeButton.setAttribute("aria-label", `Switch to ${dark ? "light" : "dark"} theme`);
+}
+
+applyTheme();
+themeButton.addEventListener("click", () => {
   dark = !dark;
-  document.documentElement.style.setProperty("--bg", dark ? "#101010" : "#ffffff");
-  document.documentElement.style.setProperty("--text", dark ? "#f2f2f2" : "#111111");
-  document.documentElement.style.setProperty("--muted", dark ? "#a0a0a0" : "#777777");
-  document.documentElement.style.setProperty("--border", dark ? "#2a2a2a" : "#e8e8e8");
-  document.documentElement.style.setProperty("--soft", dark ? "#1b1b1b" : "#f7f7f7");
-  document.querySelector(".topbar").style.background = dark ? "rgba(16,16,16,.93)" : "rgba(255,255,255,.93)";
-  document.querySelectorAll(".icon-btn").forEach(el => {
-    if(!el.classList.contains("active")) el.style.background = dark ? "#151515" : "#fff";
-  });
+  localStorage.setItem("studyTheme", dark ? "dark" : "light");
+  applyTheme();
 });
 
 async function fetchJson(url){
