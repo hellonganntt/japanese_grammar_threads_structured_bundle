@@ -225,17 +225,6 @@ function renderSrsDashboard(){
   goalRing.setAttribute("aria-label", `Daily goal progress: ${goal.percent} percent`);
   document.getElementById("streakCount").textContent = `${activity.streak} ${activity.streak === 1 ? "day" : "days"}`;
 
-  const activeDays = activity.days.filter(day => day.reviewed > 0).length;
-  document.getElementById("weeklySummary").textContent = activeDays
-    ? `${activeDays} active ${activeDays === 1 ? "day" : "days"}`
-    : "Begin your rhythm";
-  document.getElementById("weeklyActivity").innerHTML = activity.days.map(day => `
-    <div class="activity-day ${day.complete ? "complete" : day.reviewed ? "active" : ""}" title="${day.dateKey}: ${day.reviewed} reviewed">
-      <span class="activity-mark">${day.complete ? "✓" : day.reviewed || ""}</span>
-      <small>${escapeHtml(day.label)}</small>
-    </div>
-  `).join("");
-
   const todayMessage = document.getElementById("todayMessage");
   if(goal.isComplete){
     todayMessage.textContent = stats.unseen
@@ -1026,6 +1015,19 @@ function formatSrsInterval(card){
   return `${card.intervalDays}d`;
 }
 
+function scrollToDailyReview(){
+  requestAnimationFrame(() => {
+    const reviewSection = document.getElementById("dailyReviewSection");
+    if(!reviewSection || reviewSection.hidden) return;
+
+    const reduceMotion = globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    reviewSection.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start"
+    });
+  });
+}
+
 function startDailyReview(options = {}){
   stopVocabIdleLearning({ disable: true });
   stopCurrentAudio();
@@ -1064,6 +1066,7 @@ function startDailyReview(options = {}){
   };
   appView = "daily";
   renderAppView();
+  scrollToDailyReview();
 }
 
 async function requestDailyReviewStart(){

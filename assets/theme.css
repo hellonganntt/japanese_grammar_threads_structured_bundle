@@ -44,17 +44,9 @@
   transform:rotate(7deg);
   pointer-events:none;
 }
-.today-hero{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:28px}
+.today-hero{position:relative;z-index:1;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:28px}
 .today-copy{max-width:540px}
 .study-dashboard-label{color:var(--vermilion);font-size:11px;letter-spacing:.12em}
-.today-copy h1{
-  margin:7px 0 9px;
-  color:var(--indigo-deep);
-  font-family:"Noto Serif JP","Yu Mincho",Georgia,serif;
-  font-size:clamp(29px,5vw,44px);
-  line-height:1.08;
-  letter-spacing:-.04em;
-}
 .today-copy p,.section-intro p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
 .today-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .study-primary-btn,.study-secondary-btn,.quiz-primary-btn,.flashcard-nav,.flashcard-flip-btn,.srs-reveal-btn{
@@ -73,22 +65,12 @@
 .goal-ring-inner{width:112px;height:112px;display:grid;place-content:center;text-align:center;border-radius:50%;background:var(--surface-raised);box-shadow:inset 0 0 0 1px var(--border)}
 .goal-ring strong{color:var(--indigo-deep);font-size:27px;line-height:1}
 .goal-ring span{margin-top:6px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.today-overview{position:relative;z-index:1;display:grid;grid-template-columns:minmax(180px,.65fr) 1.35fr;gap:12px}
-.streak-card,.weekly-card{min-height:94px;border:1px solid var(--border);border-radius:var(--radius-md);background:color-mix(in srgb,var(--surface) 90%,transparent);padding:15px}
-.streak-card{display:flex;align-items:center;gap:12px}
-.metric-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:var(--vermilion-soft);color:var(--vermilion);font-family:"Noto Serif JP",serif;font-size:20px;font-weight:800}
-.streak-card div{display:grid;gap:3px}.streak-card strong{color:var(--indigo-deep);font-size:19px}
-.streak-card span,.weekly-heading span{color:var(--muted);font-size:11px}
-.weekly-card{display:grid;gap:12px}.weekly-heading{display:flex;justify-content:space-between;gap:12px}
-.weekly-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.activity-day{display:grid;justify-items:center;gap:5px}
-.activity-mark{width:27px;height:27px;display:grid;place-items:center;border:1px solid var(--border);border-radius:9px;background:var(--paper-deep);color:var(--muted);font-size:10px;font-weight:800}
-.activity-day.active .activity-mark{border-color:var(--gold);color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--surface))}
-.activity-day.complete .activity-mark{border-color:var(--success);color:#fff;background:var(--success)}
-.activity-day small{color:var(--muted);font-size:9px;font-weight:800;text-transform:uppercase}
-.study-metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;color:inherit;font-size:inherit}
-.study-metric{display:grid;gap:3px;padding:12px 14px;border-top:1px solid var(--border)}
-.study-metric strong{color:var(--indigo-deep);font-size:20px}.study-metric span{color:var(--muted);font-size:11px;font-weight:700}
+.study-metrics{position:relative;z-index:1;display:grid;grid-template-columns:1.35fr repeat(4,1fr);overflow:hidden;border:1px solid var(--border);border-radius:16px;background:color-mix(in srgb,var(--surface) 88%,transparent);color:inherit;font-size:inherit}
+.study-metric{min-width:0;display:grid;place-content:center;gap:2px;padding:10px 12px;text-align:center;border-left:1px solid var(--border)}
+.study-metric:first-child{border-left:0}.study-metric strong{color:var(--indigo-deep);font-size:18px;line-height:1.15}.study-metric span{color:var(--muted);font-size:10px;font-weight:700}
+.streak-metric{display:flex;align-items:center;justify-content:center;gap:8px;text-align:left}
+.streak-metric div{display:grid;gap:2px}
+.metric-icon{width:30px;height:30px;display:grid;place-items:center;flex:0 0 auto;border-radius:10px;background:var(--vermilion-soft);color:var(--vermilion);font-family:"Noto Serif JP",serif;font-size:15px;font-weight:800}
 .section-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;padding:25px 22px 17px}
 .section-intro h2{margin:5px 0 0;color:var(--indigo-deep);font-family:"Noto Serif JP","Yu Mincho",Georgia,serif;font-size:25px}
 .section-intro p{max-width:350px;text-align:right}
@@ -119,7 +101,7 @@
 .quiz-choice.correct,.quiz-feedback.correct{border-color:var(--success);background:var(--success-soft)}
 .quiz-choice.incorrect,.quiz-feedback.incorrect{border-color:var(--vermilion);background:var(--vermilion-soft)}
 .quiz-feedback{display:grid;gap:4px;border-radius:14px;background:var(--surface)}.quiz-feedback span{font-weight:500;color:var(--muted)}
-.daily-review-section{padding:24px 20px 32px;border:0}.srs-shell{gap:16px}.srs-card{min-height:360px;padding:28px;border-top:4px solid var(--indigo)}
+.daily-review-section{padding:24px 20px 32px;border:0;scroll-margin-top:84px}.srs-shell{gap:16px}.srs-card{min-height:360px;padding:28px;border-top:4px solid var(--indigo)}
 .srs-ratings{gap:10px}.srs-rating-btn{border-radius:14px;background:var(--surface)}
 .srs-rating-btn[data-rating="again"]{border-color:var(--vermilion);background:var(--vermilion-soft)}
 .srs-rating-btn[data-rating="hard"]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--surface))}
@@ -131,8 +113,11 @@
 .toast{background:var(--indigo-deep);box-shadow:var(--shadow-md)}
 @media(max-width:700px){
   .topbar{height:64px;padding:0 16px}.study-dashboard{margin:14px 12px 20px;padding:20px}
-  .today-hero{grid-template-columns:1fr}.goal-ring{width:118px;height:118px;position:absolute;right:0;top:0;opacity:.16}.goal-ring-inner{width:92px;height:92px}
-  .today-copy{position:relative;z-index:1}.today-actions{display:grid}.today-overview{grid-template-columns:1fr}.study-metrics{grid-template-columns:repeat(2,1fr)}
+  .today-hero{grid-template-columns:auto minmax(0,1fr);gap:16px}.goal-ring{width:104px;height:104px}.goal-ring-inner{width:80px;height:80px}
+  .goal-ring strong{font-size:22px}.today-copy{position:relative;z-index:1}.today-actions{display:grid}.study-metrics{grid-template-columns:repeat(2,1fr)}
+  .study-metric{border-left:1px solid var(--border);border-top:1px solid var(--border)}
+  .study-metric:nth-child(odd){border-left:0}.study-metric:nth-child(-n+2){border-top:0}
+  .streak-metric{grid-column:1 / -1;border-left:0;border-top:0;border-bottom:1px solid var(--border)}
   .section-intro{align-items:start;flex-direction:column;padding:22px 16px 14px}.section-intro p{text-align:left}
   .study-selectors,.vocab-panel{margin-left:12px;margin-right:12px}.vocab-content{padding-left:14px;padding-right:14px}
   .daily-review-section{padding:16px 12px 26px}.srs-card{min-height:300px;padding:20px}.learning-progress,.srs-progress-group{width:100%}
