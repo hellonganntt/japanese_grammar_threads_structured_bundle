@@ -964,6 +964,8 @@
       font-size:13px;
     }
     .vocab-pos{
+      position:absolute;
+      right:14px;
       margin-left:auto;
       color:var(--muted);
       font-size:12px;
