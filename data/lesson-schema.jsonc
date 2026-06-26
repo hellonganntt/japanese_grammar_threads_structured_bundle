@@ -5,9 +5,9 @@
   // Optional lesson-level vocabulary list shown in the Vocabulary panel.
   "vocab": [
     {
-      // Required permanent SRS identifier. Assign once using l{lesson}-v{number}
+      // Required permanent SRS identifier. Assign once using {levelLower}-l{lesson}-v{number}
       // and never change it when vocabulary entries are reordered.
-      "id": "l36-v001",
+      "id": "n4-l36-v001",
 
       // Japanese headword in kana/kanji.
       "jp": "話せる",
@@ -29,8 +29,8 @@
 
       // Optional static audio file paths for vocabulary and example playback.
       "audio": {
-        "word": "./audio/lesson-36/vocab-001-word.mp3",
-        "example": "./audio/lesson-36/vocab-001-example.mp3"
+        "word": "./audio/n4/lesson-36/vocab-001-word.mp3",
+        "example": "./audio/n4/lesson-36/vocab-001-example.mp3"
       },
 
       // Optional generation-only text overrides when TTS mispronounces kanji or phrasing.

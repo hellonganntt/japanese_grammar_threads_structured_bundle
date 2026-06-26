@@ -50,14 +50,16 @@ function dueCard(overrides = {}){
 
 {
   const catalogCard = SRS.createCatalogCard({
-    id: "l36-v001",
+    id: "n4-l36-v001",
     lesson: 36,
+    level: "N4",
     lessonIndex: 0,
     order: 0
   });
   assert.equal(catalogCard.state, "new");
   assert.equal(catalogCard.available, true);
   assert.equal(catalogCard.due, null);
+  assert.equal(catalogCard.level, "N4");
 }
 
 {

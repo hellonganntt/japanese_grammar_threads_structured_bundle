@@ -64,7 +64,7 @@ Grammar point shape:
 
 ## Current Lesson 36 Data
 
-`data/lesson-36.json` currently contains:
+`data/n4/lesson-36.json` currently contains:
 
 - `1` grammar section
 - `4` grammar points

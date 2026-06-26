@@ -1,3 +1,6 @@
+const JLPT_LEVELS = ["N5", "N4", "N3", "N2", "N1"];
+const JLPT_ALL_LEVELS = "all";
+
 let lessonFiles = [];
 const lessonCache = new Map();
 let activeLesson = "";
@@ -13,6 +16,7 @@ let suppressNextVocabAutoplay = false;
 let suppressNextVocabIdleStart = false;
 let vocabAudioAutoplayEnabled = localStorage.getItem("vocabAudioAutoplay") !== "false";
 let vocabIdleLearningEnabled = localStorage.getItem("vocabIdleLearning") === "true";
+let selectedJlptLevel = normalizeJlptLevel(localStorage.getItem("selectedJlptLevel"));
 let vocabIdleRunId = 0;
 let vocabQuizQuestions = [];
 let vocabQuizQuestionIndex = 0;
@@ -121,7 +125,9 @@ function clearDriveSession(){
 }
 
 async function getSrsStats(){
-  return srsDatabase.getStats(new Date(), SRS_NEW_CARD_LIMIT);
+  return srsDatabase.getStats(new Date(), SRS_NEW_CARD_LIMIT, {
+    newCardLevel: getSelectedNewCardLevel()
+  });
 }
 
 async function renderSrsDashboard(){
@@ -179,6 +185,22 @@ function getAudioButtonPaths(button){
   }catch(error){
     return [];
   }
+}
+
+function normalizeJlptLevel(value){
+  return JLPT_LEVELS.includes(value) ? value : JLPT_ALL_LEVELS;
+}
+
+function getSelectedNewCardLevel(){
+  return selectedJlptLevel === JLPT_ALL_LEVELS ? "" : selectedJlptLevel;
+}
+
+function lessonMatchesSelectedLevel(lessonEntry){
+  return selectedJlptLevel === JLPT_ALL_LEVELS || lessonEntry.level === selectedJlptLevel;
+}
+
+function getFilteredLessonFiles(){
+  return lessonFiles.filter(lessonMatchesSelectedLevel);
 }
 
 function getVocabAudioPaths(item){
@@ -974,7 +996,8 @@ async function startDailyReview(options = {}){
   const queue = await srsDatabase.buildDailyQueue(
     new Date(),
     SRS_NEW_CARD_LIMIT,
-    options.extraNewLimit || 0
+    options.extraNewLimit || 0,
+    { newCardLevel: getSelectedNewCardLevel() }
   );
   dailyReviewQueue = await hydrateReviewQueue(queue);
   dailyReviewIndex = 0;
@@ -1619,12 +1642,24 @@ function renderVocabSetSelect(chunks, activeChunkIndex){
 
 function renderLessonFilters(){
   const select = document.getElementById("lessonSelect");
-  const lessons = lessonFiles.map(item => item.lesson).filter(Boolean)
-    .sort((a, b) => Number(a) - Number(b));
+  const filteredLessons = getFilteredLessonFiles()
+    .filter(item => item.lesson)
+    .sort((a, b) => Number(a.lesson) - Number(b.lesson));
 
-  select.innerHTML = lessons.map(lesson => `
-    <option value="${lesson}" ${String(activeLesson) === String(lesson) ? "selected" : ""}>
-      Lesson ${lesson}
+  if(!filteredLessons.some(item => String(item.lesson) === String(activeLesson))){
+    activeLesson = filteredLessons.length ? String(filteredLessons[0].lesson) : "";
+  }
+
+  if(!filteredLessons.length){
+    select.innerHTML = "<option>No lessons for this level</option>";
+    select.disabled = true;
+    return;
+  }
+
+  select.disabled = false;
+  select.innerHTML = filteredLessons.map(item => `
+    <option value="${item.lesson}" ${String(activeLesson) === String(item.lesson) ? "selected" : ""}>
+      Lesson ${item.lesson} · ${item.level}
     </option>
   `).join("");
 }
@@ -1668,6 +1703,11 @@ document.getElementById("vocabSetSelect").addEventListener("change", event => {
 const settingsButton = document.getElementById("settingsBtn");
 const settingsPopover = document.getElementById("settingsPopover");
 const settingsCloseButton = document.getElementById("settingsCloseBtn");
+const jlptLevelSelect = document.getElementById("jlptLevelSelect");
+
+function syncJlptLevelSelect(){
+  if(jlptLevelSelect) jlptLevelSelect.value = selectedJlptLevel;
+}
 
 function updateSettingsButtonState(){
   const isOpen = !settingsPopover.hidden;
@@ -1686,6 +1726,7 @@ function setSettingsOpen(isOpen, options = {}){
 
   if(isOpen){
     renderDriveStatus();
+    syncJlptLevelSelect();
     settingsCloseButton.focus();
   }else if(options.restoreFocus){
     settingsButton.focus();
@@ -1698,6 +1739,23 @@ settingsButton.addEventListener("click", () => {
 
 settingsCloseButton.addEventListener("click", () => {
   setSettingsOpen(false, { restoreFocus: true });
+});
+
+jlptLevelSelect?.addEventListener("change", async event => {
+  selectedJlptLevel = normalizeJlptLevel(event.target.value);
+  localStorage.setItem("selectedJlptLevel", selectedJlptLevel);
+  stopVocabIdleLearning({ disable: true });
+  stopCurrentAudio();
+  cancelVocabQuizAutoAdvance();
+  resetVocabFlashcard();
+  resetVocabQuiz();
+  renderLessonFilters();
+  if(activeLesson){
+    await loadVocabForSelectedLesson();
+  }else{
+    renderVocabPanel();
+  }
+  renderSrsDashboard();
 });
 
 document.addEventListener("click", event => {
@@ -1748,9 +1806,18 @@ async function loadLessonManifest(){
     throw new Error("data/lessons.json must contain a lessons array.");
   }
 
+  data.lessons.forEach(entry => {
+    if(!JLPT_LEVELS.includes(entry.level)){
+      throw new Error(`Lesson ${entry.lesson} must include a valid JLPT level.`);
+    }
+  });
+
   lessonFiles = data.lessons;
-  if(!activeLesson && lessonFiles.length){
-    activeLesson = String(lessonFiles[0].lesson);
+  if(!activeLesson){
+    const filteredLessons = getFilteredLessonFiles();
+    if(filteredLessons.length){
+      activeLesson = String(filteredLessons[0].lesson);
+    }
   }
 }
 
@@ -1827,6 +1894,7 @@ async function loadVocabData(){
     }
     await saveDriveMetadata();
     globalThis.navigator?.storage?.persist?.().catch(() => false);
+    syncJlptLevelSelect();
     renderLessonFilters();
     await loadVocabForSelectedLesson();
     renderAppView();

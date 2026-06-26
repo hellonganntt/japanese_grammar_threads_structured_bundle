@@ -3,7 +3,7 @@ JAPANESE GRAMMAR OUTLINE - STRUCTURED JSON
 Files:
 - japanese_grammar_threads_structured.html
 - grammar-data-structured.json
-- data/lesson-36.json
+- data/n4/lesson-36.json
 
 The JSON stores lesson content as collapsible grammar sections.
 

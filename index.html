@@ -20,6 +20,19 @@
           <button class="settings-close-btn" id="settingsCloseBtn" type="button" aria-label="Close settings">×</button>
         </div>
         <div class="settings-section">
+          <label class="settings-field">
+            <span>JLPT Level</span>
+            <select class="study-select" id="jlptLevelSelect" aria-label="Choose JLPT level">
+              <option value="all">All levels</option>
+              <option value="N5">N5</option>
+              <option value="N4">N4</option>
+              <option value="N3">N3</option>
+              <option value="N2">N2</option>
+              <option value="N1">N1</option>
+            </select>
+          </label>
+        </div>
+        <div class="settings-section">
           <div>
             <div class="drive-title">Google Drive</div>
             <div class="drive-status" id="driveStatus">Local only</div>
@@ -99,4 +112,3 @@
 <script src="./assets/app.js" defer></script>
 </body>
 </html>
-

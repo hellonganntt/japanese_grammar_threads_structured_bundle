@@ -2,7 +2,7 @@
   "lesson": 42,
   "vocab": [
     {
-      "id": "l42-v001",
+      "id": "n4-l42-v001",
       "jp": "包みます",
       "reading": "つつみます",
       "meaning": "gói; bọc",
@@ -10,12 +10,12 @@
       "note": "Dùng khi bọc hoặc gói một vật bằng giấy, vải hay vật liệu khác.",
       "example": "プレゼントをきれいな紙で包みます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-001-word.mp3",
-        "example": "./audio/lesson-42/vocab-001-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-001-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-001-example.mp3"
       }
     },
     {
-      "id": "l42-v002",
+      "id": "n4-l42-v002",
       "jp": "沸かします",
       "reading": "わかします",
       "meaning": "đun sôi; làm nóng",
@@ -23,12 +23,12 @@
       "note": "Tha động từ của 沸きます, thường dùng với nước hoặc nước tắm.",
       "example": "やかんでお湯を沸かします。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-002-word.mp3",
-        "example": "./audio/lesson-42/vocab-002-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-002-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-002-example.mp3"
       }
     },
     {
-      "id": "l42-v003",
+      "id": "n4-l42-v003",
       "jp": "混ぜます",
       "reading": "まぜます",
       "meaning": "trộn; khuấy",
@@ -36,12 +36,12 @@
       "note": "Dùng khi trộn nhiều nguyên liệu hoặc chất lại với nhau.",
       "example": "卵と牛乳をよく混ぜてください。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-003-word.mp3",
-        "example": "./audio/lesson-42/vocab-003-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-003-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-003-example.mp3"
       }
     },
     {
-      "id": "l42-v004",
+      "id": "n4-l42-v004",
       "jp": "計算します",
       "reading": "けいさんします",
       "meaning": "tính toán",
@@ -49,12 +49,12 @@
       "note": "Dùng cho phép tính số học, chi phí, thời gian hoặc số lượng.",
       "example": "旅行に必要なお金を計算しました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-004-word.mp3",
-        "example": "./audio/lesson-42/vocab-004-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-004-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-004-example.mp3"
       }
     },
     {
-      "id": "l42-v005",
+      "id": "n4-l42-v005",
       "jp": "厚い",
       "reading": "あつい",
       "meaning": "dày",
@@ -62,12 +62,12 @@
       "note": "Chỉ độ dày của sách, giấy, tường hoặc vật có bề mặt.",
       "example": "この辞書はとても厚いです。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-005-word.mp3",
-        "example": "./audio/lesson-42/vocab-005-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-005-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-005-example.mp3"
       }
     },
     {
-      "id": "l42-v006",
+      "id": "n4-l42-v006",
       "jp": "薄い",
       "reading": "うすい",
       "meaning": "mỏng; nhạt",
@@ -75,12 +75,12 @@
       "note": "Có thể chỉ vật mỏng, màu nhạt hoặc vị không đậm.",
       "example": "この紙は薄いので、破れやすいです。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-006-word.mp3",
-        "example": "./audio/lesson-42/vocab-006-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-006-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-006-example.mp3"
       }
     },
     {
-      "id": "l42-v007",
+      "id": "n4-l42-v007",
       "jp": "弁護士",
       "reading": "べんごし",
       "meaning": "luật sư",
@@ -88,12 +88,12 @@
       "note": "Người có chuyên môn pháp luật và đại diện, tư vấn cho thân chủ.",
       "example": "兄は弁護士として働いています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-007-word.mp3",
-        "example": "./audio/lesson-42/vocab-007-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-007-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-007-example.mp3"
       }
     },
     {
-      "id": "l42-v008",
+      "id": "n4-l42-v008",
       "jp": "音楽家",
       "reading": "おんがくか",
       "meaning": "nhạc sĩ; nhà hoạt động âm nhạc",
@@ -101,12 +101,12 @@
       "note": "Chỉ người chuyên sáng tác, biểu diễn hoặc nghiên cứu âm nhạc.",
       "example": "彼女は世界的に有名な音楽家です。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-008-word.mp3",
-        "example": "./audio/lesson-42/vocab-008-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-008-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-008-example.mp3"
       }
     },
     {
-      "id": "l42-v009",
+      "id": "n4-l42-v009",
       "jp": "子どもたち",
       "reading": "こどもたち",
       "meaning": "những đứa trẻ; trẻ em",
@@ -114,12 +114,12 @@
       "note": "たち biểu thị một nhóm gồm người được nhắc đến và những người cùng nhóm.",
       "example": "子どもたちの教育について考えます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-009-word.mp3",
-        "example": "./audio/lesson-42/vocab-009-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-009-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-009-example.mp3"
       }
     },
     {
-      "id": "l42-v010",
+      "id": "n4-l42-v010",
       "jp": "二人",
       "reading": "ふたり",
       "meaning": "hai người",
@@ -127,12 +127,12 @@
       "note": "Cách đếm đặc biệt cho hai người; từ ba người trở đi thường dùng ～人 với cách đọc にん.",
       "example": "二人で平和について話し合いました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-010-word.mp3",
-        "example": "./audio/lesson-42/vocab-010-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-010-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-010-example.mp3"
       }
     },
     {
-      "id": "l42-v011",
+      "id": "n4-l42-v011",
       "jp": "教育",
       "reading": "きょういく",
       "meaning": "giáo dục",
@@ -140,12 +140,12 @@
       "note": "Quá trình dạy, học và phát triển kiến thức, năng lực hoặc nhân cách.",
       "example": "すべての子どもに教育の機会が必要です。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-011-word.mp3",
-        "example": "./audio/lesson-42/vocab-011-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-011-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-011-example.mp3"
       }
     },
     {
-      "id": "l42-v012",
+      "id": "n4-l42-v012",
       "jp": "歴史",
       "reading": "れきし",
       "meaning": "lịch sử",
@@ -153,12 +153,12 @@
       "note": "Chỉ các sự kiện và quá trình đã xảy ra trong quá khứ.",
       "example": "大学で日本の歴史を勉強しています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-012-word.mp3",
-        "example": "./audio/lesson-42/vocab-012-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-012-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-012-example.mp3"
       }
     },
     {
-      "id": "l42-v013",
+      "id": "n4-l42-v013",
       "jp": "文化",
       "reading": "ぶんか",
       "meaning": "văn hóa",
@@ -166,12 +166,12 @@
       "note": "Bao gồm phong tục, nghệ thuật, lối sống và giá trị của một cộng đồng.",
       "example": "旅行を通して外国の文化を学びました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-013-word.mp3",
-        "example": "./audio/lesson-42/vocab-013-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-013-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-013-example.mp3"
       }
     },
     {
-      "id": "l42-v014",
+      "id": "n4-l42-v014",
       "jp": "社会",
       "reading": "しゃかい",
       "meaning": "xã hội",
@@ -179,12 +179,12 @@
       "note": "Chỉ cộng đồng con người và hệ thống quan hệ, tổ chức trong cộng đồng đó.",
       "example": "社会のルールを守ることは大切です。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-014-word.mp3",
-        "example": "./audio/lesson-42/vocab-014-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-014-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-014-example.mp3"
       }
     },
     {
-      "id": "l42-v015",
+      "id": "n4-l42-v015",
       "jp": "法律",
       "reading": "ほうりつ",
       "meaning": "pháp luật; luật",
@@ -192,12 +192,12 @@
       "note": "Quy tắc chính thức do nhà nước đặt ra và thực thi.",
       "example": "国によって法律が違います。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-015-word.mp3",
-        "example": "./audio/lesson-42/vocab-015-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-015-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-015-example.mp3"
       }
     },
     {
-      "id": "l42-v016",
+      "id": "n4-l42-v016",
       "jp": "戦争",
       "reading": "せんそう",
       "meaning": "chiến tranh",
@@ -205,12 +205,12 @@
       "note": "Xung đột vũ trang quy mô lớn giữa các quốc gia hoặc lực lượng.",
       "example": "戦争のない世界を目指しています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-016-word.mp3",
-        "example": "./audio/lesson-42/vocab-016-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-016-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-016-example.mp3"
       }
     },
     {
-      "id": "l42-v017",
+      "id": "n4-l42-v017",
       "jp": "平和",
       "reading": "へいわ",
       "meaning": "hòa bình",
@@ -218,12 +218,12 @@
       "note": "Trạng thái không có chiến tranh hoặc xung đột nghiêm trọng.",
       "example": "世界の平和を願っています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-017-word.mp3",
-        "example": "./audio/lesson-42/vocab-017-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-017-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-017-example.mp3"
       }
     },
     {
-      "id": "l42-v018",
+      "id": "n4-l42-v018",
       "jp": "目的",
       "reading": "もくてき",
       "meaning": "mục đích",
@@ -231,12 +231,12 @@
       "note": "Kết quả hoặc điều muốn đạt được khi thực hiện một hành động.",
       "example": "この調査の目的は食品の安全を確認することです。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-018-word.mp3",
-        "example": "./audio/lesson-42/vocab-018-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-018-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-018-example.mp3"
       }
     },
     {
-      "id": "l42-v019",
+      "id": "n4-l42-v019",
       "jp": "安全",
       "reading": "あんぜん",
       "meaning": "an toàn",
@@ -244,12 +244,12 @@
       "note": "Cũng dùng như tính từ な: 安全な場所.",
       "example": "子どもたちの安全を第一に考えます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-019-word.mp3",
-        "example": "./audio/lesson-42/vocab-019-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-019-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-019-example.mp3"
       }
     },
     {
-      "id": "l42-v020",
+      "id": "n4-l42-v020",
       "jp": "論文",
       "reading": "ろんぶん",
       "meaning": "luận văn; bài nghiên cứu",
@@ -257,12 +257,12 @@
       "note": "Bài viết học thuật trình bày kết quả nghiên cứu hoặc lập luận.",
       "example": "環境問題について論文を書いています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-020-word.mp3",
-        "example": "./audio/lesson-42/vocab-020-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-020-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-020-example.mp3"
       }
     },
     {
-      "id": "l42-v021",
+      "id": "n4-l42-v021",
       "jp": "関係",
       "reading": "かんけい",
       "meaning": "quan hệ; sự liên quan",
@@ -270,12 +270,12 @@
       "note": "Dùng cho mối quan hệ giữa người với người hoặc sự liên quan giữa các sự việc.",
       "example": "教育と社会には深い関係があります。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-021-word.mp3",
-        "example": "./audio/lesson-42/vocab-021-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-021-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-021-example.mp3"
       }
     },
     {
-      "id": "l42-v022",
+      "id": "n4-l42-v022",
       "jp": "ミキサー",
       "reading": "ミキサー",
       "meaning": "máy xay; máy trộn",
@@ -283,12 +283,12 @@
       "note": "Dạng chuẩn của từ nguồn ミキサ; trong tiếng Nhật thường chỉ máy xay thực phẩm.",
       "example": "ミキサーで野菜と果物を混ぜます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-022-word.mp3",
-        "example": "./audio/lesson-42/vocab-022-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-022-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-022-example.mp3"
       }
     },
     {
-      "id": "l42-v023",
+      "id": "n4-l42-v023",
       "jp": "やかん",
       "reading": "やかん",
       "meaning": "ấm đun nước",
@@ -296,12 +296,12 @@
       "note": "Dụng cụ có vòi dùng để đun nước, thường đặt trực tiếp trên bếp.",
       "example": "やかんに水を入れて、火にかけました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-023-word.mp3",
-        "example": "./audio/lesson-42/vocab-023-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-023-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-023-example.mp3"
       }
     },
     {
-      "id": "l42-v024",
+      "id": "n4-l42-v024",
       "jp": "栓抜き",
       "reading": "せんぬき",
       "meaning": "đồ mở nắp chai",
@@ -309,12 +309,12 @@
       "note": "Dụng cụ dùng để mở nắp chai kim loại; khác với 缶切り dùng mở đồ hộp.",
       "example": "この瓶を開けるために栓抜きが要ります。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-024-word.mp3",
-        "example": "./audio/lesson-42/vocab-024-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-024-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-024-example.mp3"
       }
     },
     {
-      "id": "l42-v025",
+      "id": "n4-l42-v025",
       "jp": "缶切り",
       "reading": "かんきり",
       "meaning": "đồ khui hộp; dụng cụ mở đồ hộp",
@@ -322,12 +322,12 @@
       "note": "Dụng cụ dùng để cắt mở nắp lon hoặc hộp kim loại.",
       "example": "缶切りで缶詰を開けました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-025-word.mp3",
-        "example": "./audio/lesson-42/vocab-025-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-025-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-025-example.mp3"
       }
     },
     {
-      "id": "l42-v026",
+      "id": "n4-l42-v026",
       "jp": "缶詰",
       "reading": "かんづめ",
       "meaning": "đồ hộp; thực phẩm đóng hộp",
@@ -335,12 +335,12 @@
       "note": "Thực phẩm được bảo quản kín trong hộp kim loại.",
       "example": "災害のために缶詰を用意してあります。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-026-word.mp3",
-        "example": "./audio/lesson-42/vocab-026-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-026-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-026-example.mp3"
       }
     },
     {
-      "id": "l42-v027",
+      "id": "n4-l42-v027",
       "jp": "ふろしき",
       "reading": "ふろしき",
       "meaning": "khăn vuông dùng để gói đồ",
@@ -348,12 +348,12 @@
       "note": "Cũng viết là 風呂敷; loại vải vuông truyền thống của Nhật dùng để bọc và mang đồ.",
       "example": "ふろしきでお弁当を包みました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-027-word.mp3",
-        "example": "./audio/lesson-42/vocab-027-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-027-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-027-example.mp3"
       }
     },
     {
-      "id": "l42-v028",
+      "id": "n4-l42-v028",
       "jp": "そろばん",
       "reading": "そろばん",
       "meaning": "bàn tính",
@@ -361,12 +361,12 @@
       "note": "Cũng viết là 算盤; dụng cụ tính toán bằng các hạt trượt trên thanh.",
       "example": "昔はそろばんを使って計算しました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-028-word.mp3",
-        "example": "./audio/lesson-42/vocab-028-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-028-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-028-example.mp3"
       }
     },
     {
-      "id": "l42-v029",
+      "id": "n4-l42-v029",
       "jp": "体温計",
       "reading": "たいおんけい",
       "meaning": "nhiệt kế đo thân nhiệt",
@@ -374,12 +374,12 @@
       "note": "Dụng cụ dùng để đo nhiệt độ cơ thể.",
       "example": "体温計で熱を測ってください。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-029-word.mp3",
-        "example": "./audio/lesson-42/vocab-029-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-029-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-029-example.mp3"
       }
     },
     {
-      "id": "l42-v030",
+      "id": "n4-l42-v030",
       "jp": "材料",
       "reading": "ざいりょう",
       "meaning": "nguyên liệu; vật liệu",
@@ -387,12 +387,12 @@
       "note": "Chỉ những thứ dùng để nấu ăn, chế tạo hoặc xây dựng một sản phẩm.",
       "example": "料理を始める前に材料をそろえます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-030-word.mp3",
-        "example": "./audio/lesson-42/vocab-030-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-030-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-030-example.mp3"
       }
     },
     {
-      "id": "l42-v031",
+      "id": "n4-l42-v031",
       "jp": "石",
       "reading": "いし",
       "meaning": "đá; hòn đá",
@@ -400,12 +400,12 @@
       "note": "Chỉ đá tự nhiên hoặc một mảnh đá riêng lẻ.",
       "example": "この建物は大きな石で造られています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-031-word.mp3",
-        "example": "./audio/lesson-42/vocab-031-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-031-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-031-example.mp3"
       }
     },
     {
-      "id": "l42-v032",
+      "id": "n4-l42-v032",
       "jp": "ピラミッド",
       "reading": "ピラミッド",
       "meaning": "kim tự tháp",
@@ -413,12 +413,12 @@
       "note": "Công trình có đáy rộng và các mặt nghiêng hội tụ về phía đỉnh.",
       "example": "エジプトのピラミッドは大きな石で造られました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-032-word.mp3",
-        "example": "./audio/lesson-42/vocab-032-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-032-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-032-example.mp3"
       }
     },
     {
-      "id": "l42-v033",
+      "id": "n4-l42-v033",
       "jp": "データ",
       "reading": "データ",
       "meaning": "dữ liệu",
@@ -426,12 +426,12 @@
       "note": "Thông tin được thu thập để phân tích, tính toán hoặc lưu trữ.",
       "example": "調査のデータをパソコンに入力しました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-033-word.mp3",
-        "example": "./audio/lesson-42/vocab-033-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-033-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-033-example.mp3"
       }
     },
     {
-      "id": "l42-v034",
+      "id": "n4-l42-v034",
       "jp": "ファイル",
       "reading": "ファイル",
       "meaning": "tệp tin; bìa hồ sơ",
@@ -439,12 +439,12 @@
       "note": "Có thể chỉ tệp dữ liệu điện tử hoặc bìa dùng để lưu giấy tờ.",
       "example": "このデータを新しいファイルに保存してください。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-034-word.mp3",
-        "example": "./audio/lesson-42/vocab-034-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-034-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-034-example.mp3"
       }
     },
     {
-      "id": "l42-v035",
+      "id": "n4-l42-v035",
       "jp": "ある～",
       "reading": "ある",
       "meaning": "một... nọ; một... nào đó",
@@ -452,12 +452,12 @@
       "note": "Đặt trước danh từ để nói về một đối tượng cụ thể nhưng không nêu rõ tên.",
       "example": "ある音楽家が平和のために曲を作りました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-035-word.mp3",
-        "example": "./audio/lesson-42/vocab-035-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-035-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-035-example.mp3"
       }
     },
     {
-      "id": "l42-v036",
+      "id": "n4-l42-v036",
       "jp": "一生懸命",
       "reading": "いっしょうけんめい",
       "meaning": "hết sức; hết mình; chăm chỉ",
@@ -465,12 +465,12 @@
       "note": "Dạng chuẩn của từ nguồn 生懸命; diễn tả làm việc với toàn bộ nỗ lực.",
       "example": "学生たちは一生懸命論文を書いています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-036-word.mp3",
-        "example": "./audio/lesson-42/vocab-036-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-036-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-036-example.mp3"
       }
     },
     {
-      "id": "l42-v037",
+      "id": "n4-l42-v037",
       "jp": "なぜ",
       "reading": "なぜ",
       "meaning": "tại sao",
@@ -478,12 +478,12 @@
       "note": "Từ hỏi nguyên nhân, trang trọng hoặc trung tính hơn どうして trong một số ngữ cảnh.",
       "example": "なぜこの法律が必要なのですか。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-037-word.mp3",
-        "example": "./audio/lesson-42/vocab-037-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-037-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-037-example.mp3"
       }
     },
     {
-      "id": "l42-v038",
+      "id": "n4-l42-v038",
       "jp": "国連",
       "reading": "こくれん",
       "meaning": "Liên Hợp Quốc",
@@ -491,12 +491,12 @@
       "note": "Dạng viết tắt thông dụng của 国際連合.",
       "example": "国連は世界の平和と安全のために活動しています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-038-word.mp3",
-        "example": "./audio/lesson-42/vocab-038-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-038-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-038-example.mp3"
       }
     },
     {
-      "id": "l42-v039",
+      "id": "n4-l42-v039",
       "jp": "国際連合",
       "reading": "こくさいれんごう",
       "meaning": "Liên Hợp Quốc",
@@ -504,12 +504,12 @@
       "note": "Tên đầy đủ trong tiếng Nhật của tổ chức thường được gọi tắt là 国連.",
       "example": "国際連合は1945年に設立されました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-039-word.mp3",
-        "example": "./audio/lesson-42/vocab-039-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-039-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-039-example.mp3"
       }
     },
     {
-      "id": "l42-v040",
+      "id": "n4-l42-v040",
       "jp": "ポーランド",
       "reading": "ポーランド",
       "meaning": "Ba Lan",
@@ -517,12 +517,12 @@
       "note": "Tên quốc gia Poland trong tiếng Nhật.",
       "example": "ポーランドの歴史と文化に興味があります。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-040-word.mp3",
-        "example": "./audio/lesson-42/vocab-040-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-040-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-040-example.mp3"
       }
     },
     {
-      "id": "l42-v041",
+      "id": "n4-l42-v041",
       "jp": "ローン",
       "reading": "ローン",
       "meaning": "khoản vay; khoản trả góp",
@@ -530,12 +530,12 @@
       "note": "Tiền vay từ ngân hàng hoặc tổ chức tài chính, thường được hoàn trả dần.",
       "example": "家を買うために銀行でローンを組みました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-041-word.mp3",
-        "example": "./audio/lesson-42/vocab-041-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-041-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-041-example.mp3"
       }
     },
     {
-      "id": "l42-v042",
+      "id": "n4-l42-v042",
       "jp": "セット",
       "reading": "セット",
       "meaning": "bộ; phần ăn theo bộ; cài đặt",
@@ -543,12 +543,12 @@
       "note": "Tùy ngữ cảnh có thể chỉ một bộ đồ vật, suất ăn kết hợp hoặc việc thiết lập.",
       "example": "このカップと皿はセットで売られています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-042-word.mp3",
-        "example": "./audio/lesson-42/vocab-042-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-042-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-042-example.mp3"
       }
     },
     {
-      "id": "l42-v043",
+      "id": "n4-l42-v043",
       "jp": "あとは",
       "reading": "あとは",
       "meaning": "còn lại thì; sau đó chỉ còn",
@@ -556,12 +556,12 @@
       "note": "Dùng để chuyển sang phần việc hoặc điều còn lại sau khi phần trước đã hoàn thành.",
       "example": "材料を混ぜました。あとは焼くだけです。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-043-word.mp3",
-        "example": "./audio/lesson-42/vocab-043-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-043-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-043-example.mp3"
       }
     },
     {
-      "id": "l42-v044",
+      "id": "n4-l42-v044",
       "jp": "カップラーメン",
       "reading": "カップラーメン",
       "meaning": "mì cốc; mì ăn liền đựng trong cốc",
@@ -569,12 +569,12 @@
       "note": "Một loại インスタントラーメン được đóng sẵn trong cốc để đổ nước nóng trực tiếp.",
       "example": "忙しい日にカップラーメンを食べることがあります。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-044-word.mp3",
-        "example": "./audio/lesson-42/vocab-044-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-044-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-044-example.mp3"
       }
     },
     {
-      "id": "l42-v045",
+      "id": "n4-l42-v045",
       "jp": "インスタントラーメン",
       "reading": "インスタントラーメン",
       "meaning": "mì ăn liền",
@@ -582,12 +582,12 @@
       "note": "Tên gọi chung cho mì được chế biến nhanh; gồm mì gói và mì cốc.",
       "example": "インスタントラーメンをなべで三分ほど煮ます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-045-word.mp3",
-        "example": "./audio/lesson-42/vocab-045-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-045-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-045-example.mp3"
       }
     },
     {
-      "id": "l42-v046",
+      "id": "n4-l42-v046",
       "jp": "なべ",
       "reading": "なべ",
       "meaning": "nồi; món lẩu",
@@ -595,12 +595,12 @@
       "note": "Cũng viết là 鍋; có thể chỉ dụng cụ nấu hoặc món ăn nấu chung trong nồi.",
       "example": "なべに水を入れて沸かしてください。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-046-word.mp3",
-        "example": "./audio/lesson-42/vocab-046-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-046-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-046-example.mp3"
       }
     },
     {
-      "id": "l42-v047",
+      "id": "n4-l42-v047",
       "jp": "どんぶり",
       "reading": "どんぶり",
       "meaning": "bát tô; món cơm tô",
@@ -608,12 +608,12 @@
       "note": "Cũng viết là 丼; chỉ bát sâu cỡ lớn hoặc món cơm đựng trong loại bát này.",
       "example": "どんぶりにラーメンを入れます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-047-word.mp3",
-        "example": "./audio/lesson-42/vocab-047-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-047-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-047-example.mp3"
       }
     },
     {
-      "id": "l42-v048",
+      "id": "n4-l42-v048",
       "jp": "食品",
       "reading": "しょくひん",
       "meaning": "thực phẩm",
@@ -621,12 +621,12 @@
       "note": "Chỉ đồ ăn và nguyên liệu đã được sản xuất hoặc phân loại để con người sử dụng.",
       "example": "この店では安全な食品を売っています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-048-word.mp3",
-        "example": "./audio/lesson-42/vocab-048-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-048-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-048-example.mp3"
       }
     },
     {
-      "id": "l42-v049",
+      "id": "n4-l42-v049",
       "jp": "調査",
       "reading": "ちょうさ",
       "meaning": "sự điều tra; khảo sát; nghiên cứu",
@@ -634,12 +634,12 @@
       "note": "Có thể dùng với します: 調査します, tiến hành điều tra hoặc khảo sát.",
       "example": "食品の安全について調査を行いました。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-049-word.mp3",
-        "example": "./audio/lesson-42/vocab-049-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-049-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-049-example.mp3"
       }
     },
     {
-      "id": "l42-v050",
+      "id": "n4-l42-v050",
       "jp": "カップ",
       "reading": "カップ",
       "meaning": "cốc; tách",
@@ -647,12 +647,12 @@
       "note": "Đồ đựng thức uống; cũng xuất hiện trong từ ghép như カップラーメン.",
       "example": "カップにお湯を注いでください。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-050-word.mp3",
-        "example": "./audio/lesson-42/vocab-050-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-050-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-050-example.mp3"
       }
     },
     {
-      "id": "l42-v051",
+      "id": "n4-l42-v051",
       "jp": "また",
       "reading": "また",
       "meaning": "lại; thêm nữa; ngoài ra",
@@ -660,12 +660,12 @@
       "note": "Có thể chỉ hành động lặp lại hoặc bổ sung một ý khác.",
       "example": "分からないことがあったら、また聞いてください。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-051-word.mp3",
-        "example": "./audio/lesson-42/vocab-051-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-051-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-051-example.mp3"
       }
     },
     {
-      "id": "l42-v052",
+      "id": "n4-l42-v052",
       "jp": "～の代わりに",
       "reading": "のかわりに",
       "meaning": "thay cho...; thay vì...",
@@ -673,12 +673,12 @@
       "note": "Dùng khi một người hoặc vật đảm nhận vai trò của đối tượng khác, hoặc chọn phương án khác.",
       "example": "砂糖の代わりに蜂蜜を入れます。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-052-word.mp3",
-        "example": "./audio/lesson-42/vocab-052-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-052-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-052-example.mp3"
       }
     },
     {
-      "id": "l42-v053",
+      "id": "n4-l42-v053",
       "jp": "どこででも",
       "reading": "どこででも",
       "meaning": "ở bất cứ đâu",
@@ -686,12 +686,12 @@
       "note": "で chỉ địa điểm diễn ra hành động; でも tạo nghĩa không giới hạn nơi chốn.",
       "example": "この食品はどこででも買えるわけではありません。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-053-word.mp3",
-        "example": "./audio/lesson-42/vocab-053-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-053-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-053-example.mp3"
       }
     },
     {
-      "id": "l42-v054",
+      "id": "n4-l42-v054",
       "jp": "今では",
       "reading": "いまでは",
       "meaning": "ngày nay; hiện giờ thì",
@@ -699,8 +699,8 @@
       "note": "Nhấn mạnh trạng thái hiện tại khác với trước đây.",
       "example": "今ではインスタントラーメンは世界中で食べられています。",
       "audio": {
-        "word": "./audio/lesson-42/vocab-054-word.mp3",
-        "example": "./audio/lesson-42/vocab-054-example.mp3"
+        "word": "./audio/n4/lesson-42/vocab-054-word.mp3",
+        "example": "./audio/n4/lesson-42/vocab-054-example.mp3"
       }
     }
   ],

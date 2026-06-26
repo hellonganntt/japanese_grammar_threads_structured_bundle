@@ -2,7 +2,7 @@
   "lesson": 38,
   "vocab": [
     {
-      "id": "l38-v001",
+      "id": "n4-l38-v001",
       "jp": "育てます",
       "reading": "そだてます",
       "meaning": "nuôi; nuôi dưỡng; trồng và chăm sóc",
@@ -10,12 +10,12 @@
       "note": "Dùng cho việc nuôi trẻ, nuôi động vật, hoặc chăm cây cho lớn lên.",
       "example": "祖母は庭で花を育てています。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-001-word.mp3",
-        "example": "./audio/lesson-38/vocab-001-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-001-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-001-example.mp3"
       }
     },
     {
-      "id": "l38-v002",
+      "id": "n4-l38-v002",
       "jp": "運びます",
       "reading": "はこびます",
       "meaning": "mang; vận chuyển",
@@ -23,12 +23,12 @@
       "note": "Dùng khi đưa đồ vật hoặc hành lý từ nơi này sang nơi khác.",
       "example": "この箱を会議室まで運んでください。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-002-word.mp3",
-        "example": "./audio/lesson-38/vocab-002-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-002-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-002-example.mp3"
       }
     },
     {
-      "id": "l38-v003",
+      "id": "n4-l38-v003",
       "jp": "亡くなります",
       "reading": "なくなります",
       "meaning": "mất; qua đời",
@@ -36,12 +36,12 @@
       "note": "Cách nói lịch sự, trang trọng hơn 死にます khi nói về người qua đời.",
       "example": "祖父は去年亡くなりました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-003-word.mp3",
-        "example": "./audio/lesson-38/vocab-003-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-003-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-003-example.mp3"
       }
     },
     {
-      "id": "l38-v004",
+      "id": "n4-l38-v004",
       "jp": "入院します",
       "reading": "にゅういんします",
       "meaning": "nhập viện",
@@ -49,12 +49,12 @@
       "note": "Dùng khi vào bệnh viện để điều trị nội trú.",
       "example": "父は来週から入院します。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-004-word.mp3",
-        "example": "./audio/lesson-38/vocab-004-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-004-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-004-example.mp3"
       }
     },
     {
-      "id": "l38-v005",
+      "id": "n4-l38-v005",
       "jp": "退院します",
       "reading": "たいいんします",
       "meaning": "xuất viện",
@@ -62,12 +62,12 @@
       "note": "Dùng khi rời bệnh viện sau khi điều trị xong.",
       "example": "母は明日退院する予定です。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-005-word.mp3",
-        "example": "./audio/lesson-38/vocab-005-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-005-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-005-example.mp3"
       }
     },
     {
-      "id": "l38-v006",
+      "id": "n4-l38-v006",
       "jp": "入れます",
       "reading": "いれます",
       "meaning": "cho vào; bật; pha",
@@ -75,12 +75,12 @@
       "note": "Có nhiều nghĩa tùy ngữ cảnh: cho đồ vào túi, bật điện, hoặc pha trà/cà phê.",
       "example": "かばんに書類を入れました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-006-word.mp3",
-        "example": "./audio/lesson-38/vocab-006-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-006-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-006-example.mp3"
       }
     },
     {
-      "id": "l38-v007",
+      "id": "n4-l38-v007",
       "jp": "切ります",
       "reading": "きります",
       "meaning": "cắt; tắt; ngắt",
@@ -88,12 +88,12 @@
       "note": "Dùng cho cắt vật, tắt điện thoại/nguồn điện, hoặc kết thúc cuộc gọi.",
       "example": "使わないときは電源を切ってください。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-007-word.mp3",
-        "example": "./audio/lesson-38/vocab-007-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-007-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-007-example.mp3"
       }
     },
     {
-      "id": "l38-v008",
+      "id": "n4-l38-v008",
       "jp": "掛けます",
       "reading": "かけます",
       "meaning": "khóa; treo; gọi điện; phủ lên",
@@ -101,12 +101,12 @@
       "note": "Động từ có nhiều nghĩa; trong cụm 鍵を掛けます là khóa cửa.",
       "example": "出かける前に鍵を掛けました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-008-word.mp3",
-        "example": "./audio/lesson-38/vocab-008-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-008-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-008-example.mp3"
       }
     },
     {
-      "id": "l38-v009",
+      "id": "n4-l38-v009",
       "jp": "気持ちがいい",
       "reading": "きもちがいい",
       "meaning": "dễ chịu; thoải mái",
@@ -114,12 +114,12 @@
       "note": "Dùng khi cơ thể hoặc tâm trạng cảm thấy dễ chịu.",
       "example": "海岸を歩くと気持ちがいいです。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-009-word.mp3",
-        "example": "./audio/lesson-38/vocab-009-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-009-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-009-example.mp3"
       }
     },
     {
-      "id": "l38-v010",
+      "id": "n4-l38-v010",
       "jp": "気持ちが悪い",
       "reading": "きもちがわるい",
       "meaning": "khó chịu; buồn nôn; ghê",
@@ -127,12 +127,12 @@
       "note": "Có thể nói về cảm giác trong người không khỏe hoặc cảm giác ghê sợ.",
       "example": "バスに長く乗って、気持ちが悪くなりました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-010-word.mp3",
-        "example": "./audio/lesson-38/vocab-010-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-010-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-010-example.mp3"
       }
     },
     {
-      "id": "l38-v011",
+      "id": "n4-l38-v011",
       "jp": "大きな",
       "reading": "おおきな",
       "meaning": "to; lớn",
@@ -140,12 +140,12 @@
       "note": "Chỉ đứng trước danh từ. Nghĩa gần với 大きい nhưng không dùng ở cuối câu.",
       "example": "駅前に大きなビルができました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-011-word.mp3",
-        "example": "./audio/lesson-38/vocab-011-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-011-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-011-example.mp3"
       }
     },
     {
-      "id": "l38-v012",
+      "id": "n4-l38-v012",
       "jp": "小さな",
       "reading": "ちいさな",
       "meaning": "nhỏ; bé",
@@ -153,12 +153,12 @@
       "note": "Chỉ đứng trước danh từ. Không nói 小さなです.",
       "example": "小さな赤ちゃんがすやすや寝ています。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-012-word.mp3",
-        "example": "./audio/lesson-38/vocab-012-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-012-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-012-example.mp3"
       }
     },
     {
-      "id": "l38-v013",
+      "id": "n4-l38-v013",
       "jp": "赤ちゃん",
       "reading": "あかちゃん",
       "meaning": "em bé",
@@ -166,12 +166,12 @@
       "note": "Cách nói thân mật, phổ biến để chỉ trẻ sơ sinh hoặc em bé còn nhỏ.",
       "example": "赤ちゃんが泣いています。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-013-word.mp3",
-        "example": "./audio/lesson-38/vocab-013-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-013-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-013-example.mp3"
       }
     },
     {
-      "id": "l38-v014",
+      "id": "n4-l38-v014",
       "jp": "小学校",
       "reading": "しょうがっこう",
       "meaning": "trường tiểu học",
@@ -179,12 +179,12 @@
       "note": "Trường dành cho học sinh bậc tiểu học ở Nhật.",
       "example": "妹は近くの小学校に通っています。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-014-word.mp3",
-        "example": "./audio/lesson-38/vocab-014-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-014-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-014-example.mp3"
       }
     },
     {
-      "id": "l38-v015",
+      "id": "n4-l38-v015",
       "jp": "中学校",
       "reading": "ちゅうがっこう",
       "meaning": "trường trung học cơ sở",
@@ -192,12 +192,12 @@
       "note": "Bậc học sau tiểu học, thường là lớp 7 đến lớp 9 theo cách tính ở Việt Nam.",
       "example": "兄は中学校で英語を教えています。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-015-word.mp3",
-        "example": "./audio/lesson-38/vocab-015-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-015-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-015-example.mp3"
       }
     },
     {
-      "id": "l38-v016",
+      "id": "n4-l38-v016",
       "jp": "駅前",
       "reading": "えきまえ",
       "meaning": "trước nhà ga; khu trước ga",
@@ -205,12 +205,12 @@
       "note": "Thường dùng để chỉ khu vực ngay phía trước ga tàu.",
       "example": "駅前で友だちと待ち合わせました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-016-word.mp3",
-        "example": "./audio/lesson-38/vocab-016-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-016-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-016-example.mp3"
       }
     },
     {
-      "id": "l38-v017",
+      "id": "n4-l38-v017",
       "jp": "海岸",
       "reading": "かいがん",
       "meaning": "bờ biển; bãi biển",
@@ -218,12 +218,12 @@
       "note": "Chỉ khu vực ven biển hoặc bờ biển.",
       "example": "夏休みに海岸を散歩しました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-017-word.mp3",
-        "example": "./audio/lesson-38/vocab-017-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-017-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-017-example.mp3"
       }
     },
     {
-      "id": "l38-v018",
+      "id": "n4-l38-v018",
       "jp": "うそ",
       "reading": "うそ",
       "meaning": "lời nói dối; không thật",
@@ -231,12 +231,12 @@
       "note": "Trong hội thoại cũng dùng để bày tỏ ngạc nhiên: うそ！ = Thật á?",
       "example": "うそをついてはいけません。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-018-word.mp3",
-        "example": "./audio/lesson-38/vocab-018-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-018-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-018-example.mp3"
       }
     },
     {
-      "id": "l38-v019",
+      "id": "n4-l38-v019",
       "jp": "書類",
       "reading": "しょるい",
       "meaning": "giấy tờ; tài liệu",
@@ -244,12 +244,12 @@
       "note": "Dùng cho tài liệu, hồ sơ, giấy tờ trong công việc hoặc thủ tục.",
       "example": "大切な書類を机の引き出しに入れました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-019-word.mp3",
-        "example": "./audio/lesson-38/vocab-019-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-019-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-019-example.mp3"
       }
     },
     {
-      "id": "l38-v020",
+      "id": "n4-l38-v020",
       "jp": "電源",
       "reading": "でんげん",
       "meaning": "nguồn điện; nút nguồn",
@@ -257,12 +257,12 @@
       "note": "Thường gặp trong 電源を入れます và 電源を切ります.",
       "example": "パソコンの電源を入れてください。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-020-word.mp3",
-        "example": "./audio/lesson-38/vocab-020-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-020-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-020-example.mp3"
       }
     },
     {
-      "id": "l38-v021",
+      "id": "n4-l38-v021",
       "jp": "～製",
       "reading": "せい",
       "meaning": "làm tại; sản xuất tại; làm bằng",
@@ -270,12 +270,12 @@
       "note": "Gắn sau tên nước, công ty, hoặc chất liệu để nói nơi/nguồn sản xuất: 日本製, 木製.",
       "example": "このカメラは日本製です。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-021-word.mp3",
-        "example": "./audio/lesson-38/vocab-021-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-021-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-021-example.mp3"
       }
     },
     {
-      "id": "l38-v022",
+      "id": "n4-l38-v022",
       "jp": "あ、いけない",
       "reading": "あ、いけない",
       "meaning": "Ôi, chết rồi; thôi chết",
@@ -283,12 +283,12 @@
       "note": "Dùng khi chợt nhớ ra mình quên hoặc làm sai điều gì.",
       "example": "あ、いけない。宿題を家に忘れました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-022-word.mp3",
-        "example": "./audio/lesson-38/vocab-022-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-022-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-022-example.mp3"
       }
     },
     {
-      "id": "l38-v023",
+      "id": "n4-l38-v023",
       "jp": "お先に",
       "reading": "おさきに",
       "meaning": "tôi xin phép trước",
@@ -296,12 +296,12 @@
       "note": "Câu rút gọn của お先に失礼します, thường dùng khi rời chỗ làm/lớp trước người khác.",
       "example": "すみません、お先に失礼します。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-023-word.mp3",
-        "example": "./audio/lesson-38/vocab-023-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-023-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-023-example.mp3"
       }
     },
     {
-      "id": "l38-v024",
+      "id": "n4-l38-v024",
       "jp": "回覧",
       "reading": "かいらん",
       "meaning": "văn bản chuyền xem; luân chuyển để xem",
@@ -309,12 +309,12 @@
       "note": "Dùng cho thông báo hoặc tài liệu được chuyền lần lượt cho nhiều người đọc.",
       "example": "このお知らせは回覧に出してください。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-024-word.mp3",
-        "example": "./audio/lesson-38/vocab-024-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-024-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-024-example.mp3"
       }
     },
     {
-      "id": "l38-v025",
+      "id": "n4-l38-v025",
       "jp": "研究室",
       "reading": "けんきゅうしつ",
       "meaning": "phòng nghiên cứu; phòng làm việc của giảng viên",
@@ -322,12 +322,12 @@
       "note": "Từ chuẩn thường dùng là 研究室. Có thể chỉ phòng thí nghiệm hoặc phòng nghiên cứu ở trường đại học.",
       "example": "先生は研究室にいらっしゃいます。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-025-word.mp3",
-        "example": "./audio/lesson-38/vocab-025-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-025-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-025-example.mp3"
       }
     },
     {
-      "id": "l38-v026",
+      "id": "n4-l38-v026",
       "jp": "きちんと",
       "reading": "きちんと",
       "meaning": "cẩn thận; gọn gàng; đúng cách",
@@ -335,12 +335,12 @@
       "note": "Dùng khi làm việc gì một cách ngăn nắp, chính xác, có trách nhiệm.",
       "example": "書類をきちんと整理してください。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-026-word.mp3",
-        "example": "./audio/lesson-38/vocab-026-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-026-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-026-example.mp3"
       }
     },
     {
-      "id": "l38-v027",
+      "id": "n4-l38-v027",
       "jp": "整理します",
       "reading": "せいりします",
       "meaning": "sắp xếp; chỉnh lý; dọn cho ngăn nắp",
@@ -348,12 +348,12 @@
       "note": "Dùng khi sắp xếp giấy tờ, đồ đạc, dữ liệu hoặc suy nghĩ cho rõ ràng.",
       "example": "机の上を整理しました。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-027-word.mp3",
-        "example": "./audio/lesson-38/vocab-027-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-027-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-027-example.mp3"
       }
     },
     {
-      "id": "l38-v028",
+      "id": "n4-l38-v028",
       "jp": "はんこ",
       "reading": "はんこ",
       "meaning": "con dấu cá nhân",
@@ -361,12 +361,12 @@
       "note": "Dùng để đóng dấu xác nhận trong giấy tờ ở Nhật.",
       "example": "ここにはんこを押してください。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-028-word.mp3",
-        "example": "./audio/lesson-38/vocab-028-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-028-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-028-example.mp3"
       }
     },
     {
-      "id": "l38-v029",
+      "id": "n4-l38-v029",
       "jp": "押します",
       "reading": "おします",
       "meaning": "ấn; đẩy; đóng dấu",
@@ -374,12 +374,12 @@
       "note": "Dùng với nút bấm, cửa, hoặc はんこを押します là đóng dấu.",
       "example": "このボタンを押すと、電気がつきます。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-029-word.mp3",
-        "example": "./audio/lesson-38/vocab-029-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-029-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-029-example.mp3"
       }
     },
     {
-      "id": "l38-v030",
+      "id": "n4-l38-v030",
       "jp": "双子",
       "reading": "ふたご",
       "meaning": "cặp sinh đôi; người sinh đôi",
@@ -387,12 +387,12 @@
       "note": "Dùng cho hai anh chị em sinh cùng một lần.",
       "example": "田中さんの子どもは双子です。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-030-word.mp3",
-        "example": "./audio/lesson-38/vocab-030-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-030-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-030-example.mp3"
       }
     },
     {
-      "id": "l38-v031",
+      "id": "n4-l38-v031",
       "jp": "姉妹",
       "reading": "しまい",
       "meaning": "chị em gái",
@@ -400,12 +400,12 @@
       "note": "Chỉ quan hệ giữa các chị/em gái; cũng có thể dùng trong 姉妹都市.",
       "example": "あの姉妹はとても仲がいいです。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-031-word.mp3",
-        "example": "./audio/lesson-38/vocab-031-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-031-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-031-example.mp3"
       }
     },
     {
-      "id": "l38-v032",
+      "id": "n4-l38-v032",
       "jp": "5年生",
       "reading": "ごねんせい",
       "meaning": "học sinh lớp 5; sinh viên năm 5",
@@ -413,12 +413,12 @@
       "note": "Trong ngữ cảnh trường học phổ thông thường hiểu là học sinh lớp 5.",
       "example": "息子は小学校の5年生です。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-032-word.mp3",
-        "example": "./audio/lesson-38/vocab-032-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-032-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-032-example.mp3"
       }
     },
     {
-      "id": "l38-v033",
+      "id": "n4-l38-v033",
       "jp": "似ています",
       "reading": "にています",
       "meaning": "giống; trông giống",
@@ -426,12 +426,12 @@
       "note": "Thường dùng dạng ～に似ています để nói giống ai/cái gì.",
       "example": "この双子の姉妹はよく似ています。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-033-word.mp3",
-        "example": "./audio/lesson-38/vocab-033-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-033-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-033-example.mp3"
       }
     },
     {
-      "id": "l38-v034",
+      "id": "n4-l38-v034",
       "jp": "性格",
       "reading": "せいかく",
       "meaning": "tính cách",
@@ -439,12 +439,12 @@
       "note": "Dùng để nói về đặc điểm tính tình của một người.",
       "example": "兄と私は性格が全然違います。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-034-word.mp3",
-        "example": "./audio/lesson-38/vocab-034-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-034-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-034-example.mp3"
       }
     },
     {
-      "id": "l38-v035",
+      "id": "n4-l38-v035",
       "jp": "おとなしい",
       "reading": "おとなしい",
       "meaning": "hiền; trầm; ngoan",
@@ -452,12 +452,12 @@
       "note": "Dùng cho người hoặc động vật ít nói, không ồn ào, cư xử nhẹ nhàng.",
       "example": "妹はおとなしい性格です。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-035-word.mp3",
-        "example": "./audio/lesson-38/vocab-035-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-035-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-035-example.mp3"
       }
     },
     {
-      "id": "l38-v036",
+      "id": "n4-l38-v036",
       "jp": "世話をします",
       "reading": "せわをします",
       "meaning": "chăm sóc; trông nom",
@@ -465,12 +465,12 @@
       "note": "Dùng cho việc chăm sóc trẻ nhỏ, người bệnh, động vật hoặc cây cối.",
       "example": "姉は赤ちゃんの世話をしています。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-036-word.mp3",
-        "example": "./audio/lesson-38/vocab-036-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-036-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-036-example.mp3"
       }
     },
     {
-      "id": "l38-v037",
+      "id": "n4-l38-v037",
       "jp": "時間がたちます",
       "reading": "じかんがたちます",
       "meaning": "thời gian trôi qua",
@@ -478,12 +478,12 @@
       "note": "たちます ở đây là 経ちます, dùng để nói thời gian trôi đi.",
       "example": "楽しい時間はすぐにたちます。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-037-word.mp3",
-        "example": "./audio/lesson-38/vocab-037-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-037-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-037-example.mp3"
       }
     },
     {
-      "id": "l38-v038",
+      "id": "n4-l38-v038",
       "jp": "大好き",
       "reading": "だいすき",
       "meaning": "rất thích; yêu thích",
@@ -491,12 +491,12 @@
       "note": "Tính từ な, mạnh hơn 好き. Mẫu thường dùng: N が大好きです.",
       "example": "子どもたちはこのクラスが大好きです。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-038-word.mp3",
-        "example": "./audio/lesson-38/vocab-038-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-038-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-038-example.mp3"
       }
     },
     {
-      "id": "l38-v039",
+      "id": "n4-l38-v039",
       "jp": "クラス",
       "reading": "クラス",
       "meaning": "lớp học; lớp",
@@ -504,12 +504,12 @@
       "note": "Từ mượn dùng cho lớp học, nhóm học sinh hoặc cấp/hạng.",
       "example": "私たちのクラスには学生が三十人います。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-039-word.mp3",
-        "example": "./audio/lesson-38/vocab-039-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-039-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-039-example.mp3"
       }
     },
     {
-      "id": "l38-v040",
+      "id": "n4-l38-v040",
       "jp": "けんかします",
       "reading": "けんかします",
       "meaning": "cãi nhau; đánh nhau",
@@ -517,12 +517,12 @@
       "note": "Dùng khi có tranh cãi hoặc xô xát; 友だちとけんかします = cãi nhau với bạn.",
       "example": "兄弟はときどきけんかします。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-040-word.mp3",
-        "example": "./audio/lesson-38/vocab-040-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-040-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-040-example.mp3"
       }
     },
     {
-      "id": "l38-v041",
+      "id": "n4-l38-v041",
       "jp": "不思議（な）",
       "reading": "ふしぎ",
       "meaning": "kỳ lạ; bí ẩn; khó hiểu",
@@ -530,8 +530,8 @@
       "note": "Tính từ な. Dùng khi điều gì đó lạ, khó giải thích hoặc tạo cảm giác bí ẩn.",
       "example": "彼女の話は少し不思議でした。",
       "audio": {
-        "word": "./audio/lesson-38/vocab-041-word.mp3",
-        "example": "./audio/lesson-38/vocab-041-example.mp3"
+        "word": "./audio/n4/lesson-38/vocab-041-word.mp3",
+        "example": "./audio/n4/lesson-38/vocab-041-example.mp3"
       }
     }
   ],

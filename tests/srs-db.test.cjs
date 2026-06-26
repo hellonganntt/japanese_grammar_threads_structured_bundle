@@ -10,8 +10,9 @@ function catalog(count, version = `v-${count}`){
   return {
     version,
     cards: Array.from({ length: count }, (_, index) => ({
-      id: `l${36 + Math.floor(index / 100)}-v${String(index + 1).padStart(5, "0")}`,
+      id: `${index % 2 === 0 ? "n4" : "n5"}-l${36 + Math.floor(index / 100)}-v${String(index + 1).padStart(5, "0")}`,
       lesson: 36 + Math.floor(index / 100),
+      level: index % 2 === 0 ? "N4" : "N5",
       lessonIndex: index % 100,
       order: index
     }))
@@ -41,6 +42,16 @@ async function createDb(name){
   assert.ok(queue.every(card => card.queueType === "new"));
   assert.deepEqual(queue.map(card => card.order), Array.from({ length: 10 }, (_, index) => index));
 
+  stats = await db.getStats(now, 10, { newCardLevel: "N4" });
+  assert.deepEqual(
+    { total: stats.total, unseen: stats.unseen, newToday: stats.newToday },
+    { total: 10000, unseen: 5000, newToday: 10 }
+  );
+  const filteredQueue = await db.buildDailyQueue(now, 10, 0, { newCardLevel: "N4" });
+  assert.equal(filteredQueue.length, 10);
+  assert.ok(filteredQueue.every(card => card.queueType === "new" && card.level === "N4"));
+  assert.deepEqual(filteredQueue.map(card => card.order), Array.from({ length: 10 }, (_, index) => index * 2));
+
   const firstId = tenThousand.cards[0].id;
   const beforeRevision = await db.getRevision();
   const rated = await db.rateCard(firstId, "good", now);
@@ -62,6 +73,9 @@ async function createDb(name){
 
   const nextDay = new Date("2026-06-25T10:00:00.000Z");
   assert.equal((await db.getStats(nextDay, 10)).newToday, 10);
+  const dueFilteredQueue = await db.buildDailyQueue(nextDay, 10, 0, { newCardLevel: "N5" });
+  assert.ok(dueFilteredQueue.some(card => card.id === firstId && card.queueType === "due"));
+  assert.ok(dueFilteredQueue.filter(card => card.queueType === "new").every(card => card.level === "N5"));
 
   const changedCatalog = {
     version: "changed",
@@ -98,8 +112,29 @@ async function createDb(name){
   assert.equal(await legacyDb.migrateLegacy(legacyRaw), false);
   assert.equal((await legacyDb.getCard(legacyId)).intervalDays, 3);
 
+  const migrationDb = await createDb(`id-migration-${Date.now()}`);
+  await migrationDb.reconcileCatalog({
+    version: "old-catalog",
+    cards: [{ id: "l36-v001", lesson: 36, level: "N4", lessonIndex: 0, order: 0 }]
+  });
+  await migrationDb.rateCard("l36-v001", "good", now);
+  await migrationDb.reconcileCatalog({
+    version: "new-catalog",
+    cards: [{
+      id: "n4-l36-v001",
+      legacyIds: ["l36-v001"],
+      lesson: 36,
+      level: "N4",
+      lessonIndex: 0,
+      order: 0
+    }]
+  });
+  assert.equal(await migrationDb.getCard("l36-v001"), null);
+  assert.equal((await migrationDb.getCard("n4-l36-v001")).intervalDays, 1);
+
   db.db.close();
   legacyDb.db.close();
+  migrationDb.db.close();
   console.log("IndexedDB tests passed.");
 })().catch(error => {
   console.error(error);

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel to Vocab JSON Importer</title>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    :root{
+      color-scheme:light;
+      --bg:#f7f5f0;
+      --surface:#fffdf8;
+      --surface-strong:#ffffff;
+      --text:#1f2933;
+      --muted:#667085;
+      --border:#ddd6c8;
+      --accent:#325b8c;
+      --accent-soft:#e9f0fa;
+      --danger:#b42318;
+      --danger-soft:#fff0ed;
+      --warn:#9a6700;
+      --warn-soft:#fff7df;
+      --ok:#1f7a4d;
+      --ok-soft:#e9f7ef;
+      --shadow:0 14px 36px rgba(31,41,51,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.45;
+    }
+    .app{
+      width:min(1180px, calc(100% - 28px));
+      margin:24px auto 44px;
+      display:grid;
+      gap:16px;
+    }
+    header{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      padding:20px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:var(--surface);
+      box-shadow:var(--shadow);
+    }
+    h1{margin:0;font-size:28px;letter-spacing:0}
+    header p{margin:6px 0 0;color:var(--muted)}
+    .status-pill{
+      min-width:150px;
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--surface-strong);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+      text-align:center;
+      white-space:nowrap;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:minmax(280px, 360px) minmax(0, 1fr);
+      gap:16px;
+      align-items:start;
+    }
+    section{
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:var(--surface);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .section-head{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      background:var(--surface-strong);
+    }
+    .section-head h2{margin:0;font-size:16px}
+    .panel-body{
+      display:grid;
+      gap:14px;
+      padding:16px;
+    }
+    label{
+      display:grid;
+      gap:6px;
+      font-size:13px;
+      font-weight:800;
+    }
+    input[type="file"],
+    input[type="number"],
+    select,
+    textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:var(--surface-strong);
+      color:var(--text);
+      font:inherit;
+    }
+    input[type="file"]{padding:10px}
+    input[type="number"],
+    select{height:42px;padding:0 11px}
+    .check-row{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      color:var(--text);
+      font-size:13px;
+      font-weight:700;
+    }
+    .check-row input{margin-top:3px}
+    .check-row small{
+      display:block;
+      margin-top:2px;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .actions{
+      display:grid;
+      gap:8px;
+    }
+    .button-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    button{
+      min-height:40px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:var(--surface-strong);
+      color:var(--text);
+      cursor:pointer;
+      padding:0 14px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+    button.primary{
+      border-color:var(--accent);
+      background:var(--accent);
+      color:#fff;
+    }
+    button:disabled{
+      cursor:not-allowed;
+      opacity:.48;
+    }
+    .message{
+      min-height:42px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:var(--surface-strong);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .message.error{
+      border-color:color-mix(in srgb,var(--danger) 36%,var(--border));
+      background:var(--danger-soft);
+      color:var(--danger);
+    }
+    .message.warn{
+      border-color:color-mix(in srgb,var(--warn) 32%,var(--border));
+      background:var(--warn-soft);
+      color:var(--warn);
+    }
+    .message.ok{
+      border-color:color-mix(in srgb,var(--ok) 32%,var(--border));
+      background:var(--ok-soft);
+      color:var(--ok);
+    }
+    .preview-wrap{
+      overflow:auto;
+      max-height:420px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:var(--surface-strong);
+    }
+    table{
+      width:100%;
+      min-width:820px;
+      border-collapse:collapse;
+      font-size:13px;
+    }
+    th,
+    td{
+      padding:9px 10px;
+      border-bottom:1px solid var(--border);
+      text-align:left;
+      vertical-align:top;
+    }
+    th{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:var(--accent-soft);
+      color:var(--accent);
+      font-size:12px;
+      text-transform:uppercase;
+    }
+    tr:last-child td{border-bottom:0}
+    .cell-muted{color:var(--muted)}
+    .status-ok{color:var(--ok);font-weight:800}
+    .status-warn{color:var(--warn);font-weight:800}
+    .status-error{color:var(--danger);font-weight:800}
+    .outputs{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    textarea{
+      min-height:320px;
+      resize:vertical;
+      padding:12px;
+      font-family:"Cascadia Mono","SFMono-Regular",Consolas,monospace;
+      font-size:12px;
+      line-height:1.5;
+    }
+    .reminder{
+      padding:12px 14px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:var(--accent-soft);
+      color:var(--accent);
+      font-size:13px;
+      font-weight:700;
+    }
+    @media(max-width:850px){
+      header{display:grid}
+      .grid,
+      .outputs{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div>
+        <h1>Excel to Vocab JSON Importer</h1>
+        <p>Upload a vocab spreadsheet, preview the rows, then copy or download JSON for this app.</p>
+      </div>
+      <div class="status-pill" id="statusPill">No file parsed</div>
+    </header>
+
+    <div class="grid">
+      <section>
+        <div class="section-head">
+          <h2>Import Settings</h2>
+        </div>
+        <div class="panel-body">
+          <label>
+            Spreadsheet file
+            <input id="fileInput" type="file" accept=".xlsx,.xls,.csv,text/csv" />
+          </label>
+
+          <label>
+            Lesson number
+            <input id="lessonInput" type="number" min="1" step="1" placeholder="36" />
+          </label>
+
+          <label>
+            JLPT level
+            <select id="levelInput" class="study-select" aria-label="Choose JLPT level">
+              <option value="N5">N5</option>
+              <option value="N4" selected>N4</option>
+              <option value="N3">N3</option>
+              <option value="N2">N2</option>
+              <option value="N1">N1</option>
+            </select>
+          </label>
+
+          <label>
+            Starting vocab number
+            <input id="startInput" type="number" min="1" step="1" value="1" />
+          </label>
+
+          <label class="check-row">
+            <input id="preserveIdsInput" type="checkbox" disabled />
+            <span>
+              Preserve IDs from sheet
+              <small>Enabled when an id column exists. Missing IDs are generated.</small>
+            </span>
+          </label>
+
+          <label class="check-row">
+            <input id="audioInput" type="checkbox" checked />
+            <span>
+              Generate audio paths
+              <small>Creates ./audio/n4/lesson-XX/vocab-001-word.mp3 paths in JSON.</small>
+            </span>
+          </label>
+
+          <div class="actions">
+            <button class="primary" id="parseBtn" type="button">Parse</button>
+            <div class="button-row">
+              <button id="copyVocabBtn" type="button" disabled>Copy vocab JSON</button>
+              <button id="copyLessonBtn" type="button" disabled>Copy lesson JSON</button>
+              <button id="downloadBtn" type="button" disabled>Download lesson JSON</button>
+            </div>
+          </div>
+
+          <div class="message" id="messageBox">Choose a spreadsheet with headers like jp, reading, meaning, pos, note, example.</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <h2>Preview</h2>
+        </div>
+        <div class="panel-body">
+          <div class="preview-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Row</th>
+                  <th>ID</th>
+                  <th>JP</th>
+                  <th>Reading</th>
+                  <th>Meaning</th>
+                  <th>Audio</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="previewBody">
+                <tr><td colspan="7" class="cell-muted">No rows parsed yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="reminder">After saving JSON into data/{level}/lesson-XX.json, add/update data/lessons.json if needed, then run npm run catalog and npm test.</div>
+        </div>
+      </section>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <h2>JSON Output</h2>
+      </div>
+      <div class="panel-body outputs">
+        <label>
+          Vocab array
+          <textarea id="vocabOutput" readonly placeholder="Parsed vocab JSON appears here."></textarea>
+        </label>
+        <label>
+          Full lesson JSON
+          <textarea id="lessonOutput" readonly placeholder="Full lesson JSON appears here."></textarea>
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const CANONICAL_COLUMNS = ["id", "jp", "reading", "meaning", "pos", "note", "example", "audioTextWord", "audioTextExample"];
+    const HEADER_ALIASES = new Map([
+      ["id", "id"],
+      ["vocabid", "id"],
+      ["vocabularyid", "id"],
+      ["jp", "jp"],
+      ["japanese", "jp"],
+      ["word", "jp"],
+      ["vocab", "jp"],
+      ["vocabulary", "jp"],
+      ["term", "jp"],
+      ["headword", "jp"],
+      ["reading", "reading"],
+      ["kana", "reading"],
+      ["hiragana", "reading"],
+      ["furigana", "reading"],
+      ["meaning", "meaning"],
+      ["vietnamese", "meaning"],
+      ["vietnamese meaning", "meaning"],
+      ["vn", "meaning"],
+      ["translation", "meaning"],
+      ["gloss", "meaning"],
+      ["pos", "pos"],
+      ["partofspeech", "pos"],
+      ["part of speech", "pos"],
+      ["type", "pos"],
+      ["note", "note"],
+      ["notes", "note"],
+      ["usage", "note"],
+      ["example", "example"],
+      ["sentence", "example"],
+      ["examplesentence", "example"],
+      ["example sentence", "example"],
+      ["audiotextword", "audioTextWord"],
+      ["audio text word", "audioTextWord"],
+      ["wordaudiotext", "audioTextWord"],
+      ["word audio text", "audioTextWord"],
+      ["ttsword", "audioTextWord"],
+      ["audiotextexample", "audioTextExample"],
+      ["audio text example", "audioTextExample"],
+      ["exampleaudiotext", "audioTextExample"],
+      ["example audio text", "audioTextExample"],
+      ["ttsexample", "audioTextExample"]
+    ]);
+
+    const state = {
+      workbookRows: [],
+      headers: [],
+      mappedHeaders: [],
+      parsedRows: [],
+      vocab: [],
+      lessonJson: null,
+      unknownHeaders: [],
+      errors: [],
+      warnings: [],
+      skippedBlankRows: 0
+    };
+
+    const fileInput = document.getElementById("fileInput");
+    const lessonInput = document.getElementById("lessonInput");
+    const levelInput = document.getElementById("levelInput");
+    const startInput = document.getElementById("startInput");
+    const preserveIdsInput = document.getElementById("preserveIdsInput");
+    const audioInput = document.getElementById("audioInput");
+    const parseBtn = document.getElementById("parseBtn");
+    const copyVocabBtn = document.getElementById("copyVocabBtn");
+    const copyLessonBtn = document.getElementById("copyLessonBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const messageBox = document.getElementById("messageBox");
+    const statusPill = document.getElementById("statusPill");
+    const previewBody = document.getElementById("previewBody");
+    const vocabOutput = document.getElementById("vocabOutput");
+    const lessonOutput = document.getElementById("lessonOutput");
+
+    function normalizeHeader(value){
+      return String(value || "")
+        .trim()
+        .replace(/[_-]+/g, " ")
+        .replace(/\s+/g, " ")
+        .toLowerCase();
+    }
+
+    function compactHeader(value){
+      return normalizeHeader(value).replace(/\s+/g, "");
+    }
+
+    function mapHeader(value){
+      const normalized = normalizeHeader(value);
+      const compact = compactHeader(value);
+      return HEADER_ALIASES.get(normalized) || HEADER_ALIASES.get(compact) || "";
+    }
+
+    function cleanCell(value){
+      if(value === null || value === undefined) return "";
+      return String(value).trim();
+    }
+
+    function escapeHtml(value){
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[char]);
+    }
+
+    function padVocabNumber(value){
+      return String(value).padStart(3, "0");
+    }
+
+    function getPositiveInteger(input){
+      const value = Number(input.value);
+      return Number.isInteger(value) && value > 0 ? value : null;
+    }
+
+    function getSelectedLevel(){
+      const value = String(levelInput.value || "N4").toUpperCase();
+      return ["N5", "N4", "N3", "N2", "N1"].includes(value) ? value : "N4";
+    }
+
+    function setMessage(type, text){
+      messageBox.className = `message ${type || ""}`.trim();
+      messageBox.textContent = text;
+    }
+
+    function setExportEnabled(enabled){
+      copyVocabBtn.disabled = !enabled;
+      copyLessonBtn.disabled = !enabled;
+      downloadBtn.disabled = !enabled;
+    }
+
+    function resetOutputs(){
+      state.parsedRows = [];
+      state.vocab = [];
+      state.lessonJson = null;
+      state.unknownHeaders = [];
+      state.errors = [];
+      state.warnings = [];
+      state.skippedBlankRows = 0;
+      vocabOutput.value = "";
+      lessonOutput.value = "";
+      previewBody.innerHTML = '<tr><td colspan="7" class="cell-muted">No rows parsed yet.</td></tr>';
+      statusPill.textContent = "No file parsed";
+      setExportEnabled(false);
+    }
+
+    async function readWorkbookRows(file){
+      const lowerName = file.name.toLowerCase();
+
+      if(lowerName.endsWith(".csv")){
+        const csvText = await file.text();
+        const workbook = XLSX.read(csvText, { type: "string" });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        return XLSX.utils.sheet_to_json(sheet, { header: 1, defval: "", blankrows: false });
+      }
+
+      const buffer = await file.arrayBuffer();
+      const workbook = XLSX.read(buffer, { type: "array" });
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      return XLSX.utils.sheet_to_json(sheet, { header: 1, defval: "", blankrows: false });
+    }
+
+    function prepareHeaders(rows){
+      const headerRow = rows[0] || [];
+      const headers = headerRow.map(cleanCell);
+      const mappedHeaders = headers.map(mapHeader);
+      const hasIdColumn = mappedHeaders.includes("id");
+      const unknownHeaders = headers.filter((header, index) => header && !mappedHeaders[index]);
+
+      preserveIdsInput.disabled = !hasIdColumn;
+      preserveIdsInput.checked = hasIdColumn;
+
+      state.headers = headers;
+      state.mappedHeaders = mappedHeaders;
+      state.unknownHeaders = unknownHeaders;
+
+      return {
+        headers,
+        mappedHeaders,
+        unknownHeaders
+      };
+    }
+
+    function isBlankRow(row){
+      return row.every(cell => cleanCell(cell) === "");
+    }
+
+    function rowToObject(row, rowIndex, mappedHeaders){
+      const item = { sourceRow: rowIndex + 1, values: {} };
+
+      mappedHeaders.forEach((field, columnIndex) => {
+        if(!field) return;
+        if(!CANONICAL_COLUMNS.includes(field)) return;
+
+        const value = cleanCell(row[columnIndex]);
+        if(value) item.values[field] = value;
+      });
+
+      return item;
+    }
+
+    function buildVocab(rows, mappedHeaders){
+      const lessonNumber = getPositiveInteger(lessonInput);
+      const levelLower = getSelectedLevel().toLowerCase();
+      const startNumber = getPositiveInteger(startInput) || 1;
+      const generateAudio = audioInput.checked;
+      const preserveIds = preserveIdsInput.checked && !preserveIdsInput.disabled;
+      const idCounts = new Map();
+      const jpCounts = new Map();
+      const parsedRows = [];
+      const vocab = [];
+      const errors = [];
+      const warnings = [];
+      let outputIndex = 0;
+      let skippedBlankRows = 0;
+
+      rows.slice(1).forEach((row, relativeIndex) => {
+        const sourceRowIndex = relativeIndex + 1;
+        if(isBlankRow(row)){
+          skippedBlankRows += 1;
+          return;
+        }
+
+        const parsed = rowToObject(row, sourceRowIndex, mappedHeaders);
+        const values = parsed.values;
+        const rowErrors = [];
+        const rowWarnings = [];
+        const vocabNumber = startNumber + outputIndex;
+        const paddedNumber = padVocabNumber(vocabNumber);
+
+        if(!values.jp) rowErrors.push("Missing jp");
+        if(!values.meaning) rowErrors.push("Missing meaning");
+        if(!lessonNumber && (!preserveIds || !values.id || generateAudio)){
+          rowErrors.push("Lesson number required");
+        }
+
+        const generatedId = lessonNumber ? `${levelLower}-l${lessonNumber}-v${paddedNumber}` : "";
+        const id = preserveIds && values.id ? values.id : generatedId;
+
+        if(id){
+          idCounts.set(id, (idCounts.get(id) || 0) + 1);
+        }
+        if(values.jp){
+          jpCounts.set(values.jp, (jpCounts.get(values.jp) || 0) + 1);
+        }
+
+        const entry = {};
+        if(id) entry.id = id;
+        if(values.jp) entry.jp = values.jp;
+        if(values.reading) entry.reading = values.reading;
+        if(values.meaning) entry.meaning = values.meaning;
+        if(values.pos) entry.pos = values.pos;
+        if(values.note) entry.note = values.note;
+        if(values.example) entry.example = values.example;
+
+        if(generateAudio && lessonNumber && values.jp){
+          entry.audio = {
+            word: `./audio/${levelLower}/lesson-${lessonNumber}/vocab-${paddedNumber}-word.mp3`
+          };
+          if(values.example){
+            entry.audio.example = `./audio/${levelLower}/lesson-${lessonNumber}/vocab-${paddedNumber}-example.mp3`;
+          }
+        }
+
+        if(values.audioTextWord || values.audioTextExample){
+          entry.audioText = {};
+          if(values.audioTextWord) entry.audioText.word = values.audioTextWord;
+          if(values.audioTextExample) entry.audioText.example = values.audioTextExample;
+        }
+
+        parsed.entry = entry;
+        parsed.id = id;
+        parsed.audioPreview = entry.audio
+          ? [entry.audio.word, entry.audio.example].filter(Boolean).join(" | ")
+          : "";
+        parsed.errors = rowErrors;
+        parsed.warnings = rowWarnings;
+        parsed.status = rowErrors.length ? "error" : "ok";
+        parsedRows.push(parsed);
+        vocab.push(entry);
+        outputIndex += 1;
+      });
+
+      parsedRows.forEach(parsed => {
+        if(parsed.id && idCounts.get(parsed.id) > 1){
+          parsed.warnings.push("Duplicate ID");
+          if(!parsed.errors.length) parsed.status = "warn";
+        }
+        if(parsed.values.jp && jpCounts.get(parsed.values.jp) > 1){
+          parsed.warnings.push("Duplicate jp");
+          if(!parsed.errors.length) parsed.status = "warn";
+        }
+        errors.push(...parsed.errors.map(error => `Row ${parsed.sourceRow}: ${error}`));
+        warnings.push(...parsed.warnings.map(warning => `Row ${parsed.sourceRow}: ${warning}`));
+      });
+
+      warnings.unshift(...state.unknownHeaders.map(header => `Unknown column ignored: ${header}`));
+      if(skippedBlankRows){
+        warnings.push(`${skippedBlankRows} blank row${skippedBlankRows === 1 ? "" : "s"} skipped`);
+      }
+
+      state.parsedRows = parsedRows;
+      state.vocab = vocab;
+      state.lessonJson = lessonNumber ? { lesson: lessonNumber, vocab } : null;
+      state.errors = errors;
+      state.warnings = warnings;
+      state.skippedBlankRows = skippedBlankRows;
+    }
+
+    function renderPreview(){
+      if(!state.parsedRows.length){
+        previewBody.innerHTML = '<tr><td colspan="7" class="cell-muted">No valid data rows found.</td></tr>';
+        return;
+      }
+
+      previewBody.innerHTML = state.parsedRows.map(row => {
+        const statusClass = row.status === "error" ? "status-error" : row.status === "warn" ? "status-warn" : "status-ok";
+        const statusText = row.errors.concat(row.warnings).join("; ") || "OK";
+
+        return `
+          <tr>
+            <td>${row.sourceRow}</td>
+            <td>${escapeHtml(row.id || "")}</td>
+            <td>${escapeHtml(row.values.jp || "")}</td>
+            <td>${escapeHtml(row.values.reading || "")}</td>
+            <td>${escapeHtml(row.values.meaning || "")}</td>
+            <td class="cell-muted">${escapeHtml(row.audioPreview || "")}</td>
+            <td class="${statusClass}">${escapeHtml(statusText)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function renderOutputs(){
+      const canExport = state.parsedRows.length > 0 && state.errors.length === 0;
+      vocabOutput.value = state.vocab.length ? `${JSON.stringify(state.vocab, null, 2)}\n` : "";
+      lessonOutput.value = state.lessonJson ? `${JSON.stringify(state.lessonJson, null, 2)}\n` : "";
+      setExportEnabled(canExport);
+
+      if(state.errors.length){
+        setMessage("error", `${state.errors.length} export-blocking issue${state.errors.length === 1 ? "" : "s"} found. Fix the highlighted rows and parse again.`);
+        statusPill.textContent = "Needs fixes";
+      }else if(state.warnings.length || state.skippedBlankRows){
+        const warningCount = state.warnings.length + (state.skippedBlankRows ? 1 : 0);
+        setMessage("warn", `Parsed ${state.vocab.length} vocab item${state.vocab.length === 1 ? "" : "s"} with ${warningCount} warning${warningCount === 1 ? "" : "s"}. Review before using the JSON.`);
+        statusPill.textContent = "Parsed with warnings";
+      }else if(state.vocab.length){
+        setMessage("ok", `Parsed ${state.vocab.length} vocab item${state.vocab.length === 1 ? "" : "s"}. Audio paths were ${audioInput.checked ? "generated" : "not generated"}.`);
+        statusPill.textContent = "Ready to export";
+      }else{
+        setMessage("warn", "No vocabulary rows were found.");
+        statusPill.textContent = "No rows found";
+      }
+    }
+
+    async function parseFile(){
+      resetOutputs();
+
+      if(!window.XLSX){
+        setMessage("error", "SheetJS failed to load. Check your internet connection or vendor xlsx for offline use.");
+        return;
+      }
+
+      const file = fileInput.files[0];
+      if(!file){
+        setMessage("error", "Choose an Excel or CSV file first.");
+        return;
+      }
+
+      try{
+        const rows = await readWorkbookRows(file);
+        if(rows.length < 2){
+          setMessage("error", "The sheet needs a header row and at least one data row.");
+          return;
+        }
+
+        const { mappedHeaders } = prepareHeaders(rows);
+        const requiredColumns = new Set(mappedHeaders.filter(Boolean));
+        if(!requiredColumns.has("jp") || !requiredColumns.has("meaning")){
+          setMessage("error", "Missing required headers. Include jp and meaning columns.");
+          return;
+        }
+
+        state.workbookRows = rows;
+        buildVocab(rows, mappedHeaders);
+        renderPreview();
+        renderOutputs();
+      }catch(error){
+        console.error(error);
+        setMessage("error", error.message || "Could not parse the file.");
+      }
+    }
+
+    async function copyText(textarea, label){
+      if(!textarea.value) return;
+      try{
+        await navigator.clipboard.writeText(textarea.value);
+        setMessage("ok", `${label} copied to clipboard.`);
+      }catch(error){
+        textarea.focus();
+        textarea.select();
+        setMessage("warn", "Clipboard permission was blocked. The JSON is selected so you can copy it manually.");
+      }
+    }
+
+    function downloadLessonJson(){
+      if(!state.lessonJson) return;
+
+      const lessonNumber = state.lessonJson.lesson || "vocab";
+      const blob = new Blob([lessonOutput.value], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `lesson-${lessonNumber}.json`;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      setMessage("ok", `Downloaded lesson-${lessonNumber}.json. Save it under data/${getSelectedLevel().toLowerCase()}/, then run npm run catalog and npm test.`);
+    }
+
+    parseBtn.addEventListener("click", parseFile);
+    copyVocabBtn.addEventListener("click", () => copyText(vocabOutput, "Vocab JSON"));
+    copyLessonBtn.addEventListener("click", () => copyText(lessonOutput, "Lesson JSON"));
+    downloadBtn.addEventListener("click", downloadLessonJson);
+
+    [lessonInput, levelInput, startInput, preserveIdsInput, audioInput].forEach(control => {
+      control.addEventListener("change", () => {
+        if(state.workbookRows.length){
+          buildVocab(state.workbookRows, state.mappedHeaders);
+          renderPreview();
+          renderOutputs();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

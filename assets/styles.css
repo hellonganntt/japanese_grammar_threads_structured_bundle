@@ -574,6 +574,17 @@
       padding-top:14px;
       border-top:1px solid var(--border);
     }
+    .settings-field{
+      display:grid;
+      gap:6px;
+    }
+    .settings-field span{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
     .study-dashboard{
       padding:16px;
       border-bottom:1px solid var(--border);

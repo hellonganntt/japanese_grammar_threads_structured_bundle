@@ -2,7 +2,7 @@
   "lesson": 45,
   "vocab": [
     {
-      "id": "l45-v001",
+      "id": "n4-l45-v001",
       "jp": "謝ります",
       "reading": "あやまります",
       "meaning": "xin lỗi; nhận lỗi",
@@ -10,12 +10,12 @@
       "note": "Dùng khi thừa nhận lỗi và nói lời xin lỗi với ai; thường dùng mẫu 人に謝ります.",
       "example": "間違い電話をかけたので、相手に謝りました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-001-word.mp3",
-        "example": "./audio/lesson-45/vocab-001-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-001-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-001-example.mp3"
       }
     },
     {
-      "id": "l45-v002",
+      "id": "n4-l45-v002",
       "jp": "あいます（事故に～）",
       "reading": "あいます",
       "meaning": "gặp phải; bị (tai nạn)",
@@ -23,12 +23,12 @@
       "note": "Thường viết là 遭います khi nói gặp chuyện không may: 事故に遭います, tai nạn xảy đến với mình.",
       "example": "旅行中に交通事故にあいました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-002-word.mp3",
-        "example": "./audio/lesson-45/vocab-002-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-002-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-002-example.mp3"
       }
     },
     {
-      "id": "l45-v003",
+      "id": "n4-l45-v003",
       "jp": "信じます",
       "reading": "しんじます",
       "meaning": "tin; tin tưởng",
@@ -36,12 +36,12 @@
       "note": "Dùng khi tin một người, lời nói, thông tin hoặc khả năng nào đó là đúng.",
       "example": "私は彼の説明を信じています。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-003-word.mp3",
-        "example": "./audio/lesson-45/vocab-003-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-003-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-003-example.mp3"
       }
     },
     {
-      "id": "l45-v004",
+      "id": "n4-l45-v004",
       "jp": "用意します",
       "reading": "よういします",
       "meaning": "chuẩn bị",
@@ -49,12 +49,12 @@
       "note": "Dùng khi chuẩn bị trước đồ vật, tiền, thức ăn hoặc điều kiện cần thiết.",
       "example": "キャンプに必要な道具を用意しました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-004-word.mp3",
-        "example": "./audio/lesson-45/vocab-004-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-004-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-004-example.mp3"
       }
     },
     {
-      "id": "l45-v005",
+      "id": "n4-l45-v005",
       "jp": "キャンセルします",
       "reading": "キャンセルします",
       "meaning": "hủy; hủy đặt chỗ",
@@ -62,12 +62,12 @@
       "note": "Dùng khi hủy lịch hẹn, vé, đơn hàng hoặc đặt phòng.",
       "example": "台風のため、ホテルの予約をキャンセルしました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-005-word.mp3",
-        "example": "./audio/lesson-45/vocab-005-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-005-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-005-example.mp3"
       }
     },
     {
-      "id": "l45-v006",
+      "id": "n4-l45-v006",
       "jp": "到着します",
       "reading": "とうちゃくします",
       "meaning": "đến nơi",
@@ -75,12 +75,12 @@
       "note": "Dùng khi người hoặc phương tiện đến địa điểm đích.",
       "example": "飛行機は午後三時に空港へ到着します。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-006-word.mp3",
-        "example": "./audio/lesson-45/vocab-006-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-006-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-006-example.mp3"
       }
     },
     {
-      "id": "l45-v007",
+      "id": "n4-l45-v007",
       "jp": "保証書",
       "reading": "ほしょうしょ",
       "meaning": "phiếu bảo hành; giấy bảo hành",
@@ -88,12 +88,12 @@
       "note": "Giấy xác nhận nhà sản xuất hoặc cửa hàng sẽ sửa chữa, đổi sản phẩm theo điều kiện nhất định.",
       "example": "修理を頼むときは保証書を持ってきてください。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-007-word.mp3",
-        "example": "./audio/lesson-45/vocab-007-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-007-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-007-example.mp3"
       }
     },
     {
-      "id": "l45-v008",
+      "id": "n4-l45-v008",
       "jp": "領収書",
       "reading": "りょうしゅうしょ",
       "meaning": "hóa đơn; biên lai",
@@ -101,12 +101,12 @@
       "note": "Giấy xác nhận đã nhận tiền thanh toán, thường cần cho việc quyết toán chi phí.",
       "example": "会社に出すので、領収書をください。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-008-word.mp3",
-        "example": "./audio/lesson-45/vocab-008-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-008-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-008-example.mp3"
       }
     },
     {
-      "id": "l45-v009",
+      "id": "n4-l45-v009",
       "jp": "贈り物",
       "reading": "おくりもの",
       "meaning": "quà tặng",
@@ -114,12 +114,12 @@
       "note": "Món đồ được tặng cho người khác vào dịp đặc biệt hoặc để bày tỏ tình cảm.",
       "example": "母の誕生日に贈り物をしました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-009-word.mp3",
-        "example": "./audio/lesson-45/vocab-009-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-009-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-009-example.mp3"
       }
     },
     {
-      "id": "l45-v010",
+      "id": "n4-l45-v010",
       "jp": "間違い電話",
       "reading": "まちがいでんわ",
       "meaning": "cuộc gọi nhầm số",
@@ -127,12 +127,12 @@
       "note": "Cuộc gọi đến hoặc gọi đi nhầm số điện thoại.",
       "example": "夜中に間違い電話がかかってきました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-010-word.mp3",
-        "example": "./audio/lesson-45/vocab-010-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-010-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-010-example.mp3"
       }
     },
     {
-      "id": "l45-v011",
+      "id": "n4-l45-v011",
       "jp": "キャンプ",
       "reading": "キャンプ",
       "meaning": "cắm trại",
@@ -140,12 +140,12 @@
       "note": "Hoạt động nghỉ qua đêm ngoài trời bằng lều hoặc tại khu cắm trại; thường dùng キャンプをします.",
       "example": "夏休みに湖の近くでキャンプをします。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-011-word.mp3",
-        "example": "./audio/lesson-45/vocab-011-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-011-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-011-example.mp3"
       }
     },
     {
-      "id": "l45-v012",
+      "id": "n4-l45-v012",
       "jp": "係",
       "reading": "かかり",
       "meaning": "bộ phận phụ trách; nhiệm vụ phụ trách",
@@ -153,12 +153,12 @@
       "note": "Chỉ vai trò hoặc bộ phận chịu trách nhiệm về một công việc cụ thể.",
       "example": "受付の係に質問してください。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-012-word.mp3",
-        "example": "./audio/lesson-45/vocab-012-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-012-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-012-example.mp3"
       }
     },
     {
-      "id": "l45-v013",
+      "id": "n4-l45-v013",
       "jp": "中止",
       "reading": "ちゅうし",
       "meaning": "sự hủy bỏ; đình chỉ",
@@ -166,12 +166,12 @@
       "note": "Dùng khi một sự kiện hoặc hoạt động đã định không được tiến hành hoặc bị dừng giữa chừng.",
       "example": "大雨のため、試合は中止になりました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-013-word.mp3",
-        "example": "./audio/lesson-45/vocab-013-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-013-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-013-example.mp3"
       }
     },
     {
-      "id": "l45-v014",
+      "id": "n4-l45-v014",
       "jp": "点",
       "reading": "てん",
       "meaning": "điểm; điểm số; điểm đặc trưng",
@@ -179,12 +179,12 @@
       "note": "Có thể dùng cho điểm bài thi, vị trí dạng chấm hoặc khía cạnh của một sự việc.",
       "example": "今回のテストは百点でした。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-014-word.mp3",
-        "example": "./audio/lesson-45/vocab-014-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-014-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-014-example.mp3"
       }
     },
     {
-      "id": "l45-v015",
+      "id": "n4-l45-v015",
       "jp": "レバー",
       "reading": "レバー",
       "meaning": "cần gạt; gan",
@@ -192,12 +192,12 @@
       "note": "Tùy ngữ cảnh có thể chỉ cần điều khiển máy móc hoặc gan dùng làm thực phẩm.",
       "example": "このレバーを下げると、機械が止まります。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-015-word.mp3",
-        "example": "./audio/lesson-45/vocab-015-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-015-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-015-example.mp3"
       }
     },
     {
-      "id": "l45-v016",
+      "id": "n4-l45-v016",
       "jp": "「円」札",
       "reading": "えんさつ",
       "meaning": "tờ tiền ... yên",
@@ -205,12 +205,12 @@
       "note": "Dùng sau số tiền để chỉ tờ tiền giấy, ví dụ 千円札, 五千円札, 一万円札.",
       "example": "一万円札を千円札に替えてください。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-016-word.mp3",
-        "example": "./audio/lesson-45/vocab-016-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-016-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-016-example.mp3"
       }
     },
     {
-      "id": "l45-v017",
+      "id": "n4-l45-v017",
       "jp": "ちゃんと",
       "reading": "ちゃんと",
       "meaning": "đàng hoàng; đúng cách; đầy đủ",
@@ -218,12 +218,12 @@
       "note": "Diễn tả làm việc đúng, nghiêm túc hoặc ở trạng thái ngăn nắp, đầy đủ.",
       "example": "出かける前に、窓をちゃんと閉めましたか。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-017-word.mp3",
-        "example": "./audio/lesson-45/vocab-017-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-017-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-017-example.mp3"
       }
     },
     {
-      "id": "l45-v018",
+      "id": "n4-l45-v018",
       "jp": "急に",
       "reading": "きゅうに",
       "meaning": "đột nhiên; bất chợt",
@@ -231,12 +231,12 @@
       "note": "Dùng khi sự việc xảy ra nhanh và không được dự đoán trước.",
       "example": "急に雨が降り始めました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-018-word.mp3",
-        "example": "./audio/lesson-45/vocab-018-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-018-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-018-example.mp3"
       }
     },
     {
-      "id": "l45-v019",
+      "id": "n4-l45-v019",
       "jp": "楽しみにしています",
       "reading": "たのしみにしています",
       "meaning": "đang mong chờ; rất trông đợi",
@@ -244,12 +244,12 @@
       "note": "Dùng khi vui vẻ mong đợi một sự kiện trong tương lai; thường nói Nを楽しみにしています.",
       "example": "来月またお会いできるのを楽しみにしています。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-019-word.mp3",
-        "example": "./audio/lesson-45/vocab-019-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-019-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-019-example.mp3"
       }
     },
     {
-      "id": "l45-v020",
+      "id": "n4-l45-v020",
       "jp": "以上です",
       "reading": "いじょうです",
       "meaning": "hết; trên đây là tất cả",
@@ -257,12 +257,12 @@
       "note": "Dùng để thông báo phần trình bày, gọi món hoặc danh sách đã kết thúc.",
       "example": "ご注文は以上でよろしいですか。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-020-word.mp3",
-        "example": "./audio/lesson-45/vocab-020-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-020-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-020-example.mp3"
       }
     },
     {
-      "id": "l45-v021",
+      "id": "n4-l45-v021",
       "jp": "係員",
       "reading": "かかりいん",
       "meaning": "nhân viên phụ trách",
@@ -270,12 +270,12 @@
       "note": "Người được giao phụ trách một nhiệm vụ tại nhà ga, sự kiện, cơ sở hoặc quầy dịch vụ.",
       "example": "分からないときは近くの係員に聞いてください。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-021-word.mp3",
-        "example": "./audio/lesson-45/vocab-021-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-021-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-021-example.mp3"
       }
     },
     {
-      "id": "l45-v022",
+      "id": "n4-l45-v022",
       "jp": "ロース",
       "reading": "ロース",
       "meaning": "thịt thăn; phần thịt lưng",
@@ -283,12 +283,12 @@
       "note": "Tên phần thịt thường gặp trong ロース肉, ロースかつ hoặc 焼き肉.",
       "example": "私はロースかつ定食を注文しました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-022-word.mp3",
-        "example": "./audio/lesson-45/vocab-022-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-022-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-022-example.mp3"
       }
     },
     {
-      "id": "l45-v023",
+      "id": "n4-l45-v023",
       "jp": "スタート",
       "reading": "スタート",
       "meaning": "sự bắt đầu; điểm xuất phát",
@@ -296,12 +296,12 @@
       "note": "Dùng cho thời điểm hoặc vị trí bắt đầu cuộc thi, kế hoạch hay hoạt động.",
       "example": "マラソンは午前九時にスタートします。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-023-word.mp3",
-        "example": "./audio/lesson-45/vocab-023-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-023-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-023-example.mp3"
       }
     },
     {
-      "id": "l45-v024",
+      "id": "n4-l45-v024",
       "jp": "優勝します",
       "reading": "ゆうしょうします",
       "meaning": "vô địch; giành giải nhất",
@@ -309,12 +309,12 @@
       "note": "Dùng khi giành vị trí cao nhất trong cuộc thi hoặc giải đấu.",
       "example": "私たちのチームが大会で優勝しました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-024-word.mp3",
-        "example": "./audio/lesson-45/vocab-024-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-024-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-024-example.mp3"
       }
     },
     {
-      "id": "l45-v025",
+      "id": "n4-l45-v025",
       "jp": "悩み",
       "reading": "なやみ",
       "meaning": "nỗi lo; điều phiền muộn",
@@ -322,12 +322,12 @@
       "note": "Vấn đề khiến một người suy nghĩ nhiều, lo lắng hoặc đau khổ.",
       "example": "一人で悩みを抱えないで、誰かに相談してください。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-025-word.mp3",
-        "example": "./audio/lesson-45/vocab-025-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-025-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-025-example.mp3"
       }
     },
     {
-      "id": "l45-v026",
+      "id": "n4-l45-v026",
       "jp": "目覚まし時計",
       "reading": "めざましどけい",
       "meaning": "đồng hồ báo thức",
@@ -335,12 +335,12 @@
       "note": "目覚まし cũng thường được dùng riêng với cùng nghĩa trong hội thoại.",
       "example": "毎晩、目覚まし時計を六時にセットします。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-026-word.mp3",
-        "example": "./audio/lesson-45/vocab-026-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-026-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-026-example.mp3"
       }
     },
     {
-      "id": "l45-v027",
+      "id": "n4-l45-v027",
       "jp": "眠ります",
       "reading": "ねむります",
       "meaning": "ngủ",
@@ -348,12 +348,12 @@
       "note": "Diễn tả trạng thái ngủ; trong hội thoại hằng ngày 寝ます thường phổ biến hơn.",
       "example": "疲れていたので、十時間も眠りました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-027-word.mp3",
-        "example": "./audio/lesson-45/vocab-027-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-027-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-027-example.mp3"
       }
     },
     {
-      "id": "l45-v028",
+      "id": "n4-l45-v028",
       "jp": "目が覚めます",
       "reading": "めがさめます",
       "meaning": "tỉnh giấc; thức giấc",
@@ -361,12 +361,12 @@
       "note": "Diễn tả tự nhiên tỉnh khỏi giấc ngủ; khác với 起きます là rời giường hoặc bắt đầu hoạt động.",
       "example": "夜中に急に目が覚めました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-028-word.mp3",
-        "example": "./audio/lesson-45/vocab-028-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-028-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-028-example.mp3"
       }
     },
     {
-      "id": "l45-v029",
+      "id": "n4-l45-v029",
       "jp": "大学生",
       "reading": "だいがくせい",
       "meaning": "sinh viên đại học",
@@ -374,12 +374,12 @@
       "note": "Người đang theo học tại trường đại học.",
       "example": "兄は東京の大学に通う大学生です。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-029-word.mp3",
-        "example": "./audio/lesson-45/vocab-029-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-029-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-029-example.mp3"
       }
     },
     {
-      "id": "l45-v030",
+      "id": "n4-l45-v030",
       "jp": "回答",
       "reading": "かいとう",
       "meaning": "câu trả lời; sự trả lời",
@@ -387,12 +387,12 @@
       "note": "Thường dùng cho câu trả lời chính thức đối với câu hỏi, khảo sát hoặc yêu cầu.",
       "example": "アンケートへの回答をお願いします。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-030-word.mp3",
-        "example": "./audio/lesson-45/vocab-030-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-030-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-030-example.mp3"
       }
     },
     {
-      "id": "l45-v031",
+      "id": "n4-l45-v031",
       "jp": "なります",
       "reading": "なります",
       "meaning": "trở thành; reo; đến giờ",
@@ -400,12 +400,12 @@
       "note": "Thường viết là 成ります với nghĩa trở thành hoặc 鳴ります với nghĩa phát ra âm thanh; cách hiểu tùy ngữ cảnh.",
       "example": "六時になると、目覚まし時計が鳴ります。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-031-word.mp3",
-        "example": "./audio/lesson-45/vocab-031-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-031-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-031-example.mp3"
       }
     },
     {
-      "id": "l45-v032",
+      "id": "n4-l45-v032",
       "jp": "セットします",
       "reading": "セットします",
       "meaning": "cài đặt; đặt sẵn; sắp thành bộ",
@@ -413,12 +413,12 @@
       "note": "Dùng khi cài giờ báo thức, đặt thiết bị vào trạng thái sẵn sàng hoặc bố trí thành bộ.",
       "example": "寝る前に目覚ましを七時にセットしました。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-032-word.mp3",
-        "example": "./audio/lesson-45/vocab-032-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-032-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-032-example.mp3"
       }
     },
     {
-      "id": "l45-v033",
+      "id": "n4-l45-v033",
       "jp": "それでも",
       "reading": "それでも",
       "meaning": "dù vậy; tuy thế",
@@ -426,8 +426,8 @@
       "note": "Dùng khi kết quả hoặc hành động sau vẫn xảy ra bất chấp nội dung đã nêu trước.",
       "example": "何度も失敗しました。それでも、あきらめませんでした。",
       "audio": {
-        "word": "./audio/lesson-45/vocab-033-word.mp3",
-        "example": "./audio/lesson-45/vocab-033-example.mp3"
+        "word": "./audio/n4/lesson-45/vocab-033-word.mp3",
+        "example": "./audio/n4/lesson-45/vocab-033-example.mp3"
       }
     }
   ],

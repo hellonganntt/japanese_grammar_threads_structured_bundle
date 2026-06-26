@@ -13,7 +13,7 @@ Static Japanese vocabulary study app backed by structured lesson JSON. It includ
 - `scripts/generate-vocab-audio.mjs` - optional vocab audio generator
 - `data/lessons.json` - lesson manifest used by the lesson selector
 - `data/vocab-catalog.json` - compact generated catalog used for SRS startup
-- `data/lesson-36.json` - structured lesson data for lesson 36
+- `data/n4/lesson-36.json` - structured lesson data for lesson 36
 - `grammar-data-structured.json` - combined data copy
 - `README-structured.txt` - original bundle notes
 
@@ -53,7 +53,7 @@ The database stores one record per vocabulary card, so reviewing a card does not
 
 Existing schema version 1 or 2 progress under `localStorage` key `japaneseVocabSrs:v1` is imported once. The legacy value is retained as a recovery backup but is no longer updated. Historical daily activity, goals, and streaks are intentionally not imported. The 10-new-cards-per-local-day limit is derived from each card's `introducedAt` timestamp.
 
-Lesson JSON remains read-only. Every vocabulary item has a permanent ID such as `l36-v001`; do not change an existing ID when reordering or editing vocabulary.
+Lesson JSON remains read-only. Every vocabulary item has a permanent ID such as `n4-l36-v001`; do not change an existing ID when reordering or editing vocabulary.
 
 Generate the compact catalog after editing lesson vocabulary:
 
@@ -103,14 +103,14 @@ Vocabulary items can include optional static audio paths:
 
 ```json
 {
-  "id": "l36-v001",
+  "id": "n4-l36-v001",
   "jp": "話せる",
   "reading": "はなせる",
   "meaning": "can speak",
   "example": "日本語が少し話せるようになりました。",
   "audio": {
-    "word": "./audio/lesson-36/vocab-001-word.mp3",
-    "example": "./audio/lesson-36/vocab-001-example.mp3"
+    "word": "./audio/n4/lesson-36/vocab-001-word.mp3",
+    "example": "./audio/n4/lesson-36/vocab-001-example.mp3"
   }
 }
 ```
@@ -161,8 +161,8 @@ node scripts/generate-vocab-audio.mjs --lesson=36 --update-json-only
 
 Lesson data is split by file. To add another lesson:
 
-1. Create a file like `data/lesson-37.json`.
-2. Add `{ "lesson": 37, "file": "./data/lesson-37.json" }` to `data/lessons.json`.
+1. Create a file like `data/n4/lesson-37.json`.
+2. Add `{ "lesson": 37, "level": "N4", "file": "./data/n4/lesson-37.json" }` to `data/lessons.json`.
 3. Store that lesson's shared vocabulary in `vocab`, kanji in `kanji`, and grammar outline in `grammarSections`.
 4. Run `npm run catalog` and commit the updated `data/vocab-catalog.json`.
 
@@ -173,7 +173,7 @@ Lesson files use this shape:
   "lesson": 36,
   "vocab": [
     {
-      "id": "l36-v001",
+      "id": "n4-l36-v001",
       "jp": "...",
       "meaning": "..."
     }

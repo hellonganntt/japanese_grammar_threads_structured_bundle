@@ -10,9 +10,6 @@ const updateJsonOnly = args.has("--update-json-only");
 const force = args.has("--force");
 
 const rootDir = process.cwd();
-const lessonFile = path.join(rootDir, "data", `lesson-${lesson}.json`);
-const audioDir = path.join(rootDir, "audio", `lesson-${lesson}`);
-const publicAudioBase = `./audio/lesson-${lesson}`;
 const apiKey = process.env.OPENAI_API_KEY;
 
 const model = "gpt-4o-mini-tts";
@@ -39,6 +36,31 @@ function parseItems(value){
 
 const selectedItems = parseItems(itemsArg?.split("=")[1]);
 
+async function resolveLessonEntry(){
+  const manifestPath = path.join(rootDir, "data", "lessons.json");
+  const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+  const entry = manifest.lessons?.find(item => String(item.lesson) === String(lesson));
+
+  if(!entry){
+    throw new Error(`Cannot find lesson ${lesson} in data/lessons.json.`);
+  }
+  if(typeof entry.file !== "string" || !entry.file){
+    throw new Error(`Lesson ${lesson} must include a file path in data/lessons.json.`);
+  }
+  if(typeof entry.level !== "string" || !entry.level){
+    throw new Error(`Lesson ${lesson} must include a JLPT level in data/lessons.json.`);
+  }
+
+  const levelLower = entry.level.toLowerCase();
+  return {
+    ...entry,
+    levelLower,
+    lessonFile: path.resolve(rootDir, entry.file),
+    audioDir: path.join(rootDir, "audio", levelLower, `lesson-${lesson}`),
+    publicAudioBase: `./audio/${levelLower}/lesson-${lesson}`
+  };
+}
+
 async function pathExists(filePath){
   try{
     await stat(filePath);
@@ -49,7 +71,7 @@ async function pathExists(filePath){
   }
 }
 
-function audioPathsForIndex(index){
+function audioPathsForIndex(index, publicAudioBase){
   const number = String(index + 1).padStart(3, "0");
 
   return {
@@ -88,6 +110,8 @@ async function generateAudio(text, outputPath){
 }
 
 async function main(){
+  const lessonEntry = await resolveLessonEntry();
+  const { lessonFile, audioDir, publicAudioBase } = lessonEntry;
   const lessonData = JSON.parse(await readFile(lessonFile, "utf8"));
 
   if(!Array.isArray(lessonData.vocab)){
@@ -97,7 +121,7 @@ async function main(){
   let jsonChanged = false;
 
   lessonData.vocab.forEach((item, index) => {
-    const audio = audioPathsForIndex(index);
+    const audio = audioPathsForIndex(index, publicAudioBase);
 
     if(!item.audio || item.audio.word !== audio.word || item.audio.example !== audio.example){
       item.audio = audio;
@@ -107,9 +131,9 @@ async function main(){
 
   if(jsonChanged){
     await writeFile(lessonFile, `${JSON.stringify(lessonData, null, 2)}\n`, "utf8");
-    console.log(`Updated audio paths in data/lesson-${lesson}.json`);
+    console.log(`Updated audio paths in ${lessonEntry.file}`);
   }else{
-    console.log(`Audio paths already present in data/lesson-${lesson}.json`);
+    console.log(`Audio paths already present in ${lessonEntry.file}`);
   }
 
   if(updateJsonOnly){

@@ -2,43 +2,53 @@
   "lessons": [
     {
       "lesson": 36,
-      "file": "./data/lesson-36.json"
+      "file": "./data/n4/lesson-36.json",
+      "level": "N4"
     },
     {
       "lesson": 37,
-      "file": "./data/lesson-37.json"
+      "file": "./data/n4/lesson-37.json",
+      "level": "N4"
     },
     {
       "lesson": 38,
-      "file": "./data/lesson-38.json"
+      "file": "./data/n4/lesson-38.json",
+      "level": "N4"
     },
     {
       "lesson": 39,
-      "file": "./data/lesson-39.json"
+      "file": "./data/n4/lesson-39.json",
+      "level": "N4"
     },
     {
       "lesson": 40,
-      "file": "./data/lesson-40.json"
+      "file": "./data/n4/lesson-40.json",
+      "level": "N4"
     },
     {
       "lesson": 41,
-      "file": "./data/lesson-41.json"
+      "file": "./data/n4/lesson-41.json",
+      "level": "N4"
     },
     {
       "lesson": 42,
-      "file": "./data/lesson-42.json"
+      "file": "./data/n4/lesson-42.json",
+      "level": "N4"
     },
     {
       "lesson": 43,
-      "file": "./data/lesson-43.json"
+      "file": "./data/n4/lesson-43.json",
+      "level": "N4"
     },
     {
       "lesson": 44,
-      "file": "./data/lesson-44.json"
+      "file": "./data/n4/lesson-44.json",
+      "level": "N4"
     },
     {
       "lesson": 45,
-      "file": "./data/lesson-45.json"
+      "file": "./data/n4/lesson-45.json",
+      "level": "N4"
     }
   ]
 }

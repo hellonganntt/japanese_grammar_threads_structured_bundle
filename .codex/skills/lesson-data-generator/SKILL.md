@@ -1,6 +1,6 @@
 ---
 name: lesson-data-generator
-description: Generate and integrate structured Japanese vocabulary lesson data from user-provided word lists for this project. Use when creating or updating the `vocab` collection in `data/lesson-XX.json`, registering new lessons in `data/lessons.json`, assigning permanent SRS vocabulary IDs, regenerating `data/vocab-catalog.json`, preparing optional vocabulary audio, and validating the complete vocabulary-data pipeline.
+description: Generate and integrate structured Japanese vocabulary lesson data from user-provided word lists for this project. Use when creating or updating the `vocab` collection in `data/{levelLower}/lesson-XX.json`, registering new lessons in `data/lessons.json`, assigning permanent SRS vocabulary IDs, regenerating `data/vocab-catalog.json`, preparing optional vocabulary audio, and validating the complete vocabulary-data pipeline.
 ---
 
 # Lesson Data Generator
@@ -9,13 +9,13 @@ Create or update a lesson file from the user's input and fully integrate it into
 
 ## Core Task
 
-Turn the user's vocabulary list into a complete `data/lesson-XX.json` file for the specified lesson number.
+Turn the user's vocabulary list into a complete `data/{levelLower}/lesson-XX.json` file for the specified lesson number and JLPT level.
 
 ## Required Output
 
 Write the lesson file as:
 
-- `data/lesson-XX.json`
+- `data/{levelLower}/lesson-XX.json`
 
 Follow `data/lesson-schema.jsonc` exactly.
 
@@ -59,7 +59,7 @@ Follow the vocabulary item shape documented in `data/lesson-schema.jsonc`.
 
 ## Permanent Vocabulary IDs
 
-- Give every vocabulary item an ID formatted as `l{lesson}-v{number}`, with at least three zero-padded digits, for example `l46-v001`.
+- Give every vocabulary item an ID formatted as `{levelLower}-l{lesson}-v{number}`, with at least three zero-padded digits, for example `n4-l46-v001`.
 - Make IDs globally unique across all lesson files.
 - For a new lesson, assign IDs sequentially in the source order.
 - When updating an existing lesson, preserve every existing ID even if items are reordered or edited.
@@ -77,7 +77,8 @@ For a new lesson:
    ```json
    {
      "lesson": 46,
-     "file": "./data/lesson-46.json"
+  "level": "N4",
+  "file": "./data/n4/lesson-46.json"
    }
    ```
 
@@ -112,7 +113,7 @@ Commit the resulting `data/vocab-catalog.json`. Do not edit that generated file 
 4. Assign or preserve permanent vocabulary IDs.
 5. Fill in Vietnamese meanings and explanations.
 6. Add natural Japanese examples that fit the lesson.
-7. Save the file as `data/lesson-XX.json`.
+7. Save the file as `data/{levelLower}/lesson-XX.json`.
 8. Add a new lesson to `data/lessons.json` if it is not already registered.
 9. Prepare audio only when requested or when matching audio assets are part of the task.
 10. Run `npm run catalog`.

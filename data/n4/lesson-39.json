@@ -2,7 +2,7 @@
   "lesson": 39,
   "vocab": [
     {
-      "id": "l39-v001",
+      "id": "n4-l39-v001",
       "jp": "答えます",
       "reading": "こたえます",
       "meaning": "trả lời",
@@ -10,12 +10,12 @@
       "note": "Thường dùng với câu hỏi hoặc lời gọi: 質問に答えます.",
       "example": "先生の質問に答えました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-001-word.mp3",
-        "example": "./audio/lesson-39/vocab-001-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-001-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-001-example.mp3"
       }
     },
     {
-      "id": "l39-v002",
+      "id": "n4-l39-v002",
       "jp": "倒れます",
       "reading": "たおれます",
       "meaning": "ngã; đổ; sập xuống",
@@ -23,12 +23,12 @@
       "note": "Dùng khi người, cây, tòa nhà hoặc đồ vật bị ngã/đổ xuống.",
       "example": "強い風で木が倒れました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-002-word.mp3",
-        "example": "./audio/lesson-39/vocab-002-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-002-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-002-example.mp3"
       }
     },
     {
-      "id": "l39-v003",
+      "id": "n4-l39-v003",
       "jp": "焼けます（家が～）",
       "reading": "やけます",
       "meaning": "cháy; bị cháy",
@@ -36,12 +36,12 @@
       "note": "Dùng khi nhà cửa, rừng, giấy tờ... bị cháy do lửa.",
       "example": "火事で古い家が焼けました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-003-word.mp3",
-        "example": "./audio/lesson-39/vocab-003-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-003-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-003-example.mp3"
       }
     },
     {
-      "id": "l39-v004",
+      "id": "n4-l39-v004",
       "jp": "焼けます（パン／肉が～）",
       "reading": "やけます",
       "meaning": "được nướng chín; nướng xong",
@@ -49,12 +49,12 @@
       "note": "Dùng khi bánh mì, thịt, cá... đã được nướng chín hoặc chín vàng.",
       "example": "パンがちょうどよく焼けました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-004-word.mp3",
-        "example": "./audio/lesson-39/vocab-004-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-004-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-004-example.mp3"
       }
     },
     {
-      "id": "l39-v005",
+      "id": "n4-l39-v005",
       "jp": "通ります",
       "reading": "とおります",
       "meaning": "đi qua; thông qua",
@@ -62,12 +62,12 @@
       "note": "Dùng khi đi qua đường, hành lang, cổng, hoặc một nơi nào đó.",
       "example": "毎朝、この道を通ります。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-005-word.mp3",
-        "example": "./audio/lesson-39/vocab-005-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-005-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-005-example.mp3"
       }
     },
     {
-      "id": "l39-v006",
+      "id": "n4-l39-v006",
       "jp": "死にます",
       "reading": "しにます",
       "meaning": "chết",
@@ -75,12 +75,12 @@
       "note": "Từ trực tiếp hơn 亡くなります; cần dùng cẩn thận khi nói về người.",
       "example": "池の魚が暑さで死んでしまいました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-006-word.mp3",
-        "example": "./audio/lesson-39/vocab-006-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-006-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-006-example.mp3"
       }
     },
     {
-      "id": "l39-v007",
+      "id": "n4-l39-v007",
       "jp": "びっくりします",
       "reading": "びっくりします",
       "meaning": "ngạc nhiên; giật mình",
@@ -88,12 +88,12 @@
       "note": "Dùng khi bất ngờ vì điều gì đó xảy ra.",
       "example": "大きな音を聞いてびっくりしました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-007-word.mp3",
-        "example": "./audio/lesson-39/vocab-007-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-007-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-007-example.mp3"
       }
     },
     {
-      "id": "l39-v008",
+      "id": "n4-l39-v008",
       "jp": "がっかりします",
       "reading": "がっかりします",
       "meaning": "thất vọng; chán nản",
@@ -101,12 +101,12 @@
       "note": "Dùng khi kết quả không như mong đợi.",
       "example": "試験に落ちて、がっかりしました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-008-word.mp3",
-        "example": "./audio/lesson-39/vocab-008-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-008-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-008-example.mp3"
       }
     },
     {
-      "id": "l39-v009",
+      "id": "n4-l39-v009",
       "jp": "安心します",
       "reading": "あんしんします",
       "meaning": "yên tâm",
@@ -114,12 +114,12 @@
       "note": "Dùng khi lo lắng được giải tỏa.",
       "example": "家族が無事だと聞いて安心しました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-009-word.mp3",
-        "example": "./audio/lesson-39/vocab-009-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-009-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-009-example.mp3"
       }
     },
     {
-      "id": "l39-v010",
+      "id": "n4-l39-v010",
       "jp": "遅刻します",
       "reading": "ちこくします",
       "meaning": "đến muộn; đi trễ",
@@ -127,12 +127,12 @@
       "note": "Dùng khi đến lớp, công ty, cuộc hẹn... muộn hơn giờ quy định.",
       "example": "電車が遅れて、授業に遅刻しました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-010-word.mp3",
-        "example": "./audio/lesson-39/vocab-010-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-010-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-010-example.mp3"
       }
     },
     {
-      "id": "l39-v011",
+      "id": "n4-l39-v011",
       "jp": "早退します",
       "reading": "そうたいします",
       "meaning": "về sớm; rời sớm",
@@ -140,12 +140,12 @@
       "note": "Dùng khi rời lớp hoặc nơi làm việc trước giờ kết thúc.",
       "example": "熱があったので、会社を早退しました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-011-word.mp3",
-        "example": "./audio/lesson-39/vocab-011-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-011-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-011-example.mp3"
       }
     },
     {
-      "id": "l39-v012",
+      "id": "n4-l39-v012",
       "jp": "けんかします",
       "reading": "けんかします",
       "meaning": "cãi nhau; đánh nhau",
@@ -153,12 +153,12 @@
       "note": "Dùng khi tranh cãi hoặc xô xát với ai đó: 友だちとけんかします.",
       "example": "兄とけんかしてしまいました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-012-word.mp3",
-        "example": "./audio/lesson-39/vocab-012-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-012-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-012-example.mp3"
       }
     },
     {
-      "id": "l39-v013",
+      "id": "n4-l39-v013",
       "jp": "離婚します",
       "reading": "りこんします",
       "meaning": "ly hôn",
@@ -166,12 +166,12 @@
       "note": "Dùng khi vợ chồng chấm dứt hôn nhân.",
       "example": "二人は去年離婚しました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-013-word.mp3",
-        "example": "./audio/lesson-39/vocab-013-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-013-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-013-example.mp3"
       }
     },
     {
-      "id": "l39-v014",
+      "id": "n4-l39-v014",
       "jp": "複雑（な）",
       "reading": "ふくざつ",
       "meaning": "phức tạp",
@@ -179,12 +179,12 @@
       "note": "Tính từ な, dùng cho vấn đề, thủ tục, quan hệ, cảm xúc... khó hiểu vì nhiều yếu tố.",
       "example": "この問題はとても複雑です。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-014-word.mp3",
-        "example": "./audio/lesson-39/vocab-014-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-014-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-014-example.mp3"
       }
     },
     {
-      "id": "l39-v015",
+      "id": "n4-l39-v015",
       "jp": "邪魔（な）",
       "reading": "じゃま",
       "meaning": "vướng; cản trở; phiền",
@@ -192,12 +192,12 @@
       "note": "Tính từ な. Cũng dùng trong cụm 邪魔します = làm phiền/cản trở.",
       "example": "この箱は邪魔なので、片づけましょう。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-015-word.mp3",
-        "example": "./audio/lesson-39/vocab-015-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-015-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-015-example.mp3"
       }
     },
     {
-      "id": "l39-v016",
+      "id": "n4-l39-v016",
       "jp": "汚い",
       "reading": "きたない",
       "meaning": "bẩn; không sạch",
@@ -205,12 +205,12 @@
       "note": "Dùng cho đồ vật, nơi chốn, chữ viết, hoặc cách làm không đẹp/không công bằng.",
       "example": "手が汚いので、せっけんで洗います。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-016-word.mp3",
-        "example": "./audio/lesson-39/vocab-016-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-016-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-016-example.mp3"
       }
     },
     {
-      "id": "l39-v017",
+      "id": "n4-l39-v017",
       "jp": "うれしい",
       "reading": "うれしい",
       "meaning": "vui; hạnh phúc",
@@ -218,12 +218,12 @@
       "note": "Dùng khi cảm thấy vui vì một việc cụ thể xảy ra.",
       "example": "友だちから手紙をもらってうれしかったです。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-017-word.mp3",
-        "example": "./audio/lesson-39/vocab-017-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-017-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-017-example.mp3"
       }
     },
     {
-      "id": "l39-v018",
+      "id": "n4-l39-v018",
       "jp": "悲しい",
       "reading": "かなしい",
       "meaning": "buồn; đau lòng",
@@ -231,12 +231,12 @@
       "note": "Dùng khi cảm thấy buồn vì mất mát, chia tay, thất vọng...",
       "example": "そのニュースを聞いて悲しくなりました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-018-word.mp3",
-        "example": "./audio/lesson-39/vocab-018-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-018-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-018-example.mp3"
       }
     },
     {
-      "id": "l39-v019",
+      "id": "n4-l39-v019",
       "jp": "恥ずかしい",
       "reading": "はずかしい",
       "meaning": "xấu hổ; ngượng",
@@ -244,12 +244,12 @@
       "note": "Dùng khi ngượng vì bị chú ý, mắc lỗi, hoặc thấy không tự tin.",
       "example": "みんなの前で間違えて、恥ずかしかったです。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-019-word.mp3",
-        "example": "./audio/lesson-39/vocab-019-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-019-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-019-example.mp3"
       }
     },
     {
-      "id": "l39-v020",
+      "id": "n4-l39-v020",
       "jp": "地震",
       "reading": "じしん",
       "meaning": "động đất",
@@ -257,12 +257,12 @@
       "note": "Hiện tượng mặt đất rung chuyển; ở Nhật là từ rất thường gặp.",
       "example": "昨日の夜、大きな地震がありました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-020-word.mp3",
-        "example": "./audio/lesson-39/vocab-020-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-020-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-020-example.mp3"
       }
     },
     {
-      "id": "l39-v021",
+      "id": "n4-l39-v021",
       "jp": "台風",
       "reading": "たいふう",
       "meaning": "bão; bão nhiệt đới",
@@ -270,12 +270,12 @@
       "note": "Dùng cho bão lớn hình thành trên biển, thường có gió mạnh và mưa lớn.",
       "example": "台風で電車が止まりました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-021-word.mp3",
-        "example": "./audio/lesson-39/vocab-021-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-021-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-021-example.mp3"
       }
     },
     {
-      "id": "l39-v022",
+      "id": "n4-l39-v022",
       "jp": "火事",
       "reading": "かじ",
       "meaning": "hỏa hoạn; cháy nhà",
@@ -283,12 +283,12 @@
       "note": "Dùng cho sự cố cháy gây nguy hiểm hoặc thiệt hại.",
       "example": "近所で火事がありました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-022-word.mp3",
-        "example": "./audio/lesson-39/vocab-022-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-022-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-022-example.mp3"
       }
     },
     {
-      "id": "l39-v023",
+      "id": "n4-l39-v023",
       "jp": "事故",
       "reading": "じこ",
       "meaning": "tai nạn; sự cố",
@@ -296,12 +296,12 @@
       "note": "Thường dùng cho tai nạn giao thông, sự cố máy móc, hoặc vấn đề bất ngờ.",
       "example": "駅の近くで事故がありました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-023-word.mp3",
-        "example": "./audio/lesson-39/vocab-023-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-023-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-023-example.mp3"
       }
     },
     {
-      "id": "l39-v024",
+      "id": "n4-l39-v024",
       "jp": "見合い",
       "reading": "みあい",
       "meaning": "buổi xem mặt; mai mối hôn nhân",
@@ -309,12 +309,12 @@
       "note": "Thường nói お見合い, chỉ việc gặp mặt để tìm hiểu với mục đích kết hôn.",
       "example": "姉は来週お見合いをします。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-024-word.mp3",
-        "example": "./audio/lesson-39/vocab-024-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-024-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-024-example.mp3"
       }
     },
     {
-      "id": "l39-v025",
+      "id": "n4-l39-v025",
       "jp": "電話代",
       "reading": "でんわだい",
       "meaning": "tiền điện thoại; cước điện thoại",
@@ -322,12 +322,12 @@
       "note": "代 ở đây là chi phí phải trả cho việc dùng điện thoại.",
       "example": "今月は電話代が高かったです。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-025-word.mp3",
-        "example": "./audio/lesson-39/vocab-025-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-025-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-025-example.mp3"
       }
     },
     {
-      "id": "l39-v026",
+      "id": "n4-l39-v026",
       "jp": "～代",
       "reading": "だい",
       "meaning": "tiền; phí; chi phí",
@@ -335,12 +335,12 @@
       "note": "Gắn sau danh từ để chỉ tiền trả cho thứ đó: 電気代, バス代, 食事代.",
       "example": "食事代は私が払います。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-026-word.mp3",
-        "example": "./audio/lesson-39/vocab-026-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-026-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-026-example.mp3"
       }
     },
     {
-      "id": "l39-v027",
+      "id": "n4-l39-v027",
       "jp": "フロント",
       "reading": "フロント",
       "meaning": "quầy lễ tân",
@@ -348,12 +348,12 @@
       "note": "Thường dùng ở khách sạn, nhà nghỉ, tòa nhà.",
       "example": "鍵はフロントに預けてください。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-027-word.mp3",
-        "example": "./audio/lesson-39/vocab-027-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-027-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-027-example.mp3"
       }
     },
     {
-      "id": "l39-v028",
+      "id": "n4-l39-v028",
       "jp": "～号室",
       "reading": "ごうしつ",
       "meaning": "phòng số...",
@@ -361,12 +361,12 @@
       "note": "Gắn sau số để chỉ số phòng: 305号室.",
       "example": "田中さんは305号室に泊まっています。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-028-word.mp3",
-        "example": "./audio/lesson-39/vocab-028-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-028-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-028-example.mp3"
       }
     },
     {
-      "id": "l39-v029",
+      "id": "n4-l39-v029",
       "jp": "汗",
       "reading": "あせ",
       "meaning": "mồ hôi",
@@ -374,12 +374,12 @@
       "note": "Thường dùng trong 汗をかきます = đổ mồ hôi.",
       "example": "暑くて、汗をたくさんかきました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-029-word.mp3",
-        "example": "./audio/lesson-39/vocab-029-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-029-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-029-example.mp3"
       }
     },
     {
-      "id": "l39-v030",
+      "id": "n4-l39-v030",
       "jp": "タオル",
       "reading": "タオル",
       "meaning": "khăn; khăn tắm",
@@ -387,12 +387,12 @@
       "note": "Từ mượn dùng cho khăn lau tay, khăn tắm, khăn thể thao.",
       "example": "汗をタオルで拭きました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-030-word.mp3",
-        "example": "./audio/lesson-39/vocab-030-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-030-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-030-example.mp3"
       }
     },
     {
-      "id": "l39-v031",
+      "id": "n4-l39-v031",
       "jp": "せっけん",
       "reading": "せっけん",
       "meaning": "xà phòng",
@@ -400,12 +400,12 @@
       "note": "Cũng viết là 石けん hoặc 石鹸.",
       "example": "せっけんで手を洗ってください。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-031-word.mp3",
-        "example": "./audio/lesson-39/vocab-031-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-031-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-031-example.mp3"
       }
     },
     {
-      "id": "l39-v032",
+      "id": "n4-l39-v032",
       "jp": "大勢",
       "reading": "おおぜい",
       "meaning": "nhiều người; đông người",
@@ -413,12 +413,12 @@
       "note": "Chỉ số lượng người đông; không dùng cho đồ vật.",
       "example": "駅前に大勢の人が並んでいました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-032-word.mp3",
-        "example": "./audio/lesson-39/vocab-032-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-032-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-032-example.mp3"
       }
     },
     {
-      "id": "l39-v033",
+      "id": "n4-l39-v033",
       "jp": "お疲れさまでした",
       "reading": "おつかれさまでした",
       "meaning": "anh/chị đã vất vả rồi; cảm ơn vì đã làm việc",
@@ -426,12 +426,12 @@
       "note": "Lời chào/cảm ơn sau khi ai đó làm việc xong; dùng rất thường trong công việc.",
       "example": "会議が終わりました。お疲れさまでした。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-033-word.mp3",
-        "example": "./audio/lesson-39/vocab-033-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-033-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-033-example.mp3"
       }
     },
     {
-      "id": "l39-v034",
+      "id": "n4-l39-v034",
       "jp": "伺います",
       "reading": "うかがいます",
       "meaning": "đến thăm; ghé thăm; hỏi/nghe (khiêm nhường ngữ)",
@@ -439,12 +439,12 @@
       "note": "Khiêm nhường ngữ của 行きます, 来ます, 聞きます tùy ngữ cảnh; ở đây là 'tôi đến thăm'.",
       "example": "明日、先生のお宅に伺います。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-034-word.mp3",
-        "example": "./audio/lesson-39/vocab-034-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-034-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-034-example.mp3"
       }
     },
     {
-      "id": "l39-v035",
+      "id": "n4-l39-v035",
       "jp": "途中で",
       "reading": "とちゅうで",
       "meaning": "giữa đường; giữa chừng",
@@ -452,12 +452,12 @@
       "note": "Dùng khi một việc xảy ra khi đang trên đường hoặc đang làm dở việc gì.",
       "example": "学校へ行く途中で友だちに会いました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-035-word.mp3",
-        "example": "./audio/lesson-39/vocab-035-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-035-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-035-example.mp3"
       }
     },
     {
-      "id": "l39-v036",
+      "id": "n4-l39-v036",
       "jp": "トラック",
       "reading": "トラック",
       "meaning": "xe tải",
@@ -465,12 +465,12 @@
       "note": "Từ mượn dùng cho xe tải chở hàng.",
       "example": "大きなトラックが店の前に止まりました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-036-word.mp3",
-        "example": "./audio/lesson-39/vocab-036-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-036-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-036-example.mp3"
       }
     },
     {
-      "id": "l39-v037",
+      "id": "n4-l39-v037",
       "jp": "ぶつかります",
       "reading": "ぶつかります",
       "meaning": "va vào; đụng vào",
@@ -478,12 +478,12 @@
       "note": "Thường dùng với に: 車が木にぶつかります.",
       "example": "自転車が車にぶつかりました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-037-word.mp3",
-        "example": "./audio/lesson-39/vocab-037-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-037-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-037-example.mp3"
       }
     },
     {
-      "id": "l39-v038",
+      "id": "n4-l39-v038",
       "jp": "並びます",
       "reading": "ならびます",
       "meaning": "xếp hàng; đứng thành hàng",
@@ -491,12 +491,12 @@
       "note": "Dùng khi người hoặc đồ vật đứng/sắp theo hàng.",
       "example": "切符を買うために、駅で並びました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-038-word.mp3",
-        "example": "./audio/lesson-39/vocab-038-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-038-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-038-example.mp3"
       }
     },
     {
-      "id": "l39-v039",
+      "id": "n4-l39-v039",
       "jp": "大人",
       "reading": "おとな",
       "meaning": "người lớn",
@@ -504,12 +504,12 @@
       "note": "Chỉ người đã trưởng thành; đối lập với 子ども.",
       "example": "子どものころ、大人になりたいと思っていました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-039-word.mp3",
-        "example": "./audio/lesson-39/vocab-039-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-039-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-039-example.mp3"
       }
     },
     {
-      "id": "l39-v040",
+      "id": "n4-l39-v040",
       "jp": "洋服",
       "reading": "ようふく",
       "meaning": "quần áo kiểu Tây; quần áo",
@@ -517,12 +517,12 @@
       "note": "Ban đầu đối lập với 和服, hiện nay thường dùng đơn giản là quần áo.",
       "example": "成人式のために新しい洋服を買いました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-040-word.mp3",
-        "example": "./audio/lesson-39/vocab-040-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-040-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-040-example.mp3"
       }
     },
     {
-      "id": "l39-v041",
+      "id": "n4-l39-v041",
       "jp": "西洋化します",
       "reading": "せいようかします",
       "meaning": "Tây hóa; trở nên kiểu phương Tây",
@@ -530,12 +530,12 @@
       "note": "Dùng khi lối sống, văn hóa, kiến trúc... thay đổi theo phong cách phương Tây.",
       "example": "明治時代に日本の生活は少しずつ西洋化しました。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-041-word.mp3",
-        "example": "./audio/lesson-39/vocab-041-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-041-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-041-example.mp3"
       }
     },
     {
-      "id": "l39-v042",
+      "id": "n4-l39-v042",
       "jp": "合います",
       "reading": "あいます",
       "meaning": "hợp; vừa; phù hợp",
@@ -543,12 +543,12 @@
       "note": "Dùng khi quần áo, màu sắc, thời gian, tính cách... phù hợp với nhau.",
       "example": "この洋服はあなたによく合います。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-042-word.mp3",
-        "example": "./audio/lesson-39/vocab-042-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-042-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-042-example.mp3"
       }
     },
     {
-      "id": "l39-v043",
+      "id": "n4-l39-v043",
       "jp": "今では",
       "reading": "いまでは",
       "meaning": "ngày nay; bây giờ thì",
@@ -556,12 +556,12 @@
       "note": "Dùng để so sánh hiện tại với quá khứ, nhấn mạnh sự thay đổi.",
       "example": "今では、だれでもスマートフォンを使っています。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-043-word.mp3",
-        "example": "./audio/lesson-39/vocab-043-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-043-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-043-example.mp3"
       }
     },
     {
-      "id": "l39-v044",
+      "id": "n4-l39-v044",
       "jp": "成人式",
       "reading": "せいじんしき",
       "meaning": "lễ trưởng thành",
@@ -569,8 +569,8 @@
       "note": "Buổi lễ chúc mừng những người trẻ bước vào tuổi trưởng thành ở Nhật.",
       "example": "姉は来年成人式に出ます。",
       "audio": {
-        "word": "./audio/lesson-39/vocab-044-word.mp3",
-        "example": "./audio/lesson-39/vocab-044-example.mp3"
+        "word": "./audio/n4/lesson-39/vocab-044-word.mp3",
+        "example": "./audio/n4/lesson-39/vocab-044-example.mp3"
       }
     }
   ],

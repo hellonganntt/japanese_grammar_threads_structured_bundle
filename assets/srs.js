@@ -35,6 +35,7 @@
     return {
       id: String(entry.id),
       lesson: Number(entry.lesson) || 0,
+      level: typeof entry.level === "string" ? entry.level : "",
       lessonIndex: Math.max(0, Number(entry.lessonIndex) || 0),
       order: Math.max(0, Number(entry.order) || 0),
       available: entry.available !== false,
