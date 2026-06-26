@@ -151,10 +151,11 @@ async function renderSrsDashboard(){
   const hasRegularReview = stats.due + stats.newToday > 0;
   const canLearnMore = !hasRegularReview && stats.unseen > 0;
 
-  document.getElementById("dueCount").textContent = stats.due;
-  document.getElementById("newCount").textContent = stats.newToday;
-  document.getElementById("learningCount").textContent = stats.learning;
-  document.getElementById("matureCount").textContent = stats.mature;
+  document.getElementById("dueCount").textContent = `Due: ${stats.due} · `;
+  document.getElementById("newCount").textContent = `New: ${stats.newToday} · `;
+  document.getElementById("learningCount").textContent = `Learning: ${stats.learning} · `;
+  document.getElementById("matureCount").textContent = `Mature: ${stats.mature} · `;
+  document.getElementById("weakCount").textContent = `Weak: ${stats.weak}`;
 
   const todayMessage = document.getElementById("todayMessage");
   if(stats.due){
