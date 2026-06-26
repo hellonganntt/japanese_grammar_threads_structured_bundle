@@ -22,6 +22,7 @@ let vocabQuizMissedQuestions = [];
 let vocabQuizIsReview = false;
 let vocabQuizReviewCompleted = false;
 let vocabQuizAutoAdvanceTimer = null;
+let lastAutoplayedVocabQuizQuestion = null;
 let vocabularyCatalog = [];
 let appView = "lessons";
 let dailyReviewQueue = [];
@@ -163,10 +164,21 @@ async function renderSrsDashboard(){
       : "All Caught Up";
 }
 
-function renderAudioButton(src, label){
-  if(!src) return "";
+function renderAudioButton(paths, label){
+  const audioPaths = (Array.isArray(paths) ? paths : [paths]).filter(Boolean);
+  if(!audioPaths.length) return "";
 
-  return `<button class="audio-btn" type="button" data-audio-src="${escapeHtml(src)}" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}">&gt;</button>`;
+  const encodedPaths = encodeURIComponent(JSON.stringify(audioPaths));
+  return `<button class="audio-btn" type="button" data-audio-paths="${escapeHtml(encodedPaths)}" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}"></button>`;
+}
+
+function getAudioButtonPaths(button){
+  try{
+    const paths = JSON.parse(decodeURIComponent(button.dataset.audioPaths || "%5B%5D"));
+    return Array.isArray(paths) ? paths.filter(Boolean) : [];
+  }catch(error){
+    return [];
+  }
 }
 
 function getVocabAudioPaths(item){
@@ -263,6 +275,16 @@ function maybeAutoplayVocab(item){
   }
 
   playAudioSequence(getVocabAudioPaths(item), {
+    deferOnBlocked: true
+  });
+}
+
+function maybeAutoplayVocabQuizWord(question){
+  if(!vocabAudioAutoplayEnabled || vocabQuizSelectedChoice !== null || !question?.item?.audio?.word) return;
+  if(lastAutoplayedVocabQuizQuestion === question) return;
+
+  lastAutoplayedVocabQuizQuestion = question;
+  playAudioSequence([question.item.audio.word], {
     deferOnBlocked: true
   });
 }
@@ -420,6 +442,7 @@ function resetVocabQuiz(){
   vocabQuizMissedQuestions = [];
   vocabQuizIsReview = false;
   vocabQuizReviewCompleted = false;
+  lastAutoplayedVocabQuizQuestion = null;
 }
 
 function clampVocabCardIndex(vocab){
@@ -515,13 +538,13 @@ function renderVocabList(vocab){
         <article class="vocab-item">
           <div class="vocab-head">
             <span class="vocab-jp">${escapeHtml(item.jp)}</span>
-            ${renderAudioButton(item.audio?.word, "Play vocabulary audio")}
             ${item.reading ? `<span class="vocab-reading">${escapeHtml(item.reading)}</span>` : ""}
             ${item.pos ? `<span class="vocab-pos">${escapeHtml(item.pos)}</span>` : ""}
           </div>
           <div class="vocab-meaning">${escapeHtml(item.meaning)}</div>
           ${item.note ? `<div class="vocab-note">${escapeHtml(item.note)}</div>` : ""}
-          ${item.example ? `<div class="vocab-example"><span>${escapeHtml(item.example)}</span>${renderAudioButton(item.audio?.example, "Play example audio")}</div>` : ""}
+          ${item.example ? `<div class="vocab-example">${escapeHtml(item.example)}</div>` : ""}
+          ${renderAudioButton(getVocabAudioPaths(item), "Play word and example audio")}
         </article>
       `).join("")}
     </div>
@@ -551,22 +574,18 @@ function renderVocabFlashcard(vocab){
           <div class="flashcard-face-label">Front</div>
           <div class="flashcard-line">
             <div class="flashcard-main">${escapeHtml(item.jp)}</div>
-            ${renderAudioButton(item.audio?.word, "Play vocabulary audio")}
           </div>
           ${item.reading ? `<div class="flashcard-reading">${escapeHtml(item.reading)}</div>` : ""}
           ${item.pos ? `<div class="flashcard-pos">${escapeHtml(item.pos)}</div>` : ""}
+          ${renderAudioButton(item.audio?.word, "Play vocabulary audio")}
         </div>
         <div class="flashcard-face flashcard-back">
           <div class="flashcard-face-label">Back</div>
           <div class="flashcard-meaning">${escapeHtml(item.meaning)}</div>
           ${item.note ? `<div class="flashcard-note">${escapeHtml(item.note)}</div>` : ""}
-          ${item.example ? `<div class="flashcard-example"><span>${escapeHtml(item.example)}</span>${renderAudioButton(item.audio?.example, "Play example audio")}</div>` : ""}
+          ${item.example ? `<div class="flashcard-example">${escapeHtml(item.example)}</div>` : ""}
+          ${renderAudioButton(item.audio?.example, "Play example audio")}
         </div>
-      </div>
-      <div class="flashcard-controls">
-        <button class="flashcard-nav" id="vocabPrevBtn" type="button" ${vocabCardIndex === 0 ? "disabled" : ""}>Previous</button>
-        <button class="flashcard-flip-btn" id="vocabFlipBtn" type="button">${vocabCardFlipped ? "Show Front" : "Flip Card"}</button>
-        <button class="flashcard-nav" id="vocabNextBtn" type="button">Next</button>
       </div>
     </div>
   `;
@@ -608,6 +627,7 @@ function resetVocabQuizProgress(){
   vocabQuizQuestionIndex = 0;
   vocabQuizSelectedChoice = null;
   vocabQuizScore = 0;
+  lastAutoplayedVocabQuizQuestion = null;
 }
 
 function advanceVocabQuizQuestion(expectedQuestion = null, expectedQuestionIndex = null){
@@ -717,6 +737,7 @@ function renderVocabQuiz(vocab){
         <div class="quiz-prompt-label">Choose the correct meaning</div>
         <div class="quiz-prompt">${escapeHtml(question.item.jp)}</div>
         ${question.item.reading ? `<div class="quiz-reading">${escapeHtml(question.item.reading)}</div>` : ""}
+        ${renderAudioButton(question.item.audio?.word, "Play vocabulary audio")}
       </div>
       <div class="quiz-choices">
         ${question.choices.map((choice, index) => {
@@ -751,7 +772,7 @@ function bindVocabInteractions(vocab){
     btn.addEventListener("click", event => {
       event.stopPropagation();
       stopVocabIdleLearning({ disable: true });
-      playAudioSequence([btn.dataset.audioSrc]);
+      playAudioSequence(getAudioButtonPaths(btn));
     });
   });
 
@@ -877,7 +898,6 @@ function bindVocabInteractions(vocab){
     event.preventDefault();
     flipCard(event);
   });
-  document.getElementById("vocabFlipBtn")?.addEventListener("click", flipCard);
   document.getElementById("vocabAutoplayBtn")?.addEventListener("click", () => {
     vocabAudioAutoplayEnabled = !vocabAudioAutoplayEnabled;
     localStorage.setItem("vocabAudioAutoplay", String(vocabAudioAutoplayEnabled));
@@ -915,12 +935,6 @@ function bindVocabInteractions(vocab){
     vocabCardIndex = 0;
     vocabCardFlipped = false;
     renderVocabPanel();
-  });
-  document.getElementById("vocabPrevBtn")?.addEventListener("click", () => {
-    goToPreviousVocabCard(vocab);
-  });
-  document.getElementById("vocabNextBtn")?.addEventListener("click", () => {
-    goToNextVocabCard(vocab);
   });
 }
 
@@ -1213,8 +1227,9 @@ function bindDailyReviewInteractions(){
     });
   });
   document.querySelectorAll("#dailyReviewContent .audio-btn").forEach(button => {
-    button.addEventListener("click", () => {
-      playAudioSequence([button.dataset.audioSrc]);
+    button.addEventListener("click", event => {
+      event.stopPropagation();
+      playAudioSequence(getAudioButtonPaths(button));
     });
   });
 }
@@ -1573,6 +1588,10 @@ function renderVocabPanel(){
       suppressNextVocabIdleStart = false;
       maybeAutoplayVocab(flashcardItems[vocabCardIndex]);
     }
+  }else if(vocabMode === "quiz"){
+    suppressNextVocabAutoplay = false;
+    suppressNextVocabIdleStart = false;
+    maybeAutoplayVocabQuizWord(vocabQuizQuestions[vocabQuizQuestionIndex]);
   }else{
     suppressNextVocabAutoplay = false;
     suppressNextVocabIdleStart = false;
