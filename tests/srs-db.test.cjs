@@ -132,9 +132,30 @@ async function createDb(name){
   assert.equal(await migrationDb.getCard("l36-v001"), null);
   assert.equal((await migrationDb.getCard("n4-l36-v001")).intervalDays, 1);
 
+  const weakDb = await createDb(`weak-${Date.now()}`);
+  const weakCatalog = catalog(5, "weak-catalog");
+  await weakDb.reconcileCatalog(weakCatalog);
+  await weakDb.rateCard(weakCatalog.cards[0].id, "hard", new Date("2026-06-20T10:00:00.000Z"));
+  await weakDb.rateCard(weakCatalog.cards[0].id, "again", new Date("2026-06-24T10:00:00.000Z"));
+  await weakDb.rateCard(weakCatalog.cards[1].id, "hard", new Date("2026-06-23T10:00:00.000Z"));
+  await weakDb.rateCard(weakCatalog.cards[2].id, "hard", new Date("2026-06-01T10:00:00.000Z"));
+  await weakDb.rateCard(weakCatalog.cards[3].id, "good", new Date("2026-06-24T10:00:00.000Z"));
+
+  const weakStats = await weakDb.getStats(now, 10);
+  assert.equal(weakStats.weak, 2);
+  const weakQueue = await weakDb.buildWeakQueue(now, 20);
+  assert.deepEqual(weakQueue.map(card => card.id), [weakCatalog.cards[0].id, weakCatalog.cards[1].id]);
+  assert.equal(weakQueue[0].weakCount, 2);
+  assert.equal((await weakDb.buildWeakQueue(now, 1)).length, 1);
+  assert.deepEqual(
+    (await weakDb.buildWeakQueue(now, 20, { newCardLevel: "N5" })).map(card => card.id),
+    [weakCatalog.cards[1].id]
+  );
+
   db.db.close();
   legacyDb.db.close();
   migrationDb.db.close();
+  weakDb.db.close();
   console.log("IndexedDB tests passed.");
 })().catch(error => {
   console.error(error);

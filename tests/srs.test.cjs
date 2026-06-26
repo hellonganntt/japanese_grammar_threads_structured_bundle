@@ -26,6 +26,7 @@ function dueCard(overrides = {}){
   assert.equal(card.intervalDays, 0);
   assert.equal(card.lapses, 1);
   assert.equal(Date.parse(card.due), now.getTime() + 10 * 60 * 1000);
+  assert.deepEqual(card.difficultyEvents, [{ rating: "again", at: now.toISOString() }]);
 }
 
 {
@@ -42,10 +43,18 @@ function dueCard(overrides = {}){
   const hard = SRS.rateCard(dueCard(), "hard", now);
   assert.equal(hard.intervalDays, 4);
   assert.equal(hard.ease, 2.35);
+  assert.deepEqual(hard.difficultyEvents, [{ rating: "hard", at: now.toISOString() }]);
 
   const easy = SRS.rateCard(null, "easy", now);
   assert.equal(easy.intervalDays, 4);
   assert.equal(easy.ease, 2.65);
+  assert.deepEqual(easy.difficultyEvents, []);
+}
+
+{
+  const difficult = SRS.rateCard(null, "again", now);
+  const recovered = SRS.rateCard(difficult, "good", new Date(now.getTime() + day));
+  assert.deepEqual(recovered.difficultyEvents, difficult.difficultyEvents);
 }
 
 {
@@ -68,6 +77,9 @@ function dueCard(overrides = {}){
     updatedAt: now.toISOString(),
     cards: {
       valid: dueCard(),
+      difficult: dueCard({
+        difficultyEvents: [{ rating: "hard", at: "2026-06-24T09:00:00.000Z" }]
+      }),
       invalid: { due: "not-a-date" }
     },
     activity: {
@@ -76,7 +88,8 @@ function dueCard(overrides = {}){
   };
   const snapshot = SRS.normalizeSnapshot(legacy);
   assert.equal(snapshot.schemaVersion, 3);
-  assert.deepEqual(Object.keys(snapshot.cards), ["valid"]);
+  assert.deepEqual(Object.keys(snapshot.cards), ["valid", "difficult"]);
+  assert.deepEqual(snapshot.cards.difficult.difficultyEvents, [{ rating: "hard", at: "2026-06-24T09:00:00.000Z" }]);
   assert.equal("activity" in snapshot, false);
 }
 

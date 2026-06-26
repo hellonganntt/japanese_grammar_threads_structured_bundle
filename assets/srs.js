@@ -13,6 +13,8 @@
   const MATURE_INTERVAL_DAYS = 21;
   const DAY_MS = 24 * 60 * 60 * 1000;
   const TEN_MINUTES_MS = 10 * 60 * 1000;
+  const WEAK_WINDOW_DAYS = 14;
+  const MAX_DIFFICULTY_EVENTS = 10;
   const RATINGS = new Set(["again", "hard", "good", "easy"]);
 
   function toIso(value){
@@ -48,8 +50,22 @@
       lastRating: null,
       introducedAt: null,
       lastReviewedAt: null,
+      difficultyEvents: [],
       updatedAt: null
     };
+  }
+
+  function normalizeDifficultyEvents(events){
+    if(!Array.isArray(events)) return [];
+
+    return events
+      .filter(event => event && ["again", "hard"].includes(event.rating) && isValidDate(event.at))
+      .map(event => ({
+        rating: event.rating,
+        at: event.at
+      }))
+      .sort((left, right) => Date.parse(left.at) - Date.parse(right.at))
+      .slice(-MAX_DIFFICULTY_EVENTS);
   }
 
   function normalizeScheduledCard(card){
@@ -68,6 +84,7 @@
       lastRating: RATINGS.has(card.lastRating) ? card.lastRating : null,
       introducedAt: isValidDate(card.introducedAt) ? card.introducedAt : updatedAt,
       lastReviewedAt: isValidDate(card.lastReviewedAt) ? card.lastReviewedAt : updatedAt,
+      difficultyEvents: normalizeDifficultyEvents(card.difficultyEvents),
       updatedAt
     };
   }
@@ -139,6 +156,13 @@
     }
 
     const timestamp = toIso(reviewedAt);
+    const difficultyEvents = ["again", "hard"].includes(rating)
+      ? normalizeDifficultyEvents([
+          ...normalizeDifficultyEvents(previous.difficultyEvents),
+          { rating, at: timestamp }
+        ])
+      : normalizeDifficultyEvents(previous.difficultyEvents);
+
     return {
       state,
       due: toIso(dueAt),
@@ -149,6 +173,7 @@
       lastRating: rating,
       introducedAt: normalizedPrevious ? previous.introducedAt : timestamp,
       lastReviewedAt: timestamp,
+      difficultyEvents,
       updatedAt: timestamp
     };
   }
@@ -185,6 +210,7 @@
     INITIAL_EASE,
     MINIMUM_EASE,
     MATURE_INTERVAL_DAYS,
+    WEAK_WINDOW_DAYS,
     getLocalDayBounds,
     createCatalogCard,
     normalizeScheduledCard,

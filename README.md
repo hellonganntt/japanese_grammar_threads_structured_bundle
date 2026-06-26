@@ -39,6 +39,7 @@ Daily Review loads the compact vocabulary catalog at startup and fetches full le
 - all cards currently due
 - up to 10 unseen cards per local calendar day in lesson order
 - an option to learn another batch of up to 10 words after clearing the review queue
+- a Weak Words session for up to 20 cards rated `Again` or `Hard` in the last 14 days
 - Japanese-first recall cards with answer reveal
 - `Again`, `Hard`, `Good`, and `Easy` ratings
 
@@ -49,6 +50,8 @@ japanese-vocab-srs
 ```
 
 The database stores one record per vocabulary card, so reviewing a card does not rewrite the complete collection. Indexed indexes support due-card ordering, catalog ordering, daily-new limits, and dashboard counts for collections of 10,000 or more cards.
+
+Weak Words uses the same SRS rating buttons as Daily Review. Difficult ratings are stored as a capped per-card history, synced in Drive snapshots, and filtered to the current JLPT level. After a Weak Words session, cards rated `Again` or `Hard` can be reviewed again immediately from the completion screen.
 
 Existing schema version 1 or 2 progress under `localStorage` key `japaneseVocabSrs:v1` is imported once. The legacy value is retained as a recovery backup but is no longer updated. Historical daily activity, goals, and streaks are intentionally not imported. The 10-new-cards-per-local-day limit is derived from each card's `introducedAt` timestamp.
 

@@ -8,7 +8,7 @@
   }
 })(typeof globalThis !== "undefined" ? globalThis : this, function(SRSCore){
   const DB_NAME = "japanese-vocab-srs";
-  const DB_VERSION = 2;
+  const DB_VERSION = 3;
   const CARDS_STORE = "cards";
   const SETTINGS_STORE = "settings";
   const MIGRATION_KEY = "legacyLocalStorageMigrated";
@@ -314,8 +314,9 @@
       const tx = this.db.transaction(CARDS_STORE, "readonly");
       const done = transactionDone(tx);
       const store = tx.objectStore(CARDS_STORE);
-      const stats = { total: 0, tracked: 0, due: 0, newToday: 0, introducedToday: 0, unseen: 0, learning: 0, mature: 0 };
+      const stats = { total: 0, tracked: 0, due: 0, newToday: 0, introducedToday: 0, unseen: 0, learning: 0, mature: 0, weak: 0 };
       const timestamp = now.toISOString();
+      const weakCutoff = new Date(now.getTime() - SRSCore.WEAK_WINDOW_DAYS * 24 * 60 * 60 * 1000).toISOString();
 
       const countCards = cursorEach(store.openCursor(), cursor => {
         const card = cursor.value;
@@ -331,6 +332,12 @@
         if(card.due <= timestamp) stats.due += 1;
         if(card.state === "learning") stats.learning += 1;
         if(card.intervalDays >= SRSCore.MATURE_INTERVAL_DAYS) stats.mature += 1;
+        if(
+          (!newCardLevel || card.level === newCardLevel) &&
+          (card.difficultyEvents || []).some(event => event.at >= weakCutoff)
+        ){
+          stats.weak += 1;
+        }
       });
       const countIntroduced = cursorEach(
         store.index("introducedAt").openCursor(this.IDBKeyRange.bound(bounds.start, bounds.end, false, true)),
@@ -342,6 +349,42 @@
       await done;
       stats.newToday = Math.min(stats.unseen, Math.max(0, newLimit - stats.introducedToday));
       return stats;
+    }
+
+    async buildWeakQueue(now = new Date(), limit = 20, options = {}){
+      await this.open();
+      const level = this.normalizeLevelFilter(options);
+      const cutoff = new Date(now.getTime() - SRSCore.WEAK_WINDOW_DAYS * 24 * 60 * 60 * 1000).toISOString();
+      const tx = this.db.transaction(CARDS_STORE, "readonly");
+      const done = transactionDone(tx);
+      const weakCards = [];
+
+      await cursorEach(tx.objectStore(CARDS_STORE).openCursor(), cursor => {
+        const card = cursor.value;
+        if(card.available === false || card.state === "new" || (level && card.level !== level)) return;
+
+        const recentEvents = (card.difficultyEvents || []).filter(event => event.at >= cutoff);
+        if(!recentEvents.length) return;
+
+        const lastDifficultAt = recentEvents.reduce((latest, event) => (
+          !latest || event.at > latest ? event.at : latest
+        ), "");
+        weakCards.push({
+          ...card,
+          queueType: "weak",
+          weakCount: recentEvents.length,
+          lastDifficultAt
+        });
+      });
+      await done;
+
+      return weakCards
+        .sort((left, right) => (
+          Date.parse(right.lastDifficultAt) - Date.parse(left.lastDifficultAt) ||
+          right.weakCount - left.weakCount ||
+          left.order - right.order
+        ))
+        .slice(0, Math.max(0, limit));
     }
 
     async buildDailyQueue(now = new Date(), newLimit = 10, extraNewLimit = 0, options = {}){

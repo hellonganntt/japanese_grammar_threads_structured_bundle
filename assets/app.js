@@ -35,6 +35,7 @@ let dailyReviewRevealed = false;
 let dailyReviewCompleted = false;
 let dailyReviewSessionStats = null;
 let dailyReviewWritePending = false;
+let dailyReviewWeakRepeatQueue = [];
 let driveTokenClient = null;
 let driveAccessToken = null;
 let driveAccessTokenExpiresAt = 0;
@@ -50,6 +51,7 @@ const SRS_STORAGE_KEY = "japaneseVocabSrs:v1";
 const SRS_DRIVE_META_KEY = "japaneseVocabSrsDrive:v1";
 const SRS_DRIVE_SESSION_KEY = "japaneseVocabSrsDriveSession:v1";
 const SRS_NEW_CARD_LIMIT = 10;
+const SRS_WEAK_CARD_LIMIT = 20;
 const SRS_DRIVE_FILENAME = "japanese-vocab-progress.json";
 const GOOGLE_DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.appdata";
 const GOOGLE_CLIENT_ID = window.APP_CONFIG?.googleClientId?.trim() || "";
@@ -134,11 +136,13 @@ async function renderSrsDashboard(){
   const renderId = ++srsDashboardRenderId;
   const statsElement = document.getElementById("srsDashboardStats");
   const startButton = document.getElementById("startDailyReviewBtn");
-  if(!statsElement || !startButton) return;
+  const weakButton = document.getElementById("startWeakReviewBtn");
+  if(!statsElement || !startButton || !weakButton) return;
 
   if(!vocabularyCatalog.length){
     document.getElementById("todayMessage").textContent = "No vocabulary is available yet.";
     startButton.disabled = true;
+    weakButton.disabled = true;
     return;
   }
 
@@ -168,6 +172,11 @@ async function renderSrsDashboard(){
     : canLearnMore
       ? `Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More`
       : "All Caught Up";
+
+  weakButton.disabled = stats.weak === 0;
+  weakButton.textContent = stats.weak
+    ? `Weak Words · ${Math.min(SRS_WEAK_CARD_LIMIT, stats.weak)}`
+    : "No Weak Words";
 }
 
 function renderAudioButton(paths, label){
@@ -1019,6 +1028,38 @@ async function startDailyReview(options = {}){
   scrollToDailyReview();
 }
 
+async function startWeakReview(options = {}){
+  stopVocabIdleLearning({ disable: true });
+  stopCurrentAudio();
+  cancelVocabQuizAutoAdvance();
+
+  const queue = options.queue || await srsDatabase.buildWeakQueue(
+    new Date(),
+    SRS_WEAK_CARD_LIMIT,
+    { newCardLevel: getSelectedNewCardLevel() }
+  );
+  dailyReviewQueue = options.hydrated ? queue : await hydrateReviewQueue(queue);
+  dailyReviewIndex = 0;
+  dailyReviewRevealed = false;
+  dailyReviewCompleted = dailyReviewQueue.length === 0;
+  dailyReviewWeakRepeatQueue = [];
+  dailyReviewSessionStats = {
+    mode: "weak",
+    started: dailyReviewQueue.length,
+    reviewed: 0,
+    extraBatch: false,
+    ratings: {
+      again: 0,
+      hard: 0,
+      good: 0,
+      easy: 0
+    }
+  };
+  appView = "daily";
+  renderAppView();
+  scrollToDailyReview();
+}
+
 async function requestDailyReviewStart(){
   const startButton = document.getElementById("startDailyReviewBtn");
   requestedReviewExtraNewLimit = Number(startButton.dataset.extraNewLimit) || 0;
@@ -1045,6 +1086,27 @@ async function requestDailyReviewStart(){
 
   startDailyReview({ extraNewLimit: requestedReviewExtraNewLimit });
   requestedReviewExtraNewLimit = 0;
+}
+
+async function requestWeakReviewStart(){
+  const weakButton = document.getElementById("startWeakReviewBtn");
+
+  if(hasValidDriveToken()){
+    weakButton.disabled = true;
+    weakButton.textContent = "Syncingâ€¦";
+    const synced = await syncDriveProgress({ quiet: true });
+    renderSrsDashboard();
+
+    if(synced){
+      startWeakReview();
+    }else{
+      startWeakReview();
+      showToast("Drive sync failed. Weak Words started locally.");
+    }
+    return;
+  }
+
+  startWeakReview();
 }
 
 function exitDailyReview(){
@@ -1115,6 +1177,9 @@ async function rateCurrentDailyReviewCard(rating){
     await saveDriveMetadata();
     dailyReviewSessionStats.reviewed += 1;
     dailyReviewSessionStats.ratings[rating] += 1;
+    if(dailyReviewSessionStats.mode === "weak" && ["again", "hard"].includes(rating)){
+      dailyReviewWeakRepeatQueue.push({ ...entry, ...updated, queueType: "weak" });
+    }
     dailyReviewIndex += 1;
     dailyReviewRevealed = false;
     stopCurrentAudio();
@@ -1141,15 +1206,18 @@ async function renderDailyReview(){
 
   if(dailyReviewCompleted || dailyReviewIndex >= dailyReviewQueue.length){
     const session = dailyReviewSessionStats || {
+      mode: "daily",
       reviewed: 0,
       ratings: { again: 0, hard: 0, good: 0, easy: 0 }
     };
     const stats = await getSrsStats();
-    const canLearnMore = stats.unseen > 0;
+    const isWeakSession = session.mode === "weak";
+    const canLearnMore = !isWeakSession && stats.unseen > 0;
+    const canReviewWeakAgain = isWeakSession && dailyReviewWeakRepeatQueue.length > 0;
     container.innerHTML = `
       <div class="srs-shell">
         <div class="srs-toolbar">
-          <div class="srs-progress">Daily Review</div>
+          <div class="srs-progress">${isWeakSession ? "Weak Words" : "Daily Review"}</div>
           <div class="srs-toolbar-actions">
             <button class="study-secondary-btn" id="srsBackBtn" type="button">Back to Lessons</button>
           </div>
@@ -1158,13 +1226,14 @@ async function renderDailyReview(){
           <div class="completion-mark" aria-hidden="true">✓</div>
           <div class="srs-card-label">Session complete</div>
           <h2>${session.reviewed} ${session.reviewed === 1 ? "card" : "cards"} reviewed</h2>
-          <p class="completion-message">Good session. Your progress is safely saved.</p>
+          <p class="completion-message">${isWeakSession ? "Nice cleanup. The words that still fought back are ready for another pass." : "Good session. Your progress is safely saved."}</p>
           <div class="srs-summary-stats">
             Again ${session.ratings.again} · Hard ${session.ratings.hard} · Good ${session.ratings.good} · Easy ${session.ratings.easy}<br>
             ${stats.due} due now · ${stats.learning} learning · ${stats.mature} mature
           </div>
           ${renderDailyReviewSyncStatus(session.reviewed)}
           ${canLearnMore ? `<button class="study-secondary-btn" id="srsLearnMoreBtn" type="button">Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More</button>` : ""}
+          ${canReviewWeakAgain ? `<button class="study-secondary-btn" id="srsReviewWeakAgainBtn" type="button">Review Again (${dailyReviewWeakRepeatQueue.length})</button>` : ""}
           <button class="study-primary-btn" id="srsDoneBtn" type="button">Done</button>
         </div>
       </div>
@@ -1175,6 +1244,11 @@ async function renderDailyReview(){
 
   const entry = dailyReviewQueue[dailyReviewIndex];
   const previousCard = entry.state === "new" ? null : entry;
+  const queueLabel = entry.queueType === "new"
+    ? "New"
+    : entry.queueType === "weak"
+      ? "Weak"
+      : "Due";
   const previewTime = new Date();
   const ratingIntervals = Object.fromEntries(
     ["again", "hard", "good", "easy"].map(rating => [
@@ -1188,7 +1262,7 @@ async function renderDailyReview(){
       <div class="srs-toolbar">
         <div class="srs-progress-group">
           <div class="srs-progress">
-            ${dailyReviewIndex + 1} / ${dailyReviewQueue.length} · Lesson ${entry.lesson} · ${entry.queueType === "new" ? "New" : "Due"}
+            ${dailyReviewIndex + 1} / ${dailyReviewQueue.length} · Lesson ${entry.lesson} · ${queueLabel}
           </div>
           <div class="progress-track" aria-hidden="true"><span style="width:${Math.round((dailyReviewIndex / dailyReviewQueue.length) * 100)}%"></span></div>
         </div>
@@ -1233,6 +1307,12 @@ function bindDailyReviewInteractions(){
   document.getElementById("srsDoneBtn")?.addEventListener("click", exitDailyReview);
   document.getElementById("srsLearnMoreBtn")?.addEventListener("click", () => {
     startDailyReview({ extraNewLimit: SRS_NEW_CARD_LIMIT });
+  });
+  document.getElementById("srsReviewWeakAgainBtn")?.addEventListener("click", () => {
+    startWeakReview({
+      queue: dailyReviewWeakRepeatQueue,
+      hydrated: true
+    });
   });
   document.getElementById("srsOpenSettingsBtn")?.addEventListener("click", () => {
     setSettingsOpen(true);
@@ -1665,6 +1745,7 @@ function renderLessonFilters(){
 }
 
 document.getElementById("startDailyReviewBtn").addEventListener("click", requestDailyReviewStart);
+document.getElementById("startWeakReviewBtn").addEventListener("click", requestWeakReviewStart);
 document.getElementById("browseLessonsBtn").addEventListener("click", () => {
   document.getElementById("lessonStudySection").scrollIntoView({ behavior: "smooth", block: "start" });
 });
