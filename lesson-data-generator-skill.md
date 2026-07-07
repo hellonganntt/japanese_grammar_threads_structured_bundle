@@ -133,3 +133,18 @@ When completing the task, report:
 - any notable content choices or corrections made
 
 Keep the response brief and practical.
+
+## Generating Audio
+
+After creating or updating a lesson, generate the missing vocabulary audio using the following scripts:
+
+- **Single Lesson**:
+  ```powershell
+  node scripts/generate-vocab-audio.mjs --lesson=XX
+  ```
+
+- **Multiple Lessons** (e.g. lessons 43 to 46):
+  ```powershell
+  43..46 | ForEach-Object { node scripts/generate-vocab-audio.mjs --lesson=$_ }
+  ```
+

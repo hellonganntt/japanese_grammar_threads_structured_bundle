@@ -1,0 +1,421 @@
+{
+  "lesson": 46,
+  "vocab": [
+    {
+      "id": "n4-l46-v001",
+      "jp": "焼きます",
+      "reading": "やきます",
+      "meaning": "nướng",
+      "pos": "verb",
+      "note": "Tha động từ, dùng khi nướng thịt, bánh mì, cá, v.v.",
+      "example": "肉と野菜を網で焼きます。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-001-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-001-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v002",
+      "jp": "渡します",
+      "reading": "わたします",
+      "meaning": "trao",
+      "pos": "verb",
+      "note": "Trao đồ vật cho ai đó. Dùng trợ từ に cho người nhận: 人に物を渡します.",
+      "example": "先生に宿題を渡しました。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-002-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-002-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v003",
+      "jp": "帰ってきます",
+      "reading": "かえってきます",
+      "meaning": "quay về",
+      "pos": "verb",
+      "note": "Trở về (và ở lại đây). Thường chỉ việc đi đâu đó rồi quay về địa điểm xuất phát ban đầu.",
+      "example": "父は来週の月曜日にアメリカから帰ってきます。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-003-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-003-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v004",
+      "jp": "出ます「バスが」",
+      "reading": "でます",
+      "meaning": "xuất phát, rời trạm [xe bus ~]",
+      "pos": "verb",
+      "note": "Xe bus xuất phát hoặc khởi hành.",
+      "example": "バスは10分後に出ます。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-004-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-004-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v005",
+      "jp": "留守",
+      "reading": "るす",
+      "meaning": "vắng nhà",
+      "pos": "noun",
+      "note": "Vắng nhà, không có ở nhà. Thường dùng 留守にします (đi vắng) hoặc 留守番 (trông nhà).",
+      "example": "友達の家を訪ねましたが、留守でした。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-005-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-005-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v006",
+      "jp": "宅配便",
+      "reading": "たくはいびん",
+      "meaning": "dịch vụ giao hàng tận nhà",
+      "pos": "noun",
+      "note": "Dịch vụ chuyển phát nhanh, vận chuyển hàng hóa tận nhà.",
+      "example": "宅配便で荷物が届きました。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-006-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-006-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v007",
+      "jp": "原因",
+      "reading": "げんいん",
+      "meaning": "nguyên nhân",
+      "pos": "noun",
+      "note": "Lý do dẫn đến một kết quả (thường là kết quả không tốt). Trái nghĩa là 結果 (kết quả).",
+      "example": "事故の原因を調べています。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-007-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-007-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v008",
+      "jp": "注射",
+      "reading": "ちゅうしゃ",
+      "meaning": "tiêm",
+      "pos": "noun",
+      "note": "Tiêm thuốc, châm cứu. Thường dùng dưới dạng 注射をします (tiêm) hoặc 注射を受けます (bị tiêm).",
+      "example": "病院でインフルエンザの注射をしました。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-008-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-008-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v009",
+      "jp": "食欲",
+      "reading": "しょくよく",
+      "meaning": "sự thèm ăn",
+      "pos": "noun",
+      "note": "Sự muốn ăn, cảm giác thèm ăn. Thường dùng với 食欲がある / 食欲がない.",
+      "example": "風邪をひいて、食欲がありません。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-009-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-009-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v010",
+      "jp": "パンフレット",
+      "reading": "パンフレット",
+      "meaning": "tờ quảng cáo",
+      "pos": "noun",
+      "note": "Tờ gấp quảng cáo, tờ hướng dẫn du lịch hoặc dịch vụ nhỏ.",
+      "example": "旅行のパンフレットを読みます。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-010-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-010-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v011",
+      "jp": "ステレオ",
+      "reading": "ステレオ",
+      "meaning": "âm thanh nổi",
+      "pos": "noun",
+      "note": "Thiết bị âm thanh nổi, giàn máy phát nhạc stereo.",
+      "example": "新しいステレオを買いました。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-011-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-011-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v012",
+      "jp": "こちら",
+      "reading": "こちら",
+      "meaning": "chỗ (chúng tôi), phía (chúng tôi)",
+      "pos": "pronoun",
+      "note": "Cách nói lịch sự của ここ (đây) hoặc chỉ bản thân/phía người nói.",
+      "example": "こちらへどうぞ。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-012-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-012-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v013",
+      "jp": "～の所",
+      "reading": "～のところ",
+      "meaning": "quanh vùng ~",
+      "pos": "noun",
+      "note": "Địa điểm xung quanh một vị trí hoặc chỗ của ai đó.",
+      "example": "駅の所で待っています。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-013-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-013-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v014",
+      "jp": "ちょうど",
+      "reading": "ちょうど",
+      "meaning": "vừa đúng",
+      "pos": "adverb",
+      "note": "Vừa vặn, vừa khít, đúng lúc.",
+      "example": "ちょうど今、駅に着いたところです。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-014-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-014-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v015",
+      "jp": "たった今",
+      "reading": "たったいま",
+      "meaning": "mới hồi nãy",
+      "pos": "adverb",
+      "note": "Vừa mới tức thì (chỉ thời gian ngắn ngay trước đó, thường đi kèm với Vたばかり hoặc Vたところ).",
+      "example": "バスはたった今出たところです。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-015-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-015-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v016",
+      "jp": "今いいでしょうか",
+      "reading": "いまいいでしょうか",
+      "meaning": "bây giờ (tôi) có thể làm phiền anh/chị được không?",
+      "pos": "phrase",
+      "note": "Dùng hỏi ý kiến đối phương xem có thể bắt chuyện/làm phiền lúc này được không.",
+      "example": "すみません、今いいでしょうか。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-016-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-016-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v017",
+      "jp": "ガスサービスセンター",
+      "reading": "ガスサービスセンター",
+      "meaning": "trung tâm dịch vụ gas",
+      "pos": "noun",
+      "note": "Trung tâm hỗ trợ kỹ thuật và dịch vụ sửa chữa gas gia đình.",
+      "example": "ガスサービスセンターに電話します。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-017-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-017-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v018",
+      "jp": "ガスコンロ",
+      "reading": "ガスコンロ",
+      "meaning": "bếp ga",
+      "pos": "noun",
+      "note": "Bếp nấu sử dụng bình ga.",
+      "example": "ガスコンロの火を消してください。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-018-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-018-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v019",
+      "jp": "具合",
+      "reading": "ぐあい",
+      "meaning": "trạng thái, tình trạng",
+      "pos": "noun",
+      "note": "Tình trạng sức khỏe cơ thể hoặc trạng thái hoạt động của máy móc.",
+      "example": "体の具合が良くないです。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-019-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-019-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v020",
+      "jp": "どちら様でしょうか",
+      "reading": "どちらさまでしょうか",
+      "meaning": "vị nào đấy ạ ?",
+      "pos": "phrase",
+      "note": "Hỏi danh tính đối phương một cách lịch sự, thường dùng khi nghe điện thoại hoặc có khách tới.",
+      "example": "失礼ですが、どちら様でしょうか。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-020-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-020-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v021",
+      "jp": "向かいます",
+      "reading": "むかいます",
+      "meaning": "hướng về",
+      "pos": "verb",
+      "note": "Di chuyển tiến về một hướng nào đó. Thường đi với に向かいます.",
+      "example": "今、駅に向かっています。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-021-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-021-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v022",
+      "jp": "お待たせしました",
+      "reading": "おまたせしました",
+      "meaning": "xin lỗi đã để quý vị chờ lâu",
+      "pos": "phrase",
+      "note": "Câu xin lỗi xã giao lịch sự khi bắt đối phương phải chờ đợi mình.",
+      "example": "大変お待たせしました。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-022-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-022-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v023",
+      "jp": "知識",
+      "reading": "ちしき",
+      "meaning": "tri thức, kiến thức",
+      "pos": "noun",
+      "note": "Hiểu biết có được qua học hỏi, trải nghiệm hoặc nghiên cứu.",
+      "example": "本を読んで知識を増やします。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-023-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-023-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v024",
+      "jp": "宝庫",
+      "reading": "ほうこ",
+      "meaning": "kho hàng",
+      "pos": "noun",
+      "note": "Kho tàng chứa nhiều đồ vật quý báu hoặc nguồn tài nguyên, tri thức dồi dào.",
+      "example": "この図書館は知識の宝庫です。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-024-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-024-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v025",
+      "jp": "なやみ",
+      "reading": "なやみ",
+      "meaning": "điều lo nghĩ, trăn trở, phiền muộn",
+      "pos": "noun",
+      "note": "Sự lo lắng, băn khoăn hay phiền muộn tinh thần.",
+      "example": "彼は将来についての悩みがあるそうです。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-025-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-025-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v026",
+      "jp": "手に入ります「情報が～」",
+      "reading": "てにはいります",
+      "meaning": "có,được [thông tin]",
+      "pos": "verb",
+      "note": "Sở hữu được, có được trong tay thứ gì đó (thông tin, vật phẩm).",
+      "example": "ネットで欲しい情報が簡単に手に入ります。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-026-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-026-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v027",
+      "jp": "システム",
+      "reading": "システム",
+      "meaning": "hệ thống",
+      "pos": "noun",
+      "note": "Hệ thống làm việc, quản lý hoặc hệ thống máy tính.",
+      "example": "コンピューターのシステムを新しくしました。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-027-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-027-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v028",
+      "jp": "キーワード",
+      "reading": "キーワード",
+      "meaning": "từ khóa, điểm then chốt",
+      "pos": "noun",
+      "note": "Từ then chốt dùng để tìm kiếm hoặc nắm giữ điểm mấu chốt.",
+      "example": "検索エンジンにキーワードを入力します。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-028-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-028-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v029",
+      "jp": "一部分",
+      "reading": "いちぶぶん",
+      "meaning": "một bộ phận",
+      "pos": "noun",
+      "note": "Một phần nhỏ nằm trong một chỉnh thể lớn hơn.",
+      "example": "これは計画の一部分にすぎません。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-029-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-029-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v030",
+      "jp": "入力します",
+      "reading": "にゅうりょくします",
+      "meaning": "nhập vào",
+      "pos": "verb",
+      "note": "Nhập dữ liệu, thông tin vào máy tính hay thiết bị công nghệ.",
+      "example": "パスワードを入力してください。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-030-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-030-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v031",
+      "jp": "秒",
+      "reading": "びょう",
+      "meaning": "giây",
+      "pos": "noun",
+      "note": "Đơn vị đo thời gian (giây).",
+      "example": "100メートルを11秒で走りました。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-031-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-031-example.mp3"
+      }
+    },
+    {
+      "id": "n4-l46-v032",
+      "jp": "出ます「本が～」",
+      "reading": "でます",
+      "meaning": "[sách] được xuất bản",
+      "pos": "verb",
+      "note": "[Sách, tạp chí...] được phát hành ra công chúng.",
+      "example": "来週、彼の新しい本が出ます。",
+      "audio": {
+        "word": "./audio/n4/lesson-46/vocab-032-word.mp3",
+        "example": "./audio/n4/lesson-46/vocab-032-example.mp3"
+      }
+    }
+  ]
+}

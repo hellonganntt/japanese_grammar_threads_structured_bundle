@@ -1094,7 +1094,7 @@ async function requestWeakReviewStart(){
 
   if(hasValidDriveToken()){
     weakButton.disabled = true;
-    weakButton.textContent = "Syncingâ€¦";
+    weakButton.textContent = "Syncing\u2026";
     const synced = await syncDriveProgress({ quiet: true });
     renderSrsDashboard();
 

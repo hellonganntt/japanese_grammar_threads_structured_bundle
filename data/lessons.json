@@ -49,6 +49,11 @@
       "lesson": 45,
       "file": "./data/n4/lesson-45.json",
       "level": "N4"
+    },
+    {
+      "lesson": 46,
+      "file": "./data/n4/lesson-46.json",
+      "level": "N4"
     }
   ]
 }

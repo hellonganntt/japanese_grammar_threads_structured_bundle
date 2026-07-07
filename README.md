@@ -125,11 +125,18 @@ Set the key in the current PowerShell session:
 $env:OPENAI_API_KEY="sk-..."
 ```
 
-Generate missing audio for lesson 36:
+Generate missing audio for a single lesson (e.g. lesson 36):
 
 ```powershell
 node scripts/generate-vocab-audio.mjs --lesson=36
 ```
+
+Generate missing audio for multiple lessons (e.g. lessons 43 to 46):
+
+```powershell
+43..46 | ForEach-Object { node scripts/generate-vocab-audio.mjs --lesson=$_ }
+```
+
 
 The script skips existing MP3 files by default so reruns do not re-spend API usage. Use `--force` only when you intentionally want to regenerate existing clips.
 
