@@ -17,6 +17,16 @@ let suppressNextVocabIdleStart = false;
 let vocabAudioAutoplayEnabled = localStorage.getItem("vocabAudioAutoplay") !== "false";
 let vocabIdleLearningEnabled = localStorage.getItem("vocabIdleLearning") === "true";
 let selectedJlptLevel = normalizeJlptLevel(localStorage.getItem("selectedJlptLevel"));
+
+function getStoredLimit(key, defaultValue) {
+  const value = localStorage.getItem(key);
+  const parsed = parseInt(value, 10);
+  return Number.isNaN(parsed) ? defaultValue : parsed;
+}
+
+let srsNewCardLimit = getStoredLimit("srsNewCardLimit", 10);
+let srsMaxReviewCap = getStoredLimit("srsMaxReviewCap", 0); // 0 means Unlimited
+let srsWeakCardLimit = getStoredLimit("srsWeakCardLimit", 20);
 let vocabIdleRunId = 0;
 let vocabQuizQuestions = [];
 let vocabQuizQuestionIndex = 0;
@@ -127,7 +137,7 @@ function clearDriveSession(){
 }
 
 async function getSrsStats(){
-  return srsDatabase.getStats(new Date(), SRS_NEW_CARD_LIMIT, {
+  return srsDatabase.getStats(new Date(), srsNewCardLimit, {
     newCardLevel: getSelectedNewCardLevel()
   });
 }
@@ -167,16 +177,16 @@ async function renderSrsDashboard(){
   }
 
   startButton.disabled = !hasRegularReview && !canLearnMore;
-  startButton.dataset.extraNewLimit = canLearnMore ? String(SRS_NEW_CARD_LIMIT) : "0";
+  startButton.dataset.extraNewLimit = canLearnMore ? String(srsNewCardLimit) : "0";
   startButton.textContent = hasRegularReview
     ? "Start Today’s Study"
     : canLearnMore
-      ? `Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More`
+      ? `Learn ${Math.min(srsNewCardLimit, stats.unseen)} More`
       : "All Caught Up";
 
   weakButton.disabled = stats.weak === 0;
   weakButton.textContent = stats.weak
-    ? `Weak Words · ${Math.min(SRS_WEAK_CARD_LIMIT, stats.weak)}`
+    ? `Weak Words · ${Math.min(srsWeakCardLimit, stats.weak)}`
     : "No Weak Words";
 }
 
@@ -1003,12 +1013,15 @@ async function startDailyReview(options = {}){
   stopVocabIdleLearning({ disable: true });
   stopCurrentAudio();
   cancelVocabQuizAutoAdvance();
-  const queue = await srsDatabase.buildDailyQueue(
+  let queue = await srsDatabase.buildDailyQueue(
     new Date(),
-    SRS_NEW_CARD_LIMIT,
+    srsNewCardLimit,
     options.extraNewLimit || 0,
     { newCardLevel: getSelectedNewCardLevel() }
   );
+  if(srsMaxReviewCap > 0 && queue.length > srsMaxReviewCap){
+    queue = queue.slice(0, srsMaxReviewCap);
+  }
   dailyReviewQueue = await hydrateReviewQueue(queue);
   dailyReviewIndex = 0;
   dailyReviewRevealed = false;
@@ -1036,7 +1049,7 @@ async function startWeakReview(options = {}){
 
   const queue = options.queue || await srsDatabase.buildWeakQueue(
     new Date(),
-    SRS_WEAK_CARD_LIMIT,
+    srsWeakCardLimit,
     { newCardLevel: getSelectedNewCardLevel() }
   );
   dailyReviewQueue = options.hydrated ? queue : await hydrateReviewQueue(queue);
@@ -1233,7 +1246,7 @@ async function renderDailyReview(){
             ${stats.due} due now · ${stats.learning} learning · ${stats.mature} mature
           </div>
           ${renderDailyReviewSyncStatus(session.reviewed)}
-          ${canLearnMore ? `<button class="study-secondary-btn" id="srsLearnMoreBtn" type="button">Learn ${Math.min(SRS_NEW_CARD_LIMIT, stats.unseen)} More</button>` : ""}
+          ${canLearnMore ? `<button class="study-secondary-btn" id="srsLearnMoreBtn" type="button">Learn ${Math.min(srsNewCardLimit, stats.unseen)} More</button>` : ""}
           ${canReviewWeakAgain ? `<button class="study-secondary-btn" id="srsReviewWeakAgainBtn" type="button">Review Again (${dailyReviewWeakRepeatQueue.length})</button>` : ""}
           <button class="study-primary-btn" id="srsDoneBtn" type="button">Done</button>
         </div>
@@ -1307,7 +1320,7 @@ function bindDailyReviewInteractions(){
   document.getElementById("srsBackBtn")?.addEventListener("click", exitDailyReview);
   document.getElementById("srsDoneBtn")?.addEventListener("click", exitDailyReview);
   document.getElementById("srsLearnMoreBtn")?.addEventListener("click", () => {
-    startDailyReview({ extraNewLimit: SRS_NEW_CARD_LIMIT });
+    startDailyReview({ extraNewLimit: srsNewCardLimit });
   });
   document.getElementById("srsReviewWeakAgainBtn")?.addEventListener("click", () => {
     startWeakReview({
@@ -1786,9 +1799,18 @@ const settingsButton = document.getElementById("settingsBtn");
 const settingsPopover = document.getElementById("settingsPopover");
 const settingsCloseButton = document.getElementById("settingsCloseBtn");
 const jlptLevelSelect = document.getElementById("jlptLevelSelect");
+const srsNewCardLimitSelect = document.getElementById("srsNewCardLimitSelect");
+const srsMaxReviewCapSelect = document.getElementById("srsMaxReviewCapSelect");
+const srsWeakCardLimitSelect = document.getElementById("srsWeakCardLimitSelect");
 
 function syncJlptLevelSelect(){
   if(jlptLevelSelect) jlptLevelSelect.value = selectedJlptLevel;
+}
+
+function syncLimitSelects(){
+  if(srsNewCardLimitSelect) srsNewCardLimitSelect.value = String(srsNewCardLimit);
+  if(srsMaxReviewCapSelect) srsMaxReviewCapSelect.value = String(srsMaxReviewCap);
+  if(srsWeakCardLimitSelect) srsWeakCardLimitSelect.value = String(srsWeakCardLimit);
 }
 
 function updateSettingsButtonState(){
@@ -1809,6 +1831,7 @@ function setSettingsOpen(isOpen, options = {}){
   if(isOpen){
     renderDriveStatus();
     syncJlptLevelSelect();
+    syncLimitSelects();
     settingsCloseButton.focus();
   }else if(options.restoreFocus){
     settingsButton.focus();
@@ -1838,6 +1861,24 @@ jlptLevelSelect?.addEventListener("change", async event => {
     renderVocabPanel();
   }
   renderSrsDashboard();
+});
+
+srsNewCardLimitSelect?.addEventListener("change", async event => {
+  srsNewCardLimit = parseInt(event.target.value, 10) || 10;
+  localStorage.setItem("srsNewCardLimit", String(srsNewCardLimit));
+  await renderSrsDashboard();
+});
+
+srsMaxReviewCapSelect?.addEventListener("change", async event => {
+  srsMaxReviewCap = parseInt(event.target.value, 10) || 0;
+  localStorage.setItem("srsMaxReviewCap", String(srsMaxReviewCap));
+  await renderSrsDashboard();
+});
+
+srsWeakCardLimitSelect?.addEventListener("change", async event => {
+  srsWeakCardLimit = parseInt(event.target.value, 10) || 20;
+  localStorage.setItem("srsWeakCardLimit", String(srsWeakCardLimit));
+  await renderSrsDashboard();
 });
 
 document.addEventListener("click", event => {
@@ -1977,6 +2018,7 @@ async function loadVocabData(){
     await saveDriveMetadata();
     globalThis.navigator?.storage?.persist?.().catch(() => false);
     syncJlptLevelSelect();
+    syncLimitSelects();
     renderLessonFilters();
     await loadVocabForSelectedLesson();
     renderAppView();
